@@ -1,0 +1,16 @@
+{
+  "name": "그림으로 먼저 — 지우·선우 공부판",
+  "short_name": "그림으로 먼저",
+  "description": "지우(초5)·선우(초1)의 주말 학습판",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F5F7F3",
+  "theme_color": "#F5F7F3",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
