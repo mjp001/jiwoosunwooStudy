@@ -1,0 +1,2255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F5F7F3">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<title>그림으로 먼저</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --paper:#F5F7F3;
+  --card:#FFFFFF;
+  --ink:#1E2521;
+  --ink-soft:#5B655E;
+  --ink-faint:#8D968F;
+  --line:#DDE3DA;
+  --line-strong:#C3CCC0;
+  --red:#D84E33;
+  --red-soft:#F6D9D1;
+  --blue:#2E6BAF;
+  --blue-soft:#D5E2F2;
+  --grape:#6E4FA3;
+  --green:#2F8C64;
+  --yellow:#E3A92C;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#121714; --card:#1A211D; --ink:#EAF0EA; --ink-soft:#A6B1A9;
+    --ink-faint:#79847C; --line:#2C3630; --line-strong:#3B463F;
+    --red:#F0755A; --red-soft:#4A2A22; --blue:#7CA9E0; --blue-soft:#22344A;
+    --grape:#A98BDC; --green:#5FBE90; --yellow:#F0C155;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121714; --card:#1A211D; --ink:#EAF0EA; --ink-soft:#A6B1A9;
+  --ink-faint:#79847C; --line:#2C3630; --line-strong:#3B463F;
+  --red:#F0755A; --red-soft:#4A2A22; --blue:#7CA9E0; --blue-soft:#22344A;
+  --grape:#A98BDC; --green:#5FBE90; --yellow:#F0C155;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"IBM Plex Sans KR",-apple-system,"Segoe UI","Malgun Gothic",sans-serif;
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:940px;margin:0 auto;padding:0 24px}
+.hanja-font{font-family:"Batang","AppleMyungjo","Noto Serif KR",serif}
+
+/* ---------- masthead ---------- */
+.masthead{padding:44px 0 0}
+.mast-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 10px}
+.masthead h1{
+  font-family:"Do Hyeon",-apple-system,"Malgun Gothic",sans-serif;font-weight:400;
+  font-size:clamp(30px,5vw,44px);line-height:1.15;margin:0 0 10px;text-wrap:balance;letter-spacing:-.01em;
+}
+.lede{margin:0 0 22px;max-width:36em;color:var(--ink-soft);font-size:16px}
+.lede b{color:var(--ink);font-weight:600}
+
+.gemchip{
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  border:2px solid var(--line-strong);border-radius:8px;background:var(--card);
+  padding:8px 14px;font-family:"Do Hyeon",sans-serif;font-size:19px;color:var(--ink);
+  margin-top:6px;
+}
+.gemchip:hover{border-color:var(--ink-faint)}
+.gemchip svg{width:18px;height:18px}
+
+/* ---------- switches / nav ---------- */
+.switch{display:flex;gap:10px;margin:6px 0 26px;flex-wrap:wrap}
+.switch button{
+  font-family:inherit;font-size:15px;font-weight:600;padding:10px 18px;border-radius:4px;cursor:pointer;
+  border:2px solid var(--line-strong);background:var(--card);color:var(--ink-soft);
+  display:flex;align-items:baseline;gap:8px;transition:border-color .15s,color .15s;
+}
+.switch button:hover{border-color:var(--ink-faint);color:var(--ink)}
+.switch button .grade{font-size:12px;font-weight:500;color:var(--ink-faint)}
+.switch button[aria-selected="true"]{border-color:var(--ink);color:var(--ink);box-shadow:inset 0 -3px 0 var(--ink)}
+
+.subnav{display:flex;gap:2px;border-bottom:1px solid var(--line);overflow-x:auto}
+.subnav button{
+  font-family:inherit;font-size:15px;font-weight:600;padding:12px 18px;cursor:pointer;
+  border:none;background:none;color:var(--ink-soft);white-space:nowrap;
+}
+.subnav button:hover{color:var(--ink)}
+.subnav button[aria-selected="true"]{color:var(--ink);box-shadow:inset 0 -3px 0 var(--ink)}
+
+/* ---------- stage ---------- */
+main{padding:8px 0 0}
+.stage{border-top:1px solid var(--line);padding:40px 0 44px}
+.stage:first-child{border-top:none}
+.stage-tag{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:8px}
+.stage h2{font-family:"Do Hyeon",sans-serif;font-weight:400;font-size:clamp(23px,3.2vw,30px);margin:0 0 8px;letter-spacing:-.01em}
+.stage-sub{margin:0 0 26px;color:var(--ink-soft);max-width:42em}
+.stage-body{display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:32px;align-items:start}
+.play{
+  background:var(--card);border:2px solid var(--line-strong);border-radius:6px;
+  padding:26px 24px;min-height:200px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+}
+.read{display:flex;flex-direction:column;gap:18px}
+.live{margin:0;font-size:17px;font-weight:600;line-height:1.5;padding-left:14px;border-left:3px solid var(--ink)}
+.why{font-family:"Gaegu",cursive;font-size:20px;line-height:1.45;color:var(--ink-soft);margin:0}
+.why b{color:var(--ink);font-weight:700}
+.controls{display:flex;flex-wrap:wrap;gap:8px}
+.ctl{
+  font-family:inherit;font-size:14px;font-weight:600;padding:8px 14px;border-radius:4px;cursor:pointer;
+  border:2px solid var(--line-strong);background:var(--card);color:var(--ink-soft);
+}
+.ctl:hover{border-color:var(--ink-faint);color:var(--ink)}
+.ctl[aria-pressed="true"]{border-color:var(--ink);color:var(--card);background:var(--ink)}
+.ctl.quiet{border-style:dashed}
+:where(button):focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+
+.stepper{display:flex;align-items:center;gap:8px;width:100%;justify-content:space-between}
+.stepper span{font-size:13px;color:var(--ink-soft);white-space:nowrap;flex:1}
+.mini{
+  width:30px;height:30px;padding:0;border-radius:4px;border:2px solid var(--line-strong);
+  background:var(--card);color:var(--ink);font-size:16px;font-weight:600;cursor:pointer;line-height:1;font-family:inherit;
+}
+.mini:hover{border-color:var(--ink-faint)}
+
+/* ---------- ten frame ---------- */
+.target{font-family:"Do Hyeon",sans-serif;font-size:15px;color:var(--ink-soft);display:flex;align-items:center;gap:10px}
+.target strong{font-size:30px;color:var(--red);font-weight:400;font-family:"Do Hyeon",sans-serif}
+.frame{display:grid;grid-template-columns:repeat(5,58px);grid-template-rows:repeat(2,58px);border:2px solid var(--ink);border-radius:4px;overflow:hidden}
+.cell{border-right:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);background:var(--card);cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center}
+.frame .cell:nth-child(5n){border-right:none}
+.frame .cell:nth-child(n+6){border-bottom:none}
+.cell::after{content:"";width:30px;height:30px;border-radius:50%;background:transparent;border:2px dashed transparent;transition:background .12s,border-color .12s,transform .12s}
+.cell:hover::after{border-color:var(--line-strong)}
+.cell[data-on="1"]::after{background:var(--red);border-color:var(--red);transform:scale(1.05)}
+.cell[data-gap="1"]::after{background:var(--blue-soft);border-color:var(--blue)}
+.eq{font-family:"Do Hyeon",sans-serif;font-size:26px;display:flex;align-items:center;gap:12px;font-variant-numeric:tabular-nums}
+.eq .n-red{color:var(--red)} .eq .n-blue{color:var(--blue)} .eq .op{color:var(--ink-faint)}
+
+/* ---------- grouping ---------- */
+.groups{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.grp{display:flex;gap:7px;padding:10px;border:2px solid var(--green);border-radius:5px;background:color-mix(in srgb,var(--green) 8%,transparent)}
+.grp.leftover{border-style:dashed;border-color:var(--ink-faint);background:transparent}
+.dot{width:20px;height:20px;border-radius:50%;background:var(--green)}
+.grp.leftover .dot{background:var(--ink-faint)}
+
+/* ---------- hundred board ---------- */
+.hundred{display:grid;grid-template-columns:repeat(10,1fr);width:min(430px,100%);border:2px solid var(--ink);border-radius:4px;overflow:hidden}
+.hcell{
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;
+  font-family:"Do Hyeon",sans-serif;font-size:14px;font-variant-numeric:tabular-nums;
+  border:none;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--card);color:var(--ink-soft);
+}
+.hundred .hcell:nth-child(10n){border-right:none}
+.hundred .hcell:nth-child(n+91){border-bottom:none}
+.hcell.hop{background:var(--blue-soft);color:var(--ink)}
+.hcell.sel{background:var(--red);color:#FFFDFB;font-size:16px}
+.tenbags{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;justify-content:center;min-height:20px}
+.tenbag{width:22px;height:44px;border-radius:4px;background:var(--blue);opacity:.9}
+.onebit{width:14px;height:14px;border-radius:50%;background:var(--red)}
+
+/* ---------- fraction bars ---------- */
+.bars{display:flex;flex-direction:column;gap:16px;width:100%;max-width:460px}
+.barrow{display:flex;align-items:center;gap:14px}
+.frac{font-family:"Do Hyeon",sans-serif;display:inline-flex;flex-direction:column;align-items:center;line-height:1;width:44px;flex:none;font-variant-numeric:tabular-nums}
+.frac .num{font-size:20px} .frac .bar{width:26px;height:2px;background:currentColor;margin:4px 0} .frac .den{font-size:20px}
+.f-red{color:var(--red)} .f-blue{color:var(--blue)}
+.bar-track{display:flex;flex:1;height:44px;border:2px solid var(--ink);border-radius:4px;overflow:hidden}
+.slice{flex:1;border-right:1px solid var(--line-strong);background:var(--card)}
+.slice:last-child{border-right:none}
+.barrow.a .slice.on{background:var(--red)}
+.barrow.b .slice.on{background:var(--blue)}
+.verdict{font-family:"Do Hyeon",sans-serif;font-size:22px;text-align:center}
+.verdict.same{color:var(--green)}
+
+/* ---------- area model ---------- */
+.area{display:grid;border:2px solid var(--ink);border-radius:4px;overflow:hidden;width:min(300px,74vw);aspect-ratio:1}
+.acell{border-right:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);background:var(--card)}
+.acell.col{background:var(--red-soft)} .acell.row{background:var(--blue-soft)} .acell.both{background:var(--grape)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:6px;vertical-align:-2px}
+
+/* ---------- square pattern ---------- */
+.dotgrid{display:grid;gap:5px}
+.pdot{width:15px;height:15px;border-radius:50%;background:var(--ink-faint)}
+.pdot.ghost{visibility:hidden}
+.pdot.addc{background:var(--yellow)}
+.pdot.corner{background:var(--red)}
+.peq{font-family:"Do Hyeon",sans-serif;font-size:21px;text-align:center;font-variant-numeric:tabular-nums}
+.peq .y{color:var(--yellow)} .peq .r{color:var(--red)}
+
+/* ---------- hanja ---------- */
+.hanja-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:14px;width:100%}
+.hcard{
+  border:2px solid var(--line-strong);border-radius:6px;background:var(--paper);padding:14px 8px;cursor:pointer;
+  min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  font-family:inherit;transition:border-color .15s;
+}
+.hcard:hover{border-color:var(--ink-faint)}
+.hcard svg{width:60px;height:60px}
+.hcard .big{font-size:50px;line-height:1.1;color:var(--ink)}
+.hcard .cap{font-size:14px;color:var(--ink-soft);font-weight:600}
+.hcard .hint{font-size:12px;color:var(--ink-faint)}
+.hcard[data-side="pic"] .charside{display:none}
+.hcard[data-side="char"] .picside{display:none}
+
+.parts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tile{
+  font-size:28px;padding:8px 16px;border:2px solid var(--line-strong);border-radius:6px;
+  background:var(--paper);color:var(--ink);cursor:pointer;font-family:"Batang","AppleMyungjo","Noto Serif KR",serif;
+}
+.tile:hover{border-color:var(--ink-faint)}
+.tile[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.combo-out{min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center}
+.combo-char{font-size:74px;line-height:1.1}
+.combo-cap{font-family:"Gaegu",cursive;font-size:20px;color:var(--ink-soft)}
+.found-count{font-size:13px;color:var(--ink-faint)}
+
+/* ---------- korean ---------- */
+.syll-out{font-family:"Do Hyeon",sans-serif;font-size:100px;line-height:1;min-height:110px;display:flex;align-items:center}
+.word-badge{
+  font-family:"Gaegu",cursive;font-size:20px;color:var(--green);font-weight:700;min-height:28px;text-align:center;
+}
+.jamo-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.jamo-label{width:100%;text-align:center;font-size:12px;color:var(--ink-faint);letter-spacing:.1em;margin-bottom:-2px}
+.jamo{
+  font-family:"Do Hyeon",sans-serif;font-size:22px;width:44px;height:44px;padding:0;border-radius:6px;cursor:pointer;
+  border:2px solid var(--line-strong);background:var(--paper);color:var(--ink);
+}
+.jamo:hover{border-color:var(--ink-faint)}
+.jamo[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+
+/* ---------- english ---------- */
+.slots{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;min-height:52px}
+.slot{
+  min-width:46px;height:50px;padding:0 8px;border-bottom:3px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Do Hyeon",sans-serif;font-size:26px;letter-spacing:.02em;
+}
+.slot.ok{color:var(--green);border-color:var(--green)}
+.slot.bad{color:var(--red);border-color:var(--red)}
+.entile{
+  font-family:"Do Hyeon",sans-serif;font-size:22px;padding:8px 14px;border:2px solid var(--line-strong);
+  border-radius:6px;background:var(--paper);color:var(--ink);cursor:pointer;
+}
+.entile:hover{border-color:var(--ink-faint)}
+.entile:disabled{opacity:.3;cursor:default}
+.en-hint{font-family:"Gaegu",cursive;font-size:21px;color:var(--ink-soft);text-align:center}
+
+/* ---------- 근거 훈련소 ---------- */
+.kr-wrap{width:100%;display:flex;flex-direction:column;gap:16px;align-items:center;position:relative}
+.kr-sent{font-family:"Gaegu",cursive;font-size:25px;line-height:1.4;text-align:center;min-height:64px;display:flex;align-items:center;justify-content:center;color:var(--ink);max-width:34em}
+.kr-choices{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.kr-reasons{display:flex;flex-direction:column;gap:8px;width:100%;max-width:520px}
+.kr-reason{
+  font-family:inherit;font-size:15px;text-align:left;padding:10px 14px;border-radius:4px;cursor:pointer;
+  border:2px solid var(--line-strong);background:var(--paper);color:var(--ink);line-height:1.45;
+}
+.kr-reason:hover{border-color:var(--ink-faint)}
+.kr-reason.right{border-color:var(--green);background:color-mix(in srgb,var(--green) 12%,transparent)}
+.kr-reason.wrong{border-color:var(--red);opacity:.6}
+.kr-fb{font-family:"Gaegu",cursive;font-size:19px;line-height:1.5;color:var(--ink-soft);text-align:center;min-height:28px;max-width:34em}
+.kr-fb b{color:var(--ink)}
+.kr-prog{font-size:13px;color:var(--ink-faint)}
+
+/* ---------- week timetable ---------- */
+.wk-scroll{overflow-x:auto;width:100%}
+.wk-grid{display:grid;grid-template-columns:repeat(5,minmax(104px,1fr));gap:10px;min-width:560px}
+.wk-day{display:flex;flex-direction:column;gap:6px}
+.wk-head{font-family:"Do Hyeon",sans-serif;font-size:16px;text-align:center;color:var(--ink);padding-bottom:5px;border-bottom:1px solid var(--line-strong)}
+.wk-p{font-size:13px;padding:5px 9px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--line-strong);border-radius:4px;color:var(--ink-soft);white-space:nowrap}
+.wk-p.hl-m{border-left-color:var(--red);color:var(--ink);font-weight:600}
+.wk-p.hl-k{border-left-color:var(--green);color:var(--ink);font-weight:600}
+.wk-p.hl-e{border-left-color:var(--blue);color:var(--ink);font-weight:600}
+.wk-p.hl-m,.wk-p.hl-k,.wk-p.hl-e{cursor:pointer}
+.wk-p.hl-m:hover,.wk-p.hl-k:hover,.wk-p.hl-e:hover{text-decoration:underline;text-underline-offset:3px}
+button.unit{cursor:pointer;font-family:inherit}
+button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
+.wk-note{font-size:12px;color:var(--ink-faint);margin:14px 0 0}
+.units{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.unit{font-size:13px;font-weight:600;padding:6px 12px;border:1.5px solid var(--line-strong);border-radius:4px;background:var(--card);color:var(--ink-soft)}
+.unit b{color:var(--ink)}
+
+/* ---------- quiz ---------- */
+.quiz{border-top:1px solid var(--line);padding:40px 0 8px}
+.quiz h2{font-family:"Do Hyeon",sans-serif;font-weight:400;font-size:25px;margin:0 0 22px}
+.q{background:var(--card);border:2px solid var(--line-strong);border-radius:6px;padding:22px 22px 20px;margin-bottom:16px;position:relative;overflow:visible}
+.q h3{font-size:17px;font-weight:600;margin:0 0 4px}
+.q .qnote{margin:0 0 16px;font-size:14px;color:var(--ink-faint)}
+.opts{display:flex;gap:10px;flex-wrap:wrap}
+.opt{font-family:"Do Hyeon",sans-serif;font-size:20px;min-width:74px;padding:10px 16px;border-radius:4px;cursor:pointer;border:2px solid var(--line-strong);background:var(--paper);color:var(--ink)}
+.opt:hover{border-color:var(--ink-faint)}
+.opt.right{border-color:var(--green);background:color-mix(in srgb,var(--green) 14%,transparent)}
+.opt.wrong{border-color:var(--red);opacity:.55}
+.explain{margin:16px 0 0;padding-top:14px;border-top:1px dashed var(--line-strong);font-family:"Gaegu",cursive;font-size:19px;line-height:1.5;color:var(--ink-soft)}
+.explain b{color:var(--ink);font-weight:700}
+.explain.oops{border-top:none;padding-top:0;margin-top:8px;color:var(--red)}
+.explain.oops b{color:var(--red)}
+.q .done-gem{position:absolute;top:14px;right:16px;width:22px;height:22px}
+.gem-pop{
+  position:absolute;top:10px;right:14px;pointer-events:none;
+  font-family:"Do Hyeon",sans-serif;font-size:18px;color:var(--grape);
+  display:flex;align-items:center;gap:4px;animation:gpop 1.1s ease-out forwards;
+}
+.gem-pop svg{width:20px;height:20px}
+@keyframes gpop{0%{transform:translateY(6px) scale(.6);opacity:0}25%{transform:translateY(0) scale(1.15);opacity:1}60%{transform:translateY(-6px) scale(1);opacity:1}100%{transform:translateY(-26px) scale(1);opacity:0}}
+
+/* ---------- gem bank ---------- */
+.bank{padding:40px 0 20px}
+.bank h2{font-family:"Do Hyeon",sans-serif;font-weight:400;font-size:28px;margin:0 0 6px}
+.bank-sub{color:var(--ink-soft);margin:0 0 24px}
+.bank-count{font-family:"Do Hyeon",sans-serif;font-size:21px;margin:0 0 12px}
+.bank-grid{display:flex;flex-wrap:wrap;gap:10px;min-height:34px;margin-bottom:34px}
+.bank-grid svg{width:30px;height:30px}
+.bank-empty{font-family:"Gaegu",cursive;font-size:20px;color:var(--ink-faint)}
+.milestones{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.mile{border:2px solid var(--line-strong);border-radius:6px;padding:18px 12px 14px;text-align:center;background:var(--card)}
+.mile svg{width:84px;height:84px}
+.mile .mname{font-family:"Do Hyeon",sans-serif;font-size:18px;margin:6px 0 2px}
+.mile .mreq{font-size:13px;color:var(--ink-faint)}
+.mile.locked svg{filter:grayscale(1);opacity:.35}
+.mile.locked .mname{color:var(--ink-faint)}
+.mile.unlocked{border-color:var(--grape)}
+
+/* ---------- footer ---------- */
+.closing{border-top:1px solid var(--line);margin-top:40px;padding:36px 0 64px;color:var(--ink-soft);font-size:15px}
+.closing h2{font-family:"Do Hyeon",sans-serif;font-weight:400;font-size:22px;color:var(--ink);margin:0 0 12px}
+.closing ul{margin:0;padding-left:20px}
+.closing li{margin-bottom:6px}
+.closing li b{color:var(--ink)}
+
+[hidden]{display:none !important}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+@media (max-width:760px){
+  .stage-body{grid-template-columns:1fr;gap:24px}
+  .frame{grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(2,52px);width:100%}
+  .play{padding:20px 12px}
+  .masthead{padding:32px 0 0}
+  .syll-out{font-size:80px}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="mast-row">
+      <div>
+        <p class="eyebrow">주말 공부 · 그림으로 먼저</p>
+        <h1>그림으로 먼저,<br>답은 그다음</h1>
+        <p class="lede">눌러보면 이유가 보이는 판. 문제를 <b>맞히면 보석이 1개</b> — 틀려도 ‘다시 풀기’로 도전하면 된다. 보석을 모으면 거북이 친구가 찾아온다.</p>
+      </div>
+      <button class="gemchip" id="gemchip" aria-label="보석함 열기"><span id="gemchip-icon"></span><span id="gemchip-n">0</span>개</button>
+    </div>
+    <div class="switch" role="tablist" aria-label="아이 고르기">
+      <button role="tab" aria-selected="true" data-child="sunwoo">선우 <span class="grade">초1</span></button>
+      <button role="tab" aria-selected="false" data-child="jiwoo">지우 <span class="grade">초5</span></button>
+    </div>
+    <nav class="subnav" role="tablist" aria-label="과목 고르기">
+      <button role="tab" aria-selected="false" data-subject="today">오늘</button>
+      <button role="tab" aria-selected="true" data-subject="math">수학</button>
+      <button role="tab" aria-selected="false" data-subject="kor">국어</button>
+      <button role="tab" aria-selected="false" data-subject="hanja">한자</button>
+      <button role="tab" aria-selected="false" data-subject="eng">영어</button>
+      <button role="tab" aria-selected="false" data-subject="week">이번 주</button>
+      <button role="tab" aria-selected="false" data-subject="bank">보석함</button>
+    </nav>
+  </header>
+
+  <main>
+
+  <!-- ================= 오늘 · 선우 ================= -->
+  <section class="panel" data-subject="today" data-child="sunwoo" hidden>
+    <article class="stage">
+      <span class="stage-tag">8월 25일 화요일 · 주간학습안내 기준</span>
+      <h2>선우의 오늘</h2>
+      <p class="stage-sub">오늘 학교에서: 비빔밥 놀이 → <b>수학 (60·70·80·90을 알아볼까요)</b> → <b>국어 (기분을 나타내는 말)</b> ×2 → 건강한 하루. 배운 걸 그대로 문제로 만나보자. 잊지 말기: 읽을 책 1권, 개인 물병!</p>
+    </article>
+
+    <section class="quiz" style="border-top:none;padding-top:0">
+      <h2>오늘 배운 것, 도전!</h2>
+      <div class="q" data-qid="t-s1" data-answer="1">
+        <h3>10개씩 묶음이 7개면 얼마일까?</h3>
+        <p class="qnote">오늘 수학 시간에 배운 60, 70, 80, 90!</p>
+        <div class="opts"><button class="opt">60</button><button class="opt">70</button><button class="opt">80</button></div>
+        <p class="explain" hidden>70의 7은 그냥 7이 아니라 <b>‘묶음이 7개’라는 이름표</b>야. 뒤의 0은 낱개가 없다는 표시. 그래서 8묶음이면 80, 9묶음이면 90 — 이름표만 바뀌는 거야.</p>
+      </div>
+      <div class="q" data-qid="t-s2" data-answer="0">
+        <h3>89보다 1 큰 수는?</h3>
+        <p class="qnote">목요일에 배울 ‘99까지의 수’ 미리 맛보기. 100판에서 89를 찾아봐도 좋아.</p>
+        <div class="opts"><button class="opt">90</button><button class="opt">88</button><button class="opt">98</button></div>
+        <p class="explain" hidden>89의 낱개 칸엔 9개가 꽉 차 있어. 한 개만 더 오면 10개가 우르르 <b>한 묶음으로 변신</b> — 낱개 칸은 텅 비고 묶음이 하나 늘어 <b>90</b>! 수가 자라는 순간이야.</p>
+      </div>
+      <div class="q" data-qid="t-s3" data-answer="2">
+        <h3>기분을 나타내는 말은 어느 것일까?</h3>
+        <p class="qnote">오늘 국어 시간에 배운 것!</p>
+        <div class="opts"><button class="opt">의자</button><button class="opt">달리다</button><button class="opt">신나요</button></div>
+        <p class="explain" hidden><b>신나요</b>는 마음속 기분을 나타내는 말이야. 기뻐요, 슬퍼요, 무서워요, 설레요 — 오늘 내 기분은 뭐라고 말할 수 있을까?</p>
+      </div>
+      <div class="q" data-qid="t-s4" data-answer="0">
+        <h3>‘폴짝폴짝’은 무엇을 흉내 낸 말일까?</h3>
+        <p class="qnote">어제 배운 흉내 내는 말, 기억나?</p>
+        <div class="opts"><button class="opt">토끼가 뛰는 모습</button><button class="opt">비가 오는 소리</button><button class="opt">문이 닫히는 소리</button></div>
+        <p class="explain" hidden>폴짝폴짝은 <b>모습을 흉내 낸 말</b>이야. 소리를 흉내 내면 ‘쏴아’(비), ‘쾅’(문) — 흉내 내는 말을 넣으면 문장이 그림처럼 살아나.</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= 오늘 · 지우 ================= -->
+  <section class="panel" data-subject="today" data-child="jiwoo" hidden>
+    <article class="stage">
+      <span class="stage-tag">8월 25일 화요일 · 주간학습안내 기준</span>
+      <h2>지우의 오늘</h2>
+      <p class="stage-sub">오늘 학교에서: <b>도덕 (왜 인권을 존중해야 할까)</b> → <b>영어 (Words &amp; Sentences · Phonics)</b> → 학급임원 선거 → <b>국어 (시에 대한 의견 나누기)</b> ×2. 오늘은 학급임원 선거 날!</p>
+    </article>
+
+    <section class="quiz" style="border-top:none;padding-top:0">
+      <h2>오늘 배운 것, 도전!</h2>
+      <div class="q" data-qid="t-j1" data-answer="0">
+        <h3>‘10 이상인 수’에 10은 들어갈까?</h3>
+        <p class="qnote">이번 주 수학 — 수의 범위.</p>
+        <div class="opts"><button class="opt">들어간다</button><button class="opt">안 들어간다</button><button class="opt">알 수 없다</button></div>
+        <p class="explain" hidden>경계선에 <b>발을 올려도 되느냐</b>의 문제야. 이상·이하는 선 위에 서 있어도 OK(10 포함), 초과·미만은 선을 <b>넘어야만</b> 인정(11부터). ‘키 120cm 이상 탑승 가능’이면 딱 120인 사람도 탈 수 있는 거지!</p>
+        <p class="explain oops" data-opt="1" hidden>‘안 들어간다’가 되려면 <b>10 초과</b>여야 해. 이상(以上)의 上은 그 수를 딛고 서 있는 거라 10도 포함이야.</p>
+      </div>
+      <div class="q" data-qid="t-j2" data-answer="0">
+        <h3>3,480원을 천 원 단위로 버림하면?</h3>
+        <p class="qnote">금요일 수학 — ‘버림을 알아보고 활용해볼까요’ 미리 맛보기.</p>
+        <div class="opts"><button class="opt">3,000원</button><button class="opt">3,500원</button><button class="opt">4,000원</button></div>
+        <p class="explain" hidden>어림은 <b>계단</b>이야. 올림은 위층으로, 버림은 아래층으로, 반올림은 가까운 층으로. 3,480원이 천 원 계단에 서 있으면 버림은 <b>3,000 층으로 내려가기</b> — 천 원 지폐로만 낼 수 있는 만큼이 돼.</p>
+        <p class="explain oops" data-opt="1" hidden>3,500은 <b>반올림</b>도 아니고 버림도 아니야. 버림은 천 원 아래를 통째로 버려.</p>
+        <p class="explain oops" data-opt="2" hidden>4,000원이 되려면 <b>올림</b>이야. 버림은 반대로 아래로 내려가.</p>
+      </div>
+      <div class="q" data-qid="t-j3" data-answer="1">
+        <h3>시를 읽고 ‘의견’을 말한 친구는 누구일까?</h3>
+        <p class="qnote">오늘 국어 — 시에 대한 의견 나누기.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">“이 시는 4줄이야”</button><button class="opt" style="font-size:15px">“달팽이가 답답했을 것 같아”</button><button class="opt" style="font-size:15px">“제목이 달팽이야”</button></div>
+        <p class="explain" hidden>줄 수나 제목은 누가 봐도 같은 <b>사실</b>. “~것 같아, ~라고 생각해”처럼 내 생각과 느낌이 담긴 게 <b>의견</b>이야. 의견엔 정답이 없어서 나누는 재미가 있지.</p>
+      </div>
+      <div class="q" data-qid="t-j4" data-answer="2">
+        <h3>시작 소리가 다른 하나는? — ship · shoe · sun</h3>
+        <p class="qnote">오늘 영어 — Phonics Fun!</p>
+        <div class="opts"><button class="opt">ship</button><button class="opt">shoe</button><button class="opt">sun</button></div>
+        <p class="explain" hidden>ship과 shoe는 <b>sh(쉬)</b> 소리, sun은 <b>s(스)</b> 소리로 시작해. s에 h가 붙으면 입술을 내밀고 ‘쉬—’ 하는 새 소리가 돼.</p>
+      </div>
+      <div class="q" data-qid="t-j5" data-answer="0">
+        <h3>사람이라면 누구나 태어나면서부터 가지는 권리는?</h3>
+        <p class="qnote">오늘 도덕 — 왜 인권을 존중해야 할까.</p>
+        <div class="opts"><button class="opt">인권</button><button class="opt">규칙</button><button class="opt">허락</button></div>
+        <p class="explain" hidden><b>인권</b>은 조건 없이, 태어나는 순간부터 모두에게 있는 권리야. 규칙은 사람들이 정한 약속이고, 허락은 누가 주는 것 — 인권은 누가 주지 않아도 이미 있는 거야.</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= 수학 · 선우 ================= -->
+  <section class="panel" data-subject="math" data-child="sunwoo">
+
+    <article class="stage">
+      <span class="stage-tag">2학기 준비 · 100까지의 수</span>
+      <h2>100판 탐험</h2>
+      <p class="stage-sub">수를 하나씩이 아니라 판 위의 자리로 본다. 숫자를 누르면 10묶음과 낱개로 갈라지고, 뛰어세기를 누르면 수가 줄을 서서 걸어간다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="hundred" id="h-board"></div>
+          <div class="tenbags" id="h-bags"></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="h-live"></p>
+          <p class="why" id="h-why"></p>
+          <div class="controls" id="h-skips"></div>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">활동 둘</span>
+      <h2>10 만들기</h2>
+      <p class="stage-sub">빈칸이 보이면 답이 보인다. 구슬을 놓는 순간 남은 칸이 파랗게 켜지고, 그게 바로 짝꿍 수다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <p class="target">빨간 구슬 <strong id="a-target">7</strong> 개를 놓아봐</p>
+          <div class="frame" id="a-frame" role="group" aria-label="10칸 판"></div>
+          <p class="eq" id="a-eq"></p>
+        </div>
+        <aside class="read">
+          <p class="live" id="a-live"></p>
+          <p class="why" id="a-why"></p>
+          <div class="controls">
+            <button class="ctl" id="a-new">다른 수로 해보기</button>
+            <button class="ctl quiet" id="a-clear">비우기</button>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">활동 셋</span>
+      <h2>묶어서 세기</h2>
+      <p class="stage-sub">하나씩 세면 오래 걸리는 걸, 묶으면 한눈에 센다. 같은 수를 여러 방법으로 묶어보는 게 나중에 곱셈이 되고 나눗셈이 된다.</p>
+      <div class="stage-body">
+        <div class="play"><div class="groups" id="b-groups"></div></div>
+        <aside class="read">
+          <p class="live" id="b-live"></p>
+          <p class="why" id="b-why"></p>
+          <div class="controls" id="b-sizes"></div>
+          <div class="controls"><button class="ctl quiet" id="b-total">전체 개수 바꾸기</button></div>
+        </aside>
+      </div>
+    </article>
+
+    <section class="quiz">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="s-m1" data-answer="1">
+        <h3>8과 짝꿍이 되어 10을 만드는 수는?</h3>
+        <p class="qnote">위 판에 구슬 8개를 놓아보면 바로 보여.</p>
+        <div class="opts"><button class="opt">1</button><button class="opt">2</button><button class="opt">3</button></div>
+        <p class="explain" hidden>10자리 버스에 8명이 타면? 세지 말고 <b>빈자리</b>를 봐 — 딱 2자리. 8의 짝꿍은 언제나 2, 버스가 알려주는 거야.</p>
+      </div>
+      <div class="q" data-qid="s-m2" data-answer="1">
+        <h3>14는 10과 몇으로 가를 수 있을까?</h3>
+        <p class="qnote">10칸 판이 꽉 차고, 밖에 몇 개가 남을까?</p>
+        <div class="opts"><button class="opt">3</button><button class="opt">4</button><button class="opt">5</button></div>
+        <p class="explain" hidden>사탕 14개 — 10개는 상자에 <b>쏙</b>, 밖에 4개가 남아. 큰 수는 ‘상자 하나 + 낱개 몇’으로 보면 한눈에 들어와.</p>
+      </div>
+      <div class="q" data-qid="s-m3" data-answer="1">
+        <h3>사탕 12개를 4명이 똑같이 나누면 한 명이 몇 개?</h3>
+        <p class="qnote">위에서 12개를 4묶음으로 묶어봐.</p>
+        <div class="opts"><button class="opt">2</button><button class="opt">3</button><button class="opt">4</button></div>
+        <p class="explain" hidden>접시 4개에 척, 척 올려보면 <b>3개씩</b>일 때 딱 떨어져: 3·6·9·12! 나눗셈은 어려운 게 아니라 ‘똑같이 묶기 놀이’야.</p>
+      </div>
+      <div class="q" data-qid="s-m4" data-answer="2">
+        <h3>6 + 7 은 몇일까?</h3>
+        <p class="qnote">6에 4를 먼저 줘서 10을 만들어봐.</p>
+        <div class="opts"><button class="opt">11</button><button class="opt">12</button><button class="opt">13</button></div>
+        <p class="explain" hidden>7이 6에게 4를 <b>빌려주면</b> 10이 완성되고, 7의 주머니엔 3이 남아. 10+3 = <b>13</b>. 10을 먼저 만들면 덧셈은 지름길로 가.</p>
+      </div>
+    </section>
+
+    <article class="stage rev">
+      <span class="stage-tag">이번 주 학교에서 · 8/24 – 8/28</span>
+      <h2>이번 주 복습 + 보너스</h2>
+      <p class="stage-sub">화요일엔 <b>60·70·80·90</b>, 목요일엔 <b>99까지의 수</b>를 배웠다. 아래 100판에서 눈으로 확인하고, 보너스로 마무리!</p>
+      <div class="q" data-qid="b-s-m1" data-answer="1">
+        <h3>보너스 — 80은 10개씩 몇 묶음일까?</h3>
+        <p class="qnote">이번 주 화요일에 배운 것.</p>
+        <div class="opts"><button class="opt">6묶음</button><button class="opt">8묶음</button><button class="opt">9묶음</button></div>
+        <p class="explain" hidden>80을 거꾸로 읽으면 답이 보여 — <b>8</b>묶음에 낱개 0. 수의 앞자리는 묶음 창고의 문패야.</p>
+      </div>
+      <div class="q" data-qid="b-s-m2" data-answer="0">
+        <h3>보너스 — 99 다음 수는?</h3>
+        <p class="qnote">묶음 9개, 낱개 9개… 꽉 찼다!</p>
+        <div class="opts"><button class="opt">100</button><button class="opt">909</button><button class="opt">90</button></div>
+        <p class="explain" hidden>낱개도 묶음도 꽉 찬 99에 하나가 더 오면, 묶음 10개가 또 큰 상자 하나로 변신 — 자리가 하나 늘어난 <b>100</b>! 수는 이렇게 층층이 자라.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 수학 · 지우 ================= -->
+  <section class="panel" data-subject="math" data-child="jiwoo" hidden>
+
+    <article class="stage">
+      <span class="stage-tag">깨봉식 · 패턴의 힘</span>
+      <h2>정사각형의 비밀</h2>
+      <p class="stage-sub">15×15에서 16×16으로 갈 때 전부 다시 계산할 필요가 없다 — 오른쪽 한 줄, 아래 한 줄, 모서리 하나. 변화만 보면 큰 곱셈이 덧셈이 된다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="dotgrid" id="p-grid"></div>
+          <p class="peq" id="p-eq"></p>
+        </div>
+        <aside class="read">
+          <p class="live" id="p-live"></p>
+          <p class="why" id="p-why"></p>
+          <div class="controls">
+            <button class="ctl" id="p-mode-grow" aria-pressed="true">한 줄씩 자라기</button>
+            <button class="ctl" id="p-mode-odd" aria-pressed="false">홀수로 쌓기</button>
+          </div>
+          <div class="controls" id="p-ctl-grow">
+            <button class="ctl" id="p-grow">한 줄 더해보기</button>
+            <div class="stepper"><span>크기</span><button class="mini" id="p-minus">−</button><button class="mini" id="p-plus">+</button></div>
+          </div>
+          <div class="controls" id="p-ctl-odd" hidden>
+            <button class="ctl" id="p-layer">한 층 더 쌓기</button>
+            <button class="ctl quiet" id="p-reset">처음부터</button>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">2학기 2단원 · 분수의 곱셈</span>
+      <h2>분수 곱셈은 넓이다</h2>
+      <p class="stage-sub">‘분자끼리 분모끼리’를 외우기 전에, 겹친 칸을 세어보면 규칙이 저절로 나온다. 가로로 한 번, 세로로 한 번 자른 뒤 겹친 자리를 보는 게 전부다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="area" id="d-area"></div>
+          <p class="legend">
+            <span><i style="background:var(--red-soft)"></i>첫 분수 (세로로 자름)</span>
+            <span><i style="background:var(--blue-soft)"></i>둘째 분수 (가로로 자름)</span>
+            <span><i style="background:var(--grape)"></i>겹친 자리 = 답</span>
+          </p>
+        </div>
+        <aside class="read">
+          <p class="live" id="d-live"></p>
+          <p class="why" id="d-why"></p>
+          <div class="controls">
+            <div class="stepper"><span>첫 분자</span><button class="mini" data-area="n1" data-step="-1">−</button><button class="mini" data-area="n1" data-step="1">+</button></div>
+            <div class="stepper"><span>첫 분모</span><button class="mini" data-area="d1" data-step="-1">−</button><button class="mini" data-area="d1" data-step="1">+</button></div>
+            <div class="stepper"><span>둘 분자</span><button class="mini" data-area="n2" data-step="-1">−</button><button class="mini" data-area="n2" data-step="1">+</button></div>
+            <div class="stepper"><span>둘 분모</span><button class="mini" data-area="d2" data-step="-1">−</button><button class="mini" data-area="d2" data-step="1">+</button></div>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">활동 셋 · 통분</span>
+      <h2>같은 크기 찾기</h2>
+      <p class="stage-sub">분수는 숫자 두 개가 아니라 <em>크기 하나</em>다. 두 막대를 나란히 놓고 길이를 재보면, 통분이 왜 필요한지 계산 전에 눈으로 먼저 걸린다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="bars">
+            <div class="barrow a">
+              <span class="frac f-red"><span class="num" id="a-num">1</span><span class="bar"></span><span class="den" id="a-den">2</span></span>
+              <div class="bar-track" id="a-track"></div>
+            </div>
+            <div class="barrow b">
+              <span class="frac f-blue"><span class="num" id="b-num">3</span><span class="bar"></span><span class="den" id="b-den">6</span></span>
+              <div class="bar-track" id="b-track"></div>
+            </div>
+          </div>
+          <p class="verdict" id="c-verdict"></p>
+        </div>
+        <aside class="read">
+          <p class="live" id="c-live"></p>
+          <p class="why" id="c-why"></p>
+          <div class="controls">
+            <div class="stepper"><span>위 분자</span><button class="mini" data-frac="a" data-part="num" data-step="-1">−</button><button class="mini" data-frac="a" data-part="num" data-step="1">+</button></div>
+            <div class="stepper"><span>위 분모</span><button class="mini" data-frac="a" data-part="den" data-step="-1">−</button><button class="mini" data-frac="a" data-part="den" data-step="1">+</button></div>
+            <div class="stepper"><span>아래 분자</span><button class="mini" data-frac="b" data-part="num" data-step="-1">−</button><button class="mini" data-frac="b" data-part="num" data-step="1">+</button></div>
+            <div class="stepper"><span>아래 분모</span><button class="mini" data-frac="b" data-part="den" data-step="-1">−</button><button class="mini" data-frac="b" data-part="den" data-step="1">+</button></div>
+          </div>
+          <div class="controls"><button class="ctl quiet" id="c-shuffle">다른 문제 주세요</button></div>
+        </aside>
+      </div>
+    </article>
+
+    <section class="quiz">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="j-m1" data-answer="2">
+        <h3>25×25 = 625. 그럼 26×26 은?</h3>
+        <p class="qnote">다시 계산하지 말고, 한 줄 두 줄만 더해봐.</p>
+        <div class="opts"><button class="opt">650</button><button class="opt">651</button><button class="opt">676</button></div>
+        <p class="explain" hidden>다시 곱하는 건 힘으로 미는 것 — 우리는 <b>변화만</b> 봐. 정사각형이 한 뼘 자랄 때 필요한 건 오른쪽 한 줄(25), 아래 한 줄(25), 모서리 한 알(1). 625+51 = <b>676</b>, 덧셈으로 끝.</p>
+      </div>
+      <div class="q" data-qid="j-m2" data-answer="1">
+        <h3>0.25 를 분수로 쓰면?</h3>
+        <p class="qnote">100칸짜리 판에서 25칸을 떠올려봐.</p>
+        <div class="opts"><button class="opt">1/5</button><button class="opt">1/4</button><button class="opt">2/5</button></div>
+        <p class="explain" hidden>100칸 판에 25칸을 칠했다고 상상해봐. 그 덩어리를 <b>4번</b> 찍으면 판이 꽉 차지? 그래서 0.25는 판의 <b>1/4</b>. 0.25, 25%, 1/4 — 옷만 다른 같은 크기야.</p>
+      </div>
+      <div class="q" data-qid="j-m3" data-answer="0">
+        <h3>2/3 과 5/8 중 어느 쪽이 더 클까?</h3>
+        <p class="qnote">계산하지 말고, 위 막대에서 먼저 재봐도 좋아.</p>
+        <div class="opts"><button class="opt">2/3</button><button class="opt">5/8</button><button class="opt">같다</button></div>
+        <p class="explain" hidden>cm 자와 인치 자로 잰 길이는 바로 비교 못 하지? 분수도 그래. 둘 다 <b>24칸짜리 같은 자</b>로 바꿔 들면 16칸 대 15칸 — 딱 한 칸 차이로 2/3 승리. 통분은 ‘자 바꿔 들기’야.</p>
+      </div>
+      <div class="q" data-qid="j-m4" data-answer="2">
+        <h3>1/2 × 2/5 는?</h3>
+        <p class="qnote">넓이판에서 가로 2칸 중 1칸, 세로 5칸 중 2칸을 골라봐.</p>
+        <div class="opts"><button class="opt">3/7</button><button class="opt">2/7</button><button class="opt">1/5</button></div>
+        <p class="explain" hidden>×를 <b>‘~의’</b>로 읽어봐: 1/2 × 2/5 = “2/5<b>의</b> 절반”. 피자 2/5조각의 또 절반이니 작아질 수밖에. 겹친 칸으로 세면 10칸 중 2칸 = <b>1/5</b>.</p>
+      </div>
+      <div class="q" data-qid="j-m5" data-answer="1">
+        <h3>홀수를 차례로 더하면? 1+3+5+7+9 =</h3>
+        <p class="qnote">‘홀수로 쌓기’에서 다섯 층을 쌓아봐.</p>
+        <div class="opts"><button class="opt">24</button><button class="opt">25</button><button class="opt">30</button></div>
+        <p class="explain" hidden>홀수는 <b>ㄱ자 블록</b>이야. 1 위에 3을 감싸고, 그 위에 5를 감싸고… 한 번 감쌀 때마다 정사각형이 한 뼘씩 커져. 다섯 번 감쌌으면 <b>5×5 = 25</b> — 더하지 않고 모양이 답을 말해.</p>
+      </div>
+      <div class="q" data-qid="j-m6" data-answer="2">
+        <h3>3/4 × 1/3 은?</h3>
+        <p class="qnote">×를 ‘~의’로 읽어봐: 1/3의 3/4.</p>
+        <div class="opts"><button class="opt">4/7</button><button class="opt">3/7</button><button class="opt">1/4</button></div>
+        <p class="explain" hidden>1/3짜리 조각의 3/4만 가지는 것 — 넓이판으로 세면 12칸 중 3칸 = 3/12 = <b>1/4</b>. 분자 3과 분모 3이 서로 지워지는 걸 봤다면, 이미 약분의 눈이 생긴 거야.</p>
+      </div>
+      <div class="q" data-qid="j-m7" data-answer="1">
+        <h3>몸무게가 36.5kg ‘초과’인 사람만 탈 수 있는 기구가 있다. 딱 36.5kg인 사람은?</h3>
+        <p class="qnote">경계선 문제 — 발을 올려도 되는 쪽이었나?</p>
+        <div class="opts"><button class="opt">탈 수 있다</button><button class="opt">탈 수 없다</button><button class="opt">알 수 없다</button></div>
+        <p class="explain" hidden>초과는 경계선을 <b>넘어야만</b> 인정 — 딱 36.5는 선 위에 서 있는 것이라 <b>탈 수 없어</b>. ‘이상’이었다면 탈 수 있었겠지. 놀이공원 안내판이 다 수학이야.</p>
+      </div>
+    </section>
+
+    <article class="stage rev">
+      <span class="stage-tag">이번 주 학교에서 · 8/24 – 8/28</span>
+      <h2>이번 주 복습 + 보너스</h2>
+      <p class="stage-sub">월요일 <b>수의 범위 활용</b>, 목요일 <b>올림</b>, 금요일 <b>버림</b> — 어림 삼형제를 한 주에 다 만난다. 보너스로 점검!</p>
+      <div class="q" data-qid="b-j-m1" data-answer="1">
+        <h3>보너스 — 45 이상 50 미만인 자연수는 모두 몇 개?</h3>
+        <p class="qnote">경계선에 발을 올려도 되는 쪽이 어디였지?</p>
+        <div class="opts"><button class="opt">4개</button><button class="opt">5개</button><button class="opt">6개</button></div>
+        <p class="explain" hidden>45는 <b>포함</b>(이상), 50은 <b>탈락</b>(미만). 45·46·47·48·49 — 손가락으로 세면 <b>5개</b>. 범위 문제는 양 끝 처리만 하면 끝나.</p>
+      </div>
+      <div class="q" data-qid="b-j-m2" data-answer="0">
+        <h3>보너스 — 사탕 123개를 10개씩 봉지에 <em>모두</em> 담으려면 봉지 몇 개?</h3>
+        <p class="qnote">남는 3개도 담아야 해!</p>
+        <div class="opts"><button class="opt">13개</button><button class="opt">12개</button><button class="opt">123개</button></div>
+        <p class="explain" hidden>12봉지면 3개가 길에 남지? ‘모두 담으려면’이 보이면 <b>올림</b> — 계단을 한 층 올라가 <b>13봉지</b>. 버림·올림은 계산이 아니라 <b>상황</b>이 정해줘.</p>
+      </div>
+    </article>
+  </section>
+  <!-- ================= 한자 · 선우 ================= -->
+  <section class="panel" data-subject="hanja" data-child="sunwoo" hidden>
+    <article class="stage">
+      <span class="stage-tag">8급 · 그림이 글자가 되다</span>
+      <h2>그림 뒤집기</h2>
+      <p class="stage-sub">한자는 원래 그림이었다. 카드를 누르면 그림이 글자로 뒤집힌다 — 산봉우리 세 개가 山이 되는 걸 눈으로 보면 외울 게 없어진다.</p>
+      <div class="stage-body">
+        <div class="play"><div class="hanja-grid" id="hj-cards"></div></div>
+        <aside class="read">
+          <p class="live" id="hj-live">카드를 눌러서 그림을 글자로 바꿔봐.</p>
+          <p class="why" id="hj-why">그림과 글자가 <b>같은 모양</b>이라는 걸 찾는 놀이야.</p>
+          <div class="controls"><button class="ctl quiet" id="hj-flipall">전부 뒤집기</button></div>
+        </aside>
+      </div>
+    </article>
+
+    <section class="quiz">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="s-h1" data-answer="0">
+        <h3>‘달’을 뜻하는 글자는?</h3>
+        <p class="qnote">초승달 모양을 찾아봐.</p>
+        <div class="opts"><button class="opt hanja-font">月</button><button class="opt hanja-font">日</button><button class="opt hanja-font">山</button></div>
+        <p class="explain" hidden><b>月</b>은 초승달, <b>日</b>은 해를 그린 글자야. 둥근 해와 기울어진 달 — 모양이 답을 알려줘.</p>
+      </div>
+      <div class="q" data-qid="s-h2" data-answer="1">
+        <h3>山 이 그리고 있는 것은?</h3>
+        <p class="qnote">글자를 옆으로 봐도 돼.</p>
+        <div class="opts"><button class="opt">물결</button><button class="opt">산봉우리</button><button class="opt">나뭇가지</button></div>
+        <p class="explain" hidden>봉우리 <b>세 개</b>가 나란히 솟은 모양이 그대로 글자가 됐어.</p>
+      </div>
+      <div class="q" data-qid="s-h3" data-answer="1">
+        <h3>火 는 무엇을 그린 글자일까?</h3>
+        <p class="qnote">가운데가 위로 넘실넘실 올라가고 있어.</p>
+        <div class="opts"><button class="opt">비</button><button class="opt">타오르는 불</button><button class="opt">구름</button></div>
+        <p class="explain" hidden>넘실거리는 <b>불꽃</b>과 양옆으로 튀는 <b>불똥</b>까지 그대로 그린 글자야. ‘화산’의 화가 바로 이 火!</p>
+      </div>
+    </section>
+
+    <article class="stage rev">
+      <span class="stage-tag">이번 주 보너스 · 시간표엔 없지만!</span>
+      <h2>이번 주 복습 + 보너스</h2>
+      <p class="stage-sub">학교 시간표엔 한자가 없지만, 그림 카드 여덟 장은 우리끼리의 진도. 이번 주 카드에서 보너스 하나!</p>
+      <div class="q" data-qid="b-s-h1" data-answer="1">
+        <h3>보너스 — 둥근 해를 그린 글자는?</h3>
+        <p class="qnote">가운데 점이 힌트!</p>
+        <div class="opts"><button class="opt hanja-font">月</button><button class="opt hanja-font">日</button><button class="opt hanja-font">水</button></div>
+        <p class="explain" hidden>동그란 해 가운데 점을 콕 — <b>日</b>(날 일). 매일 뜨는 해라서 ‘날·하루’라는 뜻도 갖게 됐어. 일요일의 日이 바로 이 글자!</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 한자 · 지우 ================= -->
+  <section class="panel" data-subject="hanja" data-child="jiwoo" hidden>
+    <article class="stage">
+      <span class="stage-tag">글자 조합의 원리</span>
+      <h2>한자 공장</h2>
+      <p class="stage-sub">어려운 한자는 쉬운 한자 두 개가 만난 것이다. 부품 두 개를 골라보자 — 해와 달이 만나면 무엇이 될까? 숨은 조합 다섯 개를 모두 찾아보기.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="parts" id="cb-parts"></div>
+          <div class="combo-out">
+            <div class="combo-char hanja-font" id="cb-char"></div>
+            <div class="combo-cap" id="cb-cap">부품 두 개를 골라봐 (같은 걸 두 번 눌러도 돼)</div>
+          </div>
+          <p class="found-count" id="cb-found"></p>
+        </div>
+        <aside class="read">
+          <p class="live" id="cb-live">해(日)와 달(月)이 만나면?</p>
+          <p class="why" id="cb-why">한자의 절반은 <b>조립식</b>이야. 부품의 뜻을 알면 처음 보는 글자도 읽혀.</p>
+          <div class="controls"><button class="ctl quiet" id="cb-clear">고른 것 지우기</button></div>
+        </aside>
+      </div>
+    </article>
+
+    <section class="quiz">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="j-h1" data-answer="0">
+        <h3>日 + 月 = ?</h3>
+        <p class="qnote">해와 달이 같이 떠 있으면 세상이 어떨까?</p>
+        <div class="opts"><button class="opt hanja-font">明</button><button class="opt hanja-font">林</button><button class="opt hanja-font">好</button></div>
+        <p class="explain" hidden>해와 달이 만나니 <b>밝을 명(明)</b>. ‘명백하다’ ‘설명’의 明이 다 이 글자야.</p>
+      </div>
+      <div class="q" data-qid="j-h2" data-answer="0">
+        <h3>休 (쉴 휴)는 어떤 그림일까?</h3>
+        <p class="qnote">亻은 사람, 木은 나무.</p>
+        <div class="opts"><button class="opt">사람이 나무에 기대 쉰다</button><button class="opt">해가 나무 위로 뜬다</button><button class="opt">나무를 벤다</button></div>
+        <p class="explain" hidden>사람(亻)이 나무(木) 옆에 있는 그림. 나무 그늘에 기대 <b>쉬는</b> 모습이 그대로 글자가 됐어. ‘휴일’의 휴!</p>
+      </div>
+      <div class="q" data-qid="j-h3" data-answer="0">
+        <h3>여자(女)가 아이(子)를 안고 있으면?</h3>
+        <p class="qnote">위 한자 공장에서 만들어봤다면 바로 알 거야.</p>
+        <div class="opts"><button class="opt hanja-font">好</button><button class="opt hanja-font">林</button><button class="opt hanja-font">休</button></div>
+        <p class="explain" hidden><b>좋을 호(好)</b> — 엄마가 아이를 안은 모습이 ‘좋다’는 뜻이 됐어. ‘호감’ ‘선호’의 호가 이 글자야.</p>
+      </div>
+    </section>
+
+    <article class="stage rev">
+      <span class="stage-tag">이번 주 보너스 · 시간표엔 없지만!</span>
+      <h2>이번 주 복습 + 보너스</h2>
+      <p class="stage-sub">시간표엔 없지만 한자 공장은 주말마다 가동 중. 이번 주 조합에서 보너스 둘!</p>
+      <div class="q" data-qid="b-j-h1" data-answer="0">
+        <h3>보너스 — 수풀 림(林)에는 나무(木)가 몇 그루 있을까?</h3>
+        <p class="qnote">글자를 뜯어봐.</p>
+        <div class="opts"><button class="opt">2그루</button><button class="opt">3그루</button><button class="opt">1그루</button></div>
+        <p class="explain" hidden>林 = 木+木, <b>2그루</b>. 3그루면 森(빽빽할 삼) — 나무가 늘수록 글자도 숲도 짙어져. 글자가 수를 세고 있는 셈이야.</p>
+      </div>
+      <div class="q" data-qid="b-j-h2" data-answer="0">
+        <h3>보너스 — 밝을 명(明)이 숨어 있는 낱말은?</h3>
+        <p class="qnote">‘밝게 풀어 말하다’라는 뜻을 찾아봐.</p>
+        <div class="opts"><button class="opt">설명</button><button class="opt">목장</button><button class="opt">인사</button></div>
+        <p class="explain" hidden><b>설명(說明)</b> — 어두운 것을 밝게(明) 풀어 말하는 것! 한자를 알면 낱말 속에 숨은 그림이 보여. ‘발명’ ‘분명’에도 明이 살아 있어.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 국어 · 선우 ================= -->
+  <section class="panel" data-subject="kor" data-child="sunwoo" hidden>
+    <article class="stage">
+      <span class="stage-tag">글자의 부품</span>
+      <h2>글자 조립 공장</h2>
+      <p class="stage-sub">한글은 소리 부품을 조립해서 만든다. 첫소리·가운뎃소리·받침을 갈아 끼우면 글자가 실시간으로 바뀌고, 진짜 낱말을 만들면 신호가 켜진다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="syll-out" id="ko-out">감</div>
+          <p class="word-badge" id="ko-badge"></p>
+          <div class="jamo-row"><span class="jamo-label">첫소리</span><span id="ko-cho"></span></div>
+          <div class="jamo-row"><span class="jamo-label">가운뎃소리</span><span id="ko-jung"></span></div>
+          <div class="jamo-row"><span class="jamo-label">받침</span><span id="ko-jong"></span></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="ko-live"></p>
+          <p class="why" id="ko-why"></p>
+        </aside>
+      </div>
+    </article>
+
+    <section class="quiz">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="s-k1" data-answer="1">
+        <h3>‘강’의 받침은?</h3>
+        <p class="qnote">위 공장에서 ‘강’을 만들어봐.</p>
+        <div class="opts"><button class="opt">ㄱ</button><button class="opt">ㅇ</button><button class="opt">ㄴ</button></div>
+        <p class="explain" hidden>한글 글자는 <b>2층집</b>이야 — 위층에 ㄱ+ㅏ, 아래층(받침)에 <b>ㅇ</b>이 살면 ‘강’. 아래층 주민을 ㅁ으로 바꾸면 ‘감’, ㄹ이면 ‘갈’ — 집 모양은 그대로인데 낱말이 통째로 바뀌어.</p>
+      </div>
+      <div class="q" data-qid="s-k2" data-answer="2">
+        <h3>‘곰’의 받침 ㅁ을 ㅇ으로 바꾸면?</h3>
+        <p class="qnote">위 공장에서 직접 바꿔봐도 좋아.</p>
+        <div class="opts"><button class="opt">골</button><button class="opt">곤</button><button class="opt">공</button></div>
+        <p class="explain" hidden>소리로 실험해봐: 고—ㅁ(입술 닫힘), 고—ㅇ(콧소리 울림). 끝소리 스위치만 바꾸면 곰이 <b>공</b>으로 튕! 글자 공장에서 직접 눌러보면 입이 먼저 기억해.</p>
+      </div>
+    </section>
+
+    <article class="stage rev">
+      <span class="stage-tag">이번 주 학교에서 · 8/24 – 8/28</span>
+      <h2>이번 주 복습 + 보너스</h2>
+      <p class="stage-sub">월요일 <b>흉내 내는 말</b>, 화요일 <b>기분을 나타내는 말</b>, 수요일 <b>듣는 사람을 생각하며 기분 말하기</b>. 보너스로 마무리!</p>
+      <div class="q" data-qid="b-s-k1" data-answer="0">
+        <h3>보너스 — ‘반짝반짝’과 가장 어울리는 것은?</h3>
+        <p class="qnote">눈을 감고 그 모습을 그려봐.</p>
+        <div class="opts"><button class="opt">밤하늘의 별</button><button class="opt">쿵쿵 북소리</button><button class="opt">푹신한 이불</button></div>
+        <p class="explain" hidden>반짝반짝은 빛이 깜빡이는 <b>모습</b>을 흉내 낸 말 — 별에게 딱! 북소리엔 ‘둥둥’, 이불엔 ‘폭신폭신’이 어울려. 말에도 짝꿍이 있어.</p>
+      </div>
+      <div class="q" data-qid="b-s-k2" data-answer="2">
+        <h3>보너스 — 친구가 슬퍼 보일 때, 어떻게 말하면 좋을까?</h3>
+        <p class="qnote">수요일에 배운 것 — 듣는 사람을 생각하며!</p>
+        <div class="opts"><button class="opt" style="font-size:15px">“빨리 가자!”</button><button class="opt" style="font-size:15px">“내 얘기부터 들어봐!”</button><button class="opt" style="font-size:15px">“무슨 일 있어? 괜찮아?”</button></div>
+        <p class="explain" hidden>말하기 전에 <b>듣는 사람의 기분</b>을 먼저 생각하는 거야. 슬픈 친구에겐 물어봐 주는 말이 제일 따뜻해.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 국어 · 지우 ================= -->
+  <section class="panel" data-subject="kor" data-child="jiwoo" hidden>
+    <article class="stage">
+      <span class="stage-tag">이번 학기 집중 훈련 · 사실과 의견</span>
+      <h2>근거 훈련소</h2>
+      <p class="stage-sub">의견을 말하는 힘은 이미 있으니, 이제 <em>받쳐주는 근거</em>를 단련할 차례. 1단계는 보기가 다 있고, 2단계는 보기가 줄고, 3단계는 보기 없이 스스로 말한다. 마지막 훈련은 의견에 가장 튼튼한 근거 고르기 — 한 단계를 끝내면 보석이 나온다.</p>
+      <div class="stage-body">
+        <div class="play kr-wrap" id="kr-play">
+          <p class="kr-prog" id="kr-prog"></p>
+          <p class="kr-sent" id="kr-sent"></p>
+          <div class="kr-choices" id="kr-judge"></div>
+          <div class="kr-reasons" id="kr-reasons"></div>
+          <p class="kr-fb" id="kr-fb"></p>
+          <div class="kr-choices" id="kr-nav"></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="kr-live"></p>
+          <p class="why" id="kr-why"></p>
+          <div class="controls" id="kr-levels"></div>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">낱말의 짜임</span>
+      <h2>낱말 공장</h2>
+      <p class="stage-sub">낱말 두 개가 만나면 새 낱말이 된다. 부품을 골라 진짜 합성어 다섯 개를 모두 찾아보자 — 눈+물처럼, 뜻이 합쳐지며 살짝 달라지는 게 포인트.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="parts" id="kw-parts"></div>
+          <div class="combo-out">
+            <div class="combo-char" id="kw-char" style="font-family:'Do Hyeon',sans-serif;font-size:56px"></div>
+            <div class="combo-cap" id="kw-cap">낱말 두 개를 순서대로 골라봐</div>
+          </div>
+          <p class="found-count" id="kw-found"></p>
+        </div>
+        <aside class="read">
+          <p class="live" id="kw-live">‘눈’과 ‘물’이 만나면?</p>
+          <p class="why" id="kw-why">이렇게 만들어진 낱말이 <b>합성어</b>야. 낱말은 벽돌처럼 쌓을 수 있어.</p>
+          <div class="controls"><button class="ctl quiet" id="kw-clear">고른 것 지우기</button></div>
+        </aside>
+      </div>
+    </article>
+
+    <section class="quiz">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="j-k1" data-answer="1">
+        <h3>‘눈사람’처럼 낱말 두 개가 합쳐진 말은?</h3>
+        <p class="qnote">쪼개서 각각 뜻이 있는지 봐.</p>
+        <div class="opts"><button class="opt">바람</button><button class="opt">손수건</button><button class="opt">구름</button></div>
+        <p class="explain" hidden><b>손+수건</b>은 둘 다 혼자서도 뜻이 있는 낱말. ‘바람’ ‘구름’은 쪼개면 뜻이 사라져 — 그게 홑낱말이야.</p>
+      </div>
+      <div class="q" data-qid="j-k2" data-answer="2">
+        <h3>낱말 두 개가 합쳐진 말이 <em>아닌</em> 것은?</h3>
+        <p class="qnote">쪼개봐서 두 조각 다 뜻이 살아 있는지 확인.</p>
+        <div class="opts"><button class="opt">눈물</button><button class="opt">꽃병</button><button class="opt">포도</button></div>
+        <p class="explain" hidden>눈+물, 꽃+병은 쪼개도 각각 뜻이 살아 있는 합성어. <b>포도</b>는 ‘포’와 ‘도’로 쪼개면 뜻이 사라지는 홑낱말이야.</p>
+      </div>
+    </section>
+
+    <article class="stage rev">
+      <span class="stage-tag">이번 주 학교에서 · 8/24 – 8/28</span>
+      <h2>이번 주 복습 + 보너스</h2>
+      <p class="stage-sub">월요일 <b>시를 읽고 까닭을 들어 인상적인 부분 말하기</b>, 화요일 <b>시에 대한 의견 나누기</b>, 목요일 <b>올바른 문장으로 글쓰기</b>. 전부 ‘근거 훈련소’와 이어지는 내용!</p>
+      <div class="q" data-qid="b-j-k1" data-answer="1">
+        <h3>보너스 — 시에서 인상적인 부분을 말할 때 꼭 함께 말해야 하는 것은?</h3>
+        <p class="qnote">월요일 국어 시간의 핵심.</p>
+        <div class="opts"><button class="opt">시의 쪽수</button><button class="opt">그렇게 느낀 까닭</button><button class="opt">시인의 이름</button></div>
+        <p class="explain" hidden>“이 부분이 좋았어” 까지는 반쪽. “<b>왜냐하면 ~해서</b>”가 붙어야 완성이야. 까닭이 붙은 느낌 — 그게 바로 근거 있는 의견이지.</p>
+      </div>
+      <div class="q" data-qid="b-j-k2" data-answer="1">
+        <h3>보너스 — 올바른 문장은 어느 것일까?</h3>
+        <p class="qnote">시간을 나타내는 말과 서술어가 맞아야 해.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">나는 어제 도서관에 갈 것이다.</button><button class="opt" style="font-size:15px">나는 어제 도서관에 갔다.</button><button class="opt" style="font-size:15px">나는 어제 도서관에 간다.</button></div>
+        <p class="explain" hidden>‘어제’는 지나간 시간 — 서술어도 과거 옷을 입어야 해: <b>갔다</b>. 시간 말과 서술어는 커플룩이야. (영어의 last weekend → went 와 똑같지?)</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 영어 · 선우 ================= -->
+  <section class="panel" data-subject="eng" data-child="sunwoo" hidden>
+    <article class="stage">
+      <span class="stage-tag">파닉스 · 소리 조립</span>
+      <h2>소리 블록</h2>
+      <p class="stage-sub">영어 단어도 소리 블록의 조립이다. 글자를 순서대로 누르면 소리가 이어지며 단어가 된다 — 크, 애, 트 … cat!</p>
+      <div class="stage-body">
+        <div class="play">
+          <p class="en-hint" id="ph-hint"></p>
+          <div class="slots" id="ph-slots"></div>
+          <div class="parts" id="ph-tiles"></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="ph-live"></p>
+          <p class="why" id="ph-why"></p>
+          <div class="controls">
+            <button class="ctl quiet" id="ph-undo">지우기</button>
+            <button class="ctl" id="ph-next">다음 단어</button>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <section class="quiz">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="s-e1" data-answer="0">
+        <h3>‘해’는 영어로?</h3>
+        <p class="qnote">스, 어, 은 — 소리를 이어봐.</p>
+        <div class="opts"><button class="opt">sun</button><button class="opt">run</button><button class="opt">sit</button></div>
+        <p class="explain" hidden><b>s·u·n → sun</b>. 첫 글자만 바꾸면 run(달리다), fun(재미)이 돼 — 소리 블록 하나 차이야.</p>
+      </div>
+      <div class="q" data-qid="s-e2" data-answer="2">
+        <h3>첫 소리가 다른 하나는?</h3>
+        <p class="qnote">브, 브, …? 입으로 소리 내보면 알아.</p>
+        <div class="opts"><button class="opt">bus</button><button class="opt">ball</button><button class="opt">cat</button></div>
+        <p class="explain" hidden>bus와 ball은 <b>브(b)</b>, cat은 <b>크(c)</b>로 시작해. 첫 소리만 잘 들어도 단어의 첫 글자를 알 수 있어.</p>
+      </div>
+    </section>
+
+    <article class="stage rev">
+      <span class="stage-tag">이번 주 보너스 · 시간표엔 없지만!</span>
+      <h2>이번 주 복습 + 보너스</h2>
+      <p class="stage-sub">1학년 시간표엔 영어가 없지만, 우리 판의 소리 블록은 계속 굴러간다. 이번 주에 연습한 단어로 보너스 하나!</p>
+      <div class="q" data-qid="b-s-e1" data-answer="0">
+        <h3>보너스 — p · i · g 를 순서대로 이으면?</h3>
+        <p class="qnote">프—이—그. 소리를 붙여봐.</p>
+        <div class="opts"><button class="opt">pig</button><button class="opt">gip</button><button class="opt">pgi</button></div>
+        <p class="explain" hidden>프+이+그 = <b>pig</b>(돼지)! 소리 블록을 순서대로 이으면 단어가 되는 것, 이제 익숙하지?</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 영어 · 지우 ================= -->
+  <section class="panel" data-subject="eng" data-child="jiwoo" hidden>
+    <article class="stage">
+      <span class="stage-tag">문장 블록</span>
+      <h2>문장 조립 공장</h2>
+      <p class="stage-sub">문장도 블록 순서다. 블록을 눌러 줄을 세우고 확인을 누르면 자리마다 불이 켜진다 — 단, 이번엔 <em>안 쓰는 가짜 블록이 하나</em> 섞여 있다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <p class="en-hint" id="sn-hint"></p>
+          <div class="slots" id="sn-slots"></div>
+          <div class="parts" id="sn-tiles"></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="sn-live"></p>
+          <p class="why" id="sn-why"></p>
+          <div class="controls">
+            <button class="ctl" id="sn-check">확인</button>
+            <button class="ctl quiet" id="sn-redo">다시</button>
+            <button class="ctl" id="sn-next">다음 문장</button>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <section class="quiz">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="j-eA" data-answer="1">
+        <h3>She ___ to school every day.</h3>
+        <p class="qnote">주인공이 she라는 게 힌트야.</p>
+        <div class="opts"><button class="opt">go</button><button class="opt">goes</button><button class="opt">going</button></div>
+        <p class="explain" hidden>she·he가 주인공이면 동사에 <b>s가 붙는다</b>: she <b>goes</b>. I go, you go, she go<b>es</b> — 주인공 따라 옷을 갈아입는 거야.</p>
+        <p class="explain oops" data-opt="0" hidden>네가 고른 <b>go</b>는 I·you·we·they 전용 블록이야. 주인공이 she면 go에 s를 붙여야 해.</p>
+        <p class="explain oops" data-opt="2" hidden>네가 고른 <b>going</b>은 혼자 못 서는 블록이야 — 앞에 is 같은 도우미가 있어야 해(She <b>is going</b>~). 여기엔 도우미가 없지?</p>
+      </div>
+      <div class="q" data-qid="j-eB" data-answer="1">
+        <h3>I ___ to Jeju last weekend.</h3>
+        <p class="qnote">last weekend = 지난 주말. 이미 지난 일이야.</p>
+        <div class="opts"><button class="opt">go</button><button class="opt">went</button><button class="opt">gone</button></div>
+        <p class="explain" hidden>지난 일은 동사가 과거 모양으로 바뀐다: go → <b>went</b>. ‘last ~, yesterday’가 보이면 과거 블록을 꺼내면 돼.</p>
+        <p class="explain oops" data-opt="0" hidden>네가 고른 <b>go</b>는 지금·늘 하는 일에 쓰는 블록이야. last weekend는 이미 끝난 일이니까 과거 모양이 필요해.</p>
+        <p class="explain oops" data-opt="2" hidden>네가 고른 <b>gone</b>도 혼자 못 서 — have gone처럼 도우미가 필요해. 혼자 설 수 있는 과거는 went야.</p>
+      </div>
+      <div class="q" data-qid="j-eC" data-answer="1">
+        <h3>An elephant is ___ than a mouse.</h3>
+        <p class="qnote">than(~보다)이 보이면 비교하는 문장.</p>
+        <div class="opts"><button class="opt">big</button><button class="opt">bigger</button><button class="opt">biggest</button></div>
+        <p class="explain" hidden>둘을 비교할 땐 <b>-er + than</b>: big<b>ger</b> than. 셋 이상 중 최고를 말할 때만 biggest야.</p>
+        <p class="explain oops" data-opt="0" hidden>네가 고른 <b>big</b>만 쓰면 그냥 ‘크다’로 끝나버려. 뒤에 than(~보다)이 있으니 비교하는 중 — -er을 붙여야 해.</p>
+        <p class="explain oops" data-opt="2" hidden>네가 고른 <b>biggest</b>는 셋 이상 중에서 1등을 뽑을 때(the biggest) 쓰는 블록이야. 코끼리와 쥐, 딱 둘의 비교니까 -er.</p>
+      </div>
+      <div class="q" data-qid="j-eD" data-answer="0">
+        <h3>How ___ is this bag? — It’s 5,000 won.</h3>
+        <p class="qnote">대답이 가격이야.</p>
+        <div class="opts"><button class="opt">much</button><button class="opt">many</button><button class="opt">old</button></div>
+        <p class="explain" hidden>값을 물을 땐 <b>How much</b>. 개수를 셀 수 있으면 How many, 나이는 How old — How 뒤의 블록이 질문의 종류를 정해.</p>
+        <p class="explain oops" data-opt="1" hidden>네가 고른 <b>many</b>는 하나, 둘 셀 수 있는 것들의 개수를 물을 때야(How many apples?). 대답이 5,000원 — 가격이니까 much.</p>
+        <p class="explain oops" data-opt="2" hidden>네가 고른 <b>old</b>면 나이를 묻는 게 돼(How old are you?). 가방한테 나이를 물어봤네! 가격은 How much.</p>
+      </div>
+      <div class="q" data-qid="j-eE" data-answer="2">
+        <h3>I’m ___ to visit my uncle tomorrow.</h3>
+        <p class="qnote">tomorrow = 내일. 아직 안 한 일이야.</p>
+        <div class="opts"><button class="opt">go</button><button class="opt">goes</button><button class="opt">going</button></div>
+        <p class="explain" hidden>앞으로 할 일은 <b>be going to</b>: I’m <b>going</b> to visit. ‘~할 예정이야’라는 뜻의 세 블록 세트야.</p>
+        <p class="explain oops" data-opt="0" hidden>왜 go가 아니냐면 — 앞에 이미 <b>I’m(= I am)</b>이 있잖아. am 도우미 뒤에는 -ing 모양이 와야 해서 <b>am going</b> 세트가 돼.</p>
+        <p class="explain oops" data-opt="1" hidden>네가 고른 <b>goes</b>는 she·he 전용 블록이야. 여기 주인공은 I이고, I’m 뒤엔 -ing 모양이 와야 해.</p>
+      </div>
+    </section>
+
+    <article class="stage rev">
+      <span class="stage-tag">이번 주 학교에서 · 8/24 – 8/28</span>
+      <h2>이번 주 복습 + 보너스</h2>
+      <p class="stage-sub">월요일 <b>Story 2 · Real Life Talk</b>, 화요일 <b>Words and Sentences · Phonics Fun</b>, 목요일 <b>Before / Let’s / After You Read</b>. 교과서 흐름 그대로 보너스!</p>
+      <div class="q" data-qid="b-j-e1" data-answer="0">
+        <h3>보너스 — 책을 읽기 <em>전</em>에 하는 활동은?</h3>
+        <p class="qnote">Before, Let’s, After — 순서가 힌트야.</p>
+        <div class="opts"><button class="opt" style="font-size:16px">Before You Read</button><button class="opt" style="font-size:16px">After You Read</button><button class="opt" style="font-size:16px">Let’s Read</button></div>
+        <p class="explain" hidden><b>Before</b>(전) → Let’s(하는 중) → After(후). 시간 순서가 이름에 그대로 들어 있어 — 영어는 이렇게 순서를 사랑하는 말이야.</p>
+      </div>
+      <div class="q" data-qid="b-j-e2" data-answer="1">
+        <h3>보너스 — Real Life Talk! 친구를 만나 안부를 물을 때 하는 말은?</h3>
+        <p class="qnote">월요일에 배운 실생활 대화.</p>
+        <div class="opts"><button class="opt" style="font-size:16px">It is a book.</button><button class="opt" style="font-size:16px">How are you?</button><button class="opt" style="font-size:16px">Yes, I do.</button></div>
+        <p class="explain" hidden><b>How are you?</b>(어떻게 지내?) — 대답은 I’m good! / Not bad! 같은 기분 말하기. 선우가 국어에서 배운 ‘기분을 나타내는 말’의 영어 버전인 셈이야.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= 이번 주 · 선우 ================= -->
+  <section class="panel" data-subject="week" data-child="sunwoo" hidden>
+    <article class="stage">
+      <span class="stage-tag">신풍초 1학년 1반 · 8월 24일 – 28일</span>
+      <h2>선우의 이번 주</h2>
+      <p class="stage-sub">학교 시간표에서 그대로 가져왔다. <b>색이 칠해진 과목을 누르면</b> 그 과목의 ‘이번 주 복습 + 보너스 문제’로 바로 간다.</p>
+      <div class="wk-scroll"><div class="wk-grid">
+        <div class="wk-day"><div class="wk-head">월</div><span class="wk-p">자율활동</span><span class="wk-p hl-k">국어</span><span class="wk-p">즐거운생활</span><span class="wk-p">즐거운생활</span></div>
+        <div class="wk-day"><div class="wk-head">화</div><span class="wk-p">즐거운생활</span><span class="wk-p hl-k">국어</span><span class="wk-p hl-k">국어</span><span class="wk-p hl-m">수학</span><span class="wk-p">즐거운생활</span></div>
+        <div class="wk-day"><div class="wk-head">수</div><span class="wk-p hl-k">국어</span><span class="wk-p">자율활동</span><span class="wk-p hl-k">국어</span><span class="wk-p">즐거운생활</span><span class="wk-p">슬기로운생활</span></div>
+        <div class="wk-day"><div class="wk-head">목</div><span class="wk-p hl-m">수학</span><span class="wk-p hl-m">수학</span><span class="wk-p">슬기로운생활</span><span class="wk-p">바른생활</span><span class="wk-p">즐거운생활</span></div>
+        <div class="wk-day"><div class="wk-head">금</div><span class="wk-p hl-k">국어</span><span class="wk-p hl-k">국어</span><span class="wk-p">자율활동</span><span class="wk-p">즐거운생활</span></div>
+      </div></div>
+      <div class="units">
+        <span class="unit">이번 주 <b>국어 7번 · 수학 3번</b></span>
+        <span class="unit">수학 — <b>99까지의 수 (60·70·80·90)</b></span>
+        <span class="unit">국어 — <b>흉내 내는 말 · 기분을 나타내는 말</b></span>
+        <span class="unit">매일 챙기기 — <b>읽을 책 1권 · 개인 물병</b></span>
+        <button class="unit go" data-go="eng">+ <b>영어 보너스</b> (시간표엔 없지만!)</button>
+        <button class="unit go" data-go="hanja">+ <b>한자 보너스</b> (시간표엔 없지만!)</button>
+      </div>
+      <p class="wk-note">나이스(NEIS) 학교 시간표 기준. 배우는 내용은 교과서에 따라 순서가 조금 다를 수 있어요.</p>
+    </article>
+  </section>
+
+  <!-- ================= 이번 주 · 지우 ================= -->
+  <section class="panel" data-subject="week" data-child="jiwoo" hidden>
+    <article class="stage">
+      <span class="stage-tag">신풍초 5학년 6반 · 8월 24일 – 28일</span>
+      <h2>지우의 이번 주</h2>
+      <p class="stage-sub">학교 시간표에서 그대로 가져왔다. <b>색이 칠해진 과목을 누르면</b> 그 과목의 ‘이번 주 복습 + 보너스 문제’로 바로 간다.</p>
+      <div class="wk-scroll"><div class="wk-grid">
+        <div class="wk-day"><div class="wk-head">월</div><span class="wk-p hl-e">영어</span><span class="wk-p">자율활동</span><span class="wk-p hl-k">국어</span><span class="wk-p">사회</span><span class="wk-p">사회</span><span class="wk-p hl-k">국어</span></div>
+        <div class="wk-day"><div class="wk-head">화</div><span class="wk-p">도덕</span><span class="wk-p hl-e">영어</span><span class="wk-p">자율활동</span><span class="wk-p">자율활동</span><span class="wk-p">체육</span><span class="wk-p hl-m">수학</span></div>
+        <div class="wk-day"><div class="wk-head">수</div><span class="wk-p">과학</span><span class="wk-p">과학</span><span class="wk-p">자율활동</span><span class="wk-p">자율활동</span><span class="wk-p">사회</span></div>
+        <div class="wk-day"><div class="wk-head">목</div><span class="wk-p hl-k">국어</span><span class="wk-p hl-k">국어</span><span class="wk-p hl-m">수학</span><span class="wk-p">사회</span><span class="wk-p">사회</span><span class="wk-p hl-e">영어</span></div>
+        <div class="wk-day"><div class="wk-head">금</div><span class="wk-p hl-m">수학</span><span class="wk-p">음악</span><span class="wk-p">과학</span><span class="wk-p">체육</span><span class="wk-p">미술</span><span class="wk-p">미술</span></div>
+      </div></div>
+      <div class="units">
+        <span class="unit">이번 주 <b>국어 4번 · 수학 3번 · 영어 3번</b></span>
+        <span class="unit">수학 — <b>수의 범위 · 버림</b></span>
+        <span class="unit">국어 — <b>시에 대한 의견 나누기</b></span>
+        <span class="unit">영어 — <b>Words &amp; Sentences · Phonics</b></span>
+        <span class="unit">화요일 — <b>학급임원 선거</b></span>
+        <button class="unit go" data-go="hanja">+ <b>한자 보너스</b> (시간표엔 없지만!)</button>
+      </div>
+      <p class="wk-note">나이스(NEIS) 학교 시간표 기준. 배우는 내용은 교과서에 따라 순서가 조금 다를 수 있어요.</p>
+    </article>
+  </section>
+
+  <!-- ================= 보석함 ================= -->
+  <section class="panel" data-subject="bank" data-child="both" hidden>
+    <div class="bank">
+      <h2 id="bank-title"></h2>
+      <p class="bank-sub">문제를 맞히면 보석 1개 — 틀려도 ‘다시 풀기’로 도전하면 얻을 수 있다. 보석이 쌓이면 거북이 친구가 하나씩 찾아온다.</p>
+      <p class="bank-count" id="bank-count"></p>
+      <div class="bank-grid" id="bank-grid"></div>
+      <div class="milestones" id="bank-miles"></div>
+    </div>
+  </section>
+
+  </main>
+
+  <section class="closing">
+    <h2>주말에 이렇게 써보세요</h2>
+    <ul>
+      <li><b>토요일 20분</b> — 과목 하나 골라 활동만. 정답은 묻지 말고 “왜 그렇게 보여?”만 물어보기.</li>
+      <li><b>일요일 20분</b> — 같은 판을 다시 열고 확인 문제까지. 틀려도 ‘다시 풀기’로 도전해서 맞히면 보석이 나와요.</li>
+      <li>보석과 거북이 친구는 <b>이 기기(태블릿)에 저장</b>돼요. 아이마다 자기 태블릿에서 하면 각자의 보석함이 생깁니다.</li>
+      <li>지금은 8월 기준 2학기 첫 단원 위주예요 — 달이 바뀌면 챕터를 갈아끼우고, 과목별 활동도 계속 늘릴 수 있어요.</li>
+    </ul>
+  </section>
+</div>
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+  function gcd(x,y){ return y ? gcd(y, x % y) : x; }
+
+  /* ================= state: child / subject ================= */
+  var cur = { child:'sunwoo', subject:'today' };
+  var childName = { sunwoo:'선우', jiwoo:'지우' };
+
+  function render(){
+    Array.prototype.forEach.call(document.querySelectorAll('.panel'), function(p){
+      var okChild = p.dataset.child === 'both' || p.dataset.child === cur.child;
+      p.hidden = !(okChild && p.dataset.subject === cur.subject);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.switch [data-child]'), function(b){
+      b.setAttribute('aria-selected', b.dataset.child === cur.child ? 'true' : 'false');
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.subnav [data-subject]'), function(b){
+      b.setAttribute('aria-selected', b.dataset.subject === cur.subject ? 'true' : 'false');
+    });
+    updateChip();
+    if (cur.subject === 'bank') drawBank();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.switch [data-child]'), function(b){
+    b.addEventListener('click', function(){ cur.child = b.dataset.child; render(); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.subnav [data-subject]'), function(b){
+    b.addEventListener('click', function(){ cur.subject = b.dataset.subject; render(); });
+  });
+  $('gemchip').addEventListener('click', function(){ cur.subject = 'bank'; render(); });
+
+  function goSubject(s, toBonus){
+    cur.subject = s;
+    render();
+    if (toBonus){
+      var el = document.querySelector('.panel:not([hidden]) .rev');
+      if (el){ el.scrollIntoView({ behavior:'smooth', block:'start' }); return; }
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.wk-p.hl-m'), function(el){
+    el.setAttribute('role','button'); el.setAttribute('tabindex','0');
+    el.addEventListener('click', function(){ goSubject('math', true); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.wk-p.hl-k'), function(el){
+    el.setAttribute('role','button'); el.setAttribute('tabindex','0');
+    el.addEventListener('click', function(){ goSubject('kor', true); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.wk-p.hl-e'), function(el){
+    el.setAttribute('role','button'); el.setAttribute('tabindex','0');
+    el.addEventListener('click', function(){ goSubject('eng', true); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('button.unit.go'), function(el){
+    el.addEventListener('click', function(){ goSubject(el.dataset.go, true); });
+  });
+
+  /* ================= rewards ================= */
+  var KEY = 'gyeol-gems-v1';
+  var store = { sunwoo:{gems:[], tried:{}}, jiwoo:{gems:[], tried:{}} };
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw){ var p = JSON.parse(raw); if (p && p.sunwoo && p.jiwoo) store = p; }
+  } catch(e){}
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
+
+  var GEMC = ['#E14D64','#3A7BD5','#2FA97C','#EDAA2B','#8B5CC9'];
+  function shade(hex, f){
+    var n = parseInt(hex.slice(1), 16);
+    var r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+    function ch(v){
+      v = f > 0 ? v + (255 - v) * f : v * (1 + f);
+      return Math.max(0, Math.min(255, Math.round(v)));
+    }
+    return 'rgb(' + ch(r) + ',' + ch(g) + ',' + ch(b) + ')';
+  }
+  function gemSVG(color, size){
+    var L = shade(color, .45), D = shade(color, -.32), DD = shade(color, -.5);
+    return '<svg viewBox="0 0 24 24" width="'+(size||20)+'" height="'+(size||20)+'" aria-hidden="true">' +
+      '<polygon points="6,3 18,3 22.5,9.5 12,21.5 1.5,9.5" fill="'+DD+'"/>' +
+      '<polygon points="6,3 18,3 15.5,9.5 8.5,9.5" fill="'+L+'"/>' +
+      '<polygon points="8.5,9.5 15.5,9.5 12,21.5" fill="'+color+'"/>' +
+      '<polygon points="6,3 8.5,9.5 1.5,9.5" fill="'+color+'"/>' +
+      '<polygon points="18,3 22.5,9.5 15.5,9.5" fill="'+D+'"/>' +
+      '<polygon points="1.5,9.5 8.5,9.5 12,21.5" fill="'+D+'"/>' +
+      '<path d="M7.4 4.6 l.7 1.5 1.5.7 -1.5.7 -.7 1.5 -.7-1.5 -1.5-.7 1.5-.7 Z" fill="#FFFFFF" opacity=".9"/>' +
+      '<circle cx="16.4" cy="6" r=".9" fill="#FFFFFF" opacity=".75"/></svg>';
+  }
+  $('gemchip-icon').innerHTML = gemSVG('#8B5CC9', 18);
+
+  function my(){ return store[cur.child]; }
+  function ownerOf(qid){
+    var q2 = qid.replace(/^(b-|t-)/, '');
+    return q2.charAt(0) === 's' ? 'sunwoo' : 'jiwoo';
+  }
+  function updateChip(){ $('gemchip-n').textContent = my().gems.length; }
+
+  function popGem(q, color){
+    var el = document.createElement('span');
+    el.className = 'gem-pop';
+    el.innerHTML = gemSVG(color, 20) + '+1';
+    q.appendChild(el);
+    setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 1200);
+  }
+  function markDone(q, color){
+    if (q.querySelector('.done-gem')) return;
+    var d = document.createElement('span');
+    d.className = 'done-gem';
+    d.innerHTML = gemSVG(color, 22);
+    q.appendChild(d);
+  }
+
+  /* ================= quiz wiring (다시 풀기 = 재도전으로 보석 획득 가능) ================= */
+  Array.prototype.forEach.call(document.querySelectorAll('.q'), function(q){
+    var answer = parseInt(q.dataset.answer, 10);
+    var qid = q.dataset.qid;
+    var who = store[ownerOf(qid)];
+    if (who.tried[qid] === 'gem'){
+      markDone(q, GEMC[(who.gems.length + qid.length) % GEMC.length]);
+    }
+    var opts = q.querySelectorAll('.opt');
+    var locked = false;
+
+    var retry = document.createElement('button');
+    retry.className = 'ctl'; retry.type = 'button';
+    retry.textContent = '다시 풀기';
+    retry.style.marginTop = '14px';
+    retry.hidden = true;
+    q.appendChild(retry);
+    retry.addEventListener('click', function(){
+      locked = false;
+      retry.hidden = true;
+      Array.prototype.forEach.call(opts, function(x){ x.classList.remove('right','wrong'); });
+      Array.prototype.forEach.call(q.querySelectorAll('.explain'), function(ex){ ex.hidden = true; });
+    });
+
+    Array.prototype.forEach.call(opts, function(o, i){
+      o.addEventListener('click', function(){
+        if (locked) return;
+        locked = true;
+        Array.prototype.forEach.call(opts, function(x, j){
+          x.classList.remove('right','wrong');
+          if (j === answer) x.classList.add('right');
+          else if (j === i) x.classList.add('wrong');
+        });
+        Array.prototype.forEach.call(q.querySelectorAll('.explain.oops'), function(ex){ ex.hidden = true; });
+        q.querySelector('.explain:not(.oops)').hidden = false;
+        var w = store[ownerOf(qid)];
+        if (i === answer){
+          retry.hidden = true;
+          if (w.tried[qid] !== 'gem'){
+            w.tried[qid] = 'gem';
+            var color = GEMC[w.gems.length % GEMC.length];
+            w.gems.push(color);
+            popGem(q, color);
+            markDone(q, color);
+            save();
+            updateChip();
+          }
+        } else {
+          var oops = q.querySelector('.explain.oops[data-opt="' + i + '"]');
+          if (oops) oops.hidden = false;
+          if (w.tried[qid] !== 'gem'){ w.tried[qid] = 'x'; save(); }
+          retry.hidden = false;
+        }
+      });
+    });
+  });
+
+  /* ================= turtle friends ================= */
+  function turtleSVG(shell, acc){
+    var skin = '#A8D48F', skinD = '#8DBd74'.replace('d7','D7'), eye = '#24211C';
+    skinD = '#8DBD74';
+    var shellD = shade(shell, -.28), shellL = shade(shell, .35);
+    var s = '<svg viewBox="0 0 80 80" aria-hidden="true">';
+    /* legs + tail */
+    s += '<circle cx="17" cy="60" r="6.5" fill="'+skin+'"/><circle cx="63" cy="60" r="6.5" fill="'+skin+'"/>';
+    s += '<circle cx="24" cy="66" r="5.5" fill="'+skinD+'"/><circle cx="56" cy="66" r="5.5" fill="'+skinD+'"/>';
+    s += '<path d="M68 52 q7 -1 6 6 q-5 1 -8 -2 Z" fill="'+skin+'"/>';
+    /* head */
+    s += '<circle cx="40" cy="21" r="11" fill="'+skin+'"/>';
+    s += '<circle cx="35.5" cy="20" r="2.6" fill="'+eye+'"/><circle cx="44.5" cy="20" r="2.6" fill="'+eye+'"/>';
+    s += '<circle cx="36.3" cy="19.2" r=".9" fill="#FFF"/><circle cx="45.3" cy="19.2" r=".9" fill="#FFF"/>';
+    s += '<path d="M36.5 25.5 q3.5 3.2 7 0" stroke="'+eye+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
+    s += '<circle cx="30.5" cy="24.5" r="2.6" fill="#F2A4A4" opacity=".7"/><circle cx="49.5" cy="24.5" r="2.6" fill="#F2A4A4" opacity=".7"/>';
+    /* shell */
+    s += '<path d="M14 58 a26 24 0 0 1 52 0 Z" fill="'+shell+'"/>';
+    s += '<path d="M14 58 a26 24 0 0 1 52 0 l-4 0 a22 20 0 0 0 -44 0 Z" fill="'+shellL+'" opacity=".5"/>';
+    s += '<rect x="11" y="56" width="58" height="7" rx="3.5" fill="'+shellD+'"/>';
+    /* shell plates */
+    s += '<polygon points="34,42 46,42 49,52 40,57 31,52" fill="'+shellD+'" opacity=".55"/>';
+    s += '<polygon points="22,50 29,45 32,53 26,57" fill="'+shellD+'" opacity=".45"/>';
+    s += '<polygon points="58,50 51,45 48,53 54,57" fill="'+shellD+'" opacity=".45"/>';
+    /* accessory */
+    if (acc === 'sprout'){
+      s += '<path d="M40 10 q-1 -6 -7 -7 q6 -2 8 3 q2 -5 8 -3 q-6 1 -7 7 Z" fill="#5FA35C"/>';
+    } else if (acc === 'glasses'){
+      s += '<circle cx="35.5" cy="20" r="6" stroke="'+eye+'" stroke-width="2" fill="none"/>' +
+           '<circle cx="44.5" cy="20" r="6" stroke="'+eye+'" stroke-width="2" fill="none"/>' +
+           '<path d="M41 20 h-1.5" stroke="'+eye+'" stroke-width="2"/>';
+    } else if (acc === 'crown'){
+      s += '<path d="M31 9 L34 2 L40 7 L46 2 L49 9 Q40 5 31 9 Z" fill="#EDAA2B" stroke="#B58318" stroke-width="1.3" stroke-linejoin="round"/>';
+    } else if (acc === 'star'){
+      s += '<path d="M62 10 l2.4 4.9 5.4.7 -4 3.7 1 5.3 -4.8 -2.6 -4.8 2.6 1 -5.3 -4 -3.7 5.4 -.7 Z" fill="#EDAA2B"/>';
+      s += '<path d="M18 14 l1.2 2.4 2.6.4 -1.9 1.8 .5 2.6 -2.4 -1.3 -2.4 1.3 .5 -2.6 -1.9 -1.8 2.6 -.4 Z" fill="#EDAA2B" opacity=".7"/>';
+    }
+    s += '</svg>';
+    return s;
+  }
+  var MILES_DEF = [
+    { name:'아기 거북 몽이', color:'#7FC98F', acc:'sprout' },
+    { name:'박사 거북 똑이', color:'#6FA3DC', acc:'glasses' },
+    { name:'임금 거북 왕이', color:'#E8768A', acc:'crown' },
+    { name:'별빛 거북 별이', color:'#B48BD9', acc:'star' }
+  ];
+  var MILE_NEEDS = { sunwoo:[4,9,14,19], jiwoo:[5,13,21,28] };
+  function awardKey(qid, anchorEl){
+    var w = store[ownerOf(qid)];
+    if (w.tried[qid] === 'gem') return false;
+    w.tried[qid] = 'gem';
+    var color = GEMC[w.gems.length % GEMC.length];
+    w.gems.push(color);
+    save(); updateChip();
+    if (anchorEl) popGem(anchorEl, color);
+    return true;
+  }
+  function drawBank(){
+    var m = my();
+    $('bank-title').textContent = childName[cur.child] + '의 보석함';
+    $('bank-count').textContent = '보석 ' + m.gems.length + '개';
+    var g = $('bank-grid');
+    if (m.gems.length === 0){
+      g.innerHTML = '<span class="bank-empty">아직 비어 있어 — 문제를 한 번에 맞히면 첫 보석이 나와!</span>';
+    } else {
+      g.innerHTML = m.gems.map(function(c){ return gemSVG(c, 30); }).join('');
+    }
+    var needs = MILE_NEEDS[cur.child];
+    $('bank-miles').innerHTML = MILES_DEF.map(function(mi, i){
+      var need = needs[i];
+      var un = m.gems.length >= need;
+      return '<div class="mile ' + (un ? 'unlocked' : 'locked') + '">' +
+        turtleSVG(mi.color, mi.acc) +
+        '<div class="mname">' + (un ? mi.name : '???') + '</div>' +
+        '<div class="mreq">' + (un ? '함께하는 중!' : '보석 ' + need + '개를 모으면') + '</div></div>';
+    }).join('');
+  }
+
+  /* ================= 수학·선우: 100판 ================= */
+  var H = { sel:null, skip:1 };
+  var hBoard = $('h-board');
+  for (var hi = 1; hi <= 100; hi++){
+    (function(n){
+      var b = document.createElement('button');
+      b.className = 'hcell'; b.type = 'button'; b.textContent = n;
+      b.addEventListener('click', function(){ H.sel = (H.sel === n ? null : n); drawH(); });
+      hBoard.appendChild(b);
+    })(hi);
+  }
+  var hSkipBox = $('h-skips');
+  [[1,'1씩'],[2,'2씩 뛰기'],[5,'5씩 뛰기'],[10,'10씩 뛰기']].forEach(function(pair){
+    var b = document.createElement('button');
+    b.className = 'ctl'; b.type = 'button'; b.textContent = pair[1];
+    b.dataset.skip = pair[0];
+    b.addEventListener('click', function(){ H.skip = pair[0]; drawH(); });
+    hSkipBox.appendChild(b);
+  });
+  function drawH(){
+    var cells = hBoard.children;
+    for (var i = 1; i <= 100; i++){
+      var c = cells[i-1];
+      c.classList.toggle('hop', H.skip > 1 && i % H.skip === 0);
+      c.classList.toggle('sel', H.sel === i);
+    }
+    Array.prototype.forEach.call(hSkipBox.children, function(b){
+      b.setAttribute('aria-pressed', parseInt(b.dataset.skip,10) === H.skip ? 'true' : 'false');
+    });
+    var bags = $('h-bags');
+    bags.innerHTML = '';
+    if (H.sel){
+      var tens = Math.floor(H.sel / 10), ones = H.sel % 10, k;
+      for (k = 0; k < tens; k++){ var t = document.createElement('span'); t.className = 'tenbag'; bags.appendChild(t); }
+      for (k = 0; k < ones; k++){ var o = document.createElement('span'); o.className = 'onebit'; bags.appendChild(o); }
+      $('h-live').textContent = H.sel + '은 10개씩 ' + tens + '묶음, 낱개 ' + ones + '개.';
+      $('h-why').innerHTML = '앞 숫자 <b>' + tens + '</b>는 묶음 자리, 뒤 숫자 <b>' + ones + '</b>는 낱개 자리. 숫자의 <b>자리</b>가 뜻을 말해줘.';
+    } else if (H.skip > 1){
+      $('h-live').textContent = H.skip + '씩 뛰면 파란 칸을 밟고 간다.';
+      $('h-why').innerHTML = H.skip === 10
+        ? '10씩 뛰면 <b>오른쪽 끝 줄</b>로 곧장 내려가. 앞자리만 1씩 커지고 있어.'
+        : '파란 칸의 무늬를 봐 — 뛰어세기는 <b>무늬 찾기</b>야.';
+    } else {
+      $('h-live').textContent = '숫자를 하나 눌러봐.';
+      $('h-why').innerHTML = '누르면 그 수가 <b>묶음과 낱개</b>로 갈라져서 보여.';
+    }
+  }
+  drawH();
+
+  /* ================= 수학·선우: 10 만들기 ================= */
+  var aFrame = $('a-frame'), aState = [], aTarget = 7;
+  for (var ai = 0; ai < 10; ai++){
+    var ac = document.createElement('button');
+    ac.className = 'cell'; ac.type = 'button';
+    ac.setAttribute('aria-label', (ai+1) + '번 칸');
+    ac.dataset.on = '0';
+    aState.push(0);
+    (function(idx, el){
+      el.addEventListener('click', function(){
+        aState[idx] = aState[idx] ? 0 : 1;
+        el.dataset.on = aState[idx] ? '1' : '0';
+        drawA();
+      });
+    })(ai, ac);
+    aFrame.appendChild(ac);
+  }
+  function drawA(){
+    var filled = aState.reduce(function(s,v){ return s+v; }, 0);
+    var gap = 10 - filled;
+    for (var i = 0; i < 10; i++){
+      aFrame.children[i].dataset.gap = (!aState[i] && filled > 0) ? '1' : '0';
+    }
+    $('a-eq').innerHTML = '<span class="n-red">' + filled + '</span><span class="op">+</span>' +
+      '<span class="n-blue">' + gap + '</span><span class="op">=</span><span>10</span>';
+    if (filled === 0){
+      $('a-live').textContent = '판이 비어 있어. 구슬을 놓아보자.';
+      $('a-why').innerHTML = '칸을 누르면 구슬이 놓여. 빈칸은 <b>파랗게</b> 켜질 거야.';
+    } else if (filled === aTarget){
+      $('a-live').textContent = aTarget + '개를 놓았어. 빈칸은 ' + gap + '칸.';
+      $('a-why').innerHTML = '그래서 <b>' + aTarget + '의 짝꿍은 ' + gap + '</b>. 세어보지 않아도 빈칸이 알려줘.';
+    } else {
+      $('a-live').textContent = filled + '개 놓았고, ' + gap + '칸이 비었어.';
+      $('a-why').innerHTML = '목표는 <b>' + aTarget + '개</b>. ' +
+        (filled < aTarget ? (aTarget - filled) + '개 더 놓아볼까?' : (filled - aTarget) + '개는 다시 눌러서 빼자.');
+    }
+  }
+  $('a-new').addEventListener('click', function(){
+    var n = aTarget;
+    while (n === aTarget) n = 1 + Math.floor(Math.random() * 9);
+    aTarget = n; $('a-target').textContent = aTarget;
+    for (var i = 0; i < 10; i++){ aState[i] = 0; aFrame.children[i].dataset.on = '0'; }
+    drawA();
+  });
+  $('a-clear').addEventListener('click', function(){
+    for (var i = 0; i < 10; i++){ aState[i] = 0; aFrame.children[i].dataset.on = '0'; }
+    drawA();
+  });
+  drawA();
+
+  /* ================= 수학·선우: 묶어 세기 ================= */
+  var totals = [12, 16, 18, 24], tIdx = 0, bSize = 3;
+  function divisors(n){
+    var out = [];
+    for (var k = 2; k <= 6; k++) if (n % k === 0) out.push(k);
+    return out;
+  }
+  function drawB(){
+    var n = totals[tIdx], sizes = divisors(n);
+    if (sizes.indexOf(bSize) === -1) bSize = sizes[0];
+    var sizeBox = $('b-sizes');
+    sizeBox.innerHTML = '';
+    sizes.forEach(function(k){
+      var b = document.createElement('button');
+      b.className = 'ctl'; b.type = 'button'; b.textContent = k + '개씩';
+      b.setAttribute('aria-pressed', k === bSize ? 'true' : 'false');
+      b.addEventListener('click', function(){ bSize = k; drawB(); });
+      sizeBox.appendChild(b);
+    });
+    var box = $('b-groups');
+    box.innerHTML = '';
+    var made = Math.floor(n / bSize), rest = n % bSize, g, d, i, j;
+    for (i = 0; i < made; i++){
+      g = document.createElement('div'); g.className = 'grp';
+      for (j = 0; j < bSize; j++){ d = document.createElement('span'); d.className = 'dot'; g.appendChild(d); }
+      box.appendChild(g);
+    }
+    if (rest){
+      g = document.createElement('div'); g.className = 'grp leftover';
+      for (j = 0; j < rest; j++){ d = document.createElement('span'); d.className = 'dot'; g.appendChild(d); }
+      box.appendChild(g);
+    }
+    $('b-live').textContent = bSize + '개씩 ' + made + '묶음' + (rest ? ', 남는 건 ' + rest + '개' : '') + '.';
+    $('b-why').innerHTML = rest
+      ? '딱 나눠떨어지지 않았어. 남은 <b>' + rest + '개</b>가 나중에 나머지가 되는 거야.'
+      : '<b>' + bSize + ' × ' + made + ' = ' + n + '</b>. 같은 ' + n + '개를 다른 크기로 묶어도 개수는 그대로야.';
+  }
+  $('b-total').addEventListener('click', function(){ tIdx = (tIdx + 1) % totals.length; drawB(); });
+  drawB();
+  /* ================= 수학·지우: 정사각형의 비밀 ================= */
+  var P = { mode:'grow', n:5, grown:false, k:1, oddN:7 };
+  var pGrid = $('p-grid');
+  var LAYERC = ['#D84E33','#E3A92C','#2F8C64','#2E6BAF','#6E4FA3','#C6613F','#4E8FA0'];
+  function drawP(){
+    pGrid.innerHTML = '';
+    if (P.mode === 'grow'){
+      var n = P.n, size = n + 1, r, c;
+      pGrid.style.gridTemplateColumns = 'repeat(' + size + ',15px)';
+      for (r = 0; r < size; r++){
+        for (c = 0; c < size; c++){
+          var d = document.createElement('span');
+          d.className = 'pdot';
+          var extra = (r === n || c === n);
+          if (extra){
+            if (!P.grown) d.className += ' ghost';
+            else d.className += (r === n && c === n) ? ' corner' : ' addc';
+          }
+          pGrid.appendChild(d);
+        }
+      }
+      if (P.grown){
+        $('p-eq').innerHTML = n + '×' + n + ' <span class="y">+ ' + n + ' + ' + n + '</span> <span class="r">+ 1</span> = ' + (n+1) + '×' + (n+1) + ' = ' + (n+1)*(n+1);
+        $('p-live').textContent = n + '×' + n + ' 이 ' + (n+1) + '×' + (n+1) + ' 이 되는 순간.';
+        $('p-why').innerHTML = '다시 다 세지 않았어 — 오른쪽 한 줄(' + n + '), 아래 한 줄(' + n + '), 모서리 <b>1</b>. 변화만 보면 <b>큰 곱셈이 덧셈</b>이 돼.';
+      } else {
+        $('p-eq').innerHTML = n + '×' + n + ' = ' + n*n;
+        $('p-live').textContent = '지금은 ' + n + '×' + n + ' 정사각형.';
+        $('p-why').innerHTML = '‘한 줄 더해보기’를 누르면 <b>' + (n+1) + '×' + (n+1) + '</b> 이 되는 데 필요한 만큼만 켜져.';
+      }
+      $('p-grow').textContent = P.grown ? '다시 줄이기' : '한 줄 더해보기';
+    } else {
+      var N = P.oddN, k = P.k, rr, cc;
+      pGrid.style.gridTemplateColumns = 'repeat(' + N + ',15px)';
+      for (rr = 0; rr < N; rr++){
+        for (cc = 0; cc < N; cc++){
+          var dd = document.createElement('span');
+          dd.className = 'pdot';
+          var layer = Math.max(rr, cc) + 1;
+          if (layer <= k) dd.style.background = LAYERC[(layer-1) % LAYERC.length];
+          else dd.className += ' ghost';
+          pGrid.appendChild(dd);
+        }
+      }
+      var odds = [], s = 0;
+      for (var oi = 1; oi <= k; oi++){ odds.push(2*oi - 1); s += 2*oi - 1; }
+      $('p-eq').textContent = odds.join(' + ') + ' = ' + s + ' = ' + k + '×' + k;
+      $('p-live').textContent = '홀수 ' + k + '개를 ㄱ자로 접어 쌓았어.';
+      $('p-why').innerHTML = k < 2
+        ? '‘한 층 더’를 눌러봐. 다음 홀수가 <b>ㄱ자</b>로 감싸며 쌓여.'
+        : '홀수는 늘 ㄱ자로 <b>딱 맞게</b> 감싼다. 그래서 홀수 ' + k + '개의 합은 언제나 <b>' + k + '×' + k + '</b>.';
+    }
+  }
+  $('p-mode-grow').addEventListener('click', function(){
+    P.mode = 'grow';
+    $('p-mode-grow').setAttribute('aria-pressed','true');
+    $('p-mode-odd').setAttribute('aria-pressed','false');
+    $('p-ctl-grow').hidden = false; $('p-ctl-odd').hidden = true;
+    drawP();
+  });
+  $('p-mode-odd').addEventListener('click', function(){
+    P.mode = 'odd';
+    $('p-mode-grow').setAttribute('aria-pressed','false');
+    $('p-mode-odd').setAttribute('aria-pressed','true');
+    $('p-ctl-grow').hidden = true; $('p-ctl-odd').hidden = false;
+    drawP();
+  });
+  $('p-grow').addEventListener('click', function(){ P.grown = !P.grown; drawP(); });
+  $('p-minus').addEventListener('click', function(){ P.n = Math.max(3, P.n - 1); P.grown = false; drawP(); });
+  $('p-plus').addEventListener('click', function(){ P.n = Math.min(8, P.n + 1); P.grown = false; drawP(); });
+  $('p-layer').addEventListener('click', function(){ P.k = Math.min(P.oddN, P.k + 1); drawP(); });
+  $('p-reset').addEventListener('click', function(){ P.k = 1; drawP(); });
+  drawP();
+
+  /* ================= 수학·지우: 넓이 모델 ================= */
+  var D = { n1:2, d1:3, n2:3, d2:4 };
+  function drawD(){
+    D.d1 = Math.max(2, Math.min(8, D.d1));
+    D.d2 = Math.max(2, Math.min(8, D.d2));
+    D.n1 = Math.max(1, Math.min(D.d1, D.n1));
+    D.n2 = Math.max(1, Math.min(D.d2, D.n2));
+    var el = $('d-area');
+    el.style.gridTemplateColumns = 'repeat(' + D.d1 + ',1fr)';
+    el.style.gridTemplateRows = 'repeat(' + D.d2 + ',1fr)';
+    el.innerHTML = '';
+    for (var r = 0; r < D.d2; r++){
+      for (var c = 0; c < D.d1; c++){
+        var cell = document.createElement('span');
+        var inCol = c < D.n1, inRow = r < D.n2;
+        cell.className = 'acell' + (inCol && inRow ? ' both' : inCol ? ' col' : inRow ? ' row' : '');
+        el.appendChild(cell);
+      }
+    }
+    var whole = D.d1 * D.d2, hit = D.n1 * D.n2, g = gcd(hit, whole);
+    $('d-live').textContent = D.n1 + '/' + D.d1 + ' × ' + D.n2 + '/' + D.d2 + ' = ' + hit + '/' + whole +
+      (g > 1 ? ' = ' + (hit/g) + '/' + (whole/g) : '');
+    $('d-why').innerHTML = '전체 <b>' + D.d1 + '×' + D.d2 + ' = ' + whole + '칸</b>, 겹친 자리 <b>' + D.n1 + '×' + D.n2 + ' = ' + hit + '칸</b>. ' +
+      '분자끼리 분모끼리 곱하라는 규칙이 <b>여기서 나온 거야</b>.';
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-area]'), function(b){
+    b.addEventListener('click', function(){
+      D[b.dataset.area] += parseInt(b.dataset.step, 10);
+      drawD();
+    });
+  });
+  drawD();
+
+  /* ================= 수학·지우: 분수 막대 ================= */
+  var F = { a:{num:1, den:2}, b:{num:3, den:6} };
+  function buildTrack(el, f){
+    el.innerHTML = '';
+    for (var i = 0; i < f.den; i++){
+      var s = document.createElement('span');
+      s.className = 'slice' + (i < f.num ? ' on' : '');
+      el.appendChild(s);
+    }
+  }
+  function drawC(){
+    ['a','b'].forEach(function(k){
+      var f = F[k];
+      f.den = Math.max(2, Math.min(12, f.den));
+      f.num = Math.max(1, Math.min(f.den, f.num));
+      $(k + '-num').textContent = f.num;
+      $(k + '-den').textContent = f.den;
+      buildTrack($(k + '-track'), f);
+    });
+    var A = F.a, B = F.b;
+    var va = A.num / A.den, vb = B.num / B.den;
+    var L = A.den * B.den / gcd(A.den, B.den);
+    var ca = A.num * (L / A.den), cb = B.num * (L / B.den);
+    var v = $('c-verdict');
+    if (Math.abs(va - vb) < 1e-9){
+      v.textContent = A.num + '/' + A.den + ' 과 ' + B.num + '/' + B.den + ' 은 같은 크기';
+      v.className = 'verdict same';
+      $('c-live').textContent = '두 막대 길이가 정확히 맞아떨어졌어.';
+      $('c-why').innerHTML = '둘 다 <b>' + L + '칸</b>으로 쪼개면 ' + ca + '/' + L + ' 과 ' + cb + '/' + L + '. 숫자는 달라도 <b>크기가 하나</b>라서 같은 분수야.';
+    } else {
+      var bigger = va > vb ? (A.num + '/' + A.den) : (B.num + '/' + B.den);
+      v.textContent = bigger + ' 이 더 크다';
+      v.className = 'verdict';
+      $('c-live').textContent = '길이가 다르네. ' + bigger + ' 쪽이 더 길어.';
+      $('c-why').innerHTML = '<b>' + L + '칸</b>짜리 같은 자로 재면 ' + ca + '/' + L + ' 대 ' + cb + '/' + L + '. 분모를 맞추는 이유가 이거야 — <b>같은 자로 재려고</b>.';
+    }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-frac]'), function(b){
+    b.addEventListener('click', function(){
+      F[b.dataset.frac][b.dataset.part] += parseInt(b.dataset.step, 10);
+      drawC();
+    });
+  });
+  $('c-shuffle').addEventListener('click', function(){
+    var pool = [[1,2,3,6],[2,3,4,6],[3,4,6,8],[1,4,2,8],[2,5,3,7],[1,3,2,5]];
+    var p = pool[Math.floor(Math.random() * pool.length)];
+    F.a.num = p[0]; F.a.den = p[1]; F.b.num = p[2]; F.b.den = p[3];
+    drawC();
+  });
+  drawC();
+
+  /* ================= 한자·선우: 그림 뒤집기 ================= */
+  var PICT = [
+    { ch:'山', cap:'메 산', hint:'봉우리 셋',
+      svg:'<path d="M4 50 L20 16 L30 38 L38 10 L48 38 L56 24 L62 50" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>' },
+    { ch:'水', cap:'물 수', hint:'흐르는 물줄기',
+      svg:'<path d="M32 6 q-7 14 0 26 q7 14 0 26 M14 16 q-5 9 0 18 M50 16 q5 9 0 18 M16 44 q-3 7 2 12 M48 44 q3 7 -2 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>' },
+    { ch:'火', cap:'불 화', hint:'타오르는 불꽃',
+      svg:'<path d="M32 8 C26 20 18 26 18 38 a14 14 0 0 0 28 0 C46 26 38 20 32 8 Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/><path d="M10 30 q-3 6 1 10 M54 30 q3 6 -1 10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>' },
+    { ch:'木', cap:'나무 목', hint:'가지와 뿌리',
+      svg:'<path d="M32 8 V56 M32 20 C24 14 18 11 8 12 M32 20 C40 14 46 11 56 12 M32 34 L14 54 M32 34 L50 54" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>' },
+    { ch:'日', cap:'날 일 (해)', hint:'둥근 해',
+      svg:'<circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="3.4"/><circle cx="32" cy="32" r="3.6" fill="currentColor"/>' },
+    { ch:'月', cap:'달 월', hint:'초승달',
+      svg:'<path d="M42 6 A27 27 0 1 0 42 58 A21 21 0 1 1 42 6 Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>' },
+    { ch:'人', cap:'사람 인', hint:'걷는 사람',
+      svg:'<path d="M34 8 C32 24 26 36 12 54 M33 22 C38 36 44 45 52 54" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>' },
+    { ch:'大', cap:'큰 대', hint:'팔 벌린 사람',
+      svg:'<path d="M10 24 H54 M32 8 C32 26 24 42 12 56 M33 24 C38 40 46 48 54 56" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>' }
+  ];
+  var hjBox = $('hj-cards'), hjFlipped = 0;
+  PICT.forEach(function(pc){
+    var card = document.createElement('button');
+    card.className = 'hcard'; card.type = 'button';
+    card.dataset.side = 'pic';
+    card.innerHTML =
+      '<span class="picside"><svg viewBox="0 0 64 64" aria-hidden="true">' + pc.svg + '</svg><span class="hint">' + pc.hint + '</span></span>' +
+      '<span class="charside"><span class="big hanja-font">' + pc.ch + '</span><span class="cap">' + pc.cap + '</span></span>';
+    card.addEventListener('click', function(){
+      card.dataset.side = card.dataset.side === 'pic' ? 'char' : 'pic';
+      hjFlipped = hjBox.querySelectorAll('[data-side="char"]').length;
+      if (hjFlipped === 0){
+        $('hj-live').textContent = '카드를 눌러서 그림을 글자로 바꿔봐.';
+        $('hj-why').innerHTML = '그림과 글자가 <b>같은 모양</b>이라는 걸 찾는 놀이야.';
+      } else if (card.dataset.side === 'char'){
+        $('hj-live').textContent = pc.hint + ' — 그대로 ' + pc.ch + ' (' + pc.cap + ').';
+        $('hj-why').innerHTML = '외운 게 아니라 <b>알아본 거야</b>. 이런 글자를 상형문자라고 해.';
+      }
+    });
+    hjBox.appendChild(card);
+  });
+  $('hj-flipall').addEventListener('click', function(){
+    var toChar = hjBox.querySelectorAll('[data-side="pic"]').length > 0;
+    Array.prototype.forEach.call(hjBox.children, function(c){ c.dataset.side = toChar ? 'char' : 'pic'; });
+    $('hj-live').textContent = toChar ? '여덟 글자가 모두 뒤집혔어.' : '다시 그림으로 돌아왔어.';
+    $('hj-why').innerHTML = toChar ? '이 여덟 개가 <b>8급 한자</b>의 뼈대야. 다음 주엔 이 부품들이 조립되기 시작해.' : '그림과 글자를 <b>번갈아</b> 보면 손이 기억해.';
+  });
+
+  /* ================= 한자·지우: 한자 공장 ================= */
+  var CPARTS = ['日','月','木','人','女','子'];
+  var COMBOS = {
+    '日|月':{ch:'明',cap:'밝을 명 — 해와 달이 같이 뜨니 눈부시게 밝다'},
+    '木|木':{ch:'林',cap:'수풀 림 — 나무가 둘이면 벌써 숲 냄새'},
+    '人|木':{ch:'休',cap:'쉴 휴 — 사람이 나무 그늘에 기대면 그게 쉼'},
+    '女|子':{ch:'好',cap:'좋을 호 — 엄마가 아이를 안으니 좋을 수밖에'},
+    '日|木':{ch:'東',cap:'동녘 동 — 나무 사이로 해가 떠오르는 쪽'}
+  };
+  var cbPicks = [], cbFoundSet = {};
+  var cbBox = $('cb-parts');
+  CPARTS.forEach(function(pt){
+    var t = document.createElement('button');
+    t.className = 'tile'; t.type = 'button'; t.textContent = pt;
+    t.addEventListener('click', function(){
+      if (cbPicks.length >= 2) cbPicks = [];
+      cbPicks.push(pt);
+      drawCB();
+    });
+    cbBox.appendChild(t);
+  });
+  function comboKey(a, b){ return [a, b].sort().join('|'); }
+  function drawCB(){
+    Array.prototype.forEach.call(cbBox.children, function(t){
+      var n = cbPicks.filter(function(x){ return x === t.textContent; }).length;
+      t.setAttribute('aria-pressed', n > 0 ? 'true' : 'false');
+    });
+    var out = $('cb-char'), cap = $('cb-cap');
+    if (cbPicks.length < 2){
+      out.textContent = cbPicks.length === 1 ? cbPicks[0] + ' + ?' : '';
+      cap.textContent = cbPicks.length === 1 ? '하나 더 골라봐 (같은 걸 또 눌러도 돼)' : '부품 두 개를 골라봐';
+      return;
+    }
+    var hit = COMBOS[comboKey(cbPicks[0], cbPicks[1])];
+    if (hit){
+      out.textContent = hit.ch;
+      cap.textContent = cbPicks[0] + ' + ' + cbPicks[1] + ' = ' + hit.cap;
+      if (!cbFoundSet[hit.ch]){
+        cbFoundSet[hit.ch] = true;
+        $('cb-live').textContent = '새 글자 발견! ' + hit.ch;
+        $('cb-why').innerHTML = '부품의 뜻이 <b>이야기</b>로 합쳐졌어. 이야기가 있으면 잊히지 않아.';
+      }
+    } else {
+      out.textContent = '?';
+      cap.textContent = cbPicks[0] + ' + ' + cbPicks[1] + ' — 이 둘은 새 글자를 만들지 못했어. 다른 짝!';
+    }
+    var n = Object.keys(cbFoundSet).length;
+    $('cb-found').textContent = '숨은 조합 5개 중 ' + n + '개 발견' + (n === 5 ? ' — 전부 찾았다!' : '');
+  }
+  $('cb-clear').addEventListener('click', function(){ cbPicks = []; drawCB(); });
+  drawCB();
+
+  /* ================= 국어·선우: 글자 조립 ================= */
+  var CHO = [['ㄱ',0],['ㄴ',2],['ㄷ',3],['ㅁ',6],['ㅂ',7],['ㅅ',9]];
+  var JUNG = [['ㅏ',0],['ㅓ',4],['ㅗ',8],['ㅜ',13],['ㅣ',20]];
+  var JONG = [['없음',0],['ㄱ',1],['ㄴ',4],['ㄹ',8],['ㅁ',16],['ㅂ',17],['ㅇ',21]];
+  var KDICT = ['간','갈','감','강','검','곰','골','공','곡','국','굴','금','글','김','길',
+               '난','날','남','논','눈','단','달','담','답','독','돈','돌','동','들',
+               '만','말','맘','목','몸','문','물','민','반','발','밤','밥','방','번','벌','범','볼','봄','북','불','빔',
+               '산','살','삼','상','선','설','섬','성','손','솔','솜','송','순','술','숨','신','실','심'];
+  var koState = { cho:0, jung:0, jong:4 };
+  function jamoRow(boxId, list, key){
+    var box = $(boxId);
+    list.forEach(function(pair, i){
+      var b = document.createElement('button');
+      b.className = 'jamo'; b.type = 'button'; b.textContent = pair[0];
+      if (pair[0] === '없음'){ b.style.width = 'auto'; b.style.padding = '0 10px'; b.style.fontSize = '15px'; }
+      b.addEventListener('click', function(){ koState[key] = i; drawKO(); });
+      box.appendChild(b);
+    });
+  }
+  jamoRow('ko-cho', CHO, 'cho');
+  jamoRow('ko-jung', JUNG, 'jung');
+  jamoRow('ko-jong', JONG, 'jong');
+  function drawKO(){
+    [['ko-cho',CHO,'cho'],['ko-jung',JUNG,'jung'],['ko-jong',JONG,'jong']].forEach(function(row){
+      Array.prototype.forEach.call($(row[0]).children, function(b, i){
+        b.setAttribute('aria-pressed', koState[row[2]] === i ? 'true' : 'false');
+      });
+    });
+    var code = 0xAC00 + (CHO[koState.cho][1] * 21 + JUNG[koState.jung][1]) * 28 + JONG[koState.jong][1];
+    var syll = String.fromCharCode(code);
+    $('ko-out').textContent = syll;
+    var isWord = KDICT.indexOf(syll) !== -1;
+    $('ko-badge').textContent = isWord ? '진짜 낱말이야!' : '';
+    var parts = CHO[koState.cho][0] + ' + ' + JUNG[koState.jung][0] + (JONG[koState.jong][1] ? ' + ' + JONG[koState.jong][0] : '');
+    $('ko-live').textContent = parts + ' = ' + syll;
+    $('ko-why').innerHTML = JONG[koState.jong][1]
+      ? '받침만 바꿔봐 — 끝소리 하나로 <b>다른 낱말</b>이 돼.'
+      : '받침을 붙이면 소리가 <b>닫히면서</b> 새 글자가 돼.';
+  }
+  drawKO();
+
+  /* ================= 국어·지우: 낱말 공장 ================= */
+  var KWPARTS = ['눈','물','사람','손','수건','김','밥','고기','꽃','병'];
+  var KWCOMBOS = {
+    '눈|물':{w:'눈물',cap:'슬프거나 기쁠 때 눈에서 나는 물'},
+    '눈|사람':{w:'눈사람',cap:'겨울에 눈을 굴려 만든 사람'},
+    '손|수건':{w:'손수건',cap:'손에 들고 다니는 작은 수건'},
+    '김|밥':{w:'김밥',cap:'김으로 밥을 만 음식'},
+    '물|고기':{w:'물고기',cap:'물에 사는 고기'},
+    '꽃|병':{w:'꽃병',cap:'꽃을 꽂아 두는 병'}
+  };
+  var kwPicks = [], kwFoundSet = {};
+  var kwBox = $('kw-parts');
+  KWPARTS.forEach(function(pt){
+    var t = document.createElement('button');
+    t.className = 'tile'; t.type = 'button'; t.textContent = pt;
+    t.style.fontFamily = "'Do Hyeon',sans-serif"; t.style.fontSize = '22px';
+    t.addEventListener('click', function(){
+      if (kwPicks.length >= 2) kwPicks = [];
+      kwPicks.push(pt);
+      drawKW();
+    });
+    kwBox.appendChild(t);
+  });
+  function drawKW(){
+    Array.prototype.forEach.call(kwBox.children, function(t){
+      t.setAttribute('aria-pressed', kwPicks.indexOf(t.textContent) !== -1 ? 'true' : 'false');
+    });
+    var out = $('kw-char'), cap = $('kw-cap');
+    if (kwPicks.length < 2){
+      out.textContent = kwPicks.length === 1 ? kwPicks[0] + ' + ?' : '';
+      cap.textContent = kwPicks.length === 1 ? '하나 더 골라봐' : '낱말 두 개를 순서대로 골라봐';
+      return;
+    }
+    var key = kwPicks[0] + '|' + kwPicks[1];
+    var rkey = kwPicks[1] + '|' + kwPicks[0];
+    var hit = KWCOMBOS[key];
+    if (hit){
+      out.textContent = hit.w;
+      cap.textContent = kwPicks[0] + ' + ' + kwPicks[1] + ' = ' + hit.w + ' — ' + hit.cap;
+      if (!kwFoundSet[hit.w]){
+        kwFoundSet[hit.w] = true;
+        $('kw-live').textContent = '새 낱말 완성: ' + hit.w;
+        $('kw-why').innerHTML = '두 뜻이 합쳐지며 <b>살짝 새로운 뜻</b>이 됐어. 그게 합성어의 재미야.';
+      }
+    } else if (KWCOMBOS[rkey]){
+      out.textContent = '?';
+      cap.textContent = '거의 다 왔어 — 순서를 바꿔볼까?';
+    } else {
+      out.textContent = '?';
+      cap.textContent = kwPicks[0] + ' + ' + kwPicks[1] + ' — 이 둘은 아직 낱말이 아니야. 다른 짝!';
+    }
+    var n = Object.keys(kwFoundSet).length;
+    $('kw-found').textContent = '숨은 낱말 6개 중 ' + n + '개 완성' + (n === 6 ? ' — 공장 가동 완료!' : '');
+  }
+  $('kw-clear').addEventListener('click', function(){ kwPicks = []; drawKW(); });
+  drawKW();
+
+  /* ================= 영어·선우: 소리 블록 ================= */
+  var PHWORDS = [
+    { w:'cat', k:'고양이', s:['크','애','트'] },
+    { w:'dog', k:'강아지', s:['드','오','그'] },
+    { w:'sun', k:'해', s:['스','어','은'] },
+    { w:'bus', k:'버스', s:['브','어','스'] },
+    { w:'pig', k:'돼지', s:['프','이','그'] }
+  ];
+  var phIdx = 0, phPicked = [];
+  function shuffled(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function loadPH(){
+    var W = PHWORDS[phIdx];
+    phPicked = [];
+    $('ph-hint').textContent = '이 단어를 만들어봐: ' + W.k;
+    var tiles = shuffled(W.w.split(''));
+    if (tiles.join('') === W.w) tiles.reverse();
+    var tbox = $('ph-tiles');
+    tbox.innerHTML = '';
+    tiles.forEach(function(ch){
+      var b = document.createElement('button');
+      b.className = 'entile'; b.type = 'button'; b.textContent = ch;
+      b.addEventListener('click', function(){
+        if (b.disabled || phPicked.length >= W.w.length) return;
+        b.disabled = true;
+        phPicked.push({ch:ch, btn:b});
+        drawPH();
+      });
+      tbox.appendChild(b);
+    });
+    drawPH();
+  }
+  function drawPH(){
+    var W = PHWORDS[phIdx];
+    var sbox = $('ph-slots');
+    sbox.innerHTML = '';
+    var full = phPicked.length === W.w.length;
+    var made = phPicked.map(function(p){ return p.ch; }).join('');
+    var ok = full && made === W.w;
+    for (var i = 0; i < W.w.length; i++){
+      var s = document.createElement('span');
+      s.className = 'slot' + (full ? (ok ? ' ok' : ' bad') : '');
+      s.textContent = phPicked[i] ? phPicked[i].ch : '';
+      sbox.appendChild(s);
+    }
+    if (!full){
+      $('ph-live').textContent = '소리: ' + W.s.join(' · ');
+      $('ph-why').innerHTML = '글자를 <b>소리 나는 순서</b>대로 눌러봐.';
+    } else if (ok){
+      $('ph-live').textContent = W.s.join('·') + ' → ' + W.w + '!';
+      $('ph-why').innerHTML = '소리가 이어져서 단어가 됐어. <b>' + W.w + ' = ' + W.k + '</b>.';
+    } else {
+      $('ph-live').textContent = made + '? 소리 순서가 달라졌네.';
+      $('ph-why').innerHTML = '‘지우기’로 되돌리고, 소리를 <b>천천히</b> 이어보자: ' + W.s.join(' · ');
+    }
+  }
+  $('ph-undo').addEventListener('click', function(){
+    var last = phPicked.pop();
+    if (last) last.btn.disabled = false;
+    drawPH();
+  });
+  $('ph-next').addEventListener('click', function(){ phIdx = (phIdx + 1) % PHWORDS.length; loadPH(); });
+  loadPH();
+
+  /* ================= 영어·지우: 문장 조립 ================= */
+  var SENTS = [
+    { en:['I','am','going','to','visit','my','grandparents.'], extra:'go', ko:'나는 조부모님을 뵈러 갈 거야.' },
+    { en:['What','do','you','want','to','be','in','the','future?'], extra:'is', ko:'너는 커서 뭐가 되고 싶어?' },
+    { en:['How','can','I','get','to','the','museum?'], extra:'where', ko:'박물관에 어떻게 가요?' },
+    { en:['She','is','taller','than','my','brother.'], extra:'more', ko:'그녀는 우리 오빠보다 키가 커.' }
+  ];
+  var snIdx = 0, snPicked = [], snChecked = false;
+  function loadSN(){
+    var S = SENTS[snIdx];
+    snPicked = []; snChecked = false;
+    $('sn-hint').textContent = '이 뜻이 되게 줄을 세워봐: “' + S.ko + '” (가짜 블록 1개 주의!)';
+    var tiles = shuffled(S.en.concat([S.extra]));
+    var tbox = $('sn-tiles');
+    tbox.innerHTML = '';
+    tiles.forEach(function(wd){
+      var b = document.createElement('button');
+      b.className = 'entile'; b.type = 'button'; b.textContent = wd;
+      b.addEventListener('click', function(){
+        if (b.disabled || snPicked.length >= S.en.length) return;
+        b.disabled = true;
+        snPicked.push({wd:wd, btn:b});
+        drawSN();
+      });
+      tbox.appendChild(b);
+    });
+    drawSN();
+  }
+  function drawSN(){
+    var S = SENTS[snIdx];
+    var sbox = $('sn-slots');
+    sbox.innerHTML = '';
+    for (var i = 0; i < S.en.length; i++){
+      var s = document.createElement('span');
+      s.className = 'slot';
+      s.style.minWidth = '58px'; s.style.fontSize = '21px';
+      if (snChecked && snPicked[i]) s.className += (snPicked[i].wd === S.en[i] ? ' ok' : ' bad');
+      s.textContent = snPicked[i] ? snPicked[i].wd : '';
+      sbox.appendChild(s);
+    }
+    if (!snChecked){
+      $('sn-live').textContent = snPicked.length + ' / ' + S.en.length + ' 블록을 놓았어.';
+      $('sn-why').innerHTML = '다 놓으면 <b>확인</b>을 눌러봐. 자리마다 불이 켜져.';
+    }
+  }
+  $('sn-check').addEventListener('click', function(){
+    var S = SENTS[snIdx];
+    if (snPicked.length < S.en.length){
+      $('sn-live').textContent = '아직 빈 자리가 있어.';
+      return;
+    }
+    snChecked = true;
+    var made = snPicked.map(function(p){ return p.wd; }).join(' ');
+    var ok = made === S.en.join(' ');
+    drawSN();
+    if (ok){
+      $('sn-live').textContent = made;
+      $('sn-why').innerHTML = '완성! <b>' + S.ko + '</b> — 가짜 블록 ‘' + S.extra + '’를 잘 걸러냈어. 영어는 블록의 <b>순서</b>가 문법이야.';
+    } else {
+      var usedExtra = snPicked.some(function(p){ return p.wd === S.extra; });
+      $('sn-live').textContent = '빨간 자리만 다시 보면 돼.';
+      $('sn-why').innerHTML = usedExtra
+        ? '가짜 블록 <b>‘' + S.extra + '’</b>가 끼어들었어! ‘다시’를 누르고 빼보자.'
+        : '‘다시’를 누르고 빨간 블록의 <b>자리</b>를 바꿔보자.';
+    }
+  });
+  $('sn-redo').addEventListener('click', function(){
+    snPicked.forEach(function(p){ p.btn.disabled = false; });
+    snPicked = []; snChecked = false;
+    drawSN();
+  });
+  $('sn-next').addEventListener('click', function(){ snIdx = (snIdx + 1) % SENTS.length; loadSN(); });
+  loadSN();
+
+  /* ================= 국어·지우: 근거 훈련소 ================= */
+  var KR_L12 = {
+    1: [
+      { s:'10월은 9월보다 하루가 더 많다.', a:'fact',
+        rs:[ {t:'달력을 펴보면 누구나 똑같이 확인할 수 있으니까', ok:true},
+             {t:'내가 10월을 좋아하니까', ok:false},
+             {t:'하루쯤은 별 차이가 아니니까', ok:false} ] },
+      { s:'가을은 일 년 중 가장 아름다운 계절이다.', a:'op',
+        rs:[ {t:'계절이 넷이라는 건 확인할 수 있으니까', ok:false},
+             {t:'‘아름답다’는 사람마다 다르게 느끼는 것이니까', ok:true},
+             {t:'가을엔 단풍이 드니까', ok:false} ] },
+      { s:'우리 학교 5학년은 여섯 반까지 있다.', a:'fact',
+        rs:[ {t:'우리 반이 제일 좋으니까', ok:false},
+             {t:'여섯은 꽤 많은 수니까', ok:false},
+             {t:'학교에서 세어보면 누구나 확인할 수 있으니까', ok:true} ] },
+      { s:'급식에 매운 음식이 더 자주 나와야 한다.', a:'op',
+        rs:[ {t:'‘~해야 한다’는 내 주장이 담긴 말이니까', ok:true},
+             {t:'급식 식단표는 매주 확인할 수 있으니까', ok:false},
+             {t:'매운 음식을 싫어하는 사람은 없으니까', ok:false} ] },
+      { s:'고래는 물고기가 아니라 새끼를 낳는 동물이다.', a:'fact',
+        rs:[ {t:'고래가 멋있으니까', ok:false},
+             {t:'과학책과 도감에서 확인할 수 있으니까', ok:true},
+             {t:'바다는 아주 넓으니까', ok:false} ] }
+    ],
+    2: [
+      { s:'휴대폰은 초등학생에게 꼭 필요하다.', a:'op', fb:'‘꼭 필요하다’는 주장 — 필요 없다고 생각하는 사람도 있지.' },
+      { s:'세종대왕은 한글을 만들었다.', a:'fact', fb:'역사책 어디를 펴도 같은 내용 — 확인되는 사실.' },
+      { s:'이 시의 달팽이는 게을러 보인다.', a:'op', fb:'‘~보인다’는 내 눈의 느낌. 부지런하다고 느끼는 사람도 있어.' },
+      { s:'우리나라의 수도는 서울이다.', a:'fact', fb:'지도와 책에서 누구나 확인할 수 있는 내용.' },
+      { s:'일주일은 7일이다.', a:'fact', fb:'달력이 증인 — 세어보면 끝나는 사실.' }
+    ],
+    3: [
+      { s:'떡볶이는 세상에서 제일 맛있는 음식이다.', a:'op', model:'‘제일 맛있다’는 내 입맛 이야기라서 의견이야. 사람마다 1등 음식이 다르잖아.' },
+      { s:'지구는 태양 주위를 돈다.', a:'fact', model:'과학으로 확인된 내용이라 사실이야. 누가 조사해도 결과가 같아.' },
+      { s:'우리 교실에는 창문이 있다.', a:'fact', model:'교실에 가서 보면 바로 확인 — 그래서 사실이야.' },
+      { s:'숙제는 아침에 하는 것이 저녁보다 낫다.', a:'op', model:'‘낫다’는 판단이 들어간 말 — 저녁이 낫다는 사람도 있으니 의견이야.' },
+      { s:'번개가 친 뒤에 천둥소리가 들린다.', a:'fact', model:'직접 관찰해서 확인할 수 있으니 사실이야. 순서는 언제나 같아.' }
+    ]
+  };
+  var KR_L4 = [
+    { op:'쉬는 시간을 늘려야 한다.',
+      opts:[ {t:'친구들과 노는 건 재미있기 때문이다', ok:false},
+             {t:'몸을 움직이고 나면 다음 수업에 집중이 더 잘 되기 때문이다', ok:true},
+             {t:'나는 쉬는 시간이 정말 좋기 때문이다', ok:false} ],
+      fb:'튼튼한 근거는 <b>확인할 수 있는 사실</b>로 의견을 받쳐줘. ‘재미있다’는 느낌이고, ‘좋다’는 의견을 한 번 더 말한 것뿐이야.' },
+    { op:'교실에서 화분을 기르면 좋겠다.',
+      opts:[ {t:'화분은 보기에 예쁘기 때문이다', ok:false},
+             {t:'다른 반도 다 하고 있기 때문이다', ok:false},
+             {t:'식물이 교실 공기를 깨끗하게 해 주기 때문이다', ok:true} ],
+      fb:'‘예쁘다’는 느낌, ‘남들도 하니까’는 따라가기. <b>공기가 깨끗해진다</b>는 확인 가능한 효과가 진짜 받침대야.' },
+    { op:'잠은 9시 전에 자는 것이 좋다.',
+      opts:[ {t:'일찍 잘수록 키 크는 호르몬이 잘 나오기 때문이다', ok:true},
+             {t:'엄마가 자라고 하시기 때문이다', ok:false},
+             {t:'밤은 원래 어둡기 때문이다', ok:false} ],
+      fb:'<b>몸에서 일어나는 확인된 일</b>이 의견을 받쳐줘. ‘엄마가 하라고 해서’는 이유가 아니라 명령이고, ‘밤은 어둡다’는 상관없는 사실이야.' },
+    { op:'학교 앞 길은 더 안전해져야 한다.',
+      opts:[ {t:'안전은 좋은 것이기 때문이다', ok:false},
+             {t:'그 길에서 차가 빨리 달려 위험했던 일이 실제로 있었기 때문이다', ok:true},
+             {t:'나는 그 길을 별로 좋아하지 않기 때문이다', ok:false} ],
+      fb:'<b>실제로 있었던 일</b>이 가장 힘센 근거야. ‘안전은 좋다’는 같은 말 반복, ‘싫다’는 느낌일 뿐이야.' },
+    { op:'우리 반은 책을 더 많이 읽어야 한다.',
+      opts:[ {t:'책은 종이로 만들기 때문이다', ok:false},
+             {t:'읽어야 하니까 읽어야 하기 때문이다', ok:false},
+             {t:'책을 읽으면 새로운 낱말과 생각을 만나게 되기 때문이다', ok:true} ],
+      fb:'‘종이로 만든다’는 <b>상관없는 사실</b>, ‘읽어야 하니까’는 뱅글뱅글 도는 말. 의견과 <b>연결된</b> 사실만이 근거가 돼.' }
+  ];
+  var R = { level:1, idx:0 };
+  var KR_LIVE = {
+    1:['문장을 읽고 사실/의견을 고르고, 왜 그런지 이유까지 골라봐.', '근거란 <b>“왜?”에 답하는 것</b>. 오늘은 보기가 옆에서 도와줘.'],
+    2:['이번엔 보기가 짧아졌어. 이유를 먼저 머리로 떠올리고 골라봐.', '보기가 줄수록 <b>내 말</b>이 늘어나는 중이야.'],
+    3:['보기 없음! 고르고 나서 이유를 소리 내어 말해봐.', '소리 내어 말한 이유가 <b>진짜 실력</b>이야. 글쓰기로 그대로 이어져.'],
+    4:['의견을 가장 튼튼하게 받쳐줄 근거를 골라봐.', '느낌 반복, 같은 말 돌리기, 상관없는 사실 — 이 셋은 <b>근거인 척하는 것들</b>이야.']
+  };
+  var krLevelBox = $('kr-levels');
+  [[1,'1단계 · 보기 가득'],[2,'2단계 · 보기 절반'],[3,'3단계 · 보기 없이'],[4,'근거 달기']].forEach(function(pair){
+    var b = document.createElement('button');
+    b.className = 'ctl'; b.type = 'button'; b.textContent = pair[1];
+    b.dataset.lv = pair[0];
+    b.addEventListener('click', function(){ R.level = pair[0]; R.idx = 0; drawKR(); });
+    krLevelBox.appendChild(b);
+  });
+  function krBtn(box, label, cls, fn){
+    var b = document.createElement('button');
+    b.className = cls; b.type = 'button'; b.innerHTML = label;
+    b.addEventListener('click', fn);
+    box.appendChild(b);
+    return b;
+  }
+  function krClear(){ ['kr-judge','kr-reasons','kr-nav'].forEach(function(id){ $(id).innerHTML = ''; }); $('kr-fb').innerHTML = ''; }
+  function krDoneLevel(){
+    krClear();
+    $('kr-sent').textContent = '5개 완료!';
+    var first = awardKey('j-r' + R.level, $('kr-play'));
+    $('kr-fb').innerHTML = first ? '이 단계의 <b>보석</b>을 얻었어!' : '이미 보석을 얻은 단계야 — 복습 완료!';
+    if (R.level < 4) krBtn($('kr-nav'), '다음 단계로 →', 'ctl', function(){ R.level++; R.idx = 0; drawKR(); });
+    else $('kr-fb').innerHTML += ' 이제 진짜 글을 쓸 때도 <b>의견 → 왜냐하면 → 확인할 수 있는 사실</b> 순서로!';
+  }
+  function krNext(){ R.idx++; if (R.idx >= 5) krDoneLevel(); else drawKR(); }
+  function drawKR(){
+    Array.prototype.forEach.call(krLevelBox.children, function(b){
+      b.setAttribute('aria-pressed', parseInt(b.dataset.lv,10) === R.level ? 'true' : 'false');
+    });
+    $('kr-live').innerHTML = KR_LIVE[R.level][0];
+    $('kr-why').innerHTML = KR_LIVE[R.level][1];
+    krClear();
+    $('kr-prog').textContent = (R.level === 4 ? '근거 달기' : R.level + '단계') + ' · ' + (R.idx + 1) + ' / 5';
+    if (R.level === 4){
+      var Q = KR_L4[R.idx];
+      $('kr-sent').textContent = '의견: “' + Q.op + '”';
+      Q.opts.forEach(function(o){
+        var b = krBtn($('kr-reasons'), o.t, 'kr-reason', function(){
+          Array.prototype.forEach.call($('kr-reasons').children, function(x, j){
+            x.classList.remove('right','wrong');
+            if (Q.opts[j].ok) x.classList.add('right');
+          });
+          if (o.ok){
+            $('kr-fb').innerHTML = Q.fb;
+            krBtn($('kr-nav'), '다음 →', 'ctl', krNext);
+          } else {
+            b.classList.add('wrong');
+            $('kr-fb').innerHTML = Q.fb;
+            krBtn($('kr-nav'), '다음 →', 'ctl', krNext);
+          }
+        });
+      });
+      return;
+    }
+    var I = KR_L12[R.level][R.idx];
+    $('kr-sent').textContent = '“' + I.s + '”';
+    ['fact','op'].forEach(function(k){
+      krBtn($('kr-judge'), k === 'fact' ? '사실' : '의견', 'opt', function(){
+        if (k !== I.a){
+          $('kr-fb').innerHTML = k === 'fact'
+            ? '음, 다시 봐 — 사람마다 <b>다르게 생각할 수 있는 말</b>이 숨어 있지 않아?'
+            : '음, 다시 봐 — 누가 조사해도 <b>똑같이 확인되는 내용</b> 아닐까?';
+          return;
+        }
+        $('kr-judge').innerHTML = '<span class="verdict same">' + (I.a === 'fact' ? '사실' : '의견') + ' — 정답!</span>';
+        if (R.level === 1){
+          $('kr-fb').innerHTML = '좋아. 그럼 <b>왜</b> 그럴까?';
+          I.rs.forEach(function(r){
+            krBtn($('kr-reasons'), r.t, 'kr-reason', function(){
+              Array.prototype.forEach.call($('kr-reasons').children, function(x, j){
+                x.classList.remove('right','wrong');
+                if (I.rs[j].ok) x.classList.add('right'); else x.classList.add('wrong');
+              });
+              $('kr-fb').innerHTML = r.ok
+                ? '바로 그거야 — <b>이유까지 말하면</b> 그게 근거야.'
+                : '그건 느낌이거나 상관없는 말이야. 초록 이유를 소리 내어 읽어봐.';
+              krBtn($('kr-nav'), '다음 →', 'ctl', krNext);
+            });
+          });
+        } else if (R.level === 2){
+          $('kr-fb').innerHTML = '<b>왜?</b> 둘 중 하나로 답해봐.';
+          [{t:'누가 조사해도 똑같이 확인할 수 있으니까', k:'fact'},{t:'내 생각·느낌이 담긴 말이니까', k:'op'}].forEach(function(r){
+            krBtn($('kr-reasons'), r.t, 'kr-reason', function(){
+              Array.prototype.forEach.call($('kr-reasons').children, function(x){ x.classList.remove('right','wrong'); });
+              if (r.k === I.a){
+                $('kr-fb').innerHTML = I.fb;
+                krBtn($('kr-nav'), '다음 →', 'ctl', krNext);
+              } else {
+                $('kr-fb').innerHTML = '한 번 더 — 이 문장, ' + (I.a === 'fact' ? '확인할 수 있는 쪽' : '생각이 담긴 쪽') + ' 아닐까?';
+              }
+            });
+          });
+        } else {
+          $('kr-fb').innerHTML = '이제 <b>소리 내어</b> 이유를 말해봐. “왜냐하면…” 으로 시작! 다 말했으면 아래를 눌러.';
+          krBtn($('kr-nav'), '모범 이유와 비교하기', 'ctl', function(){
+            $('kr-nav').innerHTML = '';
+            $('kr-fb').innerHTML = '<b>모범 이유:</b> ' + I.model;
+            krBtn($('kr-nav'), '내 이유와 비슷해!', 'ctl', krNext);
+            krBtn($('kr-nav'), '조금 달랐어', 'ctl quiet', function(){
+              $('kr-fb').innerHTML = '<b>모범 이유:</b> ' + I.model + '<br>달라도 괜찮아 — 한 번 더 소리 내어 따라 말하고 넘어가자.';
+              $('kr-nav').innerHTML = '';
+              krBtn($('kr-nav'), '따라 말했어, 다음 →', 'ctl', krNext);
+            });
+          });
+        }
+      });
+    });
+  }
+  drawKR();
+
+  render();
+})();
+</script>
+
+
+
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(function(){});
+}
+</script>
+</body>
+</html>
