@@ -183,6 +183,7 @@ main{padding:8px 0 0}
 /* ---------- square pattern ---------- */
 .dotgrid{display:grid;gap:5px}
 .pdot{width:15px;height:15px;border-radius:50%;background:var(--ink-faint)}
+button.pdot{padding:0;border:none;cursor:pointer;display:block}
 .pdot.ghost{visibility:hidden}
 .pdot.addc{background:var(--yellow)}
 .pdot.corner{background:var(--red)}
@@ -513,7 +514,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       </div>
     </article>
 
-    <section class="quiz">
+    <section class="quiz" data-for="sunwoo">
       <h2>확인 문제</h2>
       <div class="q" data-qid="s-m1" data-answer="1">
         <h3>8과 짝꿍이 되어 10을 만드는 수는?</h3>
@@ -541,7 +542,35 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       </div>
     </section>
 
-    <article class="stage rev">
+    <section class="quiz" data-for="ina">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="i-m1" data-answer="1">
+        <h3>6과 짝꿍이 되어 10을 만드는 수는?</h3>
+        <p class="qnote">위 판에 구슬 6개를 놓아보면 바로 보여.</p>
+        <div class="opts"><button class="opt">3</button><button class="opt">4</button><button class="opt">5</button></div>
+        <p class="explain" hidden>10자리 버스에 6명이 타면 빈자리는 <b>4개</b>. 세지 말고 빈자리를 보는 게 요령이야 — 6과 4는 언제나 짝꿍.</p>
+      </div>
+      <div class="q" data-qid="i-m2" data-answer="0">
+        <h3>17은 10과 몇으로 가를 수 있을까?</h3>
+        <p class="qnote">10칸 판이 꽉 차고, 밖에 몇 개 남을까?</p>
+        <div class="opts"><button class="opt">7</button><button class="opt">6</button><button class="opt">8</button></div>
+        <p class="explain" hidden>사탕 17개 — 10개는 상자에 <b>쏙</b>, 밖에 7개. 17이라는 숫자 안에 이미 답이 써 있어: 1상자 7낱개!</p>
+      </div>
+      <div class="q" data-qid="i-m3" data-answer="1">
+        <h3>귤 15개를 3명이 똑같이 나누면 한 명이 몇 개?</h3>
+        <p class="qnote">5씩 뛰어 세어봐: 5, 10, 15!</p>
+        <div class="opts"><button class="opt">4개</button><button class="opt">5개</button><button class="opt">6개</button></div>
+        <p class="explain" hidden>접시 3개에 <b>5개씩</b> 놓으면 5·10·15 — 딱 맞아! 나눗셈은 똑같이 묶기 놀이야.</p>
+      </div>
+      <div class="q" data-qid="i-m4" data-answer="1">
+        <h3>8 + 5 는 몇일까?</h3>
+        <p class="qnote">8에 2를 먼저 줘서 10을 만들어봐.</p>
+        <div class="opts"><button class="opt">12</button><button class="opt">13</button><button class="opt">14</button></div>
+        <p class="explain" hidden>5가 8에게 2를 <b>빌려주면</b> 10 완성, 5의 주머니엔 3이 남아. 10+3 = <b>13</b>. 10 먼저 만들기가 덧셈의 지름길!</p>
+      </div>
+    </section>
+
+    <article class="stage rev" data-for="sunwoo">
       <span class="stage-tag">이번 주 학교에서 · 8/24 – 8/28</span>
       <h2>이번 주 복습 + 보너스</h2>
       <p class="stage-sub">화요일엔 <b>60·70·80·90</b>, 목요일엔 <b>99까지의 수</b>를 배웠다. 아래 100판에서 눈으로 확인하고, 보너스로 마무리!</p>
@@ -729,7 +758,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       </div>
     </article>
 
-    <section class="quiz">
+    <section class="quiz" data-for="sunwoo">
       <h2>확인 문제</h2>
       <div class="q" data-qid="s-h1" data-answer="0">
         <h3>‘달’을 뜻하는 글자는?</h3>
@@ -751,7 +780,28 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       </div>
     </section>
 
-    <article class="stage rev">
+    <section class="quiz" data-for="ina">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="i-h1" data-answer="0">
+        <h3>‘해’를 뜻하는 글자는?</h3>
+        <p class="qnote">둥근 모양에 가운데 점!</p>
+        <div class="opts"><button class="opt hanja-font">日</button><button class="opt hanja-font">月</button><button class="opt hanja-font">木</button></div>
+        <p class="explain" hidden>동그란 해 가운데 점을 콕 — <b>日</b>. 기울어진 초승달 月과 비교해봐, 모양이 답을 알려줘.</p>
+      </div>
+      <div class="q" data-qid="i-h2" data-answer="0">
+        <h3>水 가 그리고 있는 것은?</h3>
+        <div class="opts"><button class="opt">흐르는 물줄기</button><button class="opt">산봉우리</button><button class="opt">불꽃</button></div>
+        <p class="explain" hidden>가운데 큰 <b>물줄기</b>와 양옆에 튀는 물방울! 수요일의 ‘수’가 바로 이 글자야.</p>
+      </div>
+      <div class="q" data-qid="i-h3" data-answer="2">
+        <h3>人 은 무엇을 그린 글자일까?</h3>
+        <p class="qnote">두 다리를 봐.</p>
+        <div class="opts"><button class="opt">나무</button><button class="opt">달</button><button class="opt">걷는 사람</button></div>
+        <p class="explain" hidden>다리를 벌리고 <b>걸어가는 사람</b>의 옆모습이야. ‘인사’ ‘인형’의 인이 다 이 글자!</p>
+      </div>
+    </section>
+
+    <article class="stage rev" data-for="sunwoo">
       <span class="stage-tag">이번 주 보너스 · 시간표엔 없지만!</span>
       <h2>이번 주 복습 + 보너스</h2>
       <p class="stage-sub">학교 시간표엔 한자가 없지만, 그림 카드 여덟 장은 우리끼리의 진도. 이번 주 카드에서 보너스 하나!</p>
@@ -849,7 +899,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       </div>
     </article>
 
-    <section class="quiz">
+    <section class="quiz" data-for="sunwoo">
       <h2>확인 문제</h2>
       <div class="q" data-qid="s-k1" data-answer="1">
         <h3>‘강’의 받침은?</h3>
@@ -865,7 +915,23 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       </div>
     </section>
 
-    <article class="stage rev">
+    <section class="quiz" data-for="ina">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="i-k1" data-answer="1">
+        <h3>‘문’의 받침은?</h3>
+        <p class="qnote">위 공장에서 ‘문’을 만들어봐.</p>
+        <div class="opts"><button class="opt">ㅁ</button><button class="opt">ㄴ</button><button class="opt">ㅇ</button></div>
+        <p class="explain" hidden>글자는 2층집 — 위층에 ㅁ+ㅜ, 아래층(받침)에 <b>ㄴ</b>이 살면 ‘문’. 아래층을 ㄹ로 바꾸면 ‘물’이 돼!</p>
+      </div>
+      <div class="q" data-qid="i-k2" data-answer="0">
+        <h3>‘손’의 받침 ㄴ을 ㅁ으로 바꾸면?</h3>
+        <p class="qnote">소리 내어 실험해봐: 소—ㄴ, 소—ㅁ.</p>
+        <div class="opts"><button class="opt">솜</button><button class="opt">솔</button><button class="opt">송</button></div>
+        <p class="explain" hidden>끝소리 스위치만 바꾸면 손이 <b>솜</b>으로 폭신! ㄹ이면 솔, ㅇ이면 송 — 받침 하나가 낱말을 통째로 바꿔.</p>
+      </div>
+    </section>
+
+    <article class="stage rev" data-for="sunwoo">
       <span class="stage-tag">이번 주 학교에서 · 8/24 – 8/28</span>
       <h2>이번 주 복습 + 보너스</h2>
       <p class="stage-sub">월요일 <b>흉내 내는 말</b>, 화요일 <b>기분을 나타내는 말</b>, 수요일 <b>듣는 사람을 생각하며 기분 말하기</b>. 보너스로 마무리!</p>
@@ -986,7 +1052,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       </div>
     </article>
 
-    <section class="quiz">
+    <section class="quiz" data-for="sunwoo">
       <h2>확인 문제</h2>
       <div class="q" data-qid="s-e1" data-answer="0">
         <h3>‘해’는 영어로?</h3>
@@ -1002,7 +1068,23 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       </div>
     </section>
 
-    <article class="stage rev">
+    <section class="quiz" data-for="ina">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="i-e1" data-answer="0">
+        <h3>‘강아지’는 영어로?</h3>
+        <p class="qnote">드, 오, 그 — 소리를 이어봐.</p>
+        <div class="opts"><button class="opt">dog</button><button class="opt">dig</button><button class="opt">bog</button></div>
+        <p class="explain" hidden><b>d·o·g → dog</b>! 가운데 소리만 바꾸면 dig(파다)가 돼 — 소리 블록 하나 차이야.</p>
+      </div>
+      <div class="q" data-qid="i-e2" data-answer="1">
+        <h3>b · u · s 를 순서대로 이으면?</h3>
+        <p class="qnote">브—어—스.</p>
+        <div class="opts"><button class="opt">sub</button><button class="opt">bus</button><button class="opt">usb</button></div>
+        <p class="explain" hidden>브+어+스 = <b>bus</b>(버스)! 같은 블록도 순서가 바뀌면 sub처럼 다른 말이 돼 — 순서도 뜻이야.</p>
+      </div>
+    </section>
+
+    <article class="stage rev" data-for="sunwoo">
       <span class="stage-tag">이번 주 보너스 · 시간표엔 없지만!</span>
       <h2>이번 주 복습 + 보너스</h2>
       <p class="stage-sub">1학년 시간표엔 영어가 없지만, 우리 판의 소리 블록은 계속 굴러간다. 이번 주에 연습한 단어로 보너스 하나!</p>
@@ -1178,10 +1260,10 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     <section class="quiz">
       <h2>확인 문제</h2>
       <div class="q" data-qid="r-m1" data-answer="1">
-        <h3>24 × 3 은?</h3>
-        <p class="qnote">한 번에 말고, 쪼개서: 20×3 과 4×3.</p>
-        <div class="opts"><button class="opt">62</button><button class="opt">72</button><button class="opt">68</button></div>
-        <p class="explain" hidden>24를 20과 4로 <b>쪼개면</b> 20×3=60, 4×3=12 — 합쳐서 <b>72</b>. 큰 곱셈은 작은 곱셈 두 개를 붙인 것뿐이야.</p>
+        <h3>34 × 6 은?</h3>
+        <p class="qnote">한 번에 말고, 쪼개서: 30×6 과 4×6.</p>
+        <div class="opts"><button class="opt">184</button><button class="opt">204</button><button class="opt">196</button></div>
+        <p class="explain" hidden>34를 30과 4로 <b>쪼개면</b> 30×6=180, 4×6=24 — 붙여서 <b>204</b>. 위 점판에서 잘라본 것과 똑같은 원리야. 큰 곱셈은 늘 작은 곱셈들의 합체!</p>
       </div>
       <div class="q" data-qid="r-m2" data-answer="0">
         <h3>6 × 7 이 기억 안 날 때, 어떻게 구할 수 있을까?</h3>
@@ -1189,23 +1271,29 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
         <div class="opts"><button class="opt" style="font-size:15px">6×5 에 6×2 를 더한다</button><button class="opt" style="font-size:15px">6+7 을 계산한다</button><button class="opt" style="font-size:15px">외울 때까지 기다린다</button></div>
         <p class="explain" hidden>6×7 = 6×5 + 6×2 = 30+12 = <b>42</b>. 위 점판에서 7칸을 5칸과 2칸으로 잘라보면 눈에 보여 — 구구단은 외우는 게 아니라 <b>조립</b>하는 거야.</p>
       </div>
-      <div class="q" data-qid="r-m3" data-answer="2">
-        <h3>사탕 45개를 5명이 똑같이 나누면 한 명이 몇 개?</h3>
-        <p class="qnote">거꾸로 물어봐: 5 × 몇 = 45?</p>
-        <div class="opts"><button class="opt">7개</button><button class="opt">8개</button><button class="opt">9개</button></div>
-        <p class="explain" hidden>나눗셈은 곱셈을 <b>거꾸로 읽는 것</b>: 5×9=45니까 답은 <b>9</b>. 새로 배울 게 아니라 이미 아는 걸 뒤집는 거야.</p>
+      <div class="q" data-qid="r-m3" data-answer="0">
+        <h3>사탕 50개를 6명이 똑같이 나누면?</h3>
+        <p class="qnote">거꾸로 물어봐: 6 × 몇이 50에 가장 가깝지?</p>
+        <div class="opts"><button class="opt" style="font-size:16px">8개씩, 2개 남음</button><button class="opt" style="font-size:16px">7개씩, 8개 남음</button><button class="opt" style="font-size:16px">9개씩, 4개 남음</button></div>
+        <p class="explain" hidden>6×8=48로 50에 <b>딱 못 미치게</b> 다가가고, 남은 2개가 나머지. 7개씩이면 8개가 남는데 그건 한 바퀴 더 돌 수 있으니 틀려 — <b>나머지는 나누는 수보다 작아야</b> 해.</p>
       </div>
-      <div class="q" data-qid="r-m4" data-answer="0">
-        <h3>원의 지름은 반지름의 몇 배일까?</h3>
+      <div class="q" data-qid="r-m4" data-answer="2">
+        <h3>반지름이 7cm인 원의 지름은?</h3>
         <p class="qnote">중심을 지나 끝에서 끝까지.</p>
-        <div class="opts"><button class="opt">2배</button><button class="opt">3배</button><button class="opt">반 배</button></div>
-        <p class="explain" hidden>지름은 중심을 지나니까 반지름 <b>두 개를 이어붙인 것</b> — 언제나 2배. 피자 반쪽 자국 두 개를 떠올려봐.</p>
+        <div class="opts"><button class="opt">7cm</button><button class="opt">21cm</button><button class="opt">14cm</button></div>
+        <p class="explain" hidden>지름은 반지름 <b>두 개를 이어붙인 것</b>: 7+7 = <b>14cm</b>. 컴퍼스를 7cm 벌려 그린 원을 가로질러 보면 딱 두 걸음이야.</p>
       </div>
-      <div class="q" data-qid="r-m5" data-answer="1">
-        <h3>피자를 똑같이 4조각으로 잘랐다. 한 조각은 전체의 얼마?</h3>
-        <p class="qnote">분수의 첫걸음.</p>
-        <div class="opts"><button class="opt">4/1</button><button class="opt">1/4</button><button class="opt">1/3</button></div>
-        <p class="explain" hidden>아래 수(4)는 <b>몇 조각으로 잘랐나</b>, 위 수(1)는 <b>몇 조각 가졌나</b>. 그래서 <b>1/4</b> — 분수는 자른 이야기를 쓰는 방법이야.</p>
+      <div class="q" data-qid="r-m5" data-answer="0">
+        <h3>1/3 과 1/5 중 어느 쪽이 클까?</h3>
+        <p class="qnote">같은 피자를 3조각 낼 때와 5조각 낼 때를 상상해봐.</p>
+        <div class="opts"><button class="opt">1/3</button><button class="opt">1/5</button><button class="opt">같다</button></div>
+        <p class="explain" hidden>피자를 <b>적게 자를수록 한 조각이 크다</b>! 3조각 중 하나가 5조각 중 하나보다 커. 아래 수가 크다고 분수가 큰 게 아니야 — 분수는 거꾸로 나라.</p>
+      </div>
+      <div class="q" data-qid="r-m6" data-answer="1">
+        <h3>25 × 4 = 100 이다. 그럼 25 × 8 은?</h3>
+        <p class="qnote">다시 계산하지 말고, 변화만 봐.</p>
+        <div class="opts"><button class="opt">150</button><button class="opt">200</button><button class="opt">125</button></div>
+        <p class="explain" hidden>8은 4의 <b>두 배</b>니까 답도 두 배: 100×2 = <b>200</b>. 아는 곱셈 하나면 그 두 배, 반, 열 배가 다 공짜로 따라와.</p>
       </div>
     </section>
   </section>
@@ -1400,6 +1488,9 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     Array.prototype.forEach.call(document.querySelectorAll('.panel'), function(p){
       var okChild = p.dataset.child === 'both' || p.dataset.child.split(' ').indexOf(cur.child) !== -1;
       p.hidden = !(okChild && p.dataset.subject === cur.subject);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-for]'), function(el){
+      el.hidden = el.dataset.for !== cur.child;
     });
     if (prevChild !== cur.child){ prevChild = cur.child; if (window.refreshQuizzes) refreshQuizzes(); }
     Array.prototype.forEach.call(document.querySelectorAll('.switch [data-child]'), function(b){
@@ -1610,7 +1701,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     { name:'임금 거북 왕이', color:'#E8768A', acc:'crown' },
     { name:'별빛 거북 별이', color:'#B48BD9', acc:'star' }
   ];
-  var MILE_NEEDS = { sunwoo:[4,9,14,19], ina:[3,7,11,15], roun:[3,6,9,13], jiwoo:[5,13,21,28] };
+  var MILE_NEEDS = { sunwoo:[4,9,14,19], ina:[3,6,9,11], roun:[3,7,11,15], jiwoo:[5,13,21,28] };
   function awardKey(qid, anchorEl){
     var w = my();
     if (w.tried[qid] === 'gem') return false;
@@ -2462,31 +2553,47 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   }
   drawKR();
 
-  /* ================= 수학·로운: 곱셈 배열판 ================= */
-  var AR = { r:3, c:7 };
+  /* ================= 수학·로운: 곱셈 배열판 (점을 눌러 자르기) ================= */
+  var AR = { r:6, c:7, split:null };
   function drawAR(){
     AR.r = Math.max(2, Math.min(9, AR.r));
     AR.c = Math.max(2, Math.min(9, AR.c));
+    if (AR.split !== null && AR.split >= AR.c - 1) AR.split = null;
     var g = $('ar-grid');
     g.style.gridTemplateColumns = 'repeat(' + AR.c + ',15px)';
     g.innerHTML = '';
     for (var i = 0; i < AR.r * AR.c; i++){
-      var d = document.createElement('span');
-      d.className = 'pdot';
-      d.style.background = 'var(--green)';
-      g.appendChild(d);
+      (function(idx){
+        var col = idx % AR.c;
+        var d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'pdot';
+        d.setAttribute('aria-label', (Math.floor(idx/AR.c)+1) + '줄 ' + (col+1) + '칸 점');
+        d.style.background = (AR.split !== null && col <= AR.split) ? 'var(--yellow)' : 'var(--green)';
+        d.addEventListener('click', function(){
+          AR.split = (AR.split === col || col >= AR.c - 1) ? null : col;
+          drawAR();
+        });
+        g.appendChild(d);
+      })(i);
     }
-    $('ar-eq').textContent = AR.r + ' × ' + AR.c + ' = ' + (AR.r * AR.c);
-    $('ar-live').textContent = AR.r + '줄 × ' + AR.c + '칸 = 점 ' + (AR.r * AR.c) + '개.';
-    $('ar-why').innerHTML = AR.r === AR.c
-      ? '줄과 칸이 같으면 <b>정사각형</b> — 이게 바로 제곱수야.'
-      : '‘판 돌리기’를 눌러봐. 돌려도 점의 개수는 그대로 — 그래서 <b>' + AR.r + '×' + AR.c + ' = ' + AR.c + '×' + AR.r + '</b>.';
+    var total = AR.r * AR.c;
+    if (AR.split === null){
+      $('ar-eq').textContent = AR.r + ' × ' + AR.c + ' = ' + total;
+      $('ar-live').textContent = AR.r + '줄 × ' + AR.c + '칸 = 점 ' + total + '개.';
+      $('ar-why').innerHTML = '<b>점을 직접 눌러봐</b> — 그 자리에서 판이 잘리면서, 큰 곱셈이 작은 곱셈 두 개로 갈라져.';
+    } else {
+      var a = AR.split + 1, b = AR.c - a;
+      $('ar-eq').textContent = AR.r + '×' + AR.c + ' = ' + AR.r + '×' + a + ' + ' + AR.r + '×' + b + ' = ' + (AR.r*a) + ' + ' + (AR.r*b) + ' = ' + total;
+      $('ar-live').textContent = '판이 잘렸어! 노랑 ' + AR.r + '×' + a + ', 초록 ' + AR.r + '×' + b + '.';
+      $('ar-why').innerHTML = AR.r + '×' + AR.c + '가 기억 안 나도 <b>' + AR.r + '×' + a + '와 ' + AR.r + '×' + b + '를 알면 끝</b> — 구구단은 외우는 게 아니라 자르고 붙이는 거야. 같은 점을 다시 누르면 붙어.';
+    }
   }
-  $('ar-r-minus').addEventListener('click', function(){ AR.r--; drawAR(); });
-  $('ar-r-plus').addEventListener('click', function(){ AR.r++; drawAR(); });
-  $('ar-c-minus').addEventListener('click', function(){ AR.c--; drawAR(); });
-  $('ar-c-plus').addEventListener('click', function(){ AR.c++; drawAR(); });
-  $('ar-swap').addEventListener('click', function(){ var t = AR.r; AR.r = AR.c; AR.c = t; drawAR(); });
+  $('ar-r-minus').addEventListener('click', function(){ AR.r--; AR.split = null; drawAR(); });
+  $('ar-r-plus').addEventListener('click', function(){ AR.r++; AR.split = null; drawAR(); });
+  $('ar-c-minus').addEventListener('click', function(){ AR.c--; AR.split = null; drawAR(); });
+  $('ar-c-plus').addEventListener('click', function(){ AR.c++; AR.split = null; drawAR(); });
+  $('ar-swap').addEventListener('click', function(){ var t = AR.r; AR.r = AR.c; AR.c = t; AR.split = null; drawAR(); });
   drawAR();
 
   render();
