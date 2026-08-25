@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#F5F7F3">
+<meta name="theme-color" content="#121714">
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="icon" href="./icon-192.png">
 <link rel="apple-touch-icon" href="./icon-192.png">
@@ -11,28 +11,26 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gaegu:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --paper:#F5F7F3;
-  --card:#FFFFFF;
-  --ink:#1E2521;
-  --ink-soft:#5B655E;
-  --ink-faint:#8D968F;
-  --line:#DDE3DA;
-  --line-strong:#C3CCC0;
-  --red:#D84E33;
-  --red-soft:#F6D9D1;
-  --blue:#2E6BAF;
-  --blue-soft:#D5E2F2;
-  --grape:#6E4FA3;
-  --green:#2F8C64;
-  --yellow:#E3A92C;
+  --paper:#121714;
+  --card:#1A211D;
+  --ink:#EAF0EA;
+  --ink-soft:#A6B1A9;
+  --ink-faint:#79847C;
+  --line:#2C3630;
+  --line-strong:#3B463F;
+  --red:#F0755A;
+  --red-soft:#4A2A22;
+  --blue:#7CA9E0;
+  --blue-soft:#22344A;
+  --grape:#A98BDC;
+  --green:#5FBE90;
+  --yellow:#F0C155;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --paper:#121714; --card:#1A211D; --ink:#EAF0EA; --ink-soft:#A6B1A9;
-    --ink-faint:#79847C; --line:#2C3630; --line-strong:#3B463F;
-    --red:#F0755A; --red-soft:#4A2A22; --blue:#7CA9E0; --blue-soft:#22344A;
-    --grape:#A98BDC; --green:#5FBE90; --yellow:#F0C155;
-  }
+:root[data-theme="light"]{
+  --paper:#F5F7F3; --card:#FFFFFF; --ink:#1E2521; --ink-soft:#5B655E;
+  --ink-faint:#8D968F; --line:#DDE3DA; --line-strong:#C3CCC0;
+  --red:#D84E33; --red-soft:#F6D9D1; --blue:#2E6BAF; --blue-soft:#D5E2F2;
+  --grape:#6E4FA3; --green:#2F8C64; --yellow:#E3A92C;
 }
 :root[data-theme="dark"]{
   --paper:#121714; --card:#1A211D; --ink:#EAF0EA; --ink-soft:#A6B1A9;
@@ -352,7 +350,10 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
         <h1>그림으로 먼저,<br>답은 그다음</h1>
         <p class="lede">눌러보면 이유가 보이는 판. 문제를 <b>맞히면 보석이 1개</b> — 틀려도 ‘다시 풀기’로 도전하면 된다. 보석을 모으면 거북이 친구가 찾아온다.</p>
       </div>
-      <button class="gemchip" id="gemchip" aria-label="보석함 열기"><span id="gemchip-icon"></span><span id="gemchip-n">0</span>개</button>
+      <div style="display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;justify-content:flex-end">
+        <button class="gemchip" id="theme-toggle" aria-label="화면 밝기 바꾸기" style="font-size:14px;font-family:inherit"></button>
+        <button class="gemchip" id="gemchip" aria-label="보석함 열기"><span id="gemchip-icon"></span><span id="gemchip-n">0</span>개</button>
+      </div>
     </div>
     <div class="switch" role="tablist" aria-label="아이 고르기">
       <button role="tab" aria-selected="true" data-child="sunwoo">선우 <span class="grade">초1</span></button>
@@ -1375,6 +1376,22 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   function gcd(x,y){ return y ? gcd(y, x % y) : x; }
 
   /* ================= state: child / subject ================= */
+  /* ---------- theme: 기본 다크, 라이트 지원 ---------- */
+  var THEME_KEY = 'gyeol-theme';
+  var theme = 'dark';
+  try { theme = localStorage.getItem(THEME_KEY) || 'dark'; } catch(e){}
+  function applyTheme(){
+    document.documentElement.setAttribute('data-theme', theme);
+    var b = $('theme-toggle');
+    if (b) b.textContent = theme === 'dark' ? '라이트 화면' : '다크 화면';
+  }
+  applyTheme();
+  $('theme-toggle').addEventListener('click', function(){
+    theme = theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem(THEME_KEY, theme); } catch(e){}
+    applyTheme();
+  });
+
   var cur = { child:'sunwoo', subject:'today' };
   var childName = { sunwoo:'선우', ina:'이나', roun:'로운', jiwoo:'지우' };
   var prevChild = cur.child;
