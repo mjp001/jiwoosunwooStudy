@@ -251,6 +251,40 @@ button.pdot{padding:0;border:none;cursor:pointer;display:block}
 .entile:disabled{opacity:.3;cursor:default}
 .en-hint{font-family:"Gaegu",cursive;font-size:21px;color:var(--ink-soft);text-align:center}
 
+/* ---------- 제목 튕기기 ---------- */
+.masthead h1{cursor:pointer;user-select:none}
+.h1span{display:inline-block}
+.h1span.jump{animation:titlejump .55s cubic-bezier(.34,1.56,.64,1) backwards}
+@keyframes titlejump{0%{transform:translateY(0)}40%{transform:translateY(-14px) scale(1.06)}100%{transform:translateY(0)}}
+
+/* ---------- 미적분 (민재) ---------- */
+.gear-rot{transition:transform 1.1s cubic-bezier(.35,.9,.45,1);transform-box:fill-box;transform-origin:center}
+.tower-row{display:flex;gap:30px;align-items:flex-end;justify-content:center;min-height:250px}
+.tower{display:flex;flex-direction:column-reverse;align-items:center;gap:3px}
+.tblock{width:46px;border-radius:4px;transition:height .55s ease,opacity .55s ease}
+.tbase{background:var(--ink-faint)}
+.tchg{background:#4CAF6D}
+.tq{background:transparent;border:2px dashed var(--grape);color:var(--grape);font-family:"Do Hyeon",sans-serif;display:flex;align-items:center;justify-content:center;font-size:15px}
+.tlab{font-family:"Do Hyeon",sans-serif;font-size:14px;color:var(--ink-soft)}
+.mj-svg{cursor:pointer;touch-action:manipulation}
+.mj-svg rect{transition:opacity .3s}
+.mj-svg .shell-new{animation:fadecell .45s ease}
+.mj-word{font-family:"Do Hyeon",sans-serif;font-size:14px;color:var(--ink-faint);letter-spacing:.04em}
+.bam-row{display:flex;gap:30px;align-items:flex-end;justify-content:center;min-height:230px;padding-top:8px}
+.bam{border:none;background:none;cursor:pointer;padding:0;display:flex;flex-direction:column;align-items:center;gap:7px}
+.bam-badge{font-family:"Do Hyeon",sans-serif;font-size:13px;background:var(--card);border:1.5px solid var(--line-strong);border-radius:4px;padding:2px 9px;color:var(--ink);white-space:nowrap}
+.bam-bar{width:13px;border-radius:7px;background:#5E8C5A;transition:height .9s cubic-bezier(.3,1.15,.4,1)}
+.bam-name{font-family:"Do Hyeon",sans-serif;font-size:15px;color:var(--ink-soft)}
+.bam.shake{animation:wshake .4s}
+.pig-row{display:flex;gap:14px;align-items:flex-end;justify-content:center;flex-wrap:wrap}
+.pig-day{border:none;background:none;cursor:pointer;display:flex;flex-direction:column-reverse;align-items:center;gap:5px;padding:6px;border-radius:6px}
+.pig-day:hover{background:color-mix(in srgb,var(--yellow) 12%,transparent)}
+.pig-day[disabled]{opacity:.35;cursor:default}
+.coin{width:34px;height:8px;border-radius:4px;background:#E3A92C;border:1px solid #B58318;margin-top:-3px}
+.pig-amt{font-size:12px;color:var(--ink-soft);font-family:"Do Hyeon",sans-serif}
+.pig-lab{font-size:12px;color:var(--red);font-family:"Do Hyeon",sans-serif}
+.pig-total{font-family:"Do Hyeon",sans-serif;font-size:32px;color:var(--ink);font-variant-numeric:tabular-nums}
+
 /* ---------- 수직선 개구리 / 어림 수직선 ---------- */
 .nl-wrap{width:100%;max-width:540px;position:relative;padding-top:44px}
 .nl-track{display:grid;grid-template-columns:repeat(21,1fr);gap:2px}
@@ -492,6 +526,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       <button role="tab" aria-selected="false" data-child="ina">이나 <span class="grade">초1</span></button>
       <button role="tab" aria-selected="false" data-child="roun">로운 <span class="grade">초3</span></button>
       <button role="tab" aria-selected="false" data-child="jiwoo">지우 <span class="grade">초5</span></button>
+      <button role="tab" aria-selected="false" data-child="minjae">민재 <span class="grade">나</span></button>
     </div>
     <nav class="subnav" role="tablist" aria-label="과목 고르기">
       <button role="tab" aria-selected="false" data-subject="today">오늘</button>
@@ -1847,6 +1882,118 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     </article>
   </section>
 
+  <!-- ================= 수학 · 민재 (미적분) ================= -->
+  <section class="panel" data-subject="math" data-child="minjae" hidden>
+
+    <article class="stage">
+      <span class="stage-tag">미적분 하나 · d와 ∫</span>
+      <h2>나무의 나이테</h2>
+      <p class="stage-sub">나무 단면을 보면 해마다 한 겹씩 두른 나이테가 있다. <b>올해 자란 딱 한 겹이 d나무</b> (d = <em>difference</em>, 순간의 변화만 끄집어내는 집게), 그리고 <b>단면 전체는 모든 나이테를 합한 ∫d나무</b> (∫ = <em>integral</em>, Sum의 S를 길게 늘인 기호). 나무를 눌러 세월을 쌓아봐.</p>
+      <div class="stage-body">
+        <div class="play">
+          <svg class="mj-svg" id="mjA-svg" viewBox="0 0 300 250" width="300" height="250"></svg>
+          <p class="peq" id="mjA-eq"></p>
+          <p class="mj-word">d = difference (순간의 변화) · ∫ = integral (무수한 변화의 합, Sum)</p>
+          <div class="controls">
+            <button class="ctl" id="mjA-add">∫ 하라 — 한 해 자라기</button>
+            <button class="ctl quiet" id="mjA-sub">d 하라 — 올해 테만 끄집어내기</button>
+          </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="mjA-live"></p>
+          <p class="why" id="mjA-why"></p>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">미적분 둘 · 미분은 기어비다</span>
+      <h2>자전거 기어 기계</h2>
+      <p class="stage-sub">페달을 한 바퀴(내 변화, <b>dx</b>) 돌리면 바퀴는 몇 바퀴(상대방 변화)? 그 비율이 <b>기어비 = 미분계수</b>다. x² 기계의 기어비는 <b>2x</b> — 그래서 <b>d(x²) = 2x·dx</b>. x를 키워가며 페달을 밟아봐, 같은 한 바퀴에 바퀴가 점점 미친 듯이 구른다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <svg id="mjB-svg" viewBox="0 0 300 190" width="300" height="190"></svg>
+          <p class="peq" id="mjB-eq"></p>
+          <div class="controls">
+            <button class="ctl" id="mjB-pedal">페달 한 바퀴 밟기</button>
+            <div class="stepper"><span>x 값</span><button class="mini" id="mjB-minus">−</button><button class="mini" id="mjB-plus">+</button></div>
+          </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="mjB-live"></p>
+          <p class="why" id="mjB-why"></p>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">미적분 셋 · +C의 정체</span>
+      <h2>출발점을 잊어버린 d</h2>
+      <p class="stage-sub">1층에서 시작한 사람, 5층에서 시작한 사람, 5000층에서 시작한 사람이 <b>똑같은 계단</b>을 올랐다. ‘d 하라’를 누르면 셋의 변화가 똑같아진다 — <b>d는 출발점(상수)을 무시</b>하니까. 그래서 ∫로 되돌릴 땐 출발점을 알 수 없어 <b>+C</b>를 붙인다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="tower-row" id="mjC-row"></div>
+          <p class="peq" id="mjC-eq"></p>
+          <div class="controls">
+            <button class="ctl" id="mjC-d">d 하라 — 변화만 남기기</button>
+            <button class="ctl" id="mjC-i">∫ 하라 — 되돌리기</button>
+            <button class="ctl quiet" id="mjC-reset">원래대로</button>
+          </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="mjC-live"></p>
+          <p class="why" id="mjC-why"></p>
+        </aside>
+      </div>
+    </article>
+
+    <section class="quiz">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="m-1" data-answer="1">
+        <h3>나무에서 ‘올해 자란 한 겹’만 끄집어내는 기호는?</h3>
+        <div class="opts"><button class="opt" style="font-size:16px">∫나무</button><button class="opt" style="font-size:16px">d나무</button><button class="opt" style="font-size:16px">나무²</button></div>
+        <p class="explain" hidden><b>d(difference)</b>는 순간의 변화만 집어내는 집게 — 올해의 나이테 한 겹이 <b>d나무</b>다. 단면 전체는 그것들을 다 합한 ∫d나무.</p>
+      </div>
+      <div class="q" data-qid="m-2" data-answer="0">
+        <h3>∫(integral)의 정체는?</h3>
+        <p class="qnote">기호의 생김새가 힌트.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">Sum의 S를 길게 늘인 것 — 무수한 변화를 합하라</button><button class="opt" style="font-size:15px">Infinite의 I</button><button class="opt" style="font-size:15px">J의 필기체</button></div>
+        <p class="explain" hidden>∫는 <b>Sum(합)의 S</b>를 길게 늘인 기호. ‘무수한 변화를 합하라’는 명령이다. 나무 단면 = ∫나이테, 지금의 나 = ∫(매일의 나).</p>
+      </div>
+      <div class="q" data-qid="m-3" data-answer="1">
+        <h3>d(x²) = ▢ × dx — 빈칸은?</h3>
+        <p class="qnote">상대방 변화는 내 변화(dx)의 몇 배?</p>
+        <div class="opts"><button class="opt">x</button><button class="opt">2x</button><button class="opt">x²</button></div>
+        <p class="explain" hidden>한 변 x인 정사각형이 dx만큼 자라면 늘어나는 ㄱ자 = 가로 x + 세로 x = <b>2x</b>줄. 그래서 d(x²) = <b>2x</b>·dx — 상대방 변화는 내 변화의 2x배. 기어 기계의 기어비가 바로 이것!</p>
+      </div>
+      <div class="q" data-qid="m-4" data-answer="2">
+        <h3>∫2x dx = ? — ‘적분하는 법’은 따로 없다!</h3>
+        <p class="qnote">미분해서 2x가 되는 놈을 찾아라.</p>
+        <div class="opts"><button class="opt">2x²</button><button class="opt">x</button><button class="opt">x² + C</button></div>
+        <p class="explain" hidden>적분은 새 기술이 아니라 <b>미분 거꾸로 읽기</b>: “미분하면 2x가 되는 게 누구?” → <b>x²</b>. 거기에 잊어버린 출발점 몫으로 <b>+C</b>. d(x²)=2x dx 한 줄이 적분이자 답이다.</p>
+      </div>
+      <div class="q" data-qid="m-5" data-answer="0">
+        <h3>적분 결과에 +C가 붙는 이유는?</h3>
+        <p class="qnote">출발점 게임을 떠올려.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">d가 출발점(상수)을 무시해서, 되돌릴 때 알 수 없으니까</button><button class="opt" style="font-size:15px">계산 오차를 보정하려고</button><button class="opt" style="font-size:15px">수학자들의 오랜 습관이라서</button></div>
+        <p class="explain" hidden>x², x²+5, x²+5000은 d하면 <b>전부 똑같이 2x dx</b> — 상수는 변화가 없으니 d가 무시한다. 그래서 ∫로 되돌릴 땐 “출발점이 몇이었더라?” — 그 물음표가 <b>+C</b>다.</p>
+      </div>
+      <div class="q" data-qid="m-6" data-answer="1">
+        <h3>미분을 자전거에 비유하면, 미분계수는?</h3>
+        <div class="opts"><button class="opt" style="font-size:15px">바퀴의 크기</button><button class="opt" style="font-size:15px">기어비 — 내가 1 움직일 때 상대가 몇 움직이나</button><button class="opt" style="font-size:15px">페달의 무게</button></div>
+        <p class="explain" hidden>미분계수 = <b>변화의 교환비율</b>. 페달 한 바퀴에 바퀴가 여섯 바퀴 돌면 그 지점의 기어비는 6 — x²기계는 x가 커질수록 기어비(2x)가 커지는 <b>변속 자전거</b>인 셈이다.</p>
+      </div>
+      </section>
+  </section>
+
+  <!-- ================= 민재 · 다른 탭 안내 ================= -->
+  <section class="panel" data-subject="kor" data-child="minjae" hidden><article class="stage"><h2>아빠 트랙은 수학뿐!</h2><p class="stage-sub">민재 트랙은 지금 수학(미적분)만 있어요 — 수학 탭으로 가세요. 다른 과목도 원하면 말만 하세요.</p></article></section>
+  <section class="panel" data-subject="hanja" data-child="minjae" hidden><article class="stage"><h2>아빠 트랙은 수학뿐!</h2><p class="stage-sub">민재 트랙은 지금 수학(미적분)만 있어요 — 수학 탭으로 가세요.</p></article></section>
+  <section class="panel" data-subject="eng" data-child="minjae" hidden><article class="stage"><h2>아빠 트랙은 수학뿐!</h2><p class="stage-sub">민재 트랙은 지금 수학(미적분)만 있어요 — 수학 탭으로 가세요.</p></article></section>
+  <section class="panel" data-subject="art" data-child="minjae" hidden><article class="stage"><h2>아빠 트랙은 수학뿐!</h2><p class="stage-sub">민재 트랙은 지금 수학(미적분)만 있어요 — 수학 탭으로 가세요.</p></article></section>
+  <section class="panel" data-subject="today" data-child="minjae" hidden><article class="stage"><h2>오늘의 공부는 미적분</h2><p class="stage-sub">수학 탭에서 d와 ∫를 만나세요 — 아이들이 보석 모으는 동안 아빠도 한 겹씩.</p></article></section>
+  <section class="panel" data-subject="week" data-child="minjae" hidden><article class="stage"><h2>민재의 이번 주</h2><p class="stage-sub">이번 주 진도: d(difference) → ∫(integral) → 저금통과 대나무. 다음 주엔 기울기와 넓이(그래프)로 확장할 수 있어요.</p></article></section>
+
   <!-- ================= 보석함 ================= -->
   <section class="panel" data-subject="bank" data-child="both" hidden>
     <div class="bank">
@@ -1894,7 +2041,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   });
 
   var cur = { child:'sunwoo', subject:'today' };
-  var childName = { sunwoo:'선우', ina:'이나', roun:'로운', jiwoo:'지우' };
+  var childName = { sunwoo:'선우', ina:'이나', roun:'로운', jiwoo:'지우', minjae:'민재' };
   var prevChild = cur.child;
 
   function render(){
@@ -1955,7 +2102,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     var raw = localStorage.getItem(KEY);
     if (raw){ var p = JSON.parse(raw); if (p && typeof p === 'object') store = p; }
   } catch(e){}
-  ['sunwoo','ina','roun','jiwoo'].forEach(function(k){
+  ['sunwoo','ina','roun','jiwoo','minjae'].forEach(function(k){
     if (!store[k] || !store[k].gems) store[k] = { gems:[], tried:{} };
   });
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
@@ -2157,7 +2304,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     { name:'임금 거북 왕이', color:'#E8768A', acc:'crown' },
     { name:'별빛 거북 별이', color:'#B48BD9', acc:'star' }
   ];
-  var MILE_NEEDS = { sunwoo:[4,10,15,21], ina:[3,6,10,13], roun:[4,8,13,17], jiwoo:[5,14,23,31] };
+  var MILE_NEEDS = { sunwoo:[4,10,15,21], ina:[3,6,10,13], roun:[4,8,13,17], jiwoo:[5,14,23,31], minjae:[2,3,4,5] };
   function awardKey(qid, anchorEl){
     var w = my();
     if (w.tried[qid] === 'gem') return false;
@@ -3536,6 +3683,164 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     $('dc-live').textContent = '새 종이! 왼쪽 칸을 눌러 점을 찍어봐.';
   });
   buildDC();
+
+  /* ================= 민재: 나무 나이테 (d와 ∫) ================= */
+  var MJA = { k: 3, max: 9 };
+  function drawMJA(dir){
+    var svg = $('mjA-svg');
+    var cx = 130, cy = 125, r0 = 16, step = 12;
+    var parts = '<circle cx="' + cx + '" cy="' + cy + '" r="' + r0 + '" fill="#A8794F"/>';
+    for (var k = 1; k <= MJA.k; k++){
+      var col = k % 2 ? '#8B5E3C' : '#A8794F';
+      var cls = (dir === 'add' && k === MJA.k) ? ' class="shell-new"' : '';
+      parts += '<circle' + cls + ' cx="' + cx + '" cy="' + cy + '" r="' + (r0 + k * step - step/2) + '" fill="none" stroke="' + col + '" stroke-width="' + (step - 1) + '"/>';
+    }
+    parts += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r0 + MJA.k * step) + '" fill="none" stroke="#5C4632" stroke-width="2"/>';
+    if (dir === 'sub'){
+      parts += '<circle class="shell-new" cx="252" cy="70" r="34" fill="none" stroke="#E8823A" stroke-width="11"/>';
+      parts += '<text x="238" y="128" fill="#E8823A" font-size="16" font-family="Do Hyeon">d나무</text>';
+    }
+    svg.innerHTML = parts;
+    $('mjA-eq').textContent = '나무 단면 = ∫d나무  (나이테 ' + MJA.k + '겹 = ' + MJA.k + '년)';
+    if (dir === 'add'){
+      $('mjA-live').textContent = '∫! 한 해가 쌓였다 — 새 나이테 한 겹.';
+      $('mjA-why').innerHTML = '두께(dr)는 비슷해도 <b>바깥 테일수록 더 넓다</b> — 늘어난 넓이 = 둘레 × 두께. ‘상대방 변화 = 몇 배 × 내 변화’의 <b>몇 배</b>가 바로 둘레야.';
+    } else if (dir === 'sub'){
+      $('mjA-live').textContent = 'd! 올해의 테만 끄집어냈다 — 저 주황 고리가 d나무.';
+      $('mjA-why').innerHTML = '<b>d(difference)</b>는 지난 세월은 두고 <b>이번 변화만</b> 집어내는 집게. 나무의 일기 한 페이지인 셈이지.';
+    } else {
+      $('mjA-live').textContent = '나무를 누르면 한 해씩 자란다.';
+      $('mjA-why').innerHTML = '커다란 나무도 알고 보면 <b>얇은 나이테(d나무)들의 합</b> — 세상의 모든 현재는 변화의 적분이야.';
+    }
+  }
+  $('mjA-svg').addEventListener('click', function(){ if (MJA.k < MJA.max){ MJA.k++; drawMJA('add'); } });
+  $('mjA-add').addEventListener('click', function(){ if (MJA.k < MJA.max){ MJA.k++; drawMJA('add'); } });
+  $('mjA-sub').addEventListener('click', function(){ if (MJA.k > 1){ MJA.k--; drawMJA('sub'); } });
+  drawMJA();
+
+  /* ================= 민재: 자전거 기어 (미분 = 기어비) ================= */
+  var MJB = { x: 2, pedalDeg: 0, wheelDeg: 0, dist: 0 };
+  (function buildMJB(){
+    var svg = $('mjB-svg');
+    function gear(cx, cy, r, id, color){
+      var s = '<g id="' + id + '" class="gear-rot">';
+      s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="' + color + '" stroke-width="6"/>';
+      for (var a = 0; a < 360; a += 60){
+        var rad = a * Math.PI / 180;
+        s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + r * Math.cos(rad)) + '" y2="' + (cy + r * Math.sin(rad)) + '" stroke="' + color + '" stroke-width="3"/>';
+      }
+      s += '<circle cx="' + (cx + r - 7) + '" cy="' + cy + '" r="6" fill="#E8823A"/>';
+      s += '<circle cx="' + cx + '" cy="' + cy + '" r="7" fill="' + color + '"/></g>';
+      return s;
+    }
+    svg.innerHTML =
+      gear(70, 105, 34, 'mjB-g1', '#7CA9E0') +
+      gear(210, 95, 58, 'mjB-g2', '#5FBE90') +
+      '<line x1="104" y1="105" x2="152" y2="95" stroke="var(--ink-faint)" stroke-width="3" stroke-dasharray="5 5"/>' +
+      '<text x="45" y="165" fill="#7CA9E0" font-size="14" font-family="Do Hyeon">페달 (dx)</text>' +
+      '<text x="178" y="178" fill="#5FBE90" font-size="14" font-family="Do Hyeon">바퀴 (상대방 변화)</text>';
+  })();
+  function mjBinfo(){
+    var ratio = 2 * MJB.x;
+    $('mjB-eq').textContent = 'x = ' + MJB.x + ' → 기어비 2x = ' + ratio + '  ·  d(x²) = 2x·dx';
+  }
+  $('mjB-pedal').addEventListener('click', function(){
+    var ratio = 2 * MJB.x;
+    MJB.pedalDeg += 360;
+    MJB.wheelDeg += 360 * ratio;
+    MJB.dist += ratio;
+    document.getElementById('mjB-g1').style.transform = 'rotate(' + MJB.pedalDeg + 'deg)';
+    document.getElementById('mjB-g2').style.transform = 'rotate(' + MJB.wheelDeg + 'deg)';
+    $('mjB-live').textContent = '페달 1바퀴 → 바퀴 ' + ratio + '바퀴! (누적 ' + MJB.dist + '바퀴)';
+    $('mjB-why').innerHTML = '내 변화는 늘 1인데 상대방 변화는 <b>' + ratio + '배</b> — 이 교환비율이 <b>미분계수</b>야. x를 키우면 같은 페달질에 바퀴가 더 미친 듯이 돈다: x²는 <b>변속 자전거</b>다.';
+  });
+  $('mjB-minus').addEventListener('click', function(){ MJB.x = Math.max(1, MJB.x - 1); mjBinfo(); });
+  $('mjB-plus').addEventListener('click', function(){ MJB.x = Math.min(5, MJB.x + 1); mjBinfo(); });
+  mjBinfo();
+  $('mjB-live').textContent = '페달을 밟아봐 — 바퀴가 기어비만큼 구른다.';
+  $('mjB-why').innerHTML = '미분은 기계 해부다: <b>내가 1 움직일 때 상대가 몇 움직이나</b>.';
+
+  /* ================= 민재: 출발점 게임 (+C) ================= */
+  var MJC = { bases:[18, 58, 108], labels:['0층 출발', '5층 출발', '5000층 출발'], steps:[16, 24, 12, 20], mode:'full' };
+  var mjcRow = $('mjC-row');
+  function drawMJC(){
+    mjcRow.innerHTML = '';
+    MJC.bases.forEach(function(base, i){
+      var t = document.createElement('div');
+      t.className = 'tower';
+      var baseEl = document.createElement('div');
+      if (MJC.mode === 'int'){
+        baseEl.className = 'tblock tq';
+        baseEl.style.height = '40px';
+        baseEl.textContent = '+C ?';
+      } else {
+        baseEl.className = 'tblock tbase';
+        baseEl.style.height = (MJC.mode === 'd' ? 0 : base) + 'px';
+        baseEl.style.opacity = MJC.mode === 'd' ? '0' : '1';
+      }
+      t.appendChild(baseEl);
+      MJC.steps.forEach(function(h, j){
+        var s = document.createElement('div');
+        s.className = 'tblock tchg';
+        s.style.height = h + 'px';
+        s.style.animationDelay = (j * 0.06) + 's';
+        t.appendChild(s);
+      });
+      var lab = document.createElement('span');
+      lab.className = 'tlab';
+      lab.textContent = MJC.mode === 'full' ? MJC.labels[i] : (MJC.mode === 'd' ? '변화만' : '출발점?');
+      t.appendChild(lab);
+      mjcRow.appendChild(t);
+    });
+  }
+  $('mjC-d').addEventListener('click', function(){
+    MJC.mode = 'd'; drawMJC();
+    $('mjC-eq').textContent = 'd(x²) = d(x²+5) = d(x²+5000)';
+    $('mjC-live').textContent = '셋이 똑같아졌다! 출발점이 사라졌어.';
+    $('mjC-why').innerHTML = '상수는 변하지 않으니 <b>d가 무시</b>한다 — x²든 x²+5000이든 d하면 전부 <b>2x dx</b>. 초록 블록(변화)만 남는 거야.';
+  });
+  $('mjC-i').addEventListener('click', function(){
+    MJC.mode = 'int'; drawMJC();
+    $('mjC-eq').textContent = '∫(변화) = 원래 모습 + C';
+    $('mjC-live').textContent = '되돌리긴 했는데… 출발점이 기억나지 않아!';
+    $('mjC-why').innerHTML = '변화만으론 몇 층에서 시작했는지 알 수 없다 — 그 <b>잃어버린 출발점의 자리</b>가 <b>+C</b>야. f(x)+C의 C는 오차가 아니라 정직함의 표시지.';
+  });
+  $('mjC-reset').addEventListener('click', function(){
+    MJC.mode = 'full'; drawMJC();
+    $('mjC-eq').textContent = '';
+    $('mjC-live').textContent = '세 사람이 각자 다른 층에서, 똑같은 계단을 올랐다.';
+    $('mjC-why').innerHTML = '초록(매일의 변화)은 셋 다 같고, 회색(출발점)만 다르다 — 이제 ‘d 하라’를 눌러봐.';
+  });
+  drawMJC();
+  $('mjC-live').textContent = '세 사람이 각자 다른 층에서, 똑같은 계단을 올랐다.';
+  $('mjC-why').innerHTML = '초록(매일의 변화)은 셋 다 같고, 회색(출발점)만 다르다 — 이제 \u2018d 하라\u2019를 눌러봐.';
+
+  /* ================= 제목 튕기기 ================= */
+  (function(){
+    var h1 = document.querySelector('.masthead h1');
+    if (!h1) return;
+    var frag = document.createDocumentFragment();
+    Array.prototype.slice.call(h1.childNodes).forEach(function(nd){
+      if (nd.nodeType === 3){
+        nd.textContent.split('').forEach(function(ch){
+          if (ch === ' ' || ch === '\n'){ frag.appendChild(document.createTextNode(ch)); return; }
+          var s = document.createElement('span');
+          s.className = 'h1span'; s.textContent = ch;
+          frag.appendChild(s);
+        });
+      } else frag.appendChild(nd);
+    });
+    h1.innerHTML = '';
+    h1.appendChild(frag);
+    h1.addEventListener('click', function(){
+      if (noMotion) return;
+      Array.prototype.forEach.call(h1.querySelectorAll('.h1span'), function(s, i){
+        s.classList.remove('jump'); void s.offsetWidth;
+        s.style.animationDelay = (i * 0.05) + 's';
+        s.classList.add('jump');
+      });
+    });
+  })();
 
   render();
 })();
