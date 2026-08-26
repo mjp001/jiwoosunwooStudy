@@ -105,6 +105,9 @@ main{padding:8px 0 0}
 .why{font-family:"Gaegu",cursive;font-size:20px;line-height:1.45;color:var(--ink-soft);margin:0}
 .why b{color:var(--ink);font-weight:700}
 .controls{display:flex;flex-wrap:wrap;gap:8px}
+.play .controls{justify-content:center;width:100%}
+.play .stepper{width:auto;gap:6px}
+.play .stepper span{flex:none}
 .ctl{
   font-family:inherit;font-size:14px;font-weight:600;padding:8px 14px;border-radius:4px;cursor:pointer;
   border:2px solid var(--line-strong);background:var(--card);color:var(--ink-soft);
@@ -309,6 +312,11 @@ button.pdot{padding:0;border:none;cursor:pointer;display:block}
   font-family:"Do Hyeon",sans-serif;font-size:15px;color:var(--ink-faint);text-align:center;
 }
 .mix-out.pop{animation:mixpop .55s cubic-bezier(.34,1.56,.64,1)}
+.mix-out .mongle-face{display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-46%)}
+.mix-out.alive .mongle-face{display:block}
+.mix-out.alive{border-style:solid;border-color:transparent;box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.mongle-face .m-eye{transform-box:fill-box;transform-origin:center;animation:mblink 3.4s infinite}
+@keyframes mblink{0%,90%,100%{transform:scaleY(1)}94%{transform:scaleY(.08)}}
 @keyframes mixpop{0%{transform:scale(.55)}60%{transform:scale(1.18)}100%{transform:scale(1)}}
 .chip.shake{animation:wshake .4s}
 @keyframes wshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
@@ -593,11 +601,13 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
         <div class="play">
           <div class="hundred" id="h-board"></div>
           <div class="tenbags" id="h-bags"></div>
+        
+          <div class="controls" id="h-skips"></div>
         </div>
         <aside class="read">
           <p class="live" id="h-live"></p>
           <p class="why" id="h-why"></p>
-          <div class="controls" id="h-skips"></div>
+          
         </aside>
       </div>
     </article>
@@ -611,14 +621,16 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
           <p class="target">빨간 구슬 <strong id="a-target">7</strong> 개를 놓아봐</p>
           <div class="frame" id="a-frame" role="group" aria-label="10칸 판"></div>
           <p class="eq" id="a-eq"></p>
-        </div>
-        <aside class="read">
-          <p class="live" id="a-live"></p>
-          <p class="why" id="a-why"></p>
+        
           <div class="controls">
             <button class="ctl" id="a-new">다른 수로 해보기</button>
             <button class="ctl quiet" id="a-clear">비우기</button>
           </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="a-live"></p>
+          <p class="why" id="a-why"></p>
+          
         </aside>
       </div>
     </article>
@@ -628,12 +640,15 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       <h2>묶어서 세기</h2>
       <p class="stage-sub">하나씩 세면 오래 걸리는 걸, 묶으면 한눈에 센다. 같은 수를 여러 방법으로 묶어보는 게 나중에 곱셈이 되고 나눗셈이 된다.</p>
       <div class="stage-body">
-        <div class="play"><div class="groups" id="b-groups"></div></div>
+        <div class="play"><div class="groups" id="b-groups"></div>
+          <div class="controls" id="b-sizes"></div>
+          <div class="controls"><button class="ctl quiet" id="b-total">전체 개수 바꾸기</button></div>
+        </div>
         <aside class="read">
           <p class="live" id="b-live"></p>
           <p class="why" id="b-why"></p>
-          <div class="controls" id="b-sizes"></div>
-          <div class="controls"><button class="ctl quiet" id="b-total">전체 개수 바꾸기</button></div>
+          
+          
         </aside>
       </div>
     </article>
@@ -649,11 +664,13 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             <div class="nl-track" id="nl-track"></div>
           </div>
           <p class="eq" id="nl-eq"></p>
+        
+          <div class="controls"><button class="ctl quiet" id="nl-reset">처음 자리로</button></div>
         </div>
         <aside class="read">
           <p class="live" id="nl-live"></p>
           <p class="why" id="nl-why"></p>
-          <div class="controls"><button class="ctl quiet" id="nl-reset">처음 자리로</button></div>
+          
         </aside>
       </div>
     </article>
@@ -744,10 +761,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
         <div class="play">
           <div class="dotgrid" id="p-grid"></div>
           <p class="peq" id="p-eq"></p>
-        </div>
-        <aside class="read">
-          <p class="live" id="p-live"></p>
-          <p class="why" id="p-why"></p>
+        
           <div class="controls">
             <button class="ctl" id="p-mode-grow" aria-pressed="true">한 줄씩 자라기</button>
             <button class="ctl" id="p-mode-odd" aria-pressed="false">홀수로 쌓기</button>
@@ -760,6 +774,13 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             <button class="ctl" id="p-layer">한 층 더 쌓기</button>
             <button class="ctl quiet" id="p-reset">처음부터</button>
           </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="p-live"></p>
+          <p class="why" id="p-why"></p>
+          
+          
+          
         </aside>
       </div>
     </article>
@@ -774,16 +795,19 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             <div class="est-line" id="est-line"></div>
           </div>
           <p class="eq" id="est-eq" style="font-size:22px"></p>
-        </div>
-        <aside class="read">
-          <p class="live" id="est-live"></p>
-          <p class="why" id="est-why"></p>
+        
           <div class="controls">
             <button class="ctl" data-est="floor">버림</button>
             <button class="ctl" data-est="round">반올림</button>
             <button class="ctl" data-est="ceil">올림</button>
           </div>
           <div class="controls"><button class="ctl quiet" id="est-new">다른 수 주세요</button></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="est-live"></p>
+          <p class="why" id="est-why"></p>
+          
+          
         </aside>
       </div>
     </article>
@@ -800,16 +824,18 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             <span><i style="background:var(--blue-soft)"></i>둘째 분수 (가로로 자름)</span>
             <span><i style="background:var(--grape)"></i>겹친 자리 = 답</span>
           </p>
-        </div>
-        <aside class="read">
-          <p class="live" id="d-live"></p>
-          <p class="why" id="d-why"></p>
+        
           <div class="controls">
             <div class="stepper"><span>첫 분자</span><button class="mini" data-area="n1" data-step="-1">−</button><button class="mini" data-area="n1" data-step="1">+</button></div>
             <div class="stepper"><span>첫 분모</span><button class="mini" data-area="d1" data-step="-1">−</button><button class="mini" data-area="d1" data-step="1">+</button></div>
             <div class="stepper"><span>둘 분자</span><button class="mini" data-area="n2" data-step="-1">−</button><button class="mini" data-area="n2" data-step="1">+</button></div>
             <div class="stepper"><span>둘 분모</span><button class="mini" data-area="d2" data-step="-1">−</button><button class="mini" data-area="d2" data-step="1">+</button></div>
           </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="d-live"></p>
+          <p class="why" id="d-why"></p>
+          
         </aside>
       </div>
     </article>
@@ -831,10 +857,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             </div>
           </div>
           <p class="verdict" id="c-verdict"></p>
-        </div>
-        <aside class="read">
-          <p class="live" id="c-live"></p>
-          <p class="why" id="c-why"></p>
+        
           <div class="controls">
             <div class="stepper"><span>위 분자</span><button class="mini" data-frac="a" data-part="num" data-step="-1">−</button><button class="mini" data-frac="a" data-part="num" data-step="1">+</button></div>
             <div class="stepper"><span>위 분모</span><button class="mini" data-frac="a" data-part="den" data-step="-1">−</button><button class="mini" data-frac="a" data-part="den" data-step="1">+</button></div>
@@ -842,6 +865,12 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             <div class="stepper"><span>아래 분모</span><button class="mini" data-frac="b" data-part="den" data-step="-1">−</button><button class="mini" data-frac="b" data-part="den" data-step="1">+</button></div>
           </div>
           <div class="controls"><button class="ctl quiet" id="c-shuffle">다른 문제 주세요</button></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="c-live"></p>
+          <p class="why" id="c-why"></p>
+          
+          
         </aside>
       </div>
     </article>
@@ -917,11 +946,13 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       <h2>그림 뒤집기</h2>
       <p class="stage-sub">한자는 원래 그림이었다. 카드를 누르면 그림이 글자로 뒤집힌다 — 산봉우리 세 개가 山이 되는 걸 눈으로 보면 외울 게 없어진다.</p>
       <div class="stage-body">
-        <div class="play"><div class="hanja-grid" id="hj-cards"></div></div>
+        <div class="play"><div class="hanja-grid" id="hj-cards"></div>
+          <div class="controls"><button class="ctl quiet" id="hj-flipall">전부 뒤집기</button></div>
+        </div>
         <aside class="read">
           <p class="live" id="hj-live">카드를 눌러서 그림을 글자로 바꿔봐.</p>
           <p class="why" id="hj-why">그림과 글자가 <b>같은 모양</b>이라는 걸 찾는 놀이야.</p>
-          <div class="controls"><button class="ctl quiet" id="hj-flipall">전부 뒤집기</button></div>
+          
         </aside>
       </div>
     </article>
@@ -996,11 +1027,13 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             <div class="combo-cap" id="cb-cap">부품 두 개를 골라봐 (같은 걸 두 번 눌러도 돼)</div>
           </div>
           <p class="found-count" id="cb-found"></p>
+        
+          <div class="controls"><button class="ctl quiet" id="cb-clear">고른 것 지우기</button></div>
         </div>
         <aside class="read">
           <p class="live" id="cb-live">해(日)와 달(月)이 만나면?</p>
           <p class="why" id="cb-why">한자의 절반은 <b>조립식</b>이야. 부품의 뜻을 알면 처음 보는 글자도 읽혀.</p>
-          <div class="controls"><button class="ctl quiet" id="cb-clear">고른 것 지우기</button></div>
+          
         </aside>
       </div>
     </article>
@@ -1132,11 +1165,13 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
           <div class="kr-reasons" id="kr-reasons"></div>
           <p class="kr-fb" id="kr-fb"></p>
           <div class="kr-choices" id="kr-nav"></div>
+        
+          <div class="controls" id="kr-levels"></div>
         </div>
         <aside class="read">
           <p class="live" id="kr-live"></p>
           <p class="why" id="kr-why"></p>
-          <div class="controls" id="kr-levels"></div>
+          
         </aside>
       </div>
     </article>
@@ -1153,11 +1188,13 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             <div class="combo-cap" id="kw-cap">낱말 두 개를 순서대로 골라봐</div>
           </div>
           <p class="found-count" id="kw-found"></p>
+        
+          <div class="controls"><button class="ctl quiet" id="kw-clear">고른 것 지우기</button></div>
         </div>
         <aside class="read">
           <p class="live" id="kw-live">‘눈’과 ‘물’이 만나면?</p>
           <p class="why" id="kw-why">이렇게 만들어진 낱말이 <b>합성어</b>야. 낱말은 벽돌처럼 쌓을 수 있어.</p>
-          <div class="controls"><button class="ctl quiet" id="kw-clear">고른 것 지우기</button></div>
+          
         </aside>
       </div>
     </article>
@@ -1208,14 +1245,16 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
           <p class="en-hint" id="ph-hint"></p>
           <div class="slots" id="ph-slots"></div>
           <div class="parts" id="ph-tiles"></div>
-        </div>
-        <aside class="read">
-          <p class="live" id="ph-live"></p>
-          <p class="why" id="ph-why"></p>
+        
           <div class="controls">
             <button class="ctl quiet" id="ph-undo">지우기</button>
             <button class="ctl" id="ph-next">다음 단어</button>
           </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="ph-live"></p>
+          <p class="why" id="ph-why"></p>
+          
         </aside>
       </div>
     </article>
@@ -1276,15 +1315,17 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
           <p class="en-hint" id="sn-hint"></p>
           <div class="slots" id="sn-slots"></div>
           <div class="parts" id="sn-tiles"></div>
-        </div>
-        <aside class="read">
-          <p class="live" id="sn-live"></p>
-          <p class="why" id="sn-why"></p>
+        
           <div class="controls">
             <button class="ctl" id="sn-check">확인</button>
             <button class="ctl quiet" id="sn-redo">다시</button>
             <button class="ctl" id="sn-next">다음 문장</button>
           </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="sn-live"></p>
+          <p class="why" id="sn-why"></p>
+          
         </aside>
       </div>
     </article>
@@ -1412,15 +1453,18 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
         <div class="play">
           <div class="dotgrid" id="ar-grid"></div>
           <p class="peq" id="ar-eq"></p>
-        </div>
-        <aside class="read">
-          <p class="live" id="ar-live"></p>
-          <p class="why" id="ar-why"></p>
+        
           <div class="controls">
             <div class="stepper"><span>줄</span><button class="mini" id="ar-r-minus">−</button><button class="mini" id="ar-r-plus">+</button></div>
             <div class="stepper"><span>칸</span><button class="mini" id="ar-c-minus">−</button><button class="mini" id="ar-c-plus">+</button></div>
           </div>
           <div class="controls"><button class="ctl" id="ar-swap">판 돌리기</button></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="ar-live"></p>
+          <p class="why" id="ar-why"></p>
+          
+          
         </aside>
       </div>
     </article>
@@ -1564,18 +1608,20 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   <section class="panel" data-subject="art" data-child="sunwoo ina" hidden>
     <article class="stage">
       <span class="stage-tag">색의 마법 하나</span>
-      <h2>색 섞기 실험</h2>
-      <p class="stage-sub">물감 방울 두 개를 골라봐 — 가운데에서 새 색이 태어난다. 빨강·노랑·파랑 셋만 있으면 무지개를 다 만들 수 있다는 게 오늘의 비밀.</p>
+      <h2>물감 먹보 몽글이</h2>
+      <p class="stage-sub">몽글이는 물감을 먹으면 그 색으로 변신하는 먹보다. 물감 두 방울을 골라 먹여보자 — <b>하양을 섞으면 순한 파스텔</b>이 되는 것도 몽글이가 알려줄 거야.</p>
       <div class="stage-body">
         <div class="play">
           <div class="mix-row" id="mA-blobs"></div>
-          <div class="mix-out" id="mA-out">?</div>
+          <div class="mix-out" id="mA-out"><span id="mA-q">?</span><svg class="mongle-face" width="56" height="32" viewBox="0 0 56 32"><circle class="m-eye" cx="18" cy="10" r="4.2" fill="#24211C"/><circle class="m-eye" cx="38" cy="10" r="4.2" fill="#24211C"/><circle cx="19.6" cy="8.4" r="1.5" fill="#FFF"/><circle cx="39.6" cy="8.4" r="1.5" fill="#FFF"/><path d="M21 21 q7 6.5 14 0" stroke="#24211C" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="10" cy="18" r="3.4" fill="#F2A4A4" opacity=".75"/><circle cx="46" cy="18" r="3.4" fill="#F2A4A4" opacity=".75"/></svg></div>
           <p class="mix-eq" id="mA-eq"></p>
+        
+          <div class="controls"><button class="ctl quiet" id="mA-clear">고른 것 지우기</button></div>
         </div>
         <aside class="read">
-          <p class="live" id="mA-live">물감 두 개를 골라봐.</p>
+          <p class="live" id="mA-live">물감 두 개를 골라 몽글이에게 먹여봐.</p>
           <p class="why" id="mA-why">빨강·노랑·파랑은 <b>섞어서 만들 수 없는</b> 삼원색 — 나머지 색의 부모님이야.</p>
-          <div class="controls"><button class="ctl quiet" id="mA-clear">고른 것 지우기</button></div>
+          
         </aside>
       </div>
     </article>
@@ -1595,11 +1641,13 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             <div class="basket"><h4>따뜻한 색 (해·불 느낌)</h4><div class="chips" id="wc-warm"></div></div>
             <div class="basket"><h4>차가운 색 (물·얼음 느낌)</h4><div class="chips" id="wc-cool"></div></div>
           </div>
+        
+          <div class="controls"><button class="ctl quiet" id="wc-reset">처음부터</button></div>
         </div>
         <aside class="read">
           <p class="live" id="wc-live">색 칩을 하나 눌러봐.</p>
           <p class="why" id="wc-why">따뜻한 색은 그림을 <b>가깝고 신나게</b>, 차가운 색은 <b>멀고 조용하게</b> 만들어.</p>
-          <div class="controls"><button class="ctl quiet" id="wc-reset">처음부터</button></div>
+          
         </aside>
       </div>
     </article>
@@ -1675,14 +1723,16 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             <p class="wheel-cap" id="cw-cap">색을 눌러봐</p>
           </div>
           <div class="after-stage" id="cw-stage" hidden></div>
-        </div>
-        <aside class="read">
-          <p class="live" id="cw-live">원탁에서 색을 하나 골라봐.</p>
-          <p class="why" id="cw-why">보색끼리 나란히 두면 서로를 <b>가장 쨍하게</b> 만들어줘. 그림에 힘이 필요할 때 쓰는 비법이야.</p>
+        
           <div class="controls">
             <button class="ctl" id="cw-after">잔상 실험 시작</button>
             <button class="ctl quiet" id="cw-stop" hidden>실험 끝내기</button>
           </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="cw-live">원탁에서 색을 하나 골라봐.</p>
+          <p class="why" id="cw-why">보색끼리 나란히 두면 서로를 <b>가장 쨍하게</b> 만들어줘. 그림에 힘이 필요할 때 쓰는 비법이야.</p>
+          
         </aside>
       </div>
     </article>
@@ -1695,11 +1745,13 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
         <div class="play">
           <div class="dc-pal" id="dc-pal"></div>
           <div class="dc-grid" id="dc-grid"></div>
+        
+          <div class="controls"><button class="ctl quiet" id="dc-clear">새 종이</button></div>
         </div>
         <aside class="read">
           <p class="live" id="dc-live">왼쪽 칸을 눌러 점을 찍어봐.</p>
           <p class="why" id="dc-why">네가 왼쪽에 찍는 순간 오른쪽이 <b>저절로</b> 정해져 — 대칭은 절반만 알면 전부를 아는 마법이야.</p>
-          <div class="controls"><button class="ctl quiet" id="dc-clear">새 종이</button></div>
+          
         </aside>
       </div>
     </article>
@@ -3147,14 +3199,18 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   estNew();
 
   /* ================= 미술: 색 섞기 (선우·이나) ================= */
-  var PAINTS = [ {n:'빨강',c:'#D84433'}, {n:'노랑',c:'#E3B52C'}, {n:'파랑',c:'#2E6BAF'} ];
-  var PMIX = { '노랑|빨강':{n:'주황',c:'#E8823A'}, '노랑|파랑':{n:'초록',c:'#3E8E5A'}, '빨강|파랑':{n:'보라',c:'#7B4FA0'} };
+  var PAINTS = [ {n:'빨강',c:'#D84433'}, {n:'노랑',c:'#E3B52C'}, {n:'파랑',c:'#2E6BAF'}, {n:'하양',c:'#F5F2EA'} ];
+  var PMIX = {
+    '노랑|빨강':{n:'주황',c:'#E8823A'}, '노랑|파랑':{n:'초록',c:'#3E8E5A'}, '빨강|파랑':{n:'보라',c:'#7B4FA0'},
+    '빨강|하양':{n:'분홍',c:'#F2A0B2'}, '노랑|하양':{n:'연노랑',c:'#F2E3A0'}, '파랑|하양':{n:'하늘색',c:'#9CC6EA'}
+  };
   var mAPicks = [];
   var mABox = $('mA-blobs');
   PAINTS.forEach(function(p){
     var b = document.createElement('button');
     b.className = 'blob'; b.type = 'button';
     b.style.background = p.c;
+    if (p.n === '하양') b.style.boxShadow = 'inset 0 0 0 2px var(--line-strong)';
     b.setAttribute('aria-label', p.n + ' 물감');
     b.addEventListener('click', function(){
       if (mAPicks.length >= 2) mAPicks = [];
@@ -3167,34 +3223,42 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     Array.prototype.forEach.call(mABox.children, function(b, i){
       b.setAttribute('aria-pressed', mAPicks.indexOf(PAINTS[i]) !== -1 ? 'true' : 'false');
     });
-    var out = $('mA-out');
+    var out = $('mA-out'), q = $('mA-q');
     if (mAPicks.length < 2){
       out.style.background = mAPicks.length === 1 ? mAPicks[0].c : 'transparent';
-      out.textContent = mAPicks.length === 1 ? '' : '?';
+      out.classList.toggle('alive', mAPicks.length === 1);
+      q.textContent = mAPicks.length === 1 ? '' : '?';
       $('mA-eq').textContent = mAPicks.length === 1 ? mAPicks[0].n + ' + ?' : '';
-      if (mAPicks.length === 1) $('mA-live').textContent = mAPicks[0].n + '을 골랐어. 하나 더!';
+      if (mAPicks.length === 1) $('mA-live').textContent = '몽글이가 ' + mAPicks[0].n + '을 냠 — 하나 더 먹여줘!';
       return;
     }
     var a = mAPicks[0], b2 = mAPicks[1];
+    q.textContent = '';
+    out.classList.add('alive');
+    out.classList.remove('pop'); void out.offsetWidth; out.classList.add('pop');
     if (a === b2){
-      out.style.background = a.c; out.textContent = '';
-      $('mA-eq').textContent = a.n + ' + ' + a.n + ' = 더 진한 ' + a.n;
+      out.style.background = a.c;
+      $('mA-eq').textContent = a.n + ' + ' + a.n + ' = ' + (a.n === '하양' ? '여전히 하양' : '더 진한 ' + a.n);
       $('mA-live').textContent = '같은 색끼리는 새 색이 안 나와.';
-      $('mA-why').innerHTML = '같은 색은 <b>진해질 뿐</b>! 새 색을 만들려면 다른 색 친구가 필요해.';
+      $('mA-why').innerHTML = a.n === '하양'
+        ? '하양은 아무리 부어도 <b>하양</b>! 다른 색에 섞어야 마법이 일어나.'
+        : '같은 색은 <b>진해질 뿐</b>! 새 색을 만들려면 다른 색 친구가 필요해.';
       return;
     }
     var key = [a.n, b2.n].sort().join('|');
     var r = PMIX[key];
-    out.style.background = r.c; out.textContent = '';
-    out.classList.remove('pop'); void out.offsetWidth; out.classList.add('pop');
+    out.style.background = r.c;
     splashAt(out, r.c, 12);
     $('mA-eq').textContent = a.n + ' + ' + b2.n + ' = ' + r.n;
-    $('mA-live').textContent = r.n + ' 탄생!';
-    $('mA-why').innerHTML = r.n === '초록'
-      ? '해(노랑)와 물(파랑)이 만나 <b>풀잎의 색</b>이 됐어.'
-      : (r.n === '주황' ? '노을과 귤의 색 — 빨강과 노랑 <b>사이에서</b> 태어나.' : '포도와 가지의 색 — 가장 뜨거운 색과 가장 차가운 색이 만나면 <b>신비한 보라</b>.');
+    $('mA-live').textContent = '몽글이가 ' + r.n + '으로 변신!';
+    var isPastel = (a.n === '하양' || b2.n === '하양');
+    $('mA-why').innerHTML = isPastel
+      ? '하양이 들어가면 색이 <b>순해져</b> — 이런 순한 색을 <b>파스텔</b>이라고 해. 벚꽃(분홍), 봄 하늘(하늘색)이 다 파스텔이야.'
+      : (r.n === '초록'
+        ? '해(노랑)와 물(파랑)이 만나 <b>풀잎의 색</b>이 됐어.'
+        : (r.n === '주황' ? '노을과 귤의 색 — 빨강과 노랑 <b>사이에서</b> 태어나.' : '포도와 가지의 색 — 가장 뜨거운 색과 가장 차가운 색이 만나면 <b>신비한 보라</b>.'));
   }
-  $('mA-clear').addEventListener('click', function(){ mAPicks = []; drawMA(); $('mA-live').textContent = '물감 두 개를 골라봐.'; });
+  $('mA-clear').addEventListener('click', function(){ mAPicks = []; drawMA(); $('mA-live').textContent = '물감 두 개를 골라 몽글이에게 먹여봐.'; });
 
   /* ================= 미술: 따뜻/차가운 색 ================= */
   var WCC = [
