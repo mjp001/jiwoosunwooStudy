@@ -248,6 +248,119 @@ button.pdot{padding:0;border:none;cursor:pointer;display:block}
 .entile:disabled{opacity:.3;cursor:default}
 .en-hint{font-family:"Gaegu",cursive;font-size:21px;color:var(--ink-soft);text-align:center}
 
+/* ---------- 수직선 개구리 / 어림 수직선 ---------- */
+.nl-wrap{width:100%;max-width:540px;position:relative;padding-top:44px}
+.nl-track{display:grid;grid-template-columns:repeat(21,1fr);gap:2px}
+.nl-cell{
+  font-family:"Do Hyeon",sans-serif;font-size:11px;padding:12px 0 5px;text-align:center;cursor:pointer;
+  background:var(--card);border:1px solid var(--line);border-radius:4px;color:var(--ink-soft);
+}
+.nl-cell:hover{border-color:var(--ink-faint)}
+.nl-cell.ten{border-color:var(--yellow);color:var(--ink);font-weight:600}
+.nl-cell.cur{background:var(--green);color:#FFFDFB;border-color:var(--green)}
+.frog{position:absolute;top:6px;width:28px;height:24px;transition:left .55s cubic-bezier(.4,1.4,.5,1);transform:translateX(-50%);left:0;pointer-events:none}
+.frog.hopping{animation:frogjump .55s ease}
+@keyframes frogjump{50%{margin-top:-26px}}
+.est-wrap{width:100%;max-width:540px;padding:10px 4px 0}
+.est-line{position:relative;height:70px;border-bottom:3px solid var(--ink);margin:0 10px}
+.est-tick{position:absolute;bottom:-1px;width:2px;height:12px;background:var(--ink-faint);transform:translateX(-50%)}
+.est-lab{position:absolute;bottom:-24px;transform:translateX(-50%);font-family:"Do Hyeon",sans-serif;font-size:13px;color:var(--ink-soft)}
+.est-marker{
+  position:absolute;bottom:8px;width:18px;height:18px;border-radius:50%;background:var(--red);
+  transform:translateX(-50%);transition:left .6s cubic-bezier(.3,1.3,.5,1);z-index:2;
+}
+.est-ghost{
+  position:absolute;bottom:8px;width:18px;height:18px;border-radius:50%;
+  border:2px dashed var(--ink-faint);transform:translateX(-50%);z-index:1;
+}
+.est-num{position:absolute;bottom:32px;transform:translateX(-50%);font-family:"Do Hyeon",sans-serif;font-size:15px;color:var(--ink);white-space:nowrap;transition:left .6s cubic-bezier(.3,1.3,.5,1)}
+
+/* ---------- 살아있는 모션 (개념을 나르는 움직임) ---------- */
+.hcell{transition:background .25s,color .25s}
+.hcell.hop{animation:wavein .35s ease backwards}
+@keyframes wavein{0%{transform:scale(.6)}70%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes beaddrop{0%{transform:scale(.2) translateY(-16px)}60%{transform:scale(1.18) translateY(2px)}100%{transform:scale(1.05)}}
+.cell[data-on="1"]::after{animation:beaddrop .32s ease}
+@keyframes grpin{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.1);opacity:1}100%{transform:scale(1);opacity:1}}
+.grp,.tenbag,.onebit{animation:grpin .35s ease backwards}
+@keyframes slicein{0%{transform:scaleX(.15);opacity:.3}100%{transform:scaleX(1);opacity:1}}
+.slice.on{animation:slicein .3s ease backwards;transform-origin:left center}
+@keyframes popdot{0%{transform:scale(0)}70%{transform:scale(1.4)}100%{transform:scale(1)}}
+.pdot.addc,.pdot.corner{animation:popdot .35s ease backwards}
+@keyframes fadecell{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.acell.both,.acell.col,.acell.row{animation:fadecell .3s ease backwards}
+@keyframes cardflip{0%{transform:rotateY(0)}50%{transform:rotateY(90deg)}100%{transform:rotateY(0)}}
+.hcard.flipping{animation:cardflip .42s ease}
+@keyframes syllpop{0%{transform:scale(.6)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
+.syll-out.pop3{animation:syllpop .35s ease}
+.verdict.same{animation:syllpop .45s ease}
+
+/* ---------- 미술 ---------- */
+.blob{
+  width:64px;height:64px;border-radius:50%;cursor:pointer;padding:0;
+  border:3px solid transparent;transition:transform .12s,border-color .12s;
+}
+.blob:hover{transform:scale(1.06)}
+.blob[aria-pressed="true"]{border-color:var(--ink);transform:scale(1.1)}
+.mix-row{display:flex;gap:18px;align-items:center;justify-content:center;flex-wrap:wrap}
+.mix-out{
+  width:88px;height:88px;border-radius:50%;border:3px dashed var(--line-strong);
+  display:flex;align-items:center;justify-content:center;position:relative;
+  font-family:"Do Hyeon",sans-serif;font-size:15px;color:var(--ink-faint);text-align:center;
+}
+.mix-out.pop{animation:mixpop .55s cubic-bezier(.34,1.56,.64,1)}
+@keyframes mixpop{0%{transform:scale(.55)}60%{transform:scale(1.18)}100%{transform:scale(1)}}
+.chip.shake{animation:wshake .4s}
+@keyframes wshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+.mx-stage{position:relative;width:250px;height:180px;border-radius:14px;transition:background .35s}
+.mx-stage.light{background:#0A0A0A}
+.mx-stage.paint{background:#F4F1E8}
+.mx-c{
+  position:absolute;width:96px;height:96px;border-radius:50%;border:none;cursor:pointer;padding:0;
+  transition:transform .5s cubic-bezier(.34,1.56,.64,1),opacity .3s;
+}
+.mx-stage.light .mx-c{mix-blend-mode:screen}
+.mx-c[data-on="0"]{opacity:.14}
+.mx-core{
+  position:absolute;left:90px;top:55px;width:70px;height:70px;border-radius:50%;
+  transform:scale(0);transition:transform .45s cubic-bezier(.34,1.56,.64,1);
+  z-index:3;pointer-events:none;
+}
+.mx-core.show{transform:scale(1)}
+#cw-svg path{transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .2s}
+#cw-svg line{animation:dashm .9s linear infinite}
+@keyframes dashm{to{stroke-dashoffset:-16}}
+.dc-cell.pop2{animation:cellpop .3s ease}
+@keyframes cellpop{0%{transform:scale(.2)}60%{transform:scale(1.3)}100%{transform:scale(1)}}
+.mix-eq{font-family:"Do Hyeon",sans-serif;font-size:21px;text-align:center;min-height:28px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;min-height:40px}
+.chip{
+  width:44px;height:44px;border-radius:8px;cursor:pointer;padding:0;
+  border:3px solid transparent;transition:transform .12s;
+}
+.chip[aria-pressed="true"]{border-color:var(--ink);transform:scale(1.12)}
+.basket{
+  border:2px dashed var(--line-strong);border-radius:6px;padding:10px;min-height:64px;flex:1;min-width:150px;
+}
+.basket h4{margin:0 0 8px;font-size:13px;color:var(--ink-soft);font-weight:600}
+.basket .chips{justify-content:flex-start;min-height:0}
+.basket .chip{cursor:default;width:26px;height:26px;border-radius:5px}
+.basket-row{display:flex;gap:12px;width:100%}
+.wheel-wrap{display:flex;flex-direction:column;align-items:center;gap:12px}
+.wheel-cap{font-family:"Gaegu",cursive;font-size:21px;min-height:28px;text-align:center}
+.after-stage{
+  width:min(300px,80vw);aspect-ratio:1;border-radius:8px;border:2px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;
+  font-family:"Do Hyeon",sans-serif;font-size:17px;text-align:center;padding:12px;
+}
+.dc-grid{display:grid;gap:2px;border:2px solid var(--ink);border-radius:6px;padding:4px;background:var(--card)}
+.dc-cell{width:22px;height:22px;border-radius:3px;background:var(--paper);border:none;padding:0}
+.dc-cell.l{cursor:pointer}
+.dc-cell.l:hover{outline:2px solid var(--line-strong)}
+.dc-mid{background:var(--line-strong) !important;width:3px;border-radius:0}
+.dc-pal{display:flex;gap:8px}
+.dc-pal .chip{width:36px;height:36px}
+
 /* ---------- 근거 훈련소 ---------- */
 .kr-wrap{width:100%;display:flex;flex-direction:column;gap:16px;align-items:center;position:relative}
 .kr-sent{font-family:"Gaegu",cursive;font-size:25px;line-height:1.4;text-align:center;min-height:64px;display:flex;align-items:center;justify-content:center;color:var(--ink);max-width:34em}
@@ -320,6 +433,16 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
 .mile .mname{font-family:"Do Hyeon",sans-serif;font-size:18px;margin:6px 0 2px}
 .mile .mreq{font-size:13px;color:var(--ink-faint)}
 .mile.locked svg{filter:grayscale(1);opacity:.35}
+.mile.unlocked svg{cursor:pointer}
+.mile svg .t-eye{transition:transform .08s linear}
+.mile.bouncing svg{animation:tbounce .65s ease}
+@keyframes tbounce{
+  0%{transform:scale(1)}
+  28%{transform:scale(1.18,.8)}
+  52%{transform:scale(.88,1.14) translateY(-10px)}
+  74%{transform:scale(1.06,.94)}
+  100%{transform:scale(1)}
+}
 .mile.locked .mname{color:var(--ink-faint)}
 .mile.unlocked{border-color:var(--grape)}
 
@@ -368,6 +491,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       <button role="tab" aria-selected="false" data-subject="kor">국어</button>
       <button role="tab" aria-selected="false" data-subject="hanja">한자</button>
       <button role="tab" aria-selected="false" data-subject="eng">영어</button>
+      <button role="tab" aria-selected="false" data-subject="art">미술</button>
       <button role="tab" aria-selected="false" data-subject="week">이번 주</button>
       <button role="tab" aria-selected="false" data-subject="bank">보석함</button>
     </nav>
@@ -514,6 +638,26 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       </div>
     </article>
 
+    <article class="stage">
+      <span class="stage-tag">활동 넷 · 새로 왔어요</span>
+      <h2>개구리 수직선 점프</h2>
+      <p class="stage-sub">덧셈은 수직선에서 오른쪽으로 뛰는 것, 뺄셈은 왼쪽으로 뛰는 것. 숫자를 누르면 개구리가 폴짝 날아간다 — 노란 <b>10 징검다리</b>를 먼저 밟으면 큰 점프도 쉬워진다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="nl-wrap">
+            <span class="frog" id="nl-frog"><svg viewBox="0 0 28 24" width="28" height="24"><circle cx="9" cy="7" r="5" fill="#4CAF6D"/><circle cx="19" cy="7" r="5" fill="#4CAF6D"/><ellipse cx="14" cy="15" rx="12" ry="8.5" fill="#4CAF6D"/><circle cx="9" cy="6.5" r="2" fill="#24211C"/><circle cx="19" cy="6.5" r="2" fill="#24211C"/><path d="M10 17 q4 3.5 8 0" stroke="#24211C" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></span>
+            <div class="nl-track" id="nl-track"></div>
+          </div>
+          <p class="eq" id="nl-eq"></p>
+        </div>
+        <aside class="read">
+          <p class="live" id="nl-live"></p>
+          <p class="why" id="nl-why"></p>
+          <div class="controls"><button class="ctl quiet" id="nl-reset">처음 자리로</button></div>
+        </aside>
+      </div>
+    </article>
+
     <section class="quiz" data-for="sunwoo">
       <h2>확인 문제</h2>
       <div class="q" data-qid="s-m1" data-answer="1">
@@ -616,6 +760,30 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             <button class="ctl" id="p-layer">한 층 더 쌓기</button>
             <button class="ctl quiet" id="p-reset">처음부터</button>
           </div>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">2학기 1단원 · 새로 왔어요</span>
+      <h2>어림 수직선</h2>
+      <p class="stage-sub">올림·버림·반올림은 계산이 아니라 <em>이사</em>다. 버튼을 누르면 빨간 점이 수직선 위를 미끄러져 가장 가까운 백의 자리 집으로 이사한다 — 어디로 가는지 눈으로 보면 세 가지가 절대 안 헷갈린다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="est-wrap">
+            <div class="est-line" id="est-line"></div>
+          </div>
+          <p class="eq" id="est-eq" style="font-size:22px"></p>
+        </div>
+        <aside class="read">
+          <p class="live" id="est-live"></p>
+          <p class="why" id="est-why"></p>
+          <div class="controls">
+            <button class="ctl" data-est="floor">버림</button>
+            <button class="ctl" data-est="round">반올림</button>
+            <button class="ctl" data-est="ceil">올림</button>
+          </div>
+          <div class="controls"><button class="ctl quiet" id="est-new">다른 수 주세요</button></div>
         </aside>
       </div>
     </article>
@@ -1392,6 +1560,199 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     </section>
   </section>
 
+  <!-- ================= 미술 · 선우/이나 ================= -->
+  <section class="panel" data-subject="art" data-child="sunwoo ina" hidden>
+    <article class="stage">
+      <span class="stage-tag">색의 마법 하나</span>
+      <h2>색 섞기 실험</h2>
+      <p class="stage-sub">물감 방울 두 개를 골라봐 — 가운데에서 새 색이 태어난다. 빨강·노랑·파랑 셋만 있으면 무지개를 다 만들 수 있다는 게 오늘의 비밀.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="mix-row" id="mA-blobs"></div>
+          <div class="mix-out" id="mA-out">?</div>
+          <p class="mix-eq" id="mA-eq"></p>
+        </div>
+        <aside class="read">
+          <p class="live" id="mA-live">물감 두 개를 골라봐.</p>
+          <p class="why" id="mA-why">빨강·노랑·파랑은 <b>섞어서 만들 수 없는</b> 삼원색 — 나머지 색의 부모님이야.</p>
+          <div class="controls"><button class="ctl quiet" id="mA-clear">고른 것 지우기</button></div>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">색의 마법 둘</span>
+      <h2>따뜻한 색, 차가운 색</h2>
+      <p class="stage-sub">색에도 온도가 있다. 색 칩을 누르고, 어느 바구니에 살아야 할지 골라주자 — 8개를 다 넣으면 완성!</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="chips" id="wc-chips"></div>
+          <div class="controls" id="wc-btns" style="justify-content:center">
+            <button class="ctl" data-temp="warm">따뜻한 바구니</button>
+            <button class="ctl" data-temp="cool">차가운 바구니</button>
+          </div>
+          <div class="basket-row">
+            <div class="basket"><h4>따뜻한 색 (해·불 느낌)</h4><div class="chips" id="wc-warm"></div></div>
+            <div class="basket"><h4>차가운 색 (물·얼음 느낌)</h4><div class="chips" id="wc-cool"></div></div>
+          </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="wc-live">색 칩을 하나 눌러봐.</p>
+          <p class="why" id="wc-why">따뜻한 색은 그림을 <b>가깝고 신나게</b>, 차가운 색은 <b>멀고 조용하게</b> 만들어.</p>
+          <div class="controls"><button class="ctl quiet" id="wc-reset">처음부터</button></div>
+        </aside>
+      </div>
+    </article>
+
+    <section class="quiz" data-for="sunwoo">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="s-a1" data-answer="2">
+        <h3>귤 색(주황)을 만들고 싶어. 무엇과 무엇을 섞을까?</h3>
+        <p class="qnote">이번엔 거꾸로 — 결과에서 재료 찾기!</p>
+        <div class="opts"><button class="opt" style="font-size:15px">파랑 + 노랑</button><button class="opt" style="font-size:15px">빨강 + 파랑</button><button class="opt" style="font-size:15px">빨강 + 노랑</button></div>
+        <p class="explain" hidden>주황의 부모님은 <b>빨강과 노랑</b>. 섞기 실험을 거꾸로 생각할 수 있으면 진짜 아는 거야 — 초록이 필요하면? 노랑+파랑!</p>
+      </div>
+      <div class="q" data-qid="s-a2" data-answer="0">
+        <h3>꽁꽁 언 겨울 바다를 그리고 싶어. 어떤 색을 많이 쓸까?</h3>
+        <p class="qnote">그림의 기분은 색의 온도가 정해줘.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">파랑과 하늘색</button><button class="opt" style="font-size:15px">빨강과 주황</button><button class="opt" style="font-size:15px">아무 색이나</button></div>
+        <p class="explain" hidden>차가운 그림엔 <b>차가운 색</b> — 파랑·하늘색을 많이 쓰면 보는 사람도 으슬으슬해져. 반대로 모닥불 그림이라면 빨강·주황이겠지!</p>
+      </div>
+    </section>
+
+    <section class="quiz" data-for="ina">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="i-a1" data-answer="2">
+        <h3>노랑과 파랑을 섞으면?</h3>
+        <p class="qnote">위에서 직접 섞어봤지?</p>
+        <div class="opts"><button class="opt">주황</button><button class="opt">갈색</button><button class="opt">초록</button></div>
+        <p class="explain" hidden>노랑+파랑 = <b>초록</b>! 풀과 나뭇잎의 색은 해(노랑)와 물(파랑)이 만나 태어난 거야.</p>
+      </div>
+      <div class="q" data-qid="i-a2" data-answer="0">
+        <h3>차가운 색은 어느 것?</h3>
+        <p class="qnote">물과 얼음을 떠올려봐.</p>
+        <div class="opts"><button class="opt">하늘색</button><button class="opt">빨강</button><button class="opt">주황</button></div>
+        <p class="explain" hidden><b>하늘색</b>은 물·얼음·겨울 하늘의 색. 빨강·주황은 해와 불의 따뜻한 나라에 살아.</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ================= 미술 · 로운/지우 ================= -->
+  <section class="panel" data-subject="art" data-child="roun jiwoo" hidden>
+    <article class="stage">
+      <span class="stage-tag">색의 과학 하나</span>
+      <h2>색 혼합 실험실</h2>
+      <p class="stage-sub">물감과 빛은 섞이는 법이 정반대다. 원을 눌러 켜고 끄면서 확인해봐 — 물감은 섞을수록 어두워지고, 빛은 섞을수록 밝아진다. TV 화면과 그림물감이 다른 이유가 여기 있다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="controls" style="justify-content:center">
+            <button class="ctl" id="mx-paint" aria-pressed="true">물감 모드</button>
+            <button class="ctl" id="mx-light" aria-pressed="false">빛 모드</button>
+          </div>
+          <div class="mx-stage paint" id="mx-stage">
+            <button class="mx-c" id="mx-c0" type="button" aria-label="첫째 색"></button>
+            <button class="mx-c" id="mx-c1" type="button" aria-label="둘째 색"></button>
+            <button class="mx-c" id="mx-c2" type="button" aria-label="셋째 색"></button>
+            <span class="mx-core" id="mx-core"></span>
+          </div>
+          <p class="mix-eq" id="mx-eq"></p>
+        </div>
+        <aside class="read">
+          <p class="live" id="mx-live">원을 눌러 켜봐 — 몇 개든 좋아.</p>
+          <p class="why" id="mx-why">물감은 빛을 <b>흡수</b>해서 섞을수록 어두워지고, 빛은 <b>더해져서</b> 섞을수록 밝아져.</p>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">색의 과학 둘</span>
+      <h2>색상환과 보색</h2>
+      <p class="stage-sub">색들은 둥근 원탁에 앉아 있고, 정반대에 앉은 색이 보색이다. 색을 누르면 그 짝이 켜진다 — 그리고 잔상 실험으로 내 눈이 보색을 만들어내는 걸 직접 본다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="wheel-wrap">
+            <svg id="cw-svg" viewBox="0 0 200 200" width="220" height="220"></svg>
+            <p class="wheel-cap" id="cw-cap">색을 눌러봐</p>
+          </div>
+          <div class="after-stage" id="cw-stage" hidden></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="cw-live">원탁에서 색을 하나 골라봐.</p>
+          <p class="why" id="cw-why">보색끼리 나란히 두면 서로를 <b>가장 쨍하게</b> 만들어줘. 그림에 힘이 필요할 때 쓰는 비법이야.</p>
+          <div class="controls">
+            <button class="ctl" id="cw-after">잔상 실험 시작</button>
+            <button class="ctl quiet" id="cw-stop" hidden>실험 끝내기</button>
+          </div>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">색의 과학 셋 · 수학 연계</span>
+      <h2>디지털 데칼코마니</h2>
+      <p class="stage-sub">왼쪽에 점을 찍으면 오른쪽에 거울처럼 똑같이 찍힌다 — 종이를 반으로 접어 찍는 데칼코마니다. 이게 바로 수학의 <b>선대칭</b>: 가운데 선을 접으면 완벽하게 포개지는 무늬.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="dc-pal" id="dc-pal"></div>
+          <div class="dc-grid" id="dc-grid"></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="dc-live">왼쪽 칸을 눌러 점을 찍어봐.</p>
+          <p class="why" id="dc-why">네가 왼쪽에 찍는 순간 오른쪽이 <b>저절로</b> 정해져 — 대칭은 절반만 알면 전부를 아는 마법이야.</p>
+          <div class="controls"><button class="ctl quiet" id="dc-clear">새 종이</button></div>
+        </aside>
+      </div>
+    </article>
+
+    <section class="quiz" data-for="roun">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="r-a1" data-answer="1">
+        <h3>물감의 삼원색은?</h3>
+        <p class="qnote">섞어서 만들 수 없는 세 가지 부모 색.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">빨강·초록·파랑</button><button class="opt" style="font-size:15px">빨강·노랑·파랑</button><button class="opt" style="font-size:15px">흰색·검정·회색</button></div>
+        <p class="explain" hidden>물감은 <b>빨강·노랑·파랑</b>. 빨강·초록·파랑은 <b>빛</b>의 삼원색이야 — 실험실에서 모드를 바꿔 확인해봐!</p>
+      </div>
+      <div class="q" data-qid="r-a2" data-answer="2">
+        <h3>빨강 물감 + 파랑 물감 = ?</h3>
+        <div class="opts"><button class="opt">주황</button><button class="opt">초록</button><button class="opt">보라</button></div>
+        <p class="explain" hidden>빨강+파랑 = <b>보라</b>. 포도·가지의 색은 이 둘이 만난 색이야.</p>
+      </div>
+      <div class="q" data-qid="r-a3" data-answer="0">
+        <h3>데칼코마니에서 반대쪽에 생기는 그림은?</h3>
+        <div class="opts"><button class="opt" style="font-size:15px">좌우가 뒤집힌 똑같은 그림</button><button class="opt" style="font-size:15px">더 작은 그림</button><button class="opt" style="font-size:15px">색이 반대인 그림</button></div>
+        <p class="explain" hidden>접은 선을 기준으로 <b>좌우만 뒤집힌 쌍둥이</b>가 생겨. 거울 속 나와 같은 원리야.</p>
+      </div>
+    </section>
+
+    <section class="quiz" data-for="jiwoo">
+      <h2>확인 문제</h2>
+      <div class="q" data-qid="j-a1" data-answer="1">
+        <h3>TV를 돋보기로 보면 빨강·초록·파랑 점뿐인데, 노란 바나나가 보이는 이유는?</h3>
+        <p class="qnote">실험실에서 본 원리를 세상에 적용해봐.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">노란 점이 숨어 있어서</button><button class="opt" style="font-size:15px">빨강·초록 점이 같이 켜져서</button><button class="opt" style="font-size:15px">화면이 노랗게 칠해져서</button></div>
+        <p class="explain" hidden>바나나 자리에선 <b>빨강 점과 초록 점이 동시에</b> 켜져 있어 — 우리 눈이 그 둘을 더해서 노랑으로 읽는 거야. 세상 모든 화면이 삼원색 세 개로 모든 색을 만들고 있어.</p>
+      </div>
+      <div class="q" data-qid="j-a2" data-answer="2">
+        <h3>연극 무대에 흰 조명이 필요해. 흰 전구가 없다면?</h3>
+        <p class="qnote">빛 모드에서 셋을 다 켰을 때를 떠올려.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">흰 물감을 유리에 바른다</button><button class="opt" style="font-size:15px">조명을 다 끈다</button><button class="opt" style="font-size:15px">빨강·초록·파랑 조명을 한곳에 겹친다</button></div>
+        <p class="explain" hidden>세 빛을 한 자리에 겹치면 <b>흰빛</b>이 된다 — 실험실 한가운데가 하얗게 빛났던 그대로야. 실제 공연장 조명이 이 원리로 일해.</p>
+      </div>
+      <div class="q" data-qid="j-a3" data-answer="0">
+        <h3>그림 속 초록 잎을 가장 쨍하게 만들어주는 옆 색은?</h3>
+        <p class="qnote">원탁에서 초록의 맞은편을 떠올려.</p>
+        <div class="opts"><button class="opt">빨강</button><button class="opt">연두</button><button class="opt">회색</button></div>
+        <p class="explain" hidden>초록의 보색인 <b>빨강</b>을 옆에 두면 서로를 가장 세게 밀어줘서 둘 다 쨍해져. 크리스마스 색 조합이 괜히 눈에 띄는 게 아니야!</p>
+      </div>
+      <div class="q" data-qid="j-a4" data-answer="1">
+        <h3>데칼코마니로 나비를 만들 때, 왜 반쪽만 그려도 될까?</h3>
+        <p class="qnote">수학 말로 답해봐.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">나비는 작아서</button><button class="opt" style="font-size:15px">접는 선 기준 선대칭이라 나머지 반이 저절로 정해져서</button><button class="opt" style="font-size:15px">물감이 반만 있어서</button></div>
+        <p class="explain" hidden>접는 선이 <b>대칭축</b>이 되니까 반만 그리면 나머지는 수학이 그려줘. 나비·얼굴·한글의 ㅁ — 세상의 절반은 반만 알면 다 아는 것들이야.</p>
+      </div>
+    </section>
+  </section>
+
   <!-- ================= 오늘/이번주 · 이나 ================= -->
   <section class="panel" data-subject="today" data-child="ina" hidden>
     <article class="stage">
@@ -1581,6 +1942,48 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     q.appendChild(el);
     setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 1200);
   }
+  var noMotion = false;
+  try { noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+  function burst(container){
+    if (noMotion || !container) return;
+    for (var i = 0; i < 16; i++){
+      var s = document.createElement('span');
+      s.style.cssText = 'position:absolute;top:22px;right:34px;width:8px;height:8px;border-radius:2px;pointer-events:none;z-index:5;background:' + GEMC[i % GEMC.length];
+      container.appendChild(s);
+      (function(el){
+        var a = Math.random() * Math.PI * 2, v = 2.2 + Math.random() * 3.2;
+        var x = 0, y = 0, vx = Math.cos(a) * v, vy = Math.sin(a) * v - 2.4, o = 1, rot = Math.random() * 360;
+        function step(){
+          x += vx; y += vy; vy += 0.16; o -= 0.022; rot += 9;
+          el.style.transform = 'translate(' + x + 'px,' + y + 'px) rotate(' + rot + 'deg)';
+          el.style.opacity = o;
+          if (o > 0) requestAnimationFrame(step);
+          else if (el.parentNode) el.parentNode.removeChild(el);
+        }
+        requestAnimationFrame(step);
+      })(s);
+    }
+  }
+  function splashAt(el, color, n){
+    if (noMotion || !el) return;
+    for (var i = 0; i < (n || 10); i++){
+      var s = document.createElement('span');
+      s.style.cssText = 'position:absolute;left:50%;top:50%;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:6;background:' + color;
+      el.appendChild(s);
+      (function(p2){
+        var a = Math.random() * Math.PI * 2, v = 1.8 + Math.random() * 2.6;
+        var x = 0, y = 0, vx = Math.cos(a) * v, vy = Math.sin(a) * v - 1.2, o = 1;
+        function step(){
+          x += vx; y += vy; vy += 0.12; o -= 0.03;
+          p2.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+          p2.style.opacity = o;
+          if (o > 0) requestAnimationFrame(step);
+          else if (p2.parentNode) p2.parentNode.removeChild(p2);
+        }
+        requestAnimationFrame(step);
+      })(s);
+    }
+  }
   function markDone(q, color){
     if (q.querySelector('.done-gem')) return;
     var d = document.createElement('span');
@@ -1627,6 +2030,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
             var color = GEMC[w.gems.length % GEMC.length];
             w.gems.push(color);
             popGem(q, color);
+            burst(q);
             markDone(q, color);
             save();
             updateChip();
@@ -1667,7 +2071,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     s += '<path d="M68 52 q7 -1 6 6 q-5 1 -8 -2 Z" fill="'+skin+'"/>';
     /* head */
     s += '<circle cx="40" cy="21" r="11" fill="'+skin+'"/>';
-    s += '<circle cx="35.5" cy="20" r="2.6" fill="'+eye+'"/><circle cx="44.5" cy="20" r="2.6" fill="'+eye+'"/>';
+    s += '<circle class="t-eye" cx="35.5" cy="20" r="2.6" fill="'+eye+'"/><circle class="t-eye" cx="44.5" cy="20" r="2.6" fill="'+eye+'"/>';
     s += '<circle cx="36.3" cy="19.2" r=".9" fill="#FFF"/><circle cx="45.3" cy="19.2" r=".9" fill="#FFF"/>';
     s += '<path d="M36.5 25.5 q3.5 3.2 7 0" stroke="'+eye+'" stroke-width="2" fill="none" stroke-linecap="round"/>';
     s += '<circle cx="30.5" cy="24.5" r="2.6" fill="#F2A4A4" opacity=".7"/><circle cx="49.5" cy="24.5" r="2.6" fill="#F2A4A4" opacity=".7"/>';
@@ -1701,7 +2105,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     { name:'임금 거북 왕이', color:'#E8768A', acc:'crown' },
     { name:'별빛 거북 별이', color:'#B48BD9', acc:'star' }
   ];
-  var MILE_NEEDS = { sunwoo:[4,9,14,19], ina:[3,6,9,11], roun:[3,7,11,15], jiwoo:[5,13,21,28] };
+  var MILE_NEEDS = { sunwoo:[4,10,15,21], ina:[3,6,10,13], roun:[4,8,13,17], jiwoo:[5,14,23,31] };
   function awardKey(qid, anchorEl){
     var w = my();
     if (w.tried[qid] === 'gem') return false;
@@ -1709,7 +2113,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     var color = GEMC[w.gems.length % GEMC.length];
     w.gems.push(color);
     save(); updateChip();
-    if (anchorEl) popGem(anchorEl, color);
+    if (anchorEl){ popGem(anchorEl, color); burst(anchorEl); }
     return true;
   }
   function drawBank(){
@@ -1731,6 +2135,27 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
         '<div class="mname">' + (un ? mi.name : '???') + '</div>' +
         '<div class="mreq">' + (un ? '함께하는 중!' : '보석 ' + need + '개를 모으면') + '</div></div>';
     }).join('');
+  }
+
+  /* ---------- 거북이 살아있게: 눈동자 따라오기 + 톡 치면 통통 ---------- */
+  $('bank-miles').addEventListener('click', function(e){
+    var mile = e.target.closest ? e.target.closest('.mile.unlocked') : null;
+    if (!mile || mile.classList.contains('bouncing')) return;
+    mile.classList.add('bouncing');
+    setTimeout(function(){ mile.classList.remove('bouncing'); }, 700);
+  });
+  if (!noMotion){
+    document.addEventListener('pointermove', function(e){
+      if (cur.subject !== 'bank') return;
+      Array.prototype.forEach.call(document.querySelectorAll('.mile.unlocked .t-eye'), function(eye){
+        var r = eye.getBoundingClientRect();
+        var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        var dx = e.clientX - cx, dy = e.clientY - cy;
+        var d = Math.sqrt(dx * dx + dy * dy) || 1;
+        var m = Math.min(2.2, d / 40);
+        eye.style.transform = 'translate(' + (dx / d * m) + 'px,' + (dy / d * m) + 'px)';
+      });
+    }, { passive: true });
   }
 
   /* ================= 수학·선우: 100판 ================= */
@@ -1756,7 +2181,9 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     var cells = hBoard.children;
     for (var i = 1; i <= 100; i++){
       var c = cells[i-1];
-      c.classList.toggle('hop', H.skip > 1 && i % H.skip === 0);
+      var isHop = H.skip > 1 && i % H.skip === 0;
+      c.classList.toggle('hop', isHop);
+      c.style.animationDelay = isHop ? ((i / H.skip) * 0.045).toFixed(2) + 's' : '';
       c.classList.toggle('sel', H.sel === i);
     }
     Array.prototype.forEach.call(hSkipBox.children, function(b){
@@ -1766,8 +2193,8 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     bags.innerHTML = '';
     if (H.sel){
       var tens = Math.floor(H.sel / 10), ones = H.sel % 10, k;
-      for (k = 0; k < tens; k++){ var t = document.createElement('span'); t.className = 'tenbag'; bags.appendChild(t); }
-      for (k = 0; k < ones; k++){ var o = document.createElement('span'); o.className = 'onebit'; bags.appendChild(o); }
+      for (k = 0; k < tens; k++){ var t = document.createElement('span'); t.className = 'tenbag'; t.style.animationDelay = (k * 0.07) + 's'; bags.appendChild(t); }
+      for (k = 0; k < ones; k++){ var o = document.createElement('span'); o.className = 'onebit'; o.style.animationDelay = ((tens + k) * 0.07) + 's'; bags.appendChild(o); }
       $('h-live').textContent = H.sel + '은 10개씩 ' + tens + '묶음, 낱개 ' + ones + '개.';
       $('h-why').innerHTML = '앞 숫자 <b>' + tens + '</b>는 묶음 자리, 뒤 숫자 <b>' + ones + '</b>는 낱개 자리. 숫자의 <b>자리</b>가 뜻을 말해줘.';
     } else if (H.skip > 1){
@@ -1783,7 +2210,8 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   drawH();
 
   /* ================= 수학·선우: 10 만들기 ================= */
-  var aFrame = $('a-frame'), aState = [], aTarget = 7;
+  var aFrame = $('a-frame'), aState = [], aTarget = 3 + Math.floor(Math.random() * 7);
+  $('a-target').textContent = aTarget;
   for (var ai = 0; ai < 10; ai++){
     var ac = document.createElement('button');
     ac.className = 'cell'; ac.type = 'button';
@@ -1856,11 +2284,13 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     var made = Math.floor(n / bSize), rest = n % bSize, g, d, i, j;
     for (i = 0; i < made; i++){
       g = document.createElement('div'); g.className = 'grp';
+      g.style.animationDelay = (i * 0.08) + 's';
       for (j = 0; j < bSize; j++){ d = document.createElement('span'); d.className = 'dot'; g.appendChild(d); }
       box.appendChild(g);
     }
     if (rest){
       g = document.createElement('div'); g.className = 'grp leftover';
+      g.style.animationDelay = (made * 0.08) + 's';
       for (j = 0; j < rest; j++){ d = document.createElement('span'); d.className = 'dot'; g.appendChild(d); }
       box.appendChild(g);
     }
@@ -1872,7 +2302,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   $('b-total').addEventListener('click', function(){ tIdx = (tIdx + 1) % totals.length; drawB(); });
   drawB();
   /* ================= 수학·지우: 정사각형의 비밀 ================= */
-  var P = { mode:'grow', n:5, grown:false, k:1, oddN:7 };
+  var P = { mode:'grow', n:4 + Math.floor(Math.random() * 4), grown:false, k:1, oddN:7 };
   var pGrid = $('p-grid');
   var LAYERC = ['#D84E33','#E3A92C','#2F8C64','#2E6BAF','#6E4FA3','#C6613F','#4E8FA0'];
   function drawP(){
@@ -1887,7 +2317,10 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
           var extra = (r === n || c === n);
           if (extra){
             if (!P.grown) d.className += ' ghost';
-            else d.className += (r === n && c === n) ? ' corner' : ' addc';
+            else {
+              d.className += (r === n && c === n) ? ' corner' : ' addc';
+              d.style.animationDelay = ((r === n ? c : r) * 0.05 + (r === n && c === n ? 0.5 : (r === n ? 0.25 : 0))).toFixed(2) + 's';
+            }
           }
           pGrid.appendChild(d);
         }
@@ -1961,6 +2394,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
         var cell = document.createElement('span');
         var inCol = c < D.n1, inRow = r < D.n2;
         cell.className = 'acell' + (inCol && inRow ? ' both' : inCol ? ' col' : inRow ? ' row' : '');
+        if (inCol || inRow) cell.style.animationDelay = ((r + c) * 0.03) + 's';
         el.appendChild(cell);
       }
     }
@@ -1979,12 +2413,17 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   drawD();
 
   /* ================= 수학·지우: 분수 막대 ================= */
-  var F = { a:{num:1, den:2}, b:{num:3, den:6} };
+  var F = (function(){
+    var pool = [[1,2,3,6],[2,3,4,6],[3,4,6,8],[1,4,2,8],[2,5,3,7],[1,3,2,5],[1,2,2,4]];
+    var p = pool[Math.floor(Math.random() * pool.length)];
+    return { a:{num:p[0], den:p[1]}, b:{num:p[2], den:p[3]} };
+  })();
   function buildTrack(el, f){
     el.innerHTML = '';
     for (var i = 0; i < f.den; i++){
       var s = document.createElement('span');
       s.className = 'slice' + (i < f.num ? ' on' : '');
+      if (i < f.num) s.style.animationDelay = (i * 0.05) + 's';
       el.appendChild(s);
     }
   }
@@ -2057,14 +2496,17 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       '<span class="picside"><svg viewBox="0 0 64 64" aria-hidden="true">' + pc.svg + '</svg><span class="hint">' + pc.hint + '</span></span>' +
       '<span class="charside"><span class="big hanja-font">' + pc.ch + '</span><span class="cap">' + pc.cap + '</span></span>';
     card.addEventListener('click', function(){
-      card.dataset.side = card.dataset.side === 'pic' ? 'char' : 'pic';
-      hjFlipped = hjBox.querySelectorAll('[data-side="char"]').length;
-      if (hjFlipped === 0){
-        $('hj-live').textContent = '카드를 눌러서 그림을 글자로 바꿔봐.';
-        $('hj-why').innerHTML = '그림과 글자가 <b>같은 모양</b>이라는 걸 찾는 놀이야.';
-      } else if (card.dataset.side === 'char'){
+      if (card.classList.contains('flipping')) return;
+      var newSide = card.dataset.side === 'pic' ? 'char' : 'pic';
+      card.classList.add('flipping');
+      setTimeout(function(){ card.dataset.side = newSide; }, 200);
+      setTimeout(function(){ card.classList.remove('flipping'); }, 440);
+      if (newSide === 'char'){
         $('hj-live').textContent = pc.hint + ' — 그대로 ' + pc.ch + ' (' + pc.cap + ').';
         $('hj-why').innerHTML = '외운 게 아니라 <b>알아본 거야</b>. 이런 글자를 상형문자라고 해.';
+      } else {
+        $('hj-live').textContent = '다시 그림으로. 글자가 그림으로 보이기 시작했다면 성공!';
+        $('hj-why').innerHTML = '그림과 글자가 <b>같은 모양</b>이라는 걸 찾는 놀이야.';
       }
     });
     hjBox.appendChild(card);
@@ -2158,7 +2600,11 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     });
     var code = 0xAC00 + (CHO[koState.cho][1] * 21 + JUNG[koState.jung][1]) * 28 + JONG[koState.jong][1];
     var syll = String.fromCharCode(code);
-    $('ko-out').textContent = syll;
+    var koOut = $('ko-out');
+    if (koOut.textContent !== syll){
+      koOut.classList.remove('pop3'); void koOut.offsetWidth; koOut.classList.add('pop3');
+    }
+    koOut.textContent = syll;
     var isWord = KDICT.indexOf(syll) !== -1;
     $('ko-badge').textContent = isWord ? '진짜 낱말이야!' : '';
     var parts = CHO[koState.cho][0] + ' + ' + JUNG[koState.jung][0] + (JONG[koState.jong][1] ? ' + ' + JONG[koState.jong][0] : '');
@@ -2554,7 +3000,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   drawKR();
 
   /* ================= 수학·로운: 곱셈 배열판 (점을 눌러 자르기) ================= */
-  var AR = { r:6, c:7, split:null };
+  var AR = { r:4 + Math.floor(Math.random() * 4), c:5 + Math.floor(Math.random() * 4), split:null };
   function drawAR(){
     AR.r = Math.max(2, Math.min(9, AR.r));
     AR.c = Math.max(2, Math.min(9, AR.c));
@@ -2595,6 +3041,437 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   $('ar-c-plus').addEventListener('click', function(){ AR.c++; AR.split = null; drawAR(); });
   $('ar-swap').addEventListener('click', function(){ var t = AR.r; AR.r = AR.c; AR.c = t; AR.split = null; drawAR(); });
   drawAR();
+
+  /* ================= 수학·선우: 개구리 수직선 ================= */
+  var NL = { pos: 3 + Math.floor(Math.random() * 5) };
+  var nlTrack = $('nl-track'), nlFrog = $('nl-frog');
+  for (var ni = 0; ni <= 20; ni++){
+    (function(n){
+      var c = document.createElement('button');
+      c.className = 'nl-cell' + (n % 10 === 0 && n > 0 ? ' ten' : '');
+      c.type = 'button'; c.textContent = n;
+      c.addEventListener('click', function(){ nlJump(n); });
+      nlTrack.appendChild(c);
+    })(ni);
+  }
+  function nlPlace(animate){
+    var pct = (NL.pos / 20 * 100).toFixed(1) + '%';
+    if (animate){
+      nlFrog.classList.remove('hopping'); void nlFrog.offsetWidth; nlFrog.classList.add('hopping');
+    }
+    nlFrog.style.left = 'calc(' + pct + ' + ' + ((NL.pos / 20) * 0 ) + 'px)';
+    Array.prototype.forEach.call(nlTrack.children, function(cell, i){
+      cell.classList.toggle('cur', i === NL.pos);
+    });
+  }
+  function nlJump(target){
+    if (target === NL.pos) return;
+    var from = NL.pos, diff = target - from;
+    NL.pos = target;
+    nlPlace(true);
+    var sign = diff > 0 ? '+' : '−';
+    $('nl-eq').innerHTML = '<span class="n-red">' + from + '</span><span class="op">' + (diff > 0 ? '+' : '−') + '</span>' +
+      '<span class="n-blue">' + Math.abs(diff) + '</span><span class="op">=</span><span>' + target + '</span>';
+    if (diff > 0 && from < 10 && target > 10){
+      $('nl-live').textContent = from + '에서 ' + target + '까지, ' + sign + Math.abs(diff) + ' 점프!';
+      $('nl-why').innerHTML = '노란 징검다리로 가르면 쉬워: <b>+' + (10 - from) + '로 10을 밟고, +' + (target - 10) + ' 더</b>. 큰 점프는 10에서 한 번 쉬어 가는 거야.';
+    } else if (diff > 0){
+      $('nl-live').textContent = '오른쪽으로 ' + Math.abs(diff) + '칸 — 덧셈 점프!';
+      $('nl-why').innerHTML = '덧셈은 수직선에서 <b>오른쪽으로 뛰는 것</b>. 몇 칸 뛰었는지가 곧 더한 수야.';
+    } else {
+      $('nl-live').textContent = '왼쪽으로 ' + Math.abs(diff) + '칸 — 뺄셈 점프!';
+      $('nl-why').innerHTML = '뺄셈은 <b>왼쪽으로 뛰는 것</b>. ' + from + ' − ' + Math.abs(diff) + ' = ' + target + ' — 방향만 반대일 뿐 같은 놀이야.';
+    }
+  }
+  $('nl-reset').addEventListener('click', function(){
+    NL.pos = 3 + Math.floor(Math.random() * 5);
+    nlPlace(true);
+    $('nl-eq').textContent = '';
+    $('nl-live').textContent = '개구리가 ' + NL.pos + '에 앉았어. 숫자를 눌러 점프시켜봐!';
+    $('nl-why').innerHTML = '10을 밟고 가면 <b>두 번의 쉬운 점프</b>가 돼.';
+  });
+  $('nl-live').textContent = '개구리가 ' + NL.pos + '에 앉았어. 숫자를 눌러 점프시켜봐!';
+  $('nl-why').innerHTML = '10을 밟고 가면 <b>두 번의 쉬운 점프</b>가 돼.';
+  nlPlace(false);
+
+  /* ================= 수학·지우: 어림 수직선 ================= */
+  var ES = { n: 0 };
+  var estLine = $('est-line');
+  (function buildEst(){
+    var html = '';
+    for (var t = 0; t <= 10; t++){
+      html += '<span class="est-tick" style="left:' + (t * 10) + '%"></span>';
+    }
+    [[0,'3,000'],[50,'3,500'],[100,'4,000']].forEach(function(pair){
+      html += '<span class="est-lab" style="left:' + pair[0] + '%">' + pair[1] + '</span>';
+    });
+    html += '<span class="est-ghost" id="est-ghost"></span><span class="est-marker" id="est-marker"></span><span class="est-num" id="est-num"></span>';
+    estLine.innerHTML = html;
+  })();
+  function estPct(n){ return ((n - 3000) / 1000 * 100).toFixed(1) + '%'; }
+  function estNew(){
+    ES.n = 3005 + Math.floor(Math.random() * 990);
+    if (ES.n % 100 < 8) ES.n += 23;
+    if (ES.n % 100 > 92) ES.n -= 23;
+    var p = estPct(ES.n);
+    $('est-ghost').style.left = p;
+    $('est-marker').style.left = p;
+    $('est-num').style.left = p;
+    $('est-num').textContent = ES.n.toLocaleString();
+    $('est-eq').textContent = '';
+    $('est-live').textContent = ES.n.toLocaleString() + ' — 백의 자리로 어림해보자.';
+    $('est-why').innerHTML = '버림은 <b>아래층</b>, 올림은 <b>위층</b>, 반올림은 <b>가까운 층</b>. 버튼을 눌러 점이 어디로 이사 가는지 봐.';
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-est]'), function(btn){
+    btn.addEventListener('click', function(){
+      var op = btn.dataset.est;
+      var r = op === 'floor' ? Math.floor(ES.n / 100) * 100
+            : op === 'ceil' ? Math.ceil(ES.n / 100) * 100
+            : Math.round(ES.n / 100) * 100;
+      var name = op === 'floor' ? '버림' : op === 'ceil' ? '올림' : '반올림';
+      var p = estPct(r);
+      $('est-marker').style.left = p;
+      $('est-num').style.left = p;
+      $('est-num').textContent = r.toLocaleString();
+      $('est-eq').textContent = ES.n.toLocaleString() + ' → ' + name + ' → ' + r.toLocaleString();
+      var dist = Math.abs(ES.n - r);
+      $('est-live').textContent = name + ': ' + dist + '만큼 ' + (r > ES.n ? '올라갔어' : (r < ES.n ? '내려갔어' : '그대로야')) + '.';
+      $('est-why').innerHTML = op === 'floor'
+        ? '버림은 무조건 <b>아래층으로</b> — 점선 유령이 원래 자리야. 천 원 지폐로 낼 수 있는 만큼 구할 때!'
+        : op === 'ceil'
+        ? '올림은 무조건 <b>위층으로</b> — 모자라면 안 되는 상황(봉지, 버스 대수)에서 쓰는 어림이야.'
+        : '반올림은 <b>가까운 층으로</b> — 유령과 점 사이 거리(' + dist + ')가 50보다 ' + (ES.n % 100 >= 50 ? '크거나 같아서 올라간' : '작아서 내려간') + ' 거야.';
+    });
+  });
+  $('est-new').addEventListener('click', estNew);
+  estNew();
+
+  /* ================= 미술: 색 섞기 (선우·이나) ================= */
+  var PAINTS = [ {n:'빨강',c:'#D84433'}, {n:'노랑',c:'#E3B52C'}, {n:'파랑',c:'#2E6BAF'} ];
+  var PMIX = { '노랑|빨강':{n:'주황',c:'#E8823A'}, '노랑|파랑':{n:'초록',c:'#3E8E5A'}, '빨강|파랑':{n:'보라',c:'#7B4FA0'} };
+  var mAPicks = [];
+  var mABox = $('mA-blobs');
+  PAINTS.forEach(function(p){
+    var b = document.createElement('button');
+    b.className = 'blob'; b.type = 'button';
+    b.style.background = p.c;
+    b.setAttribute('aria-label', p.n + ' 물감');
+    b.addEventListener('click', function(){
+      if (mAPicks.length >= 2) mAPicks = [];
+      mAPicks.push(p);
+      drawMA();
+    });
+    mABox.appendChild(b);
+  });
+  function drawMA(){
+    Array.prototype.forEach.call(mABox.children, function(b, i){
+      b.setAttribute('aria-pressed', mAPicks.indexOf(PAINTS[i]) !== -1 ? 'true' : 'false');
+    });
+    var out = $('mA-out');
+    if (mAPicks.length < 2){
+      out.style.background = mAPicks.length === 1 ? mAPicks[0].c : 'transparent';
+      out.textContent = mAPicks.length === 1 ? '' : '?';
+      $('mA-eq').textContent = mAPicks.length === 1 ? mAPicks[0].n + ' + ?' : '';
+      if (mAPicks.length === 1) $('mA-live').textContent = mAPicks[0].n + '을 골랐어. 하나 더!';
+      return;
+    }
+    var a = mAPicks[0], b2 = mAPicks[1];
+    if (a === b2){
+      out.style.background = a.c; out.textContent = '';
+      $('mA-eq').textContent = a.n + ' + ' + a.n + ' = 더 진한 ' + a.n;
+      $('mA-live').textContent = '같은 색끼리는 새 색이 안 나와.';
+      $('mA-why').innerHTML = '같은 색은 <b>진해질 뿐</b>! 새 색을 만들려면 다른 색 친구가 필요해.';
+      return;
+    }
+    var key = [a.n, b2.n].sort().join('|');
+    var r = PMIX[key];
+    out.style.background = r.c; out.textContent = '';
+    out.classList.remove('pop'); void out.offsetWidth; out.classList.add('pop');
+    splashAt(out, r.c, 12);
+    $('mA-eq').textContent = a.n + ' + ' + b2.n + ' = ' + r.n;
+    $('mA-live').textContent = r.n + ' 탄생!';
+    $('mA-why').innerHTML = r.n === '초록'
+      ? '해(노랑)와 물(파랑)이 만나 <b>풀잎의 색</b>이 됐어.'
+      : (r.n === '주황' ? '노을과 귤의 색 — 빨강과 노랑 <b>사이에서</b> 태어나.' : '포도와 가지의 색 — 가장 뜨거운 색과 가장 차가운 색이 만나면 <b>신비한 보라</b>.');
+  }
+  $('mA-clear').addEventListener('click', function(){ mAPicks = []; drawMA(); $('mA-live').textContent = '물감 두 개를 골라봐.'; });
+
+  /* ================= 미술: 따뜻/차가운 색 ================= */
+  var WCC = [
+    {n:'빨강',c:'#D84433',t:'warm'},{n:'주황',c:'#E8823A',t:'warm'},{n:'노랑',c:'#E3B52C',t:'warm'},{n:'분홍',c:'#E58BA5',t:'warm'},
+    {n:'파랑',c:'#2E6BAF',t:'cool'},{n:'하늘',c:'#7CB8E0',t:'cool'},{n:'남색',c:'#33418F',t:'cool'},{n:'청록',c:'#2F8C8C',t:'cool'}
+  ];
+  var wcSel = null, wcDone = 0;
+  function buildWC(){
+    wcSel = null; wcDone = 0;
+    var box = $('wc-chips');
+    box.innerHTML = ''; $('wc-warm').innerHTML = ''; $('wc-cool').innerHTML = '';
+    WCC.forEach(function(ch){
+      var b = document.createElement('button');
+      b.className = 'chip'; b.type = 'button';
+      b.style.background = ch.c;
+      b.setAttribute('aria-label', ch.n);
+      b.addEventListener('click', function(){
+        wcSel = { chip: ch, el: b };
+        Array.prototype.forEach.call(box.children, function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        $('wc-live').textContent = ch.n + ' — 어느 바구니에 살까?';
+      });
+      box.appendChild(b);
+    });
+    $('wc-live').textContent = '색 칩을 하나 눌러봐.';
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('#wc-btns [data-temp]'), function(btn){
+    btn.addEventListener('click', function(){
+      if (!wcSel){ $('wc-live').textContent = '먼저 색 칩을 골라야 해!'; return; }
+      var ok = wcSel.chip.t === btn.dataset.temp;
+      if (ok){
+        var box = $(wcSel.chip.t === 'warm' ? 'wc-warm' : 'wc-cool');
+        var r1 = wcSel.el.getBoundingClientRect();
+        var mini = document.createElement('span');
+        mini.className = 'chip';
+        mini.style.background = wcSel.chip.c;
+        box.appendChild(mini);
+        var r2 = mini.getBoundingClientRect();
+        wcSel.el.remove();
+        if (!noMotion){
+          mini.style.visibility = 'hidden';
+          var ghost = document.createElement('span');
+          ghost.style.cssText = 'position:fixed;z-index:99;pointer-events:none;border-radius:8px;background:' + wcSel.chip.c +
+            ';left:' + r1.left + 'px;top:' + r1.top + 'px;width:' + r1.width + 'px;height:' + r1.height + 'px;' +
+            'transition:all .55s cubic-bezier(.4,1.5,.5,1)';
+          document.body.appendChild(ghost);
+          requestAnimationFrame(function(){ requestAnimationFrame(function(){
+            ghost.style.left = r2.left + 'px'; ghost.style.top = r2.top + 'px';
+            ghost.style.width = r2.width + 'px'; ghost.style.height = r2.height + 'px';
+            ghost.style.borderRadius = '5px';
+          }); });
+          setTimeout(function(){ mini.style.visibility = ''; if (ghost.parentNode) ghost.parentNode.removeChild(ghost); }, 580);
+        }
+        wcDone++;
+        $('wc-live').textContent = wcSel.chip.n + ' 입주 완료! (' + wcDone + '/8)';
+        if (wcDone === 8){
+          $('wc-live').textContent = '8개 전부 제자리를 찾았어!';
+          $('wc-why').innerHTML = '이제 그림 그릴 때 <b>기분에 맞는 온도</b>의 색을 고를 수 있어 — 신나는 그림엔 따뜻한 색, 조용한 그림엔 차가운 색.';
+        }
+        wcSel = null;
+      } else {
+        wcSel.el.classList.remove('shake'); void wcSel.el.offsetWidth; wcSel.el.classList.add('shake');
+        $('wc-live').textContent = '음… ' + wcSel.chip.n + '이 그 바구니에선 추워하거나 더워할 것 같아. 다시!';
+      }
+    });
+  });
+  $('wc-reset').addEventListener('click', buildWC);
+  buildWC();
+
+  /* ================= 미술: 색 혼합 실험실 (로운·지우) ================= */
+  var MX = { mode:'paint', on:[false,false,false], lastKey:'' };
+  var MXSET = {
+    paint: { colors:[{n:'빨강',c:'#D84433'},{n:'노랑',c:'#E3B52C'},{n:'파랑',c:'#2E6BAF'}],
+      mix:{ '01':{n:'주황',c:'#E8823A'}, '12':{n:'초록',c:'#3E8E5A'}, '02':{n:'보라',c:'#7B4FA0'}, '012':{n:'탁한 갈색',c:'#5C4632'} } },
+    light: { colors:[{n:'빨강 빛',c:'#FF0000'},{n:'초록 빛',c:'#00E52E'},{n:'파랑 빛',c:'#1F5BFF'}],
+      mix:{ '01':{n:'노랑!',c:'#FFE52E'}, '12':{n:'청록(시안)',c:'#1FE5FF'}, '02':{n:'자홍(마젠타)',c:'#FF5BFF'}, '012':{n:'흰색!',c:'#FFFFFF'} } }
+  };
+  var MXPOS = [[40,56],[77,24],[114,56]];
+  var mxStage = $('mx-stage');
+  [0,1,2].forEach(function(i){
+    var b = $('mx-c' + i);
+    b.style.left = MXPOS[i][0] + 'px';
+    b.style.top = MXPOS[i][1] + 'px';
+    b.addEventListener('click', function(){ MX.on[i] = !MX.on[i]; buildMX(); });
+  });
+  function buildMX(){
+    var S = MXSET[MX.mode];
+    mxStage.className = 'mx-stage ' + MX.mode;
+    var idx = [];
+    MX.on.forEach(function(v,i){ if (v) idx.push(i); });
+    var stageCx = 125, stageCy = 90;
+    [0,1,2].forEach(function(i){
+      var b = $('mx-c' + i);
+      b.style.background = S.colors[i].c;
+      b.dataset.on = MX.on[i] ? '1' : '0';
+      if (MX.mode === 'paint' && MX.on[i] && idx.length >= 2){
+        var cx = MXPOS[i][0] + 48, cy = MXPOS[i][1] + 48;
+        b.style.transform = 'translate(' + ((stageCx - cx) * 0.55).toFixed(0) + 'px,' + ((stageCy - cy) * 0.55).toFixed(0) + 'px) scale(.92)';
+      } else {
+        b.style.transform = '';
+      }
+    });
+    var core = $('mx-core'), eq = $('mx-eq');
+    var key = MX.mode + idx.join('');
+    if (idx.length === 0){
+      core.className = 'mx-core';
+      eq.textContent = MX.mode === 'light' ? '빛이 없으면 깜깜한 밤' : '';
+      $('mx-live').textContent = '원을 눌러 켜봐 — 몇 개든 좋아.';
+    } else if (idx.length === 1){
+      core.className = 'mx-core';
+      eq.textContent = S.colors[idx[0]].n;
+      $('mx-live').textContent = S.colors[idx[0]].n + ' 하나만 켰어. 하나 더!';
+    } else {
+      var r = S.mix[idx.join('')];
+      eq.textContent = idx.map(function(i){ return S.colors[i].n; }).join(' + ') + ' = ' + r.n;
+      if (MX.mode === 'paint'){
+        core.style.background = r.c;
+        core.className = 'mx-core show';
+        if (key !== MX.lastKey) splashAt(core, r.c, 12);
+      } else {
+        core.className = 'mx-core';
+        if (key !== MX.lastKey) splashAt(mxStage, r.c, 10);
+      }
+      $('mx-live').textContent = MX.mode === 'light' ? '겹친 자리를 봐 — ' + r.n : '물감이 합쳐져서 ' + r.n + '!';
+      $('mx-why').innerHTML = MX.mode === 'light'
+        ? (idx.length === 3 ? '세 빛이 겹친 한가운데가 <b>흰색</b>으로 빛나지? 빛은 더할수록 밝아져. 물감 모드로 바꿔 비교해봐.' : '원이 <b>실제로 겹친 자리</b>에 새 색이 떠 있어 — 물감이라면 상상도 못 할 색이지? 빛은 더해지는 세계야.')
+        : (idx.length === 3 ? '셋을 다 섞으니 <b>탁해졌지</b>? 물감은 빛을 흡수해서 섞을수록 어두워져. 빛 모드로 바꿔서 똑같이 해봐 — 정반대야!' : '물감 방울들이 <b>스르륵 모여</b> 새 색이 됐어. 이제 빛 모드로 바꿔 똑같이 눌러봐 — 답이 달라진다!');
+    }
+    MX.lastKey = key;
+  }
+  $('mx-paint').addEventListener('click', function(){
+    MX.mode = 'paint'; MX.on = [false,false,false];
+    $('mx-paint').setAttribute('aria-pressed','true'); $('mx-light').setAttribute('aria-pressed','false');
+    buildMX();
+  });
+  $('mx-light').addEventListener('click', function(){
+    MX.mode = 'light'; MX.on = [false,false,false];
+    $('mx-paint').setAttribute('aria-pressed','false'); $('mx-light').setAttribute('aria-pressed','true');
+    buildMX();
+  });
+  buildMX();
+
+  /* ================= 미술: 색상환·보색·잔상 ================= */
+  var CWN = ['빨강','주황','노랑','연두','초록','청록','하늘','파랑','남색','보라','자주','분홍'];
+  var cwSel = null, cwTimer = null;
+  (function buildCW(){
+    var svg = $('cw-svg');
+    var parts = '';
+    for (var i = 0; i < 12; i++){
+      var a0 = (i * 30 - 90 - 15) * Math.PI / 180;
+      var a1 = (i * 30 - 90 + 15) * Math.PI / 180;
+      var x0 = 100 + 88 * Math.cos(a0), y0 = 100 + 88 * Math.sin(a0);
+      var x1 = 100 + 88 * Math.cos(a1), y1 = 100 + 88 * Math.sin(a1);
+      var xi0 = 100 + 38 * Math.cos(a0), yi0 = 100 + 38 * Math.sin(a0);
+      var xi1 = 100 + 38 * Math.cos(a1), yi1 = 100 + 38 * Math.sin(a1);
+      parts += '<path data-i="' + i + '" d="M' + xi0.toFixed(1) + ' ' + yi0.toFixed(1) +
+        ' L' + x0.toFixed(1) + ' ' + y0.toFixed(1) +
+        ' A88 88 0 0 1 ' + x1.toFixed(1) + ' ' + y1.toFixed(1) +
+        ' L' + xi1.toFixed(1) + ' ' + yi1.toFixed(1) +
+        ' A38 38 0 0 0 ' + xi0.toFixed(1) + ' ' + yi0.toFixed(1) + ' Z" fill="hsl(' + (i*30) + ',72%,55%)" stroke="none" style="cursor:pointer"/>';
+    }
+    parts += '<line id="cw-line" x1="0" y1="0" x2="0" y2="0" stroke="var(--ink)" stroke-width="2.5" stroke-dasharray="4 4" visibility="hidden"/>';
+    svg.innerHTML = parts;
+    svg.addEventListener('click', function(e){
+      var t = e.target;
+      if (!t.dataset || t.dataset.i === undefined) return;
+      cwSel = parseInt(t.dataset.i, 10);
+      var opp = (cwSel + 6) % 12;
+      Array.prototype.forEach.call(svg.querySelectorAll('path'), function(p2){
+        var i2 = parseInt(p2.dataset.i, 10);
+        var hit = (i2 === cwSel || i2 === opp);
+        p2.setAttribute('stroke', hit ? 'var(--ink)' : 'none');
+        p2.setAttribute('stroke-width', '3');
+        p2.style.opacity = hit ? '1' : '.45';
+        var ang2 = (i2 * 30 - 90) * Math.PI / 180;
+        p2.style.transform = hit ? 'translate(' + (Math.cos(ang2) * 7).toFixed(1) + 'px,' + (Math.sin(ang2) * 7).toFixed(1) + 'px)' : '';
+      });
+      var aS = (cwSel * 30 - 90) * Math.PI / 180, aO = (opp * 30 - 90) * Math.PI / 180;
+      var ln = svg.querySelector('#cw-line');
+      ln.setAttribute('x1', (100 + 60 * Math.cos(aS)).toFixed(1));
+      ln.setAttribute('y1', (100 + 60 * Math.sin(aS)).toFixed(1));
+      ln.setAttribute('x2', (100 + 60 * Math.cos(aO)).toFixed(1));
+      ln.setAttribute('y2', (100 + 60 * Math.sin(aO)).toFixed(1));
+      ln.setAttribute('visibility', 'visible');
+      $('cw-cap').textContent = CWN[cwSel] + ' ↔ ' + CWN[opp];
+      $('cw-live').textContent = CWN[cwSel] + '의 보색은 ' + CWN[opp] + '.';
+    });
+  })();
+  $('cw-after').addEventListener('click', function(){
+    var hue = cwSel === null ? 0 : cwSel * 30;
+    var stage = $('cw-stage');
+    stage.hidden = false;
+    $('cw-stop').hidden = false;
+    var left = 15;
+    stage.style.background = 'hsl(' + hue + ',72%,55%)';
+    stage.style.color = '#FFFFFF';
+    stage.innerHTML = '<div>가운데 점을 뚫어지게 봐!</div><div style="width:14px;height:14px;border-radius:50%;background:#FFF"></div><div id="cw-count">15</div>';
+    if (cwTimer) clearInterval(cwTimer);
+    cwTimer = setInterval(function(){
+      left--;
+      var c = document.getElementById('cw-count');
+      if (c) c.textContent = left;
+      if (left <= 0){
+        clearInterval(cwTimer); cwTimer = null;
+        stage.style.background = '#FFFFFF';
+        stage.style.color = '#4A4A44';
+        stage.innerHTML = '<div>이제 이 흰 판을 봐…</div><div style="width:14px;height:14px;border-radius:50%;border:1px solid #DDD"></div><div style="font-size:14px">방금 색의 <b>보색</b>이 유령처럼 떠오르지? 네 눈이 지쳐서 반대색을 만들어내는 거야!</div>';
+      }
+    }, 1000);
+  });
+  $('cw-stop').addEventListener('click', function(){
+    if (cwTimer){ clearInterval(cwTimer); cwTimer = null; }
+    $('cw-stage').hidden = true;
+    $('cw-stop').hidden = true;
+  });
+
+  /* ================= 미술: 데칼코마니 ================= */
+  var DC = { rows:9, half:7, color:0, cells:{} };
+  var DCPAL = ['#D84433','#E3B52C','#2E6BAF','#3E8E5A'];
+  var dcPal = $('dc-pal');
+  DCPAL.forEach(function(c, i){
+    var b = document.createElement('button');
+    b.className = 'chip'; b.type = 'button';
+    b.style.background = c;
+    b.setAttribute('aria-label', '물감 ' + (i+1));
+    b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+    b.addEventListener('click', function(){
+      DC.color = i;
+      Array.prototype.forEach.call(dcPal.children, function(x, j){ x.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+    });
+    dcPal.appendChild(b);
+  });
+  var dcGrid = $('dc-grid');
+  function buildDC(){
+    dcGrid.style.gridTemplateColumns = 'repeat(' + DC.half + ',22px) 3px repeat(' + DC.half + ',22px)';
+    dcGrid.innerHTML = '';
+    for (var r = 0; r < DC.rows; r++){
+      for (var c = 0; c < DC.half; c++) dcGrid.appendChild(dcCell(r, c, true));
+      var mid = document.createElement('span');
+      mid.className = 'dc-cell dc-mid';
+      dcGrid.appendChild(mid);
+      for (var c2 = DC.half - 1; c2 >= 0; c2--) dcGrid.appendChild(dcCell(r, c2, false));
+    }
+    paintDC();
+  }
+  function dcCell(r, c, left){
+    var el = document.createElement(left ? 'button' : 'span');
+    el.className = 'dc-cell' + (left ? ' l' : '');
+    el.dataset.k = r + '_' + c;
+    if (left){
+      el.type = 'button';
+      el.addEventListener('click', function(){
+        var k = r + '_' + c;
+        var adding = DC.cells[k] !== DC.color;
+        if (adding) DC.cells[k] = DC.color; else delete DC.cells[k];
+        paintDC();
+        if (adding){
+          Array.prototype.forEach.call(dcGrid.querySelectorAll('.dc-cell[data-k="' + k + '"]'), function(cel){
+            cel.classList.remove('pop2'); void cel.offsetWidth; cel.classList.add('pop2');
+          });
+        }
+        $('dc-live').textContent = '오른쪽을 봐 — 똑같은 자리에 저절로 찍혔지?';
+      });
+    }
+    return el;
+  }
+  function paintDC(){
+    Array.prototype.forEach.call(dcGrid.querySelectorAll('.dc-cell:not(.dc-mid)'), function(el){
+      var v = DC.cells[el.dataset.k];
+      el.style.background = v === undefined ? 'var(--paper)' : DCPAL[v];
+    });
+  }
+  $('dc-clear').addEventListener('click', function(){
+    DC.cells = {};
+    paintDC();
+    $('dc-live').textContent = '새 종이! 왼쪽 칸을 눌러 점을 찍어봐.';
+  });
+  buildDC();
 
   render();
 })();
