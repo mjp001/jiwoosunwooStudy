@@ -443,6 +443,62 @@ button.pdot{padding:0;border:none;cursor:pointer;display:block}
 .hg-bar{height:100%;width:10%;border-radius:13px;transition:width .55s cubic-bezier(.34,1.3,.64,1)}
 .hg-go{background:var(--blue)}.hg-bj{background:var(--red)}.hg-sl{background:var(--green)}
 .hg-flag{margin:4px 0 0;font-family:"Do Hyeon",sans-serif;font-size:16px;color:var(--ink);text-align:center}
+/* ---------- 짝꿍 기계 / 수 저울 / 수 기차 ---------- */
+.pair-field{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;min-height:120px;width:100%}
+.pair{display:flex;gap:5px;padding:7px 9px;border:1px dashed var(--line-strong);border-radius:16px;background:var(--paper);animation:grpin .35s both}
+.pball{width:22px;height:22px;border-radius:50%;background:var(--green);animation:popdot .3s both}
+.pball.alone{background:var(--red)}
+.pair.lonely{border-color:var(--red);border-style:solid;animation:tbounce .8s infinite}
+.bal{width:100%;display:flex;flex-direction:column;align-items:center;gap:10px}
+.beam{width:80%;height:8px;border-radius:4px;background:var(--line-strong);transition:transform .55s cubic-bezier(.34,1.3,.64,1)}
+.pans{display:flex;gap:20px;width:100%;justify-content:center;align-items:flex-start}
+.pan{flex:1;max-width:160px;border:1px solid var(--line);border-radius:16px;padding:10px 8px;background:var(--paper);transition:transform .55s cubic-bezier(.34,1.3,.64,1)}
+.pan.down{transform:translateY(14px)}.pan.up{transform:translateY(-14px)}
+.tens{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;min-height:36px}
+.tenbar{width:10px;height:36px;border-radius:3px;background:var(--blue);animation:popdot .25s both}
+.ones{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:6px;min-height:12px;max-width:120px}
+.onedot{width:10px;height:10px;border-radius:50%;background:var(--yellow);animation:popdot .25s both}
+.pan-num{font-family:"Do Hyeon",sans-serif;font-size:24px;text-align:center;margin:8px 0 0;color:var(--ink)}
+.train{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;width:100%}
+.car{width:56px;height:56px;border-radius:12px;border:1px solid var(--line-strong);background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:"Do Hyeon",sans-serif;font-size:20px;color:var(--ink)}
+.car.blank{border-style:dashed;border-color:var(--red);color:var(--red)}
+.car.filled{background:var(--green);color:#10261C;animation:popdot .35s both}
+.tr-fb{font-family:"Gaegu",cursive;font-size:19px;margin:6px 0 0;min-height:24px;color:var(--ink-soft);text-align:center}
+/* ---------- 반올림 언덕 / 어림 결정기 / 분수 겹치기판 ---------- */
+.hill{width:100%;max-width:420px;color:var(--ink-soft)}
+#rh-ball{transition:cx .7s cubic-bezier(.45,.05,.55,.95),cy .7s cubic-bezier(.45,.05,.55,.95)}
+.rh-num{font-family:"Do Hyeon",sans-serif;font-size:26px;margin:2px 0 6px;color:var(--ink)}
+.sit-card{width:100%;max-width:400px;border:1px solid var(--line-strong);border-radius:16px;background:var(--paper);padding:16px;font-size:16px;line-height:1.55;color:var(--ink);animation:grpin .35s both}
+.sit-card b{color:var(--ink)}
+.es-fb{font-family:"Gaegu",cursive;font-size:20px;margin:8px 0 0;min-height:28px;text-align:center;color:var(--ink-soft)}
+.es-fb.ok{color:var(--green)}.es-fb.no{color:var(--red)}
+.fg-wrap{width:100%;display:flex;justify-content:center}
+.fgrid{display:grid;gap:2px;width:min(260px,80%);aspect-ratio:1;border:1px solid var(--line-strong);border-radius:8px;padding:4px;background:var(--paper)}
+.fcell{border-radius:3px;background:var(--card);transition:background .3s}
+.fcell.h{background:var(--blue-soft)}
+.fcell.v{background:var(--red-soft)}
+.fcell.both{background:var(--green);animation:popdot .3s both}
+.fg-eq{font-family:"Do Hyeon",sans-serif;font-size:20px;margin:12px 0 0;color:var(--ink);text-align:center}
+/* ---------- 표지 탐정 / 문장 부호 / 공감 / 서평 ---------- */
+.cover{width:min(240px,70%);border-radius:16px;border:1px solid var(--line-strong);background:var(--paper);padding:16px;text-align:center;animation:cardflip .45s both}
+.cover svg{width:100%;height:110px;display:block;margin-bottom:10px}
+.cover h4{font-family:"Do Hyeon",sans-serif;font-size:22px;margin:0;color:var(--ink)}
+.cv-fb{font-family:"Gaegu",cursive;font-size:19px;min-height:26px;margin:8px 0 0;text-align:center;color:var(--ink-soft)}
+.bubble{width:min(340px,90%);border:2px solid var(--line-strong);border-radius:20px;background:var(--paper);padding:22px 18px;text-align:center;font-family:"Do Hyeon",sans-serif;font-size:28px;color:var(--ink);animation:syllpop .35s both}
+.bubble.q{border-color:var(--blue)}.bubble.x{border-color:var(--red)}
+.talk{width:min(360px,92%);border:1px solid var(--line-strong);border-radius:18px 18px 18px 4px;background:var(--paper);padding:16px;font-size:17px;line-height:1.55;color:var(--ink);animation:grpin .35s both}
+.gauge{width:min(320px,90%);height:14px;border-radius:7px;background:var(--paper);border:1px solid var(--line);overflow:hidden;margin-top:14px}
+.gauge-fill{height:100%;width:50%;background:var(--green);transition:width .6s cubic-bezier(.34,1.3,.64,1),background .4s}
+.gauge-label{font-family:"Gaegu",cursive;font-size:19px;margin:6px 0 0;color:var(--ink-soft);text-align:center;min-height:24px}
+.rv-tray{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;width:100%}
+.rv-chip{border:1px solid var(--line-strong);border-radius:12px;background:var(--paper);color:var(--ink);padding:8px 12px;font-family:inherit;font-size:14px;cursor:pointer;max-width:280px;text-align:left}
+.rv-chip:disabled{opacity:.35;cursor:default}
+.rv-chip.k-plot{border-left:4px solid var(--ink-faint)}
+.rv-chip.k-op{border-left:4px solid var(--blue)}
+.rv-chip.k-ev{border-left:4px solid var(--green)}
+.rv-chip.k-rec{border-left:4px solid var(--yellow)}
+.rv-paper{width:min(360px,94%);min-height:80px;border:1px dashed var(--line-strong);border-radius:14px;background:var(--paper);padding:14px;margin-top:12px;font-size:15px;line-height:1.6;color:var(--ink)}
+.rv-paper p{margin:0 0 6px;animation:popdot .3s both}
 /* ---------- week timetable ---------- */
 .wk-scroll{overflow-x:auto;width:100%}
 .wk-grid{display:grid;grid-template-columns:repeat(5,minmax(104px,1fr));gap:10px;min-width:560px}
@@ -670,112 +726,103 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   <section class="panel" data-subject="math" data-child="sunwoo">
 
     <article class="stage">
-      <span class="stage-tag">2학기 준비 · 100까지의 수</span>
-      <h2>100판 탐험</h2>
-      <p class="stage-sub">수를 하나씩이 아니라 판 위의 자리로 본다. 숫자를 누르면 10묶음과 낱개로 갈라지고, 뛰어세기를 누르면 수가 줄을 서서 걸어간다.</p>
+      <span class="stage-tag">이번 주 금요일 · 짝수와 홀수</span>
+      <h2>짝꿍 만들기 기계</h2>
+      <p class="stage-sub">구슬을 둘씩 짝지어 보면 끝난다. 짝이 딱 맞으면 <b>짝수</b>, 하나가 남으면 <b>홀수</b> — 외우는 게 아니라 <b>눈에 보이는 것</b>.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="hundred" id="h-board"></div>
-          <div class="tenbags" id="h-bags"></div>
-        
-          <div class="controls" id="h-skips"></div>
-        </div>
-        <aside class="read">
-          <p class="live" id="h-live"></p>
-          <p class="why" id="h-why"></p>
-          
-        </aside>
-      </div>
-    </article>
-
-    <article class="stage">
-      <span class="stage-tag">활동 둘</span>
-      <h2>10 만들기</h2>
-      <p class="stage-sub">빈칸이 보이면 답이 보인다. 구슬을 놓는 순간 남은 칸이 파랗게 켜지고, 그게 바로 짝꿍 수다.</p>
-      <div class="stage-body">
-        <div class="play">
-          <p class="target">빨간 구슬 <strong id="a-target">7</strong> 개를 놓아봐</p>
-          <div class="frame" id="a-frame" role="group" aria-label="10칸 판"></div>
-          <p class="eq" id="a-eq"></p>
-        
+          <div class="pair-field" id="pr-field"></div>
           <div class="controls">
-            <button class="ctl" id="a-new">다른 수로 해보기</button>
-            <button class="ctl quiet" id="a-clear">비우기</button>
+            <button class="ctl" id="pr-minus">− 빼기</button>
+            <span class="ctl quiet" id="pr-n" style="cursor:default"></span>
+            <button class="ctl" id="pr-plus">+ 넣기</button>
+          </div>
+          <div class="controls">
+            <button class="ctl" id="pr-go">둘씩 짝지어!</button>
+            <button class="ctl quiet" id="pr-reset">다시 흩어뜨리기</button>
           </div>
         </div>
         <aside class="read">
-          <p class="live" id="a-live"></p>
-          <p class="why" id="a-why"></p>
-          
+          <p class="live" id="pr-live"></p>
+          <p class="why" id="pr-why"></p>
         </aside>
       </div>
     </article>
 
     <article class="stage">
-      <span class="stage-tag">활동 셋</span>
-      <h2>묶어서 세기</h2>
-      <p class="stage-sub">하나씩 세면 오래 걸리는 걸, 묶으면 한눈에 센다. 같은 수를 여러 방법으로 묶어보는 게 나중에 곱셈이 되고 나눗셈이 된다.</p>
-      <div class="stage-body">
-        <div class="play"><div class="groups" id="b-groups"></div>
-          <div class="controls" id="b-sizes"></div>
-          <div class="controls"><button class="ctl quiet" id="b-total">전체 개수 바꾸기</button></div>
-        </div>
-        <aside class="read">
-          <p class="live" id="b-live"></p>
-          <p class="why" id="b-why"></p>
-          
-          
-        </aside>
-      </div>
-    </article>
-
-    <article class="stage">
-      <span class="stage-tag">활동 넷 · 새로 왔어요</span>
-      <h2>개구리 수직선 점프</h2>
-      <p class="stage-sub">덧셈은 수직선에서 오른쪽으로 뛰는 것, 뺄셈은 왼쪽으로 뛰는 것. 숫자를 누르면 개구리가 폴짝 날아간다 — 노란 <b>10 징검다리</b>를 먼저 밟으면 큰 점프도 쉬워진다.</p>
+      <span class="stage-tag">이번 주 수요일 · 수의 크기 비교</span>
+      <h2>수 저울</h2>
+      <p class="stage-sub">두 수를 저울에 올린다. 낱개가 더 많아 보여도 속으면 안 돼 — <b>묶음(10개짜리 막대)부터</b> 세면 저울은 정직하게 기운다.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="nl-wrap">
-            <span class="frog" id="nl-frog"><svg viewBox="0 0 28 24" width="28" height="24"><circle cx="9" cy="7" r="5" fill="#4CAF6D"/><circle cx="19" cy="7" r="5" fill="#4CAF6D"/><ellipse cx="14" cy="15" rx="12" ry="8.5" fill="#4CAF6D"/><circle cx="9" cy="6.5" r="2" fill="#24211C"/><circle cx="19" cy="6.5" r="2" fill="#24211C"/><path d="M10 17 q4 3.5 8 0" stroke="#24211C" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></span>
-            <div class="nl-track" id="nl-track"></div>
+          <div class="bal">
+            <div class="beam" id="bl-beam"></div>
+            <div class="pans">
+              <div class="pan" id="bl-panL"><div class="tens" id="bl-tL"></div><div class="ones" id="bl-oL"></div><p class="pan-num" id="bl-nL"></p></div>
+              <div class="pan" id="bl-panR"><div class="tens" id="bl-tR"></div><div class="ones" id="bl-oR"></div><p class="pan-num" id="bl-nR"></p></div>
+            </div>
           </div>
-          <p class="eq" id="nl-eq"></p>
-        
-          <div class="controls"><button class="ctl quiet" id="nl-reset">처음 자리로</button></div>
+          <div class="controls">
+            <button class="ctl" data-bl="L-">왼쪽 −</button><button class="ctl" data-bl="L+">왼쪽 +</button>
+            <button class="ctl" data-bl="R-">오른쪽 −</button><button class="ctl" data-bl="R+">오른쪽 +</button>
+          </div>
+          <div class="controls"><button class="ctl quiet" id="bl-new">새 문제</button></div>
         </div>
         <aside class="read">
-          <p class="live" id="nl-live"></p>
-          <p class="why" id="nl-why"></p>
-          
+          <p class="live" id="bl-live"></p>
+          <p class="why" id="bl-why"></p>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">이번 주 화요일 · 수의 순서</span>
+      <h2>수 기차 빈칸 채우기</h2>
+      <p class="stage-sub">칸마다 수가 순서대로 앉아 있다. 비어 있는 칸에 누가 앉아야 할까? <b>1씩·2씩·10씩</b> 걸음을 바꿔가며 타보자.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="train" id="tr-cars"></div>
+          <div class="controls" id="tr-opts"></div>
+          <p class="tr-fb" id="tr-fb"></p>
+          <div class="controls">
+            <button class="ctl" data-step="1" aria-pressed="true">1씩</button>
+            <button class="ctl" data-step="2" aria-pressed="false">2씩</button>
+            <button class="ctl" data-step="10" aria-pressed="false">10씩</button>
+            <button class="ctl quiet" id="tr-new">다음 기차</button>
+          </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="tr-live"></p>
+          <p class="why" id="tr-why"></p>
         </aside>
       </div>
     </article>
 
     <section class="quiz" data-for="sunwoo">
       <h2>확인 문제</h2>
-      <div class="q" data-qid="s-m1" data-answer="1">
-        <h3>8과 짝꿍이 되어 10을 만드는 수는?</h3>
-        <p class="qnote">위 판에 구슬 8개를 놓아보면 바로 보여.</p>
-        <div class="opts"><button class="opt">1</button><button class="opt">2</button><button class="opt">3</button></div>
-        <p class="explain" hidden>10자리 버스에 8명이 타면? 세지 말고 <b>빈자리</b>를 봐 — 딱 2자리. 8의 짝꿍은 언제나 2, 버스가 알려주는 거야.</p>
+      <div class="q" data-qid="s-m-n1" data-answer="1">
+        <h3>구슬 13개를 둘씩 짝지으면 몇 개가 남을까?</h3>
+        <p class="qnote">위 짝꿍 기계에서 13으로 맞추고 눌러봐도 좋아.</p>
+        <div class="opts"><button class="opt">0개</button><button class="opt">1개</button><button class="opt">3개</button></div>
+        <p class="explain" hidden>둘씩 짝지으면 6쌍이 되고 <b>딱 하나</b>가 남아 — 그래서 13은 <b>홀수</b>. 짝수든 홀수든 남는 건 언제나 <b>0개 아니면 1개</b>야. 둘씩 묶는데 2개가 남으면 그건 또 한 쌍이 되니까!</p>
       </div>
-      <div class="q" data-qid="s-m2" data-answer="1">
-        <h3>14는 10과 몇으로 가를 수 있을까?</h3>
-        <p class="qnote">10칸 판이 꽉 차고, 밖에 몇 개가 남을까?</p>
-        <div class="opts"><button class="opt">3</button><button class="opt">4</button><button class="opt">5</button></div>
-        <p class="explain" hidden>사탕 14개 — 10개는 상자에 <b>쏙</b>, 밖에 4개가 남아. 큰 수는 ‘상자 하나 + 낱개 몇’으로 보면 한눈에 들어와.</p>
+      <div class="q" data-qid="s-m-n2" data-answer="1">
+        <h3>45와 54 — 숫자는 똑같은데, 어느 쪽이 더 클까?</h3>
+        <p class="qnote">4와 5, 5와 4. 자리를 바꿔 앉았을 뿐인데?</p>
+        <div class="opts"><button class="opt">45</button><button class="opt">54</button><button class="opt">같다</button></div>
+        <p class="explain" hidden>같은 숫자라도 <b>어느 자리에 앉느냐</b>가 전부야. 54는 묶음 5개(50)에 낱개 4, 45는 묶음 4개(40)에 낱개 5 — 묶음 하나 차이는 10이라 낱개 1로는 못 따라잡아. <b>자리가 값을 만든다</b>.</p>
       </div>
-      <div class="q" data-qid="s-m3" data-answer="1">
-        <h3>사탕 12개를 4명이 똑같이 나누면 한 명이 몇 개?</h3>
-        <p class="qnote">위에서 12개를 4묶음으로 묶어봐.</p>
-        <div class="opts"><button class="opt">2</button><button class="opt">3</button><button class="opt">4</button></div>
-        <p class="explain" hidden>접시 4개에 척, 척 올려보면 <b>3개씩</b>일 때 딱 떨어져: 3·6·9·12! 나눗셈은 어려운 게 아니라 ‘똑같이 묶기 놀이’야.</p>
+      <div class="q" data-qid="s-m-n3" data-answer="2">
+        <h3>50보다 1 작은 수는?</h3>
+        <p class="qnote">묶음 5개에서 하나를 빼면 무슨 일이 생길까?</p>
+        <div class="opts"><button class="opt">40</button><button class="opt">51</button><button class="opt">49</button></div>
+        <p class="explain" hidden>50은 낱개가 하나도 없어. 여기서 하나를 빼려면 <b>묶음 하나를 풀어야</b> 해 — 풀린 10개에서 하나를 빼면 9개가 남아 <b>49</b>. 묶음이 4개, 낱개가 9개가 된 거야. 수가 줄 때도 묶음이 통째로 움직여.</p>
       </div>
-      <div class="q" data-qid="s-m4" data-answer="2">
-        <h3>6 + 7 은 몇일까?</h3>
-        <p class="qnote">6에 4를 먼저 줘서 10을 만들어봐.</p>
-        <div class="opts"><button class="opt">11</button><button class="opt">12</button><button class="opt">13</button></div>
-        <p class="explain" hidden>7이 6에게 4를 <b>빌려주면</b> 10이 완성되고, 7의 주머니엔 3이 남아. 10+3 = <b>13</b>. 10을 먼저 만들면 덧셈은 지름길로 가.</p>
+      <div class="q" data-qid="s-m-n4" data-answer="0">
+        <h3>10씩 뛰어세기: 34 다음에 오는 수는?</h3>
+        <p class="qnote">수 기차를 ‘10씩’으로 놓고 확인해봐.</p>
+        <div class="opts"><button class="opt">44</button><button class="opt">35</button><button class="opt">40</button></div>
+        <p class="explain" hidden>10씩 뛰면 <b>낱개는 그대로, 묶음만 하나 늘어</b> — 34 → 44 → 54. 뒷자리 4가 계속 따라오는 게 보이지? 큰 수를 셀 때 하나씩 세지 않아도 되는 이유가 바로 이거야.</p>
       </div>
     </section>
 
@@ -804,170 +851,112 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   <section class="panel" data-subject="math" data-child="jiwoo" hidden>
 
     <article class="stage">
-      <span class="stage-tag">깨봉식 · 패턴의 힘</span>
-      <h2>정사각형의 비밀</h2>
-      <p class="stage-sub">15×15에서 16×16으로 갈 때 전부 다시 계산할 필요가 없다 — 오른쪽 한 줄, 아래 한 줄, 모서리 하나. 변화만 보면 큰 곱셈이 덧셈이 된다.</p>
+      <span class="stage-tag">이번 주 월요일 · 반올림</span>
+      <h2>반올림 언덕</h2>
+      <p class="stage-sub">수직선 한가운데에 <b>언덕</b>이 있다. 수를 올려놓고 손을 놓으면 공은 <b>가까운 쪽으로 굴러 내려간다</b> — 그게 반올림. 계산이 아니라 “어느 쪽이 더 가까운가”의 문제다.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="dotgrid" id="p-grid"></div>
-          <p class="peq" id="p-eq"></p>
-        
+          <svg class="hill" id="rh-svg" viewBox="0 0 400 150" aria-hidden="true">
+            <path id="rh-hill" d="M20 120 Q 200 10 380 120" fill="none" stroke="var(--line-strong)" stroke-width="3"/>
+            <line x1="200" y1="58" x2="200" y2="132" stroke="var(--line)" stroke-dasharray="4 4"/>
+            <circle id="rh-ball" cx="200" cy="58" r="11" fill="var(--red)"/>
+            <text id="rh-lo" x="20" y="145" fill="currentColor" font-size="14" text-anchor="middle"></text>
+            <text id="rh-mid" x="200" y="145" fill="currentColor" font-size="13" text-anchor="middle" opacity=".6"></text>
+            <text id="rh-hi" x="380" y="145" fill="currentColor" font-size="14" text-anchor="middle"></text>
+          </svg>
+          <p class="rh-num" id="rh-num"></p>
           <div class="controls">
-            <button class="ctl" id="p-mode-grow" aria-pressed="true">한 줄씩 자라기</button>
-            <button class="ctl" id="p-mode-odd" aria-pressed="false">홀수로 쌓기</button>
+            <button class="ctl" data-rh="-100">− 100</button><button class="ctl" data-rh="-10">− 10</button>
+            <button class="ctl" data-rh="10">+ 10</button><button class="ctl" data-rh="100">+ 100</button>
           </div>
-          <div class="controls" id="p-ctl-grow">
-            <button class="ctl" id="p-grow">한 줄 더해보기</button>
-            <div class="stepper"><span>크기</span><button class="mini" id="p-minus">−</button><button class="mini" id="p-plus">+</button></div>
+          <div class="controls">
+            <button class="ctl" data-place="10" aria-pressed="false">십의 자리까지</button>
+            <button class="ctl" data-place="100" aria-pressed="false">백의 자리까지</button>
+            <button class="ctl" data-place="1000" aria-pressed="true">천의 자리까지</button>
           </div>
-          <div class="controls" id="p-ctl-odd" hidden>
-            <button class="ctl" id="p-layer">한 층 더 쌓기</button>
-            <button class="ctl quiet" id="p-reset">처음부터</button>
-          </div>
+          <div class="controls"><button class="ctl" id="rh-roll">공 굴리기</button></div>
         </div>
         <aside class="read">
-          <p class="live" id="p-live"></p>
-          <p class="why" id="p-why"></p>
-          
-          
-          
+          <p class="live" id="rh-live"></p>
+          <p class="why" id="rh-why"></p>
         </aside>
       </div>
     </article>
 
     <article class="stage">
-      <span class="stage-tag">2학기 1단원 · 새로 왔어요</span>
-      <h2>어림 수직선</h2>
-      <p class="stage-sub">올림·버림·반올림은 계산이 아니라 <em>이사</em>다. 버튼을 누르면 빨간 점이 수직선 위를 미끄러져 가장 가까운 백의 자리 집으로 이사한다 — 어디로 가는지 눈으로 보면 세 가지가 절대 안 헷갈린다.</p>
+      <span class="stage-tag">이번 주 · 어림의 진짜 문제</span>
+      <h2>어림 결정기 — 상황이 방법을 고른다</h2>
+      <p class="stage-sub">올림·버림·반올림은 <b>계산법이 아니라 판단</b>이다. 같은 수라도 무엇을 하려는지에 따라 답이 달라진다. 상황 카드를 읽고 골라보자.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="est-wrap">
-            <div class="est-line" id="est-line"></div>
-          </div>
-          <p class="eq" id="est-eq" style="font-size:22px"></p>
-        
+          <div class="sit-card" id="es-card"></div>
           <div class="controls">
-            <button class="ctl" data-est="floor">버림</button>
-            <button class="ctl" data-est="round">반올림</button>
-            <button class="ctl" data-est="ceil">올림</button>
+            <button class="ctl" data-es="up">올림</button>
+            <button class="ctl" data-es="down">버림</button>
+            <button class="ctl" data-es="round">반올림</button>
           </div>
-          <div class="controls"><button class="ctl quiet" id="est-new">다른 수 주세요</button></div>
+          <p class="es-fb" id="es-fb"></p>
+          <div class="controls"><button class="ctl quiet" id="es-next">다음 상황</button></div>
         </div>
         <aside class="read">
-          <p class="live" id="est-live"></p>
-          <p class="why" id="est-why"></p>
-          
-          
+          <p class="live" id="es-live"></p>
+          <p class="why" id="es-why"></p>
         </aside>
       </div>
     </article>
 
     <article class="stage">
-      <span class="stage-tag">2학기 2단원 · 분수의 곱셈</span>
-      <h2>분수 곱셈은 넓이다</h2>
-      <p class="stage-sub">‘분자끼리 분모끼리’를 외우기 전에, 겹친 칸을 세어보면 규칙이 저절로 나온다. 가로로 한 번, 세로로 한 번 자른 뒤 겹친 자리를 보는 게 전부다.</p>
+      <span class="stage-tag">금요일 · 2단원 도입 미리보기</span>
+      <h2>분수 곱셈 겹치기판</h2>
+      <p class="stage-sub">분수의 곱셈은 새로 외울 공식이 아니다. <b>“⅔의 ¾”</b>은 가로로 자르고 세로로 다시 자른 뒤 <b>겹친 칸</b>을 세는 것 — 눈으로 보면 분모끼리, 분자끼리 곱하는 이유가 그냥 보인다.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="area" id="d-area"></div>
-          <p class="legend">
-            <span><i style="background:var(--red-soft)"></i>첫 분수 (세로로 자름)</span>
-            <span><i style="background:var(--blue-soft)"></i>둘째 분수 (가로로 자름)</span>
-            <span><i style="background:var(--grape)"></i>겹친 자리 = 답</span>
-          </p>
-        
+          <div class="fg-wrap"><div class="fgrid" id="fg-grid"></div></div>
+          <p class="fg-eq" id="fg-eq"></p>
           <div class="controls">
-            <div class="stepper"><span>첫 분자</span><button class="mini" data-area="n1" data-step="-1">−</button><button class="mini" data-area="n1" data-step="1">+</button></div>
-            <div class="stepper"><span>첫 분모</span><button class="mini" data-area="d1" data-step="-1">−</button><button class="mini" data-area="d1" data-step="1">+</button></div>
-            <div class="stepper"><span>둘 분자</span><button class="mini" data-area="n2" data-step="-1">−</button><button class="mini" data-area="n2" data-step="1">+</button></div>
-            <div class="stepper"><span>둘 분모</span><button class="mini" data-area="d2" data-step="-1">−</button><button class="mini" data-area="d2" data-step="1">+</button></div>
+            <button class="ctl" data-fg="a">가로 분자 ▲</button><button class="ctl" data-fg="b">가로 분모 ▲</button>
+            <button class="ctl" data-fg="c">세로 분자 ▲</button><button class="ctl" data-fg="d">세로 분모 ▲</button>
           </div>
         </div>
         <aside class="read">
-          <p class="live" id="d-live"></p>
-          <p class="why" id="d-why"></p>
-          
-        </aside>
-      </div>
-    </article>
-
-    <article class="stage">
-      <span class="stage-tag">활동 셋 · 통분</span>
-      <h2>같은 크기 찾기</h2>
-      <p class="stage-sub">분수는 숫자 두 개가 아니라 <em>크기 하나</em>다. 두 막대를 나란히 놓고 길이를 재보면, 통분이 왜 필요한지 계산 전에 눈으로 먼저 걸린다.</p>
-      <div class="stage-body">
-        <div class="play">
-          <div class="bars">
-            <div class="barrow a">
-              <span class="frac f-red"><span class="num" id="a-num">1</span><span class="bar"></span><span class="den" id="a-den">2</span></span>
-              <div class="bar-track" id="a-track"></div>
-            </div>
-            <div class="barrow b">
-              <span class="frac f-blue"><span class="num" id="b-num">3</span><span class="bar"></span><span class="den" id="b-den">6</span></span>
-              <div class="bar-track" id="b-track"></div>
-            </div>
-          </div>
-          <p class="verdict" id="c-verdict"></p>
-        
-          <div class="controls">
-            <div class="stepper"><span>위 분자</span><button class="mini" data-frac="a" data-part="num" data-step="-1">−</button><button class="mini" data-frac="a" data-part="num" data-step="1">+</button></div>
-            <div class="stepper"><span>위 분모</span><button class="mini" data-frac="a" data-part="den" data-step="-1">−</button><button class="mini" data-frac="a" data-part="den" data-step="1">+</button></div>
-            <div class="stepper"><span>아래 분자</span><button class="mini" data-frac="b" data-part="num" data-step="-1">−</button><button class="mini" data-frac="b" data-part="num" data-step="1">+</button></div>
-            <div class="stepper"><span>아래 분모</span><button class="mini" data-frac="b" data-part="den" data-step="-1">−</button><button class="mini" data-frac="b" data-part="den" data-step="1">+</button></div>
-          </div>
-          <div class="controls"><button class="ctl quiet" id="c-shuffle">다른 문제 주세요</button></div>
-        </div>
-        <aside class="read">
-          <p class="live" id="c-live"></p>
-          <p class="why" id="c-why"></p>
-          
-          
+          <p class="live" id="fg-live"></p>
+          <p class="why" id="fg-why"></p>
         </aside>
       </div>
     </article>
 
     <section class="quiz">
       <h2>확인 문제</h2>
-      <div class="q" data-qid="j-m1" data-answer="2">
-        <h3>25×25 = 625. 그럼 26×26 은?</h3>
-        <p class="qnote">다시 계산하지 말고, 한 줄 두 줄만 더해봐.</p>
-        <div class="opts"><button class="opt">650</button><button class="opt">651</button><button class="opt">676</button></div>
-        <p class="explain" hidden>다시 곱하는 건 힘으로 미는 것 — 우리는 <b>변화만</b> 봐. 정사각형이 한 뼘 자랄 때 필요한 건 오른쪽 한 줄(25), 아래 한 줄(25), 모서리 한 알(1). 625+51 = <b>676</b>, 덧셈으로 끝.</p>
+      <div class="q" data-qid="j-m-n1" data-answer="1">
+        <h3>27,483을 반올림하여 <em>만의 자리까지</em> 나타내면?</h3>
+        <p class="qnote">언덕의 양 끝은 20,000과 30,000. 꼭대기는?</p>
+        <div class="opts"><button class="opt">20,000</button><button class="opt">30,000</button><button class="opt">27,000</button></div>
+        <p class="explain" hidden>꼭대기는 25,000. 27,483은 꼭대기보다 <b>오른쪽</b>에 있으니 <b>30,000</b>으로 굴러가. 자리 아래 숫자 <b>7</b>만 보면 끝 — 483이라는 꼬리는 아무 영향을 못 줘. 반올림은 늘 <b>바로 아래 한 자리</b>만 본다.</p>
+        <p class="explain oops" data-opt="2" hidden>27,000은 <b>천의 자리까지</b> 반올림한 값이야. 어느 자리까지인지가 답을 바꾼다.</p>
       </div>
-      <div class="q" data-qid="j-m2" data-answer="1">
-        <h3>0.25 를 분수로 쓰면?</h3>
-        <p class="qnote">100칸짜리 판에서 25칸을 떠올려봐.</p>
-        <div class="opts"><button class="opt">1/5</button><button class="opt">1/4</button><button class="opt">2/5</button></div>
-        <p class="explain" hidden>100칸 판에 25칸을 칠했다고 상상해봐. 그 덩어리를 <b>4번</b> 찍으면 판이 꽉 차지? 그래서 0.25는 판의 <b>1/4</b>. 0.25, 25%, 1/4 — 옷만 다른 같은 크기야.</p>
+      <div class="q" data-qid="j-m-n2" data-answer="0">
+        <h3>반올림하여 백의 자리까지 했더니 <em>500</em>이 되었다. 될 수 있는 가장 작은 자연수는?</h3>
+        <p class="qnote">거꾸로 생각하기 — 어디까지 굴러와야 500이 될까?</p>
+        <div class="opts"><button class="opt">450</button><button class="opt">400</button><button class="opt">451</button></div>
+        <p class="explain" hidden>500으로 굴러오려면 언덕 꼭대기 <b>450</b> 위(또는 그 자리)에 있어야 해. 450은 딱 꼭대기지만 “5는 위로” 약속 덕에 500이 돼. 그래서 범위는 <b>450 이상 550 미만</b> — 어림을 <b>거꾸로</b> 읽으면 수의 범위(이상·미만)가 튀어나온다.</p>
       </div>
-      <div class="q" data-qid="j-m3" data-answer="0">
-        <h3>2/3 과 5/8 중 어느 쪽이 더 클까?</h3>
-        <p class="qnote">계산하지 말고, 위 막대에서 먼저 재봐도 좋아.</p>
-        <div class="opts"><button class="opt">2/3</button><button class="opt">5/8</button><button class="opt">같다</button></div>
-        <p class="explain" hidden>cm 자와 인치 자로 잰 길이는 바로 비교 못 하지? 분수도 그래. 둘 다 <b>24칸짜리 같은 자</b>로 바꿔 들면 16칸 대 15칸 — 딱 한 칸 차이로 2/3 승리. 통분은 ‘자 바꿔 들기’야.</p>
+      <div class="q" data-qid="j-m-n3" data-answer="2">
+        <h3>2/5 × 3/4 를 겹치기판으로 그리면?</h3>
+        <p class="qnote">가로로 5등분해 2칸, 세로로 4등분해 3칸.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">9칸 중 6칸</button><button class="opt" style="font-size:15px">20칸 중 5칸</button><button class="opt" style="font-size:15px">20칸 중 6칸</button></div>
+        <p class="explain" hidden>두 번 자르면 전체는 <b>5×4 = 20칸</b>, 둘 다 걸친 칸은 <b>2×3 = 6칸</b> → 6/20 = 3/10. 분모끼리·분자끼리 곱하라는 규칙은 <b>“두 번 잘랐다”는 사실</b>을 짧게 적은 것뿐이야.</p>
       </div>
-      <div class="q" data-qid="j-m4" data-answer="2">
-        <h3>1/2 × 2/5 는?</h3>
-        <p class="qnote">넓이판에서 가로 2칸 중 1칸, 세로 5칸 중 2칸을 골라봐.</p>
-        <div class="opts"><button class="opt">3/7</button><button class="opt">2/7</button><button class="opt">1/5</button></div>
-        <p class="explain" hidden>×를 <b>‘~의’</b>로 읽어봐: 1/2 × 2/5 = “2/5<b>의</b> 절반”. 피자 2/5조각의 또 절반이니 작아질 수밖에. 겹친 칸으로 세면 10칸 중 2칸 = <b>1/5</b>.</p>
+      <div class="q" data-qid="j-m-n4" data-answer="1">
+        <h3>1보다 작은 분수끼리 곱하면 답이 <em>작아지는</em> 까닭은?</h3>
+        <p class="qnote">곱하면 커진다고 배웠는데, 왜 반대일까?</p>
+        <div class="opts"><button class="opt" style="font-size:15px">분모가 커져서</button><button class="opt" style="font-size:15px">‘일부의 일부’를 구하는 것이라서</button><button class="opt" style="font-size:15px">계산 규칙이 그래서</button></div>
+        <p class="explain" hidden>2/3 × 3/4는 “<b>3/4의 2/3</b>”, 즉 이미 잘라낸 조각에서 <b>또 잘라내는 것</b>이야. 남은 조각이 원래보다 클 수는 없지. ‘곱하면 커진다’는 <b>1보다 큰 수를 곱할 때만</b>의 이야기였어 — 곱셈은 “몇 배”가 아니라 “<b>~의</b>”라고 읽으면 헷갈리지 않아.</p>
       </div>
-      <div class="q" data-qid="j-m5" data-answer="1">
-        <h3>홀수를 차례로 더하면? 1+3+5+7+9 =</h3>
-        <p class="qnote">‘홀수로 쌓기’에서 다섯 층을 쌓아봐.</p>
-        <div class="opts"><button class="opt">24</button><button class="opt">25</button><button class="opt">30</button></div>
-        <p class="explain" hidden>홀수는 <b>ㄱ자 블록</b>이야. 1 위에 3을 감싸고, 그 위에 5를 감싸고… 한 번 감쌀 때마다 정사각형이 한 뼘씩 커져. 다섯 번 감쌌으면 <b>5×5 = 25</b> — 더하지 않고 모양이 답을 말해.</p>
-      </div>
-      <div class="q" data-qid="j-m6" data-answer="2">
-        <h3>3/4 × 1/3 은?</h3>
-        <p class="qnote">×를 ‘~의’로 읽어봐: 1/3의 3/4.</p>
-        <div class="opts"><button class="opt">4/7</button><button class="opt">3/7</button><button class="opt">1/4</button></div>
-        <p class="explain" hidden>1/3짜리 조각의 3/4만 가지는 것 — 넓이판으로 세면 12칸 중 3칸 = 3/12 = <b>1/4</b>. 분자 3과 분모 3이 서로 지워지는 걸 봤다면, 이미 약분의 눈이 생긴 거야.</p>
-      </div>
-      <div class="q" data-qid="j-m7" data-answer="1">
-        <h3>몸무게가 36.5kg ‘초과’인 사람만 탈 수 있는 기구가 있다. 딱 36.5kg인 사람은?</h3>
-        <p class="qnote">경계선 문제 — 발을 올려도 되는 쪽이었나?</p>
-        <div class="opts"><button class="opt">탈 수 있다</button><button class="opt">탈 수 없다</button><button class="opt">알 수 없다</button></div>
-        <p class="explain" hidden>초과는 경계선을 <b>넘어야만</b> 인정 — 딱 36.5는 선 위에 서 있는 것이라 <b>탈 수 없어</b>. ‘이상’이었다면 탈 수 있었겠지. 놀이공원 안내판이 다 수학이야.</p>
+      <div class="q" data-qid="j-m-n5" data-answer="0">
+        <h3>피자 1/2판이 남았다. 그 중 2/3를 먹었다면 먹은 양은 <em>한 판 기준</em>으로?</h3>
+        <p class="qnote">‘남은 것의 2/3’ — 무엇의 일부인지가 핵심.</p>
+        <div class="opts"><button class="opt">1/3판</button><button class="opt">2/3판</button><button class="opt">2/5판</button></div>
+        <p class="explain" hidden>1/2 × 2/3 = 2/6 = <b>1/3판</b>. “2/3를 먹었다”는 말만 보면 많아 보이지만, 그건 <b>남은 반 판 기준</b>이었지. 분수 문제에서 늘 물어야 할 한 마디 — <b>“무엇의?”</b></p>
       </div>
     </section>
 
@@ -1114,20 +1103,43 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   <!-- ================= 국어 · 선우 ================= -->
   <section class="panel" data-subject="kor" data-child="sunwoo" hidden>
     <article class="stage">
-      <span class="stage-tag">글자의 부품</span>
-      <h2>글자 조립 공장</h2>
-      <p class="stage-sub">한글은 소리 부품을 조립해서 만든다. 첫소리·가운뎃소리·받침을 갈아 끼우면 글자가 실시간으로 바뀌고, 진짜 낱말을 만들면 신호가 켜진다.</p>
+      <span class="stage-tag">이번 주 금요일 · 배울 내용 살펴보기</span>
+      <h2>표지 탐정</h2>
+      <p class="stage-sub">읽기 전에 <b>제목과 그림만</b> 보고 무슨 이야기일지 맞혀보는 놀이. 짐작하고 읽으면 “아, 맞았다!” “어, 다르네?” 하면서 훨씬 잘 읽힌다.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="syll-out" id="ko-out">감</div>
-          <p class="word-badge" id="ko-badge"></p>
-          <div class="jamo-row"><span class="jamo-label">첫소리</span><span id="ko-cho"></span></div>
-          <div class="jamo-row"><span class="jamo-label">가운뎃소리</span><span id="ko-jung"></span></div>
-          <div class="jamo-row"><span class="jamo-label">받침</span><span id="ko-jong"></span></div>
+          <div class="cover" id="cv-card"></div>
+          <div class="controls" id="cv-opts"></div>
+          <p class="cv-fb" id="cv-fb"></p>
+          <div class="controls">
+            <button class="ctl" id="cv-open">첫 문장 펼쳐보기</button>
+            <button class="ctl quiet" id="cv-next">다음 책</button>
+          </div>
         </div>
         <aside class="read">
-          <p class="live" id="ko-live"></p>
-          <p class="why" id="ko-why"></p>
+          <p class="live" id="cv-live"></p>
+          <p class="why" id="cv-why"></p>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">이번 주 · 문장 부호</span>
+      <h2>부호 하나로 목소리 바꾸기</h2>
+      <p class="stage-sub">글자는 그대로인데 <b>끝에 붙는 부호</b>만 바꿔도 말투가 통째로 달라진다. 눌러서 소리 내어 읽어보자.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="bubble" id="pn-bubble"></div>
+          <div class="controls">
+            <button class="ctl" data-pn="." aria-pressed="true">마침표 .</button>
+            <button class="ctl" data-pn="?" aria-pressed="false">물음표 ?</button>
+            <button class="ctl" data-pn="!" aria-pressed="false">느낌표 !</button>
+          </div>
+          <div class="controls"><button class="ctl quiet" id="pn-next">다른 문장</button></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="pn-live"></p>
+          <p class="why" id="pn-why"></p>
         </aside>
       </div>
     </article>
@@ -1152,17 +1164,23 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
 
     <section class="quiz" data-for="sunwoo">
       <h2>확인 문제</h2>
-      <div class="q" data-qid="s-k1" data-answer="1">
-        <h3>‘강’의 받침은?</h3>
-        <p class="qnote">위 공장에서 ‘강’을 만들어봐.</p>
-        <div class="opts"><button class="opt">ㄱ</button><button class="opt">ㅇ</button><button class="opt">ㄴ</button></div>
-        <p class="explain" hidden>한글 글자는 <b>2층집</b>이야 — 위층에 ㄱ+ㅏ, 아래층(받침)에 <b>ㅇ</b>이 살면 ‘강’. 아래층 주민을 ㅁ으로 바꾸면 ‘감’, ㄹ이면 ‘갈’ — 집 모양은 그대로인데 낱말이 통째로 바뀌어.</p>
+      <div class="q" data-qid="s-k-n1" data-answer="1">
+        <h3>느낌표(!)를 붙이면 가장 어울리는 말은?</h3>
+        <p class="qnote">깜짝 놀라거나 마음이 커질 때 쓰는 부호야.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">오늘은 화요일이다</button><button class="opt" style="font-size:15px">와, 무지개다</button><button class="opt" style="font-size:15px">몇 시니</button></div>
+        <p class="explain" hidden>‘와’처럼 마음이 툭 튀어나오는 말엔 <b>느낌표</b>가 딱이야. 그냥 알려주는 말엔 마침표, 묻는 말엔 물음표. <b>부호는 목소리의 옷</b>이라고 생각하면 쉬워.</p>
       </div>
-      <div class="q" data-qid="s-k2" data-answer="2">
-        <h3>‘곰’의 받침 ㅁ을 ㅇ으로 바꾸면?</h3>
-        <p class="qnote">위 공장에서 직접 바꿔봐도 좋아.</p>
-        <div class="opts"><button class="opt">골</button><button class="opt">곤</button><button class="opt">공</button></div>
-        <p class="explain" hidden>소리로 실험해봐: 고—ㅁ(입술 닫힘), 고—ㅇ(콧소리 울림). 끝소리 스위치만 바꾸면 곰이 <b>공</b>으로 튕! 글자 공장에서 직접 눌러보면 입이 먼저 기억해.</p>
+      <div class="q" data-qid="s-k-n2" data-answer="0">
+        <h3>물음표(?)가 붙은 문장을 읽을 때, 목소리 끝은?</h3>
+        <p class="qnote">소리 내어 읽어보면 바로 알 수 있어.</p>
+        <div class="opts"><button class="opt">올라간다</button><button class="opt">내려간다</button><button class="opt">그대로다</button></div>
+        <p class="explain" hidden>“같이 가?” — 끝이 <b>올라가지</b>? 대답을 기다리는 마음이 목소리를 들어 올리는 거야. 마침표는 내려가고, 느낌표는 세게 나가. 부호는 눈으로 보는 게 아니라 <b>입으로 확인</b>하는 거야.</p>
+      </div>
+      <div class="q" data-qid="s-k-n3" data-answer="2">
+        <h3>책을 다 읽은 뒤 ‘마무리’로 하면 좋은 것은?</h3>
+        <p class="qnote">이번 주 수·목요일 국어 — 배운 내용을 마무리할 수 있다.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">책을 덮고 바로 잊기</button><button class="opt" style="font-size:15px">쪽수를 세어보기</button><button class="opt" style="font-size:15px">기억에 남는 장면을 말해보기</button></div>
+        <p class="explain" hidden>읽기 전엔 <b>짐작</b>, 읽은 뒤엔 <b>정리</b>. 가장 기억에 남는 장면 하나를 말해보는 것만으로도 이야기가 마음에 오래 남아. 앞뒤로 30초씩만 쓰면 읽기가 훨씬 단단해져.</p>
       </div>
     </section>
 
@@ -1213,41 +1231,62 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     </article>
 
     <article class="stage">
-      <span class="stage-tag">낱말의 짜임</span>
-      <h2>낱말 공장</h2>
-      <p class="stage-sub">낱말 두 개가 만나면 새 낱말이 된다. 부품을 골라 진짜 합성어 다섯 개를 모두 찾아보자 — 눈+물처럼, 뜻이 합쳐지며 살짝 달라지는 게 포인트.</p>
+      <span class="stage-tag">이번 주 화요일 · 공감하며 대화하기</span>
+      <h2>공감 대화 시뮬레이터</h2>
+      <p class="stage-sub">친구가 마음을 꺼냈다. 어떻게 답하느냐에 따라 <b>친구 마음 게이지</b>가 움직인다. 충고도 위로처럼 들리지 않을 때가 있다는 걸 눈으로 확인해보자.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="parts" id="kw-parts"></div>
-          <div class="combo-out">
-            <div class="combo-char" id="kw-char" style="font-family:'Do Hyeon',sans-serif;font-size:56px"></div>
-            <div class="combo-cap" id="kw-cap">낱말 두 개를 순서대로 골라봐</div>
-          </div>
-          <p class="found-count" id="kw-found"></p>
-        
-          <div class="controls"><button class="ctl quiet" id="kw-clear">고른 것 지우기</button></div>
+          <div class="talk" id="em-talk"></div>
+          <div class="gauge"><div class="gauge-fill" id="em-fill"></div></div>
+          <p class="gauge-label" id="em-label"></p>
+          <div class="controls" id="em-opts"></div>
+          <div class="controls"><button class="ctl quiet" id="em-next">다음 상황</button></div>
         </div>
         <aside class="read">
-          <p class="live" id="kw-live">‘눈’과 ‘물’이 만나면?</p>
-          <p class="why" id="kw-why">이렇게 만들어진 낱말이 <b>합성어</b>야. 낱말은 벽돌처럼 쌓을 수 있어.</p>
-          
+          <p class="live" id="em-live"></p>
+          <p class="why" id="em-why"></p>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">이번 주 금요일 · 작품 읽고 서평 쓰기</span>
+      <h2>서평 조립기</h2>
+      <p class="stage-sub">조각을 골라 서평을 조립해본다. 줄거리만 쌓으면 <b>요약</b>, 의견에 근거가 붙어야 비로소 <b>서평</b>. 완성도 막대가 그 차이를 알려준다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="rv-tray" id="rv-tray"></div>
+          <div class="rv-paper" id="rv-paper"></div>
+          <div class="gauge"><div class="gauge-fill" id="rv-fill"></div></div>
+          <p class="gauge-label" id="rv-label"></p>
+          <div class="controls"><button class="ctl quiet" id="rv-reset">처음부터</button></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="rv-live"></p>
+          <p class="why" id="rv-why"></p>
         </aside>
       </div>
     </article>
 
     <section class="quiz">
       <h2>확인 문제</h2>
-      <div class="q" data-qid="j-k1" data-answer="1">
-        <h3>‘눈사람’처럼 낱말 두 개가 합쳐진 말은?</h3>
-        <p class="qnote">쪼개서 각각 뜻이 있는지 봐.</p>
-        <div class="opts"><button class="opt">바람</button><button class="opt">손수건</button><button class="opt">구름</button></div>
-        <p class="explain" hidden><b>손+수건</b>은 둘 다 혼자서도 뜻이 있는 낱말. ‘바람’ ‘구름’은 쪼개면 뜻이 사라져 — 그게 홑낱말이야.</p>
+      <div class="q" data-qid="j-k-n1" data-answer="2">
+        <h3>공감 대화에서 ‘해결책’을 맨 먼저 꺼내면 잘 통하지 않는 까닭은?</h3>
+        <p class="qnote">위 시뮬레이터에서 충고를 골랐을 때 게이지가 어떻게 됐지?</p>
+        <div class="opts"><button class="opt" style="font-size:15px">해결책이 틀려서</button><button class="opt" style="font-size:15px">말이 길어져서</button><button class="opt" style="font-size:15px">마음이 정리되기 전엔 조언이 들리지 않아서</button></div>
+        <p class="explain" hidden>사람은 감정이 가득 찬 상태에서는 <b>정보를 받아들일 자리가 없어</b>. “속상했겠다”로 감정을 먼저 비워주면 그제야 조언이 들어갈 틈이 생겨. 충고가 나쁜 게 아니라 <b>순서</b>가 문제였던 거야.</p>
       </div>
-      <div class="q" data-qid="j-k2" data-answer="2">
-        <h3>낱말 두 개가 합쳐진 말이 <em>아닌</em> 것은?</h3>
-        <p class="qnote">쪼개봐서 두 조각 다 뜻이 살아 있는지 확인.</p>
-        <div class="opts"><button class="opt">눈물</button><button class="opt">꽃병</button><button class="opt">포도</button></div>
-        <p class="explain" hidden>눈+물, 꽃+병은 쪼개도 각각 뜻이 살아 있는 합성어. <b>포도</b>는 ‘포’와 ‘도’로 쪼개면 뜻이 사라지는 홑낱말이야.</p>
+      <div class="q" data-qid="j-k-n2" data-answer="1">
+        <h3>서평의 근거로 가장 힘이 센 것은?</h3>
+        <p class="qnote">읽지 않은 사람도 확인할 수 있어야 근거야.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">“다들 재미있다고 했다”</button><button class="opt" style="font-size:15px">“68쪽에서 ‘오늘도 못 했다’라고 혼잣말하는 장면”</button><button class="opt" style="font-size:15px">“표지가 예쁘다”</button></div>
+        <p class="explain" hidden>근거는 <b>책 속에서 누구나 찾아볼 수 있는 것</b>일수록 세. 남의 평가는 근거가 아니라 <b>또 다른 의견</b>이고, 표지는 내용과 상관없지. 장면·문장·쪽수를 데려오면 내 의견이 <b>확인 가능한 주장</b>이 된다.</p>
+      </div>
+      <div class="q" data-qid="j-k-n3" data-answer="0">
+        <h3>“이 책 재미있었다”로 끝난 글이 서평이 되기 어려운 까닭은?</h3>
+        <p class="qnote">읽는 사람 입장에서 생각해봐.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">읽는 사람이 동의도 반박도 할 수 없어서</button><button class="opt" style="font-size:15px">문장이 짧아서</button><button class="opt" style="font-size:15px">높임말이 아니라서</button></div>
+        <p class="explain" hidden>“재미있었다”는 <b>결론만 있고 길이 없는 글</b>이야. 왜 그렇게 느꼈는지가 없으니 읽는 사람은 고개를 끄덕일 수도, 갸웃할 수도 없지. <b>근거는 남을 설득하려고 붙이는 게 아니라, 대화를 이어가려고 붙이는 것</b>이야.</p>
       </div>
     </section>
 
@@ -2316,322 +2355,272 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     }, { passive: true });
   }
 
-  /* ================= 수학·선우: 100판 ================= */
-  var H = { sel:null, skip:1 };
-  var hBoard = $('h-board');
-  for (var hi = 1; hi <= 100; hi++){
-    (function(n){
-      var b = document.createElement('button');
-      b.className = 'hcell'; b.type = 'button'; b.textContent = n;
-      b.addEventListener('click', function(){ H.sel = (H.sel === n ? null : n); drawH(); });
-      hBoard.appendChild(b);
-    })(hi);
-  }
-  var hSkipBox = $('h-skips');
-  [[1,'1씩'],[2,'2씩 뛰기'],[5,'5씩 뛰기'],[10,'10씩 뛰기']].forEach(function(pair){
-    var b = document.createElement('button');
-    b.className = 'ctl'; b.type = 'button'; b.textContent = pair[1];
-    b.dataset.skip = pair[0];
-    b.addEventListener('click', function(){ H.skip = pair[0]; drawH(); });
-    hSkipBox.appendChild(b);
-  });
-  function drawH(){
-    var cells = hBoard.children;
-    for (var i = 1; i <= 100; i++){
-      var c = cells[i-1];
-      var isHop = H.skip > 1 && i % H.skip === 0;
-      c.classList.toggle('hop', isHop);
-      c.style.animationDelay = isHop ? ((i / H.skip) * 0.045).toFixed(2) + 's' : '';
-      c.classList.toggle('sel', H.sel === i);
-    }
-    Array.prototype.forEach.call(hSkipBox.children, function(b){
-      b.setAttribute('aria-pressed', parseInt(b.dataset.skip,10) === H.skip ? 'true' : 'false');
-    });
-    var bags = $('h-bags');
-    bags.innerHTML = '';
-    if (H.sel){
-      var tens = Math.floor(H.sel / 10), ones = H.sel % 10, k;
-      for (k = 0; k < tens; k++){ var t = document.createElement('span'); t.className = 'tenbag'; t.style.animationDelay = (k * 0.07) + 's'; bags.appendChild(t); }
-      for (k = 0; k < ones; k++){ var o = document.createElement('span'); o.className = 'onebit'; o.style.animationDelay = ((tens + k) * 0.07) + 's'; bags.appendChild(o); }
-      $('h-live').textContent = H.sel + '은 10개씩 ' + tens + '묶음, 낱개 ' + ones + '개.';
-      $('h-why').innerHTML = '앞 숫자 <b>' + tens + '</b>는 묶음 자리, 뒤 숫자 <b>' + ones + '</b>는 낱개 자리. 숫자의 <b>자리</b>가 뜻을 말해줘.';
-    } else if (H.skip > 1){
-      $('h-live').textContent = H.skip + '씩 뛰면 파란 칸을 밟고 간다.';
-      $('h-why').innerHTML = H.skip === 10
-        ? '10씩 뛰면 <b>오른쪽 끝 줄</b>로 곧장 내려가. 앞자리만 1씩 커지고 있어.'
-        : '파란 칸의 무늬를 봐 — 뛰어세기는 <b>무늬 찾기</b>야.';
-    } else {
-      $('h-live').textContent = '숫자를 하나 눌러봐.';
-      $('h-why').innerHTML = '누르면 그 수가 <b>묶음과 낱개</b>로 갈라져서 보여.';
-    }
-  }
-  drawH();
-
-  /* ================= 수학·선우: 10 만들기 ================= */
-  var aFrame = $('a-frame'), aState = [], aTarget = 3 + Math.floor(Math.random() * 7);
-  $('a-target').textContent = aTarget;
-  for (var ai = 0; ai < 10; ai++){
-    var ac = document.createElement('button');
-    ac.className = 'cell'; ac.type = 'button';
-    ac.setAttribute('aria-label', (ai+1) + '번 칸');
-    ac.dataset.on = '0';
-    aState.push(0);
-    (function(idx, el){
-      el.addEventListener('click', function(){
-        aState[idx] = aState[idx] ? 0 : 1;
-        el.dataset.on = aState[idx] ? '1' : '0';
-        drawA();
-      });
-    })(ai, ac);
-    aFrame.appendChild(ac);
-  }
-  function drawA(){
-    var filled = aState.reduce(function(s,v){ return s+v; }, 0);
-    var gap = 10 - filled;
-    for (var i = 0; i < 10; i++){
-      aFrame.children[i].dataset.gap = (!aState[i] && filled > 0) ? '1' : '0';
-    }
-    $('a-eq').innerHTML = '<span class="n-red">' + filled + '</span><span class="op">+</span>' +
-      '<span class="n-blue">' + gap + '</span><span class="op">=</span><span>10</span>';
-    if (filled === 0){
-      $('a-live').textContent = '판이 비어 있어. 구슬을 놓아보자.';
-      $('a-why').innerHTML = '칸을 누르면 구슬이 놓여. 빈칸은 <b>파랗게</b> 켜질 거야.';
-    } else if (filled === aTarget){
-      $('a-live').textContent = aTarget + '개를 놓았어. 빈칸은 ' + gap + '칸.';
-      $('a-why').innerHTML = '그래서 <b>' + aTarget + '의 짝꿍은 ' + gap + '</b>. 세어보지 않아도 빈칸이 알려줘.';
-    } else {
-      $('a-live').textContent = filled + '개 놓았고, ' + gap + '칸이 비었어.';
-      $('a-why').innerHTML = '목표는 <b>' + aTarget + '개</b>. ' +
-        (filled < aTarget ? (aTarget - filled) + '개 더 놓아볼까?' : (filled - aTarget) + '개는 다시 눌러서 빼자.');
-    }
-  }
-  $('a-new').addEventListener('click', function(){
-    var n = aTarget;
-    while (n === aTarget) n = 1 + Math.floor(Math.random() * 9);
-    aTarget = n; $('a-target').textContent = aTarget;
-    for (var i = 0; i < 10; i++){ aState[i] = 0; aFrame.children[i].dataset.on = '0'; }
-    drawA();
-  });
-  $('a-clear').addEventListener('click', function(){
-    for (var i = 0; i < 10; i++){ aState[i] = 0; aFrame.children[i].dataset.on = '0'; }
-    drawA();
-  });
-  drawA();
-
-  /* ================= 수학·선우: 묶어 세기 ================= */
-  var totals = [12, 16, 18, 24], tIdx = 0, bSize = 3;
-  function divisors(n){
-    var out = [];
-    for (var k = 2; k <= 6; k++) if (n % k === 0) out.push(k);
-    return out;
-  }
-  function drawB(){
-    var n = totals[tIdx], sizes = divisors(n);
-    if (sizes.indexOf(bSize) === -1) bSize = sizes[0];
-    var sizeBox = $('b-sizes');
-    sizeBox.innerHTML = '';
-    sizes.forEach(function(k){
-      var b = document.createElement('button');
-      b.className = 'ctl'; b.type = 'button'; b.textContent = k + '개씩';
-      b.setAttribute('aria-pressed', k === bSize ? 'true' : 'false');
-      b.addEventListener('click', function(){ bSize = k; drawB(); });
-      sizeBox.appendChild(b);
-    });
-    var box = $('b-groups');
-    box.innerHTML = '';
-    var made = Math.floor(n / bSize), rest = n % bSize, g, d, i, j;
-    function pawSVG(color){
-      return '<svg width="22" height="22" viewBox="0 0 22 22">' +
-        '<circle cx="5.2" cy="7" r="2.6" fill="' + color + '" stroke="#2B2B2B" stroke-width="1.2"/>' +
-        '<circle cx="11" cy="5" r="2.8" fill="' + color + '" stroke="#2B2B2B" stroke-width="1.2"/>' +
-        '<circle cx="16.8" cy="7" r="2.6" fill="' + color + '" stroke="#2B2B2B" stroke-width="1.2"/>' +
-        '<ellipse cx="11" cy="14.5" rx="6.4" ry="5" fill="' + color + '" stroke="#2B2B2B" stroke-width="1.4"/></svg>';
-    }
-    for (i = 0; i < made; i++){
-      g = document.createElement('div'); g.className = 'grp';
-      g.style.animationDelay = (i * 0.08) + 's';
-      for (j = 0; j < bSize; j++){ d = document.createElement('span'); d.className = 'pup-dot'; d.innerHTML = pawSVG('#6FBF8F'); g.appendChild(d); }
-      box.appendChild(g);
-    }
-    if (rest){
-      g = document.createElement('div'); g.className = 'grp leftover';
-      g.style.animationDelay = (made * 0.08) + 's';
-      for (j = 0; j < rest; j++){ d = document.createElement('span'); d.className = 'pup-dot'; d.innerHTML = pawSVG('#9AA39B'); g.appendChild(d); }
-      box.appendChild(g);
-    }
-    $('b-live').textContent = bSize + '개씩 ' + made + '묶음' + (rest ? ', 남는 건 ' + rest + '개' : '') + '.';
-    $('b-why').innerHTML = rest
-      ? '딱 나눠떨어지지 않았어. 남은 <b>' + rest + '개</b>가 나중에 나머지가 되는 거야.'
-      : '<b>' + bSize + ' × ' + made + ' = ' + n + '</b>. 같은 ' + n + '개를 다른 크기로 묶어도 개수는 그대로야.';
-  }
-  $('b-total').addEventListener('click', function(){ tIdx = (tIdx + 1) % totals.length; drawB(); });
-  drawB();
-  /* ================= 수학·지우: 정사각형의 비밀 ================= */
-  var P = { mode:'grow', n:4 + Math.floor(Math.random() * 4), grown:false, k:1, oddN:7 };
-  var pGrid = $('p-grid');
-  var LAYERC = ['#D84E33','#E3A92C','#2F8C64','#2E6BAF','#6E4FA3','#C6613F','#4E8FA0'];
-  function drawP(){
-    pGrid.innerHTML = '';
-    if (P.mode === 'grow'){
-      var n = P.n, size = n + 1, r, c;
-      pGrid.style.gridTemplateColumns = 'repeat(' + size + ',15px)';
-      for (r = 0; r < size; r++){
-        for (c = 0; c < size; c++){
-          var d = document.createElement('span');
-          d.className = 'pdot';
-          var extra = (r === n || c === n);
-          if (extra){
-            if (!P.grown) d.className += ' ghost';
-            else {
-              d.className += (r === n && c === n) ? ' corner' : ' addc';
-              d.style.animationDelay = ((r === n ? c : r) * 0.05 + (r === n && c === n ? 0.5 : (r === n ? 0.25 : 0))).toFixed(2) + 's';
-            }
-          }
-          pGrid.appendChild(d);
-        }
+  /* ================= 수학·선우: 짝꿍 만들기 기계 ================= */
+  (function(){
+    var field = document.getElementById('pr-field'); if (!field) return;
+    var N = 8, paired = false;
+    function draw(){
+      document.getElementById('pr-n').textContent = N + '개';
+      field.innerHTML = '';
+      if (!paired){
+        var box = document.createElement('div'); box.className = 'pair'; box.style.border = 'none'; box.style.background = 'none';
+        box.style.flexWrap = 'wrap'; box.style.maxWidth = '100%';
+        for (var i=0;i<N;i++){ var d=document.createElement('span'); d.className='pball'; d.style.animationDelay=(i*0.03)+'s'; box.appendChild(d); }
+        field.appendChild(box);
+        document.getElementById('pr-live').innerHTML = '구슬 <b>' + N + '개</b>. 둘씩 짝지어 볼까?';
+        document.getElementById('pr-why').innerHTML = '버튼을 눌러 <b>둘씩 손을 잡게</b> 해보자. 남는 친구가 있는지 없는지가 전부야.';
+        return;
       }
-      if (P.grown){
-        $('p-eq').innerHTML = n + '×' + n + ' <span class="y">+ ' + n + ' + ' + n + '</span> <span class="r">+ 1</span> = ' + (n+1) + '×' + (n+1) + ' = ' + (n+1)*(n+1);
-        $('p-live').textContent = n + '×' + n + ' 이 ' + (n+1) + '×' + (n+1) + ' 이 되는 순간.';
-        $('p-why').innerHTML = '다시 다 세지 않았어 — 오른쪽 한 줄(' + n + '), 아래 한 줄(' + n + '), 모서리 <b>1</b>. 변화만 보면 <b>큰 곱셈이 덧셈</b>이 돼.';
-      } else {
-        $('p-eq').innerHTML = n + '×' + n + ' = ' + n*n;
-        $('p-live').textContent = '지금은 ' + n + '×' + n + ' 정사각형.';
-        $('p-why').innerHTML = '‘한 줄 더해보기’를 누르면 <b>' + (n+1) + '×' + (n+1) + '</b> 이 되는 데 필요한 만큼만 켜져.';
+      var pairs = Math.floor(N/2), rest = N % 2, k = 0;
+      for (var q=0;q<pairs;q++){
+        var b=document.createElement('div'); b.className='pair'; b.style.animationDelay=(q*0.06)+'s';
+        b.innerHTML = '<span class="pball"></span><span class="pball"></span>'; field.appendChild(b); k++;
       }
-      $('p-grow').textContent = P.grown ? '다시 줄이기' : '한 줄 더해보기';
-    } else {
-      var N = P.oddN, k = P.k, rr, cc;
-      pGrid.style.gridTemplateColumns = 'repeat(' + N + ',15px)';
-      for (rr = 0; rr < N; rr++){
-        for (cc = 0; cc < N; cc++){
-          var dd = document.createElement('span');
-          dd.className = 'pdot';
-          var layer = Math.max(rr, cc) + 1;
-          if (layer <= k) dd.style.background = LAYERC[(layer-1) % LAYERC.length];
-          else dd.className += ' ghost';
-          pGrid.appendChild(dd);
-        }
+      if (rest){
+        var r=document.createElement('div'); r.className='pair lonely'; r.style.animationDelay=(k*0.06)+'s';
+        r.innerHTML = '<span class="pball alone"></span>'; field.appendChild(r);
       }
-      var odds = [], s = 0;
-      for (var oi = 1; oi <= k; oi++){ odds.push(2*oi - 1); s += 2*oi - 1; }
-      $('p-eq').textContent = odds.join(' + ') + ' = ' + s + ' = ' + k + '×' + k;
-      $('p-live').textContent = '홀수 ' + k + '개를 ㄱ자로 접어 쌓았어.';
-      $('p-why').innerHTML = k < 2
-        ? '‘한 층 더’를 눌러봐. 다음 홀수가 <b>ㄱ자</b>로 감싸며 쌓여.'
-        : '홀수는 늘 ㄱ자로 <b>딱 맞게</b> 감싼다. 그래서 홀수 ' + k + '개의 합은 언제나 <b>' + k + '×' + k + '</b>.';
+      var tail = N % 10;
+      document.getElementById('pr-live').innerHTML = rest
+        ? N + ' → 짝 ' + pairs + '개와 <b>남는 하나</b> → <b>홀수</b>'
+        : N + ' → 짝 ' + pairs + '개, <b>남는 것 없음</b> → <b>짝수</b>';
+      document.getElementById('pr-why').innerHTML = rest
+        ? '하나가 손을 못 잡고 남았지? 이런 수가 <b>홀수</b>야. 끝자리를 봐 — <b>' + tail + '</b>처럼 1·3·5·7·9로 끝나면 아무리 큰 수라도 홀수. 백 개를 세지 않아도 <b>맨 끝 한 자리</b>만 보면 알 수 있어.'
+        : '전부 짝이 맞았어 — <b>짝수</b>. 끝자리가 <b>' + tail + '</b>이지? 0·2·4·6·8로 끝나면 짝수야. 그래서 78도, 156도 세어보지 않고 바로 알 수 있어.';
     }
-  }
-  $('p-mode-grow').addEventListener('click', function(){
-    P.mode = 'grow';
-    $('p-mode-grow').setAttribute('aria-pressed','true');
-    $('p-mode-odd').setAttribute('aria-pressed','false');
-    $('p-ctl-grow').hidden = false; $('p-ctl-odd').hidden = true;
-    drawP();
-  });
-  $('p-mode-odd').addEventListener('click', function(){
-    P.mode = 'odd';
-    $('p-mode-grow').setAttribute('aria-pressed','false');
-    $('p-mode-odd').setAttribute('aria-pressed','true');
-    $('p-ctl-grow').hidden = true; $('p-ctl-odd').hidden = false;
-    drawP();
-  });
-  $('p-grow').addEventListener('click', function(){ P.grown = !P.grown; drawP(); });
-  $('p-minus').addEventListener('click', function(){ P.n = Math.max(3, P.n - 1); P.grown = false; drawP(); });
-  $('p-plus').addEventListener('click', function(){ P.n = Math.min(8, P.n + 1); P.grown = false; drawP(); });
-  $('p-layer').addEventListener('click', function(){ P.k = Math.min(P.oddN, P.k + 1); drawP(); });
-  $('p-reset').addEventListener('click', function(){ P.k = 1; drawP(); });
-  drawP();
-
-  /* ================= 수학·지우: 넓이 모델 ================= */
-  var D = { n1:2, d1:3, n2:3, d2:4 };
-  function drawD(){
-    D.d1 = Math.max(2, Math.min(8, D.d1));
-    D.d2 = Math.max(2, Math.min(8, D.d2));
-    D.n1 = Math.max(1, Math.min(D.d1, D.n1));
-    D.n2 = Math.max(1, Math.min(D.d2, D.n2));
-    var el = $('d-area');
-    el.style.gridTemplateColumns = 'repeat(' + D.d1 + ',1fr)';
-    el.style.gridTemplateRows = 'repeat(' + D.d2 + ',1fr)';
-    el.innerHTML = '';
-    for (var r = 0; r < D.d2; r++){
-      for (var c = 0; c < D.d1; c++){
-        var cell = document.createElement('span');
-        var inCol = c < D.n1, inRow = r < D.n2;
-        cell.className = 'acell' + (inCol && inRow ? ' both' : inCol ? ' col' : inRow ? ' row' : '');
-        if (inCol || inRow) cell.style.animationDelay = ((r + c) * 0.03) + 's';
-        el.appendChild(cell);
-      }
-    }
-    var whole = D.d1 * D.d2, hit = D.n1 * D.n2, g = gcd(hit, whole);
-    $('d-live').textContent = D.n1 + '/' + D.d1 + ' × ' + D.n2 + '/' + D.d2 + ' = ' + hit + '/' + whole +
-      (g > 1 ? ' = ' + (hit/g) + '/' + (whole/g) : '');
-    $('d-why').innerHTML = '전체 <b>' + D.d1 + '×' + D.d2 + ' = ' + whole + '칸</b>, 겹친 자리 <b>' + D.n1 + '×' + D.n2 + ' = ' + hit + '칸</b>. ' +
-      '분자끼리 분모끼리 곱하라는 규칙이 <b>여기서 나온 거야</b>.';
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('[data-area]'), function(b){
-    b.addEventListener('click', function(){
-      D[b.dataset.area] += parseInt(b.dataset.step, 10);
-      drawD();
-    });
-  });
-  drawD();
-
-  /* ================= 수학·지우: 분수 막대 ================= */
-  var F = (function(){
-    var pool = [[1,2,3,6],[2,3,4,6],[3,4,6,8],[1,4,2,8],[2,5,3,7],[1,3,2,5],[1,2,2,4]];
-    var p = pool[Math.floor(Math.random() * pool.length)];
-    return { a:{num:p[0], den:p[1]}, b:{num:p[2], den:p[3]} };
+    document.getElementById('pr-minus').addEventListener('click', function(){ if (N>1){ N--; paired=false; draw(); } });
+    document.getElementById('pr-plus').addEventListener('click', function(){ if (N<20){ N++; paired=false; draw(); } });
+    document.getElementById('pr-go').addEventListener('click', function(){ paired=true; draw(); });
+    document.getElementById('pr-reset').addEventListener('click', function(){ paired=false; draw(); });
+    draw();
   })();
-  function buildTrack(el, f){
-    el.innerHTML = '';
-    for (var i = 0; i < f.den; i++){
-      var s = document.createElement('span');
-      s.className = 'slice' + (i < f.num ? ' on' : '');
-      if (i < f.num) s.style.animationDelay = (i * 0.05) + 's';
-      el.appendChild(s);
+
+  /* ================= 수학·선우: 수 저울 ================= */
+  (function(){
+    var beam = document.getElementById('bl-beam'); if (!beam) return;
+    var L = 62, R = 58;
+    function fill(tid, oid, n){
+      var t = document.getElementById(tid), o = document.getElementById(oid), i;
+      t.innerHTML=''; o.innerHTML='';
+      for (i=0;i<Math.floor(n/10);i++){ var b=document.createElement('span'); b.className='tenbar'; b.style.animationDelay=(i*0.04)+'s'; t.appendChild(b); }
+      for (i=0;i<n%10;i++){ var d=document.createElement('span'); d.className='onedot'; d.style.animationDelay=(0.2+i*0.03)+'s'; o.appendChild(d); }
     }
-  }
-  function drawC(){
-    ['a','b'].forEach(function(k){
-      var f = F[k];
-      f.den = Math.max(2, Math.min(12, f.den));
-      f.num = Math.max(1, Math.min(f.den, f.num));
-      $(k + '-num').textContent = f.num;
-      $(k + '-den').textContent = f.den;
-      buildTrack($(k + '-track'), f);
-    });
-    var A = F.a, B = F.b;
-    var va = A.num / A.den, vb = B.num / B.den;
-    var L = A.den * B.den / gcd(A.den, B.den);
-    var ca = A.num * (L / A.den), cb = B.num * (L / B.den);
-    var v = $('c-verdict');
-    if (Math.abs(va - vb) < 1e-9){
-      v.textContent = A.num + '/' + A.den + ' 과 ' + B.num + '/' + B.den + ' 은 같은 크기';
-      v.className = 'verdict same';
-      $('c-live').textContent = '두 막대 길이가 정확히 맞아떨어졌어.';
-      $('c-why').innerHTML = '둘 다 <b>' + L + '칸</b>으로 쪼개면 ' + ca + '/' + L + ' 과 ' + cb + '/' + L + '. 숫자는 달라도 <b>크기가 하나</b>라서 같은 분수야.';
-    } else {
-      var bigger = va > vb ? (A.num + '/' + A.den) : (B.num + '/' + B.den);
-      v.textContent = bigger + ' 이 더 크다';
-      v.className = 'verdict';
-      $('c-live').textContent = '길이가 다르네. ' + bigger + ' 쪽이 더 길어.';
-      $('c-why').innerHTML = '<b>' + L + '칸</b>짜리 같은 자로 재면 ' + ca + '/' + L + ' 대 ' + cb + '/' + L + '. 분모를 맞추는 이유가 이거야 — <b>같은 자로 재려고</b>.';
+    function draw(){
+      fill('bl-tL','bl-oL',L); fill('bl-tR','bl-oR',R);
+      document.getElementById('bl-nL').textContent = L;
+      document.getElementById('bl-nR').textContent = R;
+      var pl = document.getElementById('bl-panL'), pr = document.getElementById('bl-panR');
+      pl.className = 'pan'; pr.className = 'pan';
+      var tl = Math.floor(L/10), tr = Math.floor(R/10);
+      if (L > R){ beam.style.transform='rotate(-5deg)'; pl.classList.add('down'); pr.classList.add('up'); }
+      else if (R > L){ beam.style.transform='rotate(5deg)'; pr.classList.add('down'); pl.classList.add('up'); }
+      else { beam.style.transform='rotate(0deg)'; }
+      var live = document.getElementById('bl-live'), why = document.getElementById('bl-why');
+      if (L === R){ live.innerHTML = L + ' = ' + R + ' — 저울이 <b>평평</b>하다.'; why.innerHTML='묶음도 낱개도 똑같으니 저울이 기울 이유가 없지.'; return; }
+      var big = L>R ? L : R, small = L>R ? R : L;
+      live.innerHTML = big + ' <b>&gt;</b> ' + small + ' — 저울은 <b>' + (L>R?'왼':'오른') + '쪽</b>으로 기울었다.';
+      if (tl !== tr){
+        why.innerHTML = '묶음 막대를 먼저 세어봐: <b>' + tl + '개 vs ' + tr + '개</b>. 막대 하나가 낱개 열 개니까, 낱개가 아무리 많아도 <b>막대 하나를 못 이겨</b>. 그래서 묶음부터 보는 거야.';
+      } else {
+        why.innerHTML = '막대 수가 <b>둘 다 ' + tl + '개</b>로 같네? 이럴 때만 낱개를 세면 돼 — <b>' + (L%10) + ' vs ' + (R%10) + '</b>. 큰 상자가 같을 때 비로소 작은 알맹이가 승부를 낸다.';
+      }
     }
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('[data-frac]'), function(b){
-    b.addEventListener('click', function(){
-      F[b.dataset.frac][b.dataset.part] += parseInt(b.dataset.step, 10);
-      drawC();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-bl]'), function(b){
+      b.addEventListener('click', function(){
+        var k=b.dataset.bl;
+        if (k==='L-'&&L>1) L--; if (k==='L+'&&L<99) L++;
+        if (k==='R-'&&R>1) R--; if (k==='R+'&&R<99) R++;
+        draw();
+      });
     });
-  });
-  $('c-shuffle').addEventListener('click', function(){
-    var pool = [[1,2,3,6],[2,3,4,6],[3,4,6,8],[1,4,2,8],[2,5,3,7],[1,3,2,5]];
-    var p = pool[Math.floor(Math.random() * pool.length)];
-    F.a.num = p[0]; F.a.den = p[1]; F.b.num = p[2]; F.b.den = p[3];
-    drawC();
-  });
-  drawC();
+    document.getElementById('bl-new').addEventListener('click', function(){
+      do { L = 11 + Math.floor(Math.random()*88); R = 11 + Math.floor(Math.random()*88); } while (L === R);
+      if (Math.random() < 0.5){ R = Math.floor(L/10)*10 + Math.floor(Math.random()*10); if (R===L) R = L>0? L-1 : L+1; }
+      draw();
+    });
+    draw();
+  })();
+
+  /* ================= 수학·선우: 수 기차 ================= */
+  (function(){
+    var cars = document.getElementById('tr-cars'); if (!cars) return;
+    var step = 1, seq = [], blank = 2, done = false;
+    function make(){
+      done = false;
+      var start = 1 + Math.floor(Math.random() * (step===10 ? 8 : (90 - step*5)));
+      if (step===10) start = 1 + Math.floor(Math.random()*9);
+      seq = []; for (var i=0;i<5;i++) seq.push(start + i*step);
+      blank = 1 + Math.floor(Math.random()*3);
+      draw();
+    }
+    function draw(){
+      cars.innerHTML = '';
+      seq.forEach(function(v,i){
+        var c=document.createElement('div');
+        c.className='car' + (i===blank ? (done?' filled':' blank') : '');
+        c.textContent = (i===blank && !done) ? '?' : v;
+        c.style.animationDelay = (i*0.05)+'s';
+        cars.appendChild(c);
+      });
+      var opts = document.getElementById('tr-opts'); opts.innerHTML='';
+      if (!done){
+        var ans = seq[blank];
+        var pool = [ans, ans + step, ans - step];
+        if (step === 1) pool[2] = ans + 10;
+        pool.sort(function(){ return Math.random()-0.5; });
+        pool.forEach(function(v){
+          var b=document.createElement('button'); b.className='ctl'; b.textContent=v;
+          b.addEventListener('click', function(){
+            if (v === ans){ done = true; document.getElementById('tr-fb').textContent='딱 맞았다!'; draw(); }
+            else { document.getElementById('tr-fb').textContent = '다시 — 앞 칸에서 ' + step + '씩 걸어가 보자.'; b.classList.add('shake'); setTimeout(function(){ b.classList.remove('shake'); },400); }
+          });
+          opts.appendChild(b);
+        });
+      } else { document.getElementById('tr-fb').textContent = '딱 맞았다!'; }
+      document.getElementById('tr-live').innerHTML = '<b>' + step + '씩</b> 뛰는 기차. 빈칸에 앉을 수는?';
+      document.getElementById('tr-why').innerHTML = step === 10
+        ? '10씩 뛰면 <b>낱개는 그대로, 묶음만 하나씩</b> 늘어. 앞자리 숫자만 1씩 커지는 게 보이지? 그래서 큰 수도 무섭지 않아.'
+        : (step === 2
+          ? '2씩 뛰면 짝수만, 또는 홀수만 밟게 돼. 한 칸 건너뛰기는 <b>짝수·홀수의 사촌</b>이야.'
+          : '수의 순서는 <b>한 칸씩 걷는 길</b>이야. 세지 말고 <b>앞 칸에서 한 걸음</b>만 더 가면 답이 나와.');
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-step]'), function(b){
+      b.addEventListener('click', function(){
+        step = parseInt(b.dataset.step,10);
+        Array.prototype.forEach.call(document.querySelectorAll('[data-step]'), function(x){ x.setAttribute('aria-pressed', x===b?'true':'false'); });
+        make();
+      });
+    });
+    document.getElementById('tr-new').addEventListener('click', make);
+    make();
+  })();
+
+  /* ================= 수학·지우: 반올림 언덕 ================= */
+  (function(){
+    var svg = document.getElementById('rh-svg'); if (!svg) return;
+    var num = 3480, place = 1000, rolled = false;
+    function draw(animate){
+      var lo = Math.floor(num/place)*place, hi = lo + place, mid = lo + place/2;
+      var t = (num - lo) / place;
+      var ball = document.getElementById('rh-ball');
+      document.getElementById('rh-lo').textContent = lo.toLocaleString();
+      document.getElementById('rh-hi').textContent = hi.toLocaleString();
+      document.getElementById('rh-mid').textContent = '언덕 꼭대기 ' + mid.toLocaleString();
+      document.getElementById('rh-num').textContent = num.toLocaleString();
+      var x = 20 + 360 * (rolled ? (num - lo >= place/2 ? 1 : 0) : t);
+      var y = rolled ? 120 : (120 - 92 * (4*t*(1-t)));
+      ball.setAttribute('cx', x); ball.setAttribute('cy', y);
+      var live = document.getElementById('rh-live'), why = document.getElementById('rh-why');
+      var digit = Math.floor((num % place) / (place/10));
+      if (!rolled){
+        live.innerHTML = num.toLocaleString() + ' 은(는) ' + lo.toLocaleString() + ' 과 ' + hi.toLocaleString() + ' 사이. 공은 어디로 굴러갈까?';
+        why.innerHTML = '언덕 꼭대기는 <b>' + mid.toLocaleString() + '</b> — 정확히 한가운데야. 공이 꼭대기보다 <b>왼쪽에 있으면 아래로</b>, <b>오른쪽에 있으면 위로</b> 굴러가. 반올림은 “가까운 쪽으로 굴러가기”, 그뿐이야.';
+      } else {
+        var res = (num - lo >= place/2) ? hi : lo;
+        live.innerHTML = num.toLocaleString() + ' → <b>' + res.toLocaleString() + '</b>';
+        why.innerHTML = '기준이 되는 자리 바로 <b>아래 칸</b> 숫자는 <b>' + digit + '</b>. ' +
+          (digit >= 5
+            ? '5 이상이면 언덕 오른쪽 — 위층 <b>' + hi.toLocaleString() + '</b>으로 올라간다. 딱 5일 때는 어느 쪽도 가깝지 않아 애매하니, <b>“5는 위로”</b>라고 세상이 약속해둔 거야.'
+            : '5보다 작으면 언덕 왼쪽 — 아래층 <b>' + lo.toLocaleString() + '</b>으로 내려간다. 뒤에 붙은 숫자가 아무리 많아도, <b>바로 아래 한 자리</b>만 보면 끝나는 이유가 이 언덕 그림에 다 있어.');
+      }
+      Array.prototype.forEach.call(document.querySelectorAll('[data-place]'), function(b){
+        b.setAttribute('aria-pressed', parseInt(b.dataset.place,10) === place ? 'true' : 'false');
+      });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-rh]'), function(b){
+      b.addEventListener('click', function(){
+        num = Math.max(0, num + parseInt(b.dataset.rh,10)); rolled = false; draw();
+      });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-place]'), function(b){
+      b.addEventListener('click', function(){ place = parseInt(b.dataset.place,10); rolled = false; draw(); });
+    });
+    document.getElementById('rh-roll').addEventListener('click', function(){ rolled = !rolled; draw(); });
+    draw();
+  })();
+
+  /* ================= 수학·지우: 어림 결정기 ================= */
+  (function(){
+    var card = document.getElementById('es-card'); if (!card) return;
+    var SITS = [
+      { t:'학생 <b>178명</b>이 <b>45인승</b> 버스로 소풍을 간다. 버스는 몇 대 필요할까?', ok:'up',
+        why:'178 ÷ 45 = 3…43. 3대면 <b>43명이 길에 남는다</b>. 사람을 두고 갈 수 없으니 무조건 한 대 더 — <b>올림</b>. “모자라면 안 되는 것”은 언제나 올림이야.',
+        bad:{ down:'버림하면 3대. 43명은 걸어가야 할까?', round:'반올림해도 4대가 나오지만, 그건 <b>우연</b>이야. 만약 178명이 아니라 140명(3.1대)이었다면 반올림은 3대라고 답해서 5명을 두고 갔을 거야.' } },
+      { t:'사탕 <b>123개</b>를 <b>10개씩</b> 봉지에 담아 <b>팔려고</b> 한다. 팔 수 있는 봉지는 몇 개?', ok:'down',
+        why:'12봉지를 채우고 3개가 남아. 남은 3개로는 봉지를 만들 수 없으니 <b>버림</b>해서 12봉지. “완성된 것만 세는 상황”은 버림이야.',
+        bad:{ up:'올림하면 13봉지. 마지막 봉지엔 3개밖에 없는데 10개짜리로 팔 수 있을까?', round:'반올림도 12지만 이유가 달라. 여기선 “가까워서”가 아니라 <b>“못 채우면 못 판다”</b>가 이유야.' } },
+      { t:'우리 학교 학생 수는 <b>1,183명</b>. 학교 신문에 “약 몇 명”이라고 <b>소개</b>하려면?', ok:'round',
+        why:'정확한 값이 필요 없고 <b>느낌만 전하면 되는 상황</b>. 가장 가까운 값 <b>약 1,200명</b>이 진짜 수를 가장 덜 왜곡해. 소개·통계·뉴스는 대부분 반올림이야.',
+        bad:{ up:'올림하면 1,200. 값은 같아 보여도, 올림은 “남으면 안 될 때” 쓰는 방법이라 이유가 틀려.', down:'버림하면 1,100 — 83명이 통째로 사라진다. 사람을 소개하는데 83명을 지울 순 없지.' } },
+      { t:'가격이 <b>3,480원</b>. 천 원짜리 지폐로만 내야 한다면 몇 장?', ok:'up',
+        why:'3장이면 480원이 모자라 물건을 못 산다. <b>모자라면 안 되니까 올림</b>해서 4장. 거스름돈은 받으면 되지만, 모자란 돈은 방법이 없거든.',
+        bad:{ down:'버림하면 3장 — 계산대에서 480원이 부족해.', round:'반올림하면 3,000원어치, 즉 3장. 역시 480원 모자라. <b>“얼마쯤인지”와 “얼마를 내야 하는지”는 다른 질문</b>이야.' } }
+    ];
+    var i = 0, answered = false;
+    function draw(){
+      answered = false;
+      card.innerHTML = SITS[i].t;
+      var fb = document.getElementById('es-fb'); fb.textContent=''; fb.className='es-fb';
+      document.getElementById('es-live').innerHTML = '이 상황엔 어떤 어림이 맞을까?';
+      document.getElementById('es-why').innerHTML = '숫자를 보지 말고 <b>상황을 봐</b>. “모자라면 안 되나?”, “못 채운 건 버리나?”, “대충 알려주면 되나?” — 이 질문 하나가 방법을 정한다.';
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-es]'), function(b){
+      b.addEventListener('click', function(){
+        var pick = b.dataset.es, S = SITS[i], fb = document.getElementById('es-fb');
+        if (pick === S.ok){
+          fb.textContent = '맞았다!'; fb.className='es-fb ok';
+          document.getElementById('es-why').innerHTML = S.why;
+          document.getElementById('es-live').innerHTML = '정답 — <b>' + ({up:'올림',down:'버림',round:'반올림'})[S.ok] + '</b>';
+          answered = true;
+        } else {
+          fb.textContent = '다시 생각해보자'; fb.className='es-fb no';
+          document.getElementById('es-why').innerHTML = (S.bad && S.bad[pick]) || '다른 방법을 생각해봐.';
+        }
+      });
+    });
+    document.getElementById('es-next').addEventListener('click', function(){ i = (i+1) % SITS.length; draw(); });
+    draw();
+  })();
+
+  /* ================= 수학·지우: 분수 곱셈 겹치기판 ================= */
+  (function(){
+    var grid = document.getElementById('fg-grid'); if (!grid) return;
+    var a=2,b=3,c=3,d=4;
+    function gcd(x,y){ return y? gcd(y,x%y) : x; }
+    function draw(){
+      grid.style.gridTemplateColumns = 'repeat(' + b + ',1fr)';
+      grid.style.gridTemplateRows = 'repeat(' + d + ',1fr)';
+      grid.innerHTML='';
+      for (var r=0;r<d;r++){
+        for (var q=0;q<b;q++){
+          var cell=document.createElement('div');
+          var inH = q < a, inV = r < c;
+          cell.className='fcell' + (inH&&inV ? ' both' : (inH ? ' h' : (inV ? ' v' : '')));
+          if (inH&&inV) cell.style.animationDelay = ((r*b+q)*0.02)+'s';
+          grid.appendChild(cell);
+        }
+      }
+      var num=a*c, den=b*d, g=gcd(num,den);
+      document.getElementById('fg-eq').innerHTML =
+        a+'/'+b+' × '+c+'/'+d+' = <b>'+num+'/'+den+'</b>' + (g>1 ? ' = ' + (num/g)+'/'+(den/g) : '');
+      document.getElementById('fg-live').innerHTML =
+        '전체 <b>'+den+'칸</b> 중 겹친 칸 <b>'+num+'칸</b>.';
+      document.getElementById('fg-why').innerHTML =
+        '가로로 '+b+'등분해 '+a+'칸을 잡고, 그 위에 세로로 '+d+'등분해 '+c+'칸을 잡았어. 두 번 자르면 전체 칸수는 <b>'+b+'×'+d+'='+den+'</b>, 둘 다 걸린 칸은 <b>'+a+'×'+c+'='+num+'</b>. ' +
+        '<b>분모끼리·분자끼리 곱하라</b>는 규칙은 외울 게 아니라 <b>두 번 자른 결과</b>일 뿐이야. 그래서 분수끼리 곱하면 답이 <b>작아지는</b> 것도 당연해 — 일부의 일부니까.';
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-fg]'), function(btn){
+      btn.addEventListener('click', function(){
+        var k=btn.dataset.fg;
+        if (k==='a') a = a>=b ? 1 : a+1;
+        if (k==='b'){ b = b>=6 ? 2 : b+1; if (a>b) a=b; }
+        if (k==='c') c = c>=d ? 1 : c+1;
+        if (k==='d'){ d = d>=6 ? 2 : d+1; if (c>d) c=d; }
+        draw();
+      });
+    });
+    draw();
+  })();
 
   /* ================= 한자·선우: 그림 뒤집기 ================= */
   var PICT = [
@@ -2735,107 +2724,236 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   $('cb-clear').addEventListener('click', function(){ cbPicks = []; drawCB(); });
   drawCB();
 
-  /* ================= 국어·선우: 글자 조립 ================= */
-  var CHO = [['ㄱ',0],['ㄴ',2],['ㄷ',3],['ㅁ',6],['ㅂ',7],['ㅅ',9]];
-  var JUNG = [['ㅏ',0],['ㅓ',4],['ㅗ',8],['ㅜ',13],['ㅣ',20]];
-  var JONG = [['없음',0],['ㄱ',1],['ㄴ',4],['ㄹ',8],['ㅁ',16],['ㅂ',17],['ㅇ',21]];
-  var KDICT = ['간','갈','감','강','검','곰','골','공','곡','국','굴','금','글','김','길',
-               '난','날','남','논','눈','단','달','담','답','독','돈','돌','동','들',
-               '만','말','맘','목','몸','문','물','민','반','발','밤','밥','방','번','벌','범','볼','봄','북','불','빔',
-               '산','살','삼','상','선','설','섬','성','손','솔','솜','송','순','술','숨','신','실','심'];
-  var koState = { cho:0, jung:0, jong:4 };
-  function jamoRow(boxId, list, key){
-    var box = $(boxId);
-    list.forEach(function(pair, i){
-      var b = document.createElement('button');
-      b.className = 'jamo'; b.type = 'button'; b.textContent = pair[0];
-      if (pair[0] === '없음'){ b.style.width = 'auto'; b.style.padding = '0 10px'; b.style.fontSize = '15px'; }
-      b.addEventListener('click', function(){ koState[key] = i; drawKO(); });
-      box.appendChild(b);
-    });
-  }
-  jamoRow('ko-cho', CHO, 'cho');
-  jamoRow('ko-jung', JUNG, 'jung');
-  jamoRow('ko-jong', JONG, 'jong');
-  function drawKO(){
-    [['ko-cho',CHO,'cho'],['ko-jung',JUNG,'jung'],['ko-jong',JONG,'jong']].forEach(function(row){
-      Array.prototype.forEach.call($(row[0]).children, function(b, i){
-        b.setAttribute('aria-pressed', koState[row[2]] === i ? 'true' : 'false');
+  /* ================= 국어·선우: 표지 탐정 ================= */
+  (function(){
+    var card = document.getElementById('cv-card'); if (!card) return;
+    var BOOKS = [
+      { title:'비 오는 날의 우산',
+        art:'<svg viewBox="0 0 120 80"><rect x="0" y="0" width="120" height="80" fill="none"/>'+
+            '<path d="M20 40 Q60 8 100 40 Z" fill="#7CA9E0"/><line x1="60" y1="40" x2="60" y2="70" stroke="#A6B1A9" stroke-width="3"/>'+
+            '<line x1="30" y1="12" x2="26" y2="24" stroke="#7CA9E0" stroke-width="3"/><line x1="92" y1="14" x2="96" y2="26" stroke="#7CA9E0" stroke-width="3"/>'+
+            '<line x1="60" y1="6" x2="60" y2="16" stroke="#7CA9E0" stroke-width="3"/></svg>',
+        opts:['비 오는 날 우산을 나눠 쓰는 이야기','우산을 파는 가게 이야기','우산이 하늘을 나는 이야기'],
+        first:'“같이 쓸래?” 지호가 우산을 반쯤 내밀었다.',
+        why:'제목의 <b>우산</b>과 그림 속 비를 붙이면 “비 오는 날 우산 이야기”가 나와. 세 답이 다 <b>말이 되는 짐작</b>이지만, 첫 문장을 보니 <b>나눠 쓰는 이야기</b>였어. 짐작은 틀려도 괜찮아 — 짐작했기 때문에 첫 문장이 더 반가운 거야.' },
+      { title:'씨앗 하나',
+        art:'<svg viewBox="0 0 120 80"><ellipse cx="60" cy="70" rx="44" ry="8" fill="#2C3630"/>'+
+            '<path d="M60 68 L60 40" stroke="#5FBE90" stroke-width="4"/><ellipse cx="48" cy="40" rx="12" ry="7" fill="#5FBE90"/>'+
+            '<ellipse cx="72" cy="34" rx="12" ry="7" fill="#5FBE90"/><circle cx="60" cy="72" r="5" fill="#E3A92C"/></svg>',
+        opts:['씨앗을 심고 기다리는 이야기','씨앗을 먹어버린 이야기','씨앗을 잃어버린 이야기'],
+        first:'나는 매일 아침 화분 앞에 앉았다. 아직 아무것도 없었다.',
+        why:'그림에 <b>싹</b>이 나 있으니 “심고 기다리는 이야기”가 가장 자연스러워. 그리고 첫 문장이 “<b>아직</b> 아무것도 없었다”라고 하네 — 기다림이 이 이야기의 마음이라는 걸 미리 알 수 있어.' },
+      { title:'우리 집 막내',
+        art:'<svg viewBox="0 0 120 80"><circle cx="42" cy="42" r="20" fill="#F0755A"/><circle cx="36" cy="38" r="3" fill="#121714"/><circle cx="48" cy="38" r="3" fill="#121714"/>'+
+            '<circle cx="82" cy="50" r="13" fill="#F0C155"/><circle cx="78" cy="47" r="2.4" fill="#121714"/><circle cx="86" cy="47" r="2.4" fill="#121714"/></svg>',
+        opts:['막내 동생이 생긴 이야기','막내가 학교에 가는 이야기','막내가 요리하는 이야기'],
+        first:'동생이 태어난 날, 나는 더 이상 막내가 아니었다.',
+        why:'큰 얼굴 옆에 <b>작은 얼굴</b>이 있으니 “막내가 생긴 이야기”라는 짐작이 딱이야. 첫 문장에 “<b>더 이상 막내가 아니었다</b>”가 나오지? 제목과 그림이 이미 다 말해주고 있었어.' }
+    ];
+    var i = 0, picked = -1, opened = false;
+    function draw(){
+      var B = BOOKS[i];
+      card.innerHTML = B.art + '<h4>' + B.title + '</h4>';
+      var box = document.getElementById('cv-opts'); box.innerHTML = '';
+      B.opts.forEach(function(t, k){
+        var b = document.createElement('button'); b.className = 'ctl'; b.textContent = t;
+        b.style.fontSize = '14px'; b.style.maxWidth = '260px';
+        b.setAttribute('aria-pressed', picked === k ? 'true' : 'false');
+        b.addEventListener('click', function(){
+          picked = k;
+          document.getElementById('cv-fb').textContent = '좋아, 그렇게 짐작했구나!';
+          draw();
+        });
+        box.appendChild(b);
       });
-    });
-    var code = 0xAC00 + (CHO[koState.cho][1] * 21 + JUNG[koState.jung][1]) * 28 + JONG[koState.jong][1];
-    var syll = String.fromCharCode(code);
-    var koOut = $('ko-out');
-    if (koOut.textContent !== syll){
-      koOut.classList.remove('pop3'); void koOut.offsetWidth; koOut.classList.add('pop3');
-    }
-    koOut.textContent = syll;
-    var isWord = KDICT.indexOf(syll) !== -1;
-    $('ko-badge').textContent = isWord ? '진짜 낱말이야!' : '';
-    var parts = CHO[koState.cho][0] + ' + ' + JUNG[koState.jung][0] + (JONG[koState.jong][1] ? ' + ' + JONG[koState.jong][0] : '');
-    $('ko-live').textContent = parts + ' = ' + syll;
-    $('ko-why').innerHTML = JONG[koState.jong][1]
-      ? '받침만 바꿔봐 — 끝소리 하나로 <b>다른 낱말</b>이 돼.'
-      : '받침을 붙이면 소리가 <b>닫히면서</b> 새 글자가 돼.';
-  }
-  drawKO();
-
-  /* ================= 국어·지우: 낱말 공장 ================= */
-  var KWPARTS = ['눈','물','사람','손','수건','김','밥','고기','꽃','병'];
-  var KWCOMBOS = {
-    '눈|물':{w:'눈물',cap:'슬프거나 기쁠 때 눈에서 나는 물'},
-    '눈|사람':{w:'눈사람',cap:'겨울에 눈을 굴려 만든 사람'},
-    '손|수건':{w:'손수건',cap:'손에 들고 다니는 작은 수건'},
-    '김|밥':{w:'김밥',cap:'김으로 밥을 만 음식'},
-    '물|고기':{w:'물고기',cap:'물에 사는 고기'},
-    '꽃|병':{w:'꽃병',cap:'꽃을 꽂아 두는 병'}
-  };
-  var kwPicks = [], kwFoundSet = {};
-  var kwBox = $('kw-parts');
-  KWPARTS.forEach(function(pt){
-    var t = document.createElement('button');
-    t.className = 'tile'; t.type = 'button'; t.textContent = pt;
-    t.style.fontFamily = "'Do Hyeon',sans-serif"; t.style.fontSize = '22px';
-    t.addEventListener('click', function(){
-      if (kwPicks.length >= 2) kwPicks = [];
-      kwPicks.push(pt);
-      drawKW();
-    });
-    kwBox.appendChild(t);
-  });
-  function drawKW(){
-    Array.prototype.forEach.call(kwBox.children, function(t){
-      t.setAttribute('aria-pressed', kwPicks.indexOf(t.textContent) !== -1 ? 'true' : 'false');
-    });
-    var out = $('kw-char'), cap = $('kw-cap');
-    if (kwPicks.length < 2){
-      out.textContent = kwPicks.length === 1 ? kwPicks[0] + ' + ?' : '';
-      cap.textContent = kwPicks.length === 1 ? '하나 더 골라봐' : '낱말 두 개를 순서대로 골라봐';
-      return;
-    }
-    var key = kwPicks[0] + '|' + kwPicks[1];
-    var rkey = kwPicks[1] + '|' + kwPicks[0];
-    var hit = KWCOMBOS[key];
-    if (hit){
-      out.textContent = hit.w;
-      cap.textContent = kwPicks[0] + ' + ' + kwPicks[1] + ' = ' + hit.w + ' — ' + hit.cap;
-      if (!kwFoundSet[hit.w]){
-        kwFoundSet[hit.w] = true;
-        $('kw-live').textContent = '새 낱말 완성: ' + hit.w;
-        $('kw-why').innerHTML = '두 뜻이 합쳐지며 <b>살짝 새로운 뜻</b>이 됐어. 그게 합성어의 재미야.';
+      var live = document.getElementById('cv-live'), why = document.getElementById('cv-why');
+      if (opened){
+        live.innerHTML = '첫 문장 — “' + B.first + '”';
+        why.innerHTML = B.why;
+      } else if (picked >= 0){
+        live.innerHTML = '내 짐작: <b>' + B.opts[picked] + '</b>';
+        why.innerHTML = '이제 <b>첫 문장을 펼쳐</b>서 내 짐작과 맞춰보자. 맞아도 좋고 달라도 좋아 — 짐작을 해둔 사람만 “어, 다르네?”를 느낄 수 있거든.';
+      } else {
+        live.innerHTML = '제목과 그림만 보고 <b>무슨 이야기</b>일지 골라봐.';
+        why.innerHTML = '책을 펼치기 전 <b>30초</b>가 읽기를 쉽게 만들어. 제목은 이야기의 이름표, 그림은 예고편이야.';
       }
-    } else if (KWCOMBOS[rkey]){
-      out.textContent = '?';
-      cap.textContent = '거의 다 왔어 — 순서를 바꿔볼까?';
-    } else {
-      out.textContent = '?';
-      cap.textContent = kwPicks[0] + ' + ' + kwPicks[1] + ' — 이 둘은 아직 낱말이 아니야. 다른 짝!';
+      document.getElementById('cv-open').disabled = (picked < 0);
     }
-    var n = Object.keys(kwFoundSet).length;
-    $('kw-found').textContent = '숨은 낱말 6개 중 ' + n + '개 완성' + (n === 6 ? ' — 공장 가동 완료!' : '');
-  }
-  $('kw-clear').addEventListener('click', function(){ kwPicks = []; drawKW(); });
-  drawKW();
+    document.getElementById('cv-open').addEventListener('click', function(){
+      if (picked < 0) return; opened = true;
+      document.getElementById('cv-fb').textContent = '';
+      draw();
+    });
+    document.getElementById('cv-next').addEventListener('click', function(){
+      i = (i+1) % BOOKS.length; picked = -1; opened = false;
+      document.getElementById('cv-fb').textContent = '';
+      draw();
+    });
+    draw();
+  })();
+
+  /* ================= 국어·선우: 문장 부호 목소리 ================= */
+  (function(){
+    var bub = document.getElementById('pn-bubble'); if (!bub) return;
+    var SENT = [
+      { t:'우리 같이 가',
+        '.':['그냥 알려주는 말','“우리 같이 가.” — 사실을 담담하게 전하는 목소리야. 마침표는 문장의 <b>발을 땅에 붙여</b> 이야기를 끝맺어.'],
+        '?':['물어보는 말','“우리 같이 가?” — 끝을 <b>올려 읽게</b> 되지? 물음표는 대답을 기다리는 부호야. 그래서 상대의 얼굴을 보게 돼.'],
+        '!':['마음을 담은 말','“우리 같이 가!” — 반가움이나 힘이 실려. 느낌표는 <b>목소리를 크게</b> 만드는 부호야.'] },
+      { t:'벌써 다 먹었어',
+        '.':['그냥 알려주는 말','“벌써 다 먹었어.” — 있었던 일을 알려줄 뿐, 놀라지도 묻지도 않는 목소리.'],
+        '?':['믿기지 않아 묻는 말','“벌써 다 먹었어?” — 확인하고 싶은 마음이 들어갔어. 눈이 동그래지지?'],
+        '!':['깜짝 놀란 말','“벌써 다 먹었어!” — 놀람이 그대로 터져 나와. 같은 다섯 글자인데 마음이 완전히 달라.'] },
+      { t:'여기 앉아도 돼',
+        '.':['허락해주는 말','“여기 앉아도 돼.” — 괜찮다고 알려주는 따뜻한 목소리.'],
+        '?':['조심스럽게 묻는 말','“여기 앉아도 돼?” — 이번엔 <b>내가 묻는 쪽</b>이 됐어. 부호 하나로 말하는 사람이 바뀌었지?'],
+        '!':['반갑게 부르는 말','“여기 앉아도 돼!” — 어서 오라고 손짓하는 느낌이 들어.'] }
+    ];
+    var i = 0, mark = '.';
+    function draw(){
+      var S = SENT[i];
+      bub.textContent = S.t + mark;
+      bub.className = 'bubble' + (mark === '?' ? ' q' : (mark === '!' ? ' x' : ''));
+      document.getElementById('pn-live').innerHTML = '<b>' + S[mark][0] + '</b>';
+      document.getElementById('pn-why').innerHTML = S[mark][1];
+      Array.prototype.forEach.call(document.querySelectorAll('[data-pn]'), function(b){
+        b.setAttribute('aria-pressed', b.dataset.pn === mark ? 'true' : 'false');
+      });
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-pn]'), function(b){
+      b.addEventListener('click', function(){ mark = b.dataset.pn; draw(); });
+    });
+    document.getElementById('pn-next').addEventListener('click', function(){ i = (i+1) % SENT.length; draw(); });
+    draw();
+  })();
+
+  /* ================= 국어·지우: 공감 대화 시뮬레이터 ================= */
+  (function(){
+    var talk = document.getElementById('em-talk'); if (!talk) return;
+    var CASES = [
+      { line:'“나 오늘 시험 완전 망쳤어…”',
+        opts:[
+          { t:'“그러게 미리 공부하지 그랬어.”', v:-30, k:'충고',
+            why:'맞는 말이라도 <b>지금 필요한 말은 아니야</b>. 친구는 방법을 몰라서 속상한 게 아니라, 속상해서 말을 꺼낸 거거든. 충고는 마음이 진정된 <b>다음</b>에 와야 힘을 가져.' },
+          { t:'“난 이번에 잘 봤는데.”', v:-40, k:'비교',
+            why:'내 이야기로 <b>화제를 가져와 버렸어</b>. 친구는 위로받으러 왔다가 비교당하고 돌아가게 돼. 대화에서 가장 빨리 마음을 닫게 만드는 말이야.' },
+          { t:'“속상했겠다. 무슨 일이야?”', v:40, k:'공감',
+            why:'<b>감정을 먼저 말해주고(속상했겠다)</b>, <b>이야기를 열어줬어(무슨 일이야?)</b>. 이 두 조각이 공감의 기본 뼈대야. 해결하지 않아도 마음은 이미 가벼워져.' }
+        ] },
+      { line:'“친구들이 나만 빼고 놀러 갔대.”',
+        opts:[
+          { t:'“그럴 수도 있지 뭐.”', v:-25, k:'축소',
+            why:'“별일 아니야”라는 말은 위로처럼 들리지만 실은 <b>감정을 작게 만드는 말</b>이야. 친구는 “내 마음이 유난인가?” 하고 더 외로워져.' },
+          { t:'“많이 서운했겠다. 언제 알았어?”', v:40, k:'공감',
+            why:'감정에 <b>이름을 붙여주면(서운했겠다)</b> 사람은 “아, 내 마음이 그거였구나” 하고 정리가 돼. 질문은 <b>판단이 아니라 관심</b>일 때 힘이 있어.' },
+          { t:'“걔네 원래 그래. 신경 쓰지 마.”', v:-20, k:'단정',
+            why:'상대를 나쁜 사람으로 만들어 위로하려는 방법이야. 잠깐 시원해도 친구는 <b>관계를 고칠 기회</b>를 잃어. 감정은 받아주되 <b>사람을 단정하지 않는 것</b>이 좋아.' }
+        ] },
+      { line:'“나 이번 대회 나갈까 말까 고민돼.”',
+        opts:[
+          { t:'“당연히 나가야지! 왜 고민해?”', v:-15, k:'재촉',
+            why:'응원 같지만 <b>고민 자체를 부정</b>해버렸어. 망설이는 데는 이유가 있는데, 그 이유를 말할 틈이 사라졌지.' },
+          { t:'“어떤 점이 제일 망설여져?”', v:40, k:'공감',
+            why:'답을 주지 않고 <b>생각을 꺼내게 돕는 질문</b>이야. 공감은 “내가 대신 정해줄게”가 아니라 <b>“네가 정하는 걸 도울게”</b>에 가까워.' },
+          { t:'“나라면 안 나가.”', v:-20, k:'대신결정',
+            why:'내 기준을 친구의 답으로 건네줬어. 편해 보여도, 결정의 <b>주인이 바뀌어</b> 버려. 조언은 물어봤을 때 해도 늦지 않아.' }
+        ] }
+    ];
+    var i = 0, mood = 50;
+    function paint(){
+      var f = document.getElementById('em-fill');
+      f.style.width = mood + '%';
+      f.style.background = mood >= 65 ? 'var(--green)' : (mood >= 35 ? 'var(--yellow)' : 'var(--red)');
+      document.getElementById('em-label').textContent =
+        '친구 마음 ' + (mood >= 80 ? '— 활짝 열렸다' : mood >= 60 ? '— 조금 풀렸다' : mood >= 40 ? '— 아직 조심스럽다' : mood >= 20 ? '— 닫히는 중' : '— 완전히 닫혔다');
+    }
+    function draw(){
+      var C = CASES[i];
+      talk.innerHTML = C.line;
+      var box = document.getElementById('em-opts'); box.innerHTML = '';
+      C.opts.forEach(function(o){
+        var b = document.createElement('button'); b.className='ctl'; b.textContent = o.t;
+        b.style.fontSize='14px'; b.style.maxWidth='300px';
+        b.addEventListener('click', function(){
+          mood = Math.max(0, Math.min(100, mood + o.v));
+          paint();
+          document.getElementById('em-live').innerHTML = '이 말은 <b>' + o.k + '</b>에 가깝다.';
+          document.getElementById('em-why').innerHTML = o.why;
+        });
+        box.appendChild(b);
+      });
+      document.getElementById('em-live').innerHTML = '친구에게 뭐라고 답할까?';
+      document.getElementById('em-why').innerHTML = '공감은 <b>해결책도, 비교도, 판단도 아니야</b>. “그 마음을 알아주는 말”이 먼저 오면 그다음 말은 훨씬 잘 들린다.';
+      paint();
+    }
+    document.getElementById('em-next').addEventListener('click', function(){ i=(i+1)%CASES.length; mood=50; draw(); });
+    draw();
+  })();
+
+  /* ================= 국어·지우: 서평 조립기 ================= */
+  (function(){
+    var tray = document.getElementById('rv-tray'); if (!tray) return;
+    var PIECES = [
+      { k:'plot', t:'주인공은 전학 온 학교에서 혼자 점심을 먹는다.', label:'줄거리' },
+      { k:'plot', t:'마지막에 주인공은 먼저 말을 건넨다.', label:'줄거리' },
+      { k:'op',   t:'나는 이 책이 “용기”에 대한 이야기라고 생각한다.', label:'내 의견' },
+      { k:'op',   t:'이 책의 가장 좋은 점은 결말을 서두르지 않는다는 것이다.', label:'내 의견' },
+      { k:'ev',   t:'왜냐하면 주인공이 말을 걸기까지 세 번이나 망설이는 장면이 나오기 때문이다.', label:'근거' },
+      { k:'ev',   t:'특히 68쪽에서 “오늘도 못 했다”라고 혼잣말하는 문장이 그 마음을 그대로 보여준다.', label:'근거' },
+      { k:'rec',  t:'새 학기에 낯선 자리에 앉아본 사람이라면 누구나 공감할 것이다.', label:'추천' }
+    ];
+    var picked = [];
+    function score(){
+      var has = {};
+      picked.forEach(function(p){ has[p.k] = (has[p.k]||0)+1; });
+      var v = 0;
+      if (has.plot) v += 20;
+      if (has.op) v += 30;
+      if (has.ev) v += 40;
+      if (has.rec) v += 10;
+      if (has.op && !has.ev) v -= 15;
+      return Math.max(0, Math.min(100, v));
+    }
+    function draw(){
+      tray.innerHTML = '';
+      PIECES.forEach(function(P, idx){
+        var b = document.createElement('button');
+        b.className = 'rv-chip k-' + P.k;
+        b.innerHTML = '<b style="opacity:.6;font-size:12px">' + P.label + '</b><br>' + P.t;
+        b.disabled = picked.indexOf(P) !== -1;
+        b.addEventListener('click', function(){ picked.push(P); draw(); });
+        tray.appendChild(b);
+      });
+      var paper = document.getElementById('rv-paper');
+      paper.innerHTML = picked.length ? picked.map(function(p){ return '<p>' + p.t + '</p>'; }).join('')
+        : '<p style="color:var(--ink-faint)">조각을 눌러 서평을 조립해보자.</p>';
+      var v = score();
+      var f = document.getElementById('rv-fill');
+      f.style.width = v + '%';
+      f.style.background = v >= 70 ? 'var(--green)' : (v >= 40 ? 'var(--yellow)' : 'var(--red)');
+      var has = {}; picked.forEach(function(p){ has[p.k]=1; });
+      document.getElementById('rv-label').textContent = '서평다움 ' + v + '%';
+      var live = document.getElementById('rv-live'), why = document.getElementById('rv-why');
+      if (!picked.length){
+        live.innerHTML = '무엇부터 넣을까?';
+        why.innerHTML = '서평에는 네 종류의 조각이 있어 — <b>줄거리 · 내 의견 · 근거 · 추천</b>. 어떤 조합이 “서평답게” 만드는지 직접 확인해보자.';
+      } else if (has.plot && !has.op){
+        live.innerHTML = '지금은 <b>줄거리 요약</b>에 가깝다.';
+        why.innerHTML = '줄거리는 <b>누가 봐도 같은 사실</b>이야. 사실만 쌓으면 읽지 않은 사람에게 정보는 주지만, <b>내가 이 책을 어떻게 봤는지</b>는 하나도 전해지지 않아. 여기서 멈추면 서평이 아니라 요약이야.';
+      } else if (has.op && !has.ev){
+        live.innerHTML = '의견은 있지만 <b>근거가 없다</b>.';
+        why.innerHTML = '“나는 ~라고 생각한다”까지는 절반이야. 근거가 없는 의견은 <b>반박도 동의도 할 수 없어서</b> 대화가 이어지지 않아. 책 속 <b>장면·문장·쪽수</b>를 데려오는 순간 의견이 힘을 얻는다.';
+      } else if (has.op && has.ev){
+        live.innerHTML = '<b>의견 + 근거</b> — 이제 서평이다!';
+        why.innerHTML = '“이 책은 용기에 대한 이야기다(의견) + 세 번 망설이는 장면이 나오기 때문이다(근거)”. 이 두 조각이 붙는 순간, 읽은 사람은 <b>동의하거나 반박할 수 있게</b> 돼. 그게 글이 대화가 되는 지점이야.' + (has.rec ? ' 추천까지 붙었으니 읽을 사람을 정확히 겨눈 글이 됐어.' : ' 마지막에 <b>추천</b>을 한 줄 붙이면 “누가 읽으면 좋을지”까지 완성돼.');
+      } else {
+        live.innerHTML = '조각을 더 붙여보자.';
+        why.innerHTML = '지금 글에는 <b>내 생각</b>이 빠져 있어. 서평의 심장은 의견과 근거야.';
+      }
+    }
+    document.getElementById('rv-reset').addEventListener('click', function(){ picked = []; draw(); });
+    draw();
+  })();
 
   /* ================= 영어·선우: 소리 블록 ================= */
   var PHWORDS = [
@@ -3196,110 +3314,6 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     });
   }
   drawKR();
-
-  /* ================= 수학·선우: 개구리 수직선 ================= */
-  var NL = { pos: 3 + Math.floor(Math.random() * 5) };
-  var nlTrack = $('nl-track'), nlFrog = $('nl-frog');
-  for (var ni = 0; ni <= 20; ni++){
-    (function(n){
-      var c = document.createElement('button');
-      c.className = 'nl-cell' + (n % 10 === 0 && n > 0 ? ' ten' : '');
-      c.type = 'button'; c.textContent = n;
-      c.addEventListener('click', function(){ nlJump(n); });
-      nlTrack.appendChild(c);
-    })(ni);
-  }
-  function nlPlace(animate){
-    var pct = (NL.pos / 20 * 100).toFixed(1) + '%';
-    if (animate){
-      nlFrog.classList.remove('hopping'); void nlFrog.offsetWidth; nlFrog.classList.add('hopping');
-    }
-    nlFrog.style.left = 'calc(' + pct + ' + ' + ((NL.pos / 20) * 0 ) + 'px)';
-    Array.prototype.forEach.call(nlTrack.children, function(cell, i){
-      cell.classList.toggle('cur', i === NL.pos);
-    });
-  }
-  function nlJump(target){
-    if (target === NL.pos) return;
-    var from = NL.pos, diff = target - from;
-    NL.pos = target;
-    nlPlace(true);
-    var sign = diff > 0 ? '+' : '−';
-    $('nl-eq').innerHTML = '<span class="n-red">' + from + '</span><span class="op">' + (diff > 0 ? '+' : '−') + '</span>' +
-      '<span class="n-blue">' + Math.abs(diff) + '</span><span class="op">=</span><span>' + target + '</span>';
-    if (diff > 0 && from < 10 && target > 10){
-      $('nl-live').textContent = from + '에서 ' + target + '까지, ' + sign + Math.abs(diff) + ' 점프!';
-      $('nl-why').innerHTML = '노란 징검다리로 가르면 쉬워: <b>+' + (10 - from) + '로 10을 밟고, +' + (target - 10) + ' 더</b>. 큰 점프는 10에서 한 번 쉬어 가는 거야.';
-    } else if (diff > 0){
-      $('nl-live').textContent = '오른쪽으로 ' + Math.abs(diff) + '칸 — 덧셈 점프!';
-      $('nl-why').innerHTML = '덧셈은 수직선에서 <b>오른쪽으로 뛰는 것</b>. 몇 칸 뛰었는지가 곧 더한 수야.';
-    } else {
-      $('nl-live').textContent = '왼쪽으로 ' + Math.abs(diff) + '칸 — 뺄셈 점프!';
-      $('nl-why').innerHTML = '뺄셈은 <b>왼쪽으로 뛰는 것</b>. ' + from + ' − ' + Math.abs(diff) + ' = ' + target + ' — 방향만 반대일 뿐 같은 놀이야.';
-    }
-  }
-  $('nl-reset').addEventListener('click', function(){
-    NL.pos = 3 + Math.floor(Math.random() * 5);
-    nlPlace(true);
-    $('nl-eq').textContent = '';
-    $('nl-live').textContent = '개구리가 ' + NL.pos + '에 앉았어. 숫자를 눌러 점프시켜봐!';
-    $('nl-why').innerHTML = '10을 밟고 가면 <b>두 번의 쉬운 점프</b>가 돼.';
-  });
-  $('nl-live').textContent = '개구리가 ' + NL.pos + '에 앉았어. 숫자를 눌러 점프시켜봐!';
-  $('nl-why').innerHTML = '10을 밟고 가면 <b>두 번의 쉬운 점프</b>가 돼.';
-  nlPlace(false);
-
-  /* ================= 수학·지우: 어림 수직선 ================= */
-  var ES = { n: 0 };
-  var estLine = $('est-line');
-  (function buildEst(){
-    var html = '';
-    for (var t = 0; t <= 10; t++){
-      html += '<span class="est-tick" style="left:' + (t * 10) + '%"></span>';
-    }
-    [[0,'3,000'],[50,'3,500'],[100,'4,000']].forEach(function(pair){
-      html += '<span class="est-lab" style="left:' + pair[0] + '%">' + pair[1] + '</span>';
-    });
-    html += '<span class="est-ghost" id="est-ghost"></span><span class="est-marker" id="est-marker"></span><span class="est-num" id="est-num"></span>';
-    estLine.innerHTML = html;
-  })();
-  function estPct(n){ return ((n - 3000) / 1000 * 100).toFixed(1) + '%'; }
-  function estNew(){
-    ES.n = 3005 + Math.floor(Math.random() * 990);
-    if (ES.n % 100 < 8) ES.n += 23;
-    if (ES.n % 100 > 92) ES.n -= 23;
-    var p = estPct(ES.n);
-    $('est-ghost').style.left = p;
-    $('est-marker').style.left = p;
-    $('est-num').style.left = p;
-    $('est-num').textContent = ES.n.toLocaleString();
-    $('est-eq').textContent = '';
-    $('est-live').textContent = ES.n.toLocaleString() + ' — 백의 자리로 어림해보자.';
-    $('est-why').innerHTML = '버림은 <b>아래층</b>, 올림은 <b>위층</b>, 반올림은 <b>가까운 층</b>. 버튼을 눌러 점이 어디로 이사 가는지 봐.';
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('[data-est]'), function(btn){
-    btn.addEventListener('click', function(){
-      var op = btn.dataset.est;
-      var r = op === 'floor' ? Math.floor(ES.n / 100) * 100
-            : op === 'ceil' ? Math.ceil(ES.n / 100) * 100
-            : Math.round(ES.n / 100) * 100;
-      var name = op === 'floor' ? '버림' : op === 'ceil' ? '올림' : '반올림';
-      var p = estPct(r);
-      $('est-marker').style.left = p;
-      $('est-num').style.left = p;
-      $('est-num').textContent = r.toLocaleString();
-      $('est-eq').textContent = ES.n.toLocaleString() + ' → ' + name + ' → ' + r.toLocaleString();
-      var dist = Math.abs(ES.n - r);
-      $('est-live').textContent = name + ': ' + dist + '만큼 ' + (r > ES.n ? '올라갔어' : (r < ES.n ? '내려갔어' : '그대로야')) + '.';
-      $('est-why').innerHTML = op === 'floor'
-        ? '버림은 무조건 <b>아래층으로</b> — 점선 유령이 원래 자리야. 천 원 지폐로 낼 수 있는 만큼 구할 때!'
-        : op === 'ceil'
-        ? '올림은 무조건 <b>위층으로</b> — 모자라면 안 되는 상황(봉지, 버스 대수)에서 쓰는 어림이야.'
-        : '반올림은 <b>가까운 층으로</b> — 유령과 점 사이 거리(' + dist + ')가 50보다 ' + (ES.n % 100 >= 50 ? '크거나 같아서 올라간' : '작아서 내려간') + ' 거야.';
-    });
-  });
-  $('est-new').addEventListener('click', estNew);
-  estNew();
 
   /* ================= 미술: 색 섞기 (선우) ================= */
   var PAINTS = [ {n:'빨강',c:'#D84433'}, {n:'노랑',c:'#E3B52C'}, {n:'파랑',c:'#2E6BAF'}, {n:'하양',c:'#F5F2EA'} ];
