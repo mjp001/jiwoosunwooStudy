@@ -544,6 +544,70 @@ button.pdot{padding:0;border:none;cursor:pointer;display:block}
 .sm-fill{height:100%;background:var(--blue);border-radius:10px;transition:width .5s cubic-bezier(.34,1.2,.64,1)}
 .sm-row.hit .sm-fill{background:var(--green)}
 .sm-p{width:46px;flex:none;font-size:13px;color:var(--ink-faint)}
+/* ---------- 보석함 진행도 · 등급 연출 ---------- */
+.bank-count b{font-size:26px}
+.bank-pct{font-family:"IBM Plex Sans KR",sans-serif;font-size:13px;color:var(--ink-soft);margin-left:10px;vertical-align:middle}
+.bank-bar{display:block;width:min(360px,100%);height:10px;border-radius:5px;background:var(--card);border:1px solid var(--line);overflow:hidden;margin-top:10px}
+.bank-fill{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--yellow));transition:width .7s cubic-bezier(.34,1.2,.64,1)}
+.mile.locked{border-style:dashed}
+.lockbox{width:84px;height:84px;margin:0 auto;border:2px dashed var(--line-strong);border-radius:16px;display:flex;align-items:center;justify-content:center;font-family:"Do Hyeon",sans-serif;font-size:36px;color:var(--line-strong)}
+.mile{position:relative;overflow:hidden}
+.mile.unlocked.bronze{border-color:#C97B36;box-shadow:0 0 0 1px rgba(201,123,54,.26),0 6px 20px rgba(201,123,54,.16)}
+.mile.unlocked.silver{border-color:#AFBCC8;box-shadow:0 0 0 1px rgba(175,188,200,.3),0 6px 22px rgba(175,188,200,.18)}
+.mile.unlocked.gold{border-color:#E7B532;box-shadow:0 0 0 1px rgba(231,181,50,.4),0 8px 30px rgba(231,181,50,.3)}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.75)}50%{opacity:1;transform:scale(1.2)}}
+@keyframes auraPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.07)}}
+@keyframes shimmer{0%{transform:translateX(-130%)}100%{transform:translateX(240%)}}
+@keyframes unlockPop{0%{transform:rotateY(90deg) scale(.7);opacity:0}55%{transform:rotateY(0) scale(1.12);opacity:1}100%{transform:none;opacity:1}}
+.mile .crit.bronze{animation:floaty 3.4s ease-in-out infinite}
+.mile .crit.silver{animation:floaty 2.9s ease-in-out infinite}
+.mile .crit.gold{animation:floaty 2.3s ease-in-out infinite}
+.mile .sp{transform-origin:center;animation:twinkle 1.8s ease-in-out infinite}
+.mile .sp.s2{animation-delay:.6s}.mile .sp.s3{animation-delay:1.2s}
+.mile .aura{transform-origin:40px 34px;animation:auraPulse 2.6s ease-in-out infinite}
+.mile.unlocked.silver::after,.mile.unlocked.gold::after{content:"";position:absolute;top:0;left:0;width:38%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.26),transparent);animation:shimmer 3.6s ease-in-out infinite;pointer-events:none}
+.mile.unlocked.gold::after{background:linear-gradient(105deg,transparent,rgba(255,240,180,.4),transparent);animation-duration:3s}
+.mile.justnew{animation:unlockPop .7s cubic-bezier(.34,1.35,.64,1) both}
+@media (prefers-reduced-motion: reduce){
+  .mile .crit,.mile .sp,.mile .aura,.mile.justnew{animation:none!important}
+  .mile.silver::after,.mile.gold::after{display:none}
+}
+/* ---------- 열 수 있는 상자 · 클릭 유도 ---------- */
+.lockbox{position:relative}
+.lockbox .qm{position:relative;z-index:2}
+.mile.ready{border-style:solid;border-color:var(--yellow);cursor:pointer;
+  box-shadow:0 0 0 1px rgba(240,193,85,.35),0 6px 24px rgba(240,193,85,.22);animation:readyPulse 1.9s ease-in-out infinite}
+.mile.ready .lockbox{border-color:var(--yellow);color:var(--yellow)}
+.mile.ready .mname{color:var(--yellow)}
+.mile.ready:hover{transform:translateY(-3px)}
+.mile.ready{transition:transform .2s}
+@keyframes readyPulse{0%,100%{box-shadow:0 0 0 1px rgba(240,193,85,.3),0 6px 18px rgba(240,193,85,.16)}
+  50%{box-shadow:0 0 0 2px rgba(240,193,85,.55),0 10px 30px rgba(240,193,85,.34)}}
+@keyframes twpop{0%,100%{opacity:0;transform:scale(.4) rotate(0deg)}45%{opacity:1;transform:scale(1) rotate(25deg)}}
+.tw{position:absolute;width:10px;height:10px;z-index:1;
+  background:radial-gradient(circle,rgba(255,240,190,1) 0%,rgba(255,240,190,0) 70%);
+  animation:twpop 1.6s ease-in-out infinite}
+.tw::before{content:"";position:absolute;inset:0;
+  background:linear-gradient(var(--yellow),var(--yellow)) center/2px 100% no-repeat,
+             linear-gradient(var(--yellow),var(--yellow)) center/100% 2px no-repeat}
+.tw.t1{left:12%;top:16%;animation-delay:0s}
+.tw.t2{right:14%;top:24%;animation-delay:.32s;width:8px;height:8px}
+.tw.t3{left:20%;bottom:16%;animation-delay:.64s;width:7px;height:7px}
+.tw.t4{right:18%;bottom:22%;animation-delay:.96s}
+.tw.t5{left:46%;top:8%;animation-delay:1.28s;width:6px;height:6px}
+@keyframes namePulse{0%,100%{opacity:.75}50%{opacity:1}}
+.mile.ready .mname.pulse{animation:namePulse 1.5s ease-in-out infinite}
+@keyframes boxShake{0%,100%{transform:none}20%{transform:translateX(-4px) rotate(-3deg)}40%{transform:translateX(4px) rotate(3deg)}60%{transform:translateX(-3px) rotate(-2deg)}80%{transform:translateX(3px) rotate(2deg)}}
+.mile.bursting .lockbox{animation:boxShake .42s ease}
+.subnav button.hasnew{position:relative}
+.subnav button.hasnew::after{content:"";position:absolute;top:6px;right:-2px;width:7px;height:7px;border-radius:50%;
+  background:var(--yellow);box-shadow:0 0 0 0 rgba(240,193,85,.6);animation:dotPulse 1.6s ease-out infinite}
+@keyframes dotPulse{0%{box-shadow:0 0 0 0 rgba(240,193,85,.6)}70%{box-shadow:0 0 0 8px rgba(240,193,85,0)}100%{box-shadow:0 0 0 0 rgba(240,193,85,0)}}
+@media (prefers-reduced-motion: reduce){
+  .mile.ready,.tw,.mile.ready .mname.pulse,.subnav button.hasnew::after,.mile.bursting .lockbox{animation:none!important}
+}
 /* ---------- week timetable ---------- */
 .wk-scroll{overflow-x:auto;width:100%}
 .wk-grid{display:grid;grid-template-columns:repeat(5,minmax(104px,1fr));gap:10px;min-width:560px}
@@ -601,7 +665,6 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
 .mile svg{width:84px;height:84px}
 .mile .mname{font-family:"Do Hyeon",sans-serif;font-size:18px;margin:6px 0 2px}
 .mile .mreq{font-size:13px;color:var(--ink-faint)}
-.mile.locked svg{filter:grayscale(1);opacity:.35}
 .mile.unlocked svg{cursor:pointer}
 .mile svg .t-eye{transition:transform .08s linear}
 .mile.bouncing svg{animation:tbounce .65s ease}
@@ -641,7 +704,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       <div>
         <p class="eyebrow">주말 공부 · 그림으로 먼저</p>
         <h1>그림으로 먼저,<br>답은 그다음</h1>
-        <p class="lede">눌러보면 이유가 보이는 판. 문제를 <b>맞히면 보석이 1개</b> — 틀려도 ‘다시 풀기’로 도전하면 된다. 보석을 모으면 강아지 몽몽, 고양이 나비, 판다 푸푸가 차례로 찾아온다.</p>
+        <p class="lede">눌러보면 이유가 보이는 판. 문제를 <b>맞히면 보석이 1개</b> — 틀려도 ‘다시 풀기’로 도전하면 된다. 보석을 모으면 <b>상자가 열린다</b> — 누가 들어 있는지는 직접 눌러봐야 알 수 있다.</p>
       </div>
       <div style="display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;justify-content:flex-end">
         <button class="gemchip" id="theme-toggle" aria-label="화면 밝기 바꾸기" style="font-size:14px;font-family:inherit"></button>
@@ -2003,7 +2066,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   <section class="panel" data-subject="bank" data-child="both" hidden>
     <div class="bank">
       <h2 id="bank-title"></h2>
-      <p class="bank-sub">문제를 맞히면 보석 1개 — 틀려도 ‘다시 풀기’로 도전하면 얻을 수 있다. 보석이 쌓이면 동물 친구가 하나씩 찾아온다. (친구를 톡 치면 폴짝 뛰고, 눈동자는 늘 너를 따라다녀!)</p>
+      <p class="bank-sub">문제를 맞히면 보석 1개 — 틀려도 ‘다시 풀기’로 도전하면 얻을 수 있다. 보석이 쌓이면 상자가 <b>반짝이며</b> 열 수 있게 된다. <b>직접 눌러야</b> 열리고, 등급은 <b>기본 → 동 → 은 → 금</b> 순서로 올라간다. (친구를 톡 치면 폴짝 뛰고, 눈동자는 늘 너를 따라다녀!)</p>
       <p class="bank-count" id="bank-count"></p>
       <div class="bank-grid" id="bank-grid"></div>
       <div class="milestones" id="bank-miles"></div>
@@ -2018,7 +2081,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       <li><b>토요일 20분</b> — 과목 하나 골라 활동만. 정답은 묻지 말고 “왜 그렇게 보여?”만 물어보기.</li>
       <li><b>일요일 20분</b> — 같은 판을 다시 열고 확인 문제까지. 틀려도 ‘다시 풀기’로 도전해서 맞히면 보석이 나와요.</li>
       <li>보석과 동물 친구는 <b>이 기기(태블릿)에 저장</b>돼요. 아이마다 자기 태블릿에서 하면 각자의 보석함이 생깁니다.</li>
-      <li>지금은 8월 기준 2학기 첫 단원 위주예요 — 달이 바뀌면 챕터를 갈아끼우고, 과목별 활동도 계속 늘릴 수 있어요.</li>
+      <li>지금은 <b>8월 31일 – 9월 4일 주간학습안내</b> 기준이에요 — 주가 바뀌면 활동과 문제를 그 주 진도로 갈아끼웁니다.</li>
     </ul>
   </section>
 </div>
@@ -2063,6 +2126,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     for (var i = 0; i < SUBJ_DEFS.length; i++) if (SUBJ_DEFS[i][0] === k) return SUBJ_DEFS[i][1];
     return k;
   }
+  function afterNav(){ try{ markBankReady(); }catch(e){} }
   function buildSubnav(){
     var nav = $('subnav');
     nav.innerHTML = '';
@@ -2075,6 +2139,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       b.addEventListener('click', function(){ cur.subject = k; render(); });
       nav.appendChild(b);
     });
+    afterNav();
   }
   function render(){
     var landing = !cur.child;
@@ -2140,14 +2205,15 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   });
 
   /* ================= rewards ================= */
-  var KEY = 'gyeol-gems-v1';
+  var KEY = 'gyeol-gems-v2';
   var store = {};
   try {
     var raw = localStorage.getItem(KEY);
     if (raw){ var p = JSON.parse(raw); if (p && typeof p === 'object') store = p; }
   } catch(e){}
   ['sunwoo','jiwoo','minjae'].forEach(function(k){
-    if (!store[k] || !store[k].gems) store[k] = { gems:[], tried:{} };
+    if (!store[k] || !store[k].gems) store[k] = { gems:[], tried:{}, opened:[] };
+    if (!store[k].opened) store[k].opened = [];
   });
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(store)); } catch(e){} }
 
@@ -2176,7 +2242,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   $('gemchip-icon').innerHTML = gemSVG('#8B5CC9', 18);
 
   function my(){ return store[cur.child]; }
-  function updateChip(){ $('gemchip-n').textContent = my().gems.length; }
+  function updateChip(){ $('gemchip-n').textContent = my().gems.length + ' / ' + totalFor(cur.child); try{ markBankReady(); }catch(e){} }
 
   function popGem(q, color){
     var el = document.createElement('span');
@@ -2305,91 +2371,134 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
 
   /* ================= 동물 친구들 ================= */
   var EYE = '#3A2E24';
-  function critterSVG(type){
+  var METAL = {
+    bronze:{ id:'m-bz', a:'#F7D6B2', b:'#C97B36', c:'#8E4F1B', light:'#FBEAD6', aura:'#C97B36', spark:'#FFE0BC' },
+    silver:{ id:'m-sv', a:'#FCFDFF', b:'#C8D3DD', c:'#8E9DAC', light:'#F2F6FA', aura:'#BFD0DE', spark:'#E8F1F8' },
+    gold:  { id:'m-gd', a:'#FFEFB8', b:'#F3C23C', c:'#C8900F', light:'#FFF6D8', aura:'#F5C84C', spark:'#FFF0B8' }
+  };
+  function critterSVG(type, metal){
     var OUT = '#4A423B';
+    var M = METAL[metal] || null;
+    var BODY = M ? 'url(#'+M.id+')' : null;
+    var EAR  = M ? 'url(#'+M.id+'-d)' : null;
+    var BELLY= M ? M.light : null;
     function base(o){
+      var body = BODY || o.body, arm = EAR || o.arm || o.body, belly = o.belly ? (BELLY || o.belly) : null;
       var s = '';
       s += o.ears || '';
-      s += '<rect x="12" y="12" width="56" height="62" rx="27" ry="28" fill="' + o.body + '" stroke="' + OUT + '" stroke-width="2.4"/>';
-      var arm = o.arm || o.body;
+      s += '<rect x="12" y="12" width="56" height="62" rx="27" ry="28" fill="' + body + '" stroke="' + OUT + '" stroke-width="2.4"/>';
+      if (M) s += '<path d="M20 22 q8 -6 16 -3 q-10 6 -13 16 q-4 -6 -3 -13 Z" fill="#FFFFFF" opacity=".38"/>';
       s += '<ellipse cx="11" cy="49" rx="4.8" ry="7.8" fill="' + arm + '" stroke="' + OUT + '" stroke-width="2" transform="rotate(38 11 49)"/>';
       s += '<ellipse cx="69" cy="49" rx="4.8" ry="7.8" fill="' + arm + '" stroke="' + OUT + '" stroke-width="2" transform="rotate(-38 69 49)"/>';
-      s += o.belly ? '<ellipse cx="40" cy="64" rx="12" ry="9" fill="' + o.belly + '"/>' : '';
-      s += o.headExtra || '';
+      s += belly ? '<ellipse cx="40" cy="64" rx="12" ry="9" fill="' + belly + '"/>' : '';
+      s += (M && o.headExtraMetal !== undefined) ? o.headExtraMetal : (o.headExtra || '');
       var ef = o.eyeFill || OUT;
-      s += '<circle class="t-eye" cx="31" cy="38" r="2.3" fill="' + ef + '"/>' +
-           '<circle class="t-eye" cx="49" cy="38" r="2.3" fill="' + ef + '"/>';
-      s += '<circle cx="22.5" cy="43.5" r="3.1" fill="#F6AFAF" opacity=".9"/><circle cx="57.5" cy="43.5" r="3.1" fill="#F6AFAF" opacity=".9"/>';
+      s += '<circle class="t-eye" cx="31" cy="38" r="2.3" fill="' + ef + '"/><circle class="t-eye" cx="49" cy="38" r="2.3" fill="' + ef + '"/>';
+      var bo = M ? '.45' : '.9';
+      s += '<circle cx="22.5" cy="43.5" r="3.1" fill="#F6AFAF" opacity="' + bo + '"/><circle cx="57.5" cy="43.5" r="3.1" fill="#F6AFAF" opacity="' + bo + '"/>';
       s += (o.mouth !== undefined ? o.mouth : '<path d="M36.8 43.5 q3.2 2.8 6.4 0" stroke="' + OUT + '" stroke-width="1.7" fill="none" stroke-linecap="round"/>');
       s += o.extra || '';
       return s;
     }
-    var s = '<svg viewBox="0 -12 80 92" aria-hidden="true">';
+    var vb = M ? '-8 -20 96 102' : '0 -12 80 92';
+    var s = '<svg viewBox="' + vb + '" aria-hidden="true" class="crit ' + (metal || 'plain') + '">';
+    if (M){
+      s += '<defs><linearGradient id="'+M.id+'" x1="0" y1="0" x2="0.25" y2="1">' +
+           '<stop offset="0" stop-color="'+M.a+'"/><stop offset=".45" stop-color="'+M.b+'"/><stop offset="1" stop-color="'+M.c+'"/></linearGradient>' +
+           '<linearGradient id="'+M.id+'-d" x1="0" y1="0" x2="0.3" y2="1">' +
+           '<stop offset="0" stop-color="'+M.b+'"/><stop offset="1" stop-color="'+M.c+'"/></linearGradient>' +
+           '<radialGradient id="'+M.id+'-a"><stop offset=".42" stop-color="'+M.aura+'" stop-opacity=".5"/><stop offset="1" stop-color="'+M.aura+'" stop-opacity="0"/></radialGradient></defs>';
+      s += '<circle class="aura" cx="40" cy="34" r="47" fill="url(#'+M.id+'-a)"/>';
+    }
     if (type === 'dog' || type === 'dogstar'){
-      var body = type === 'dogstar' ? '#F3D683' : '#F2C894';
-      var ear = type === 'dogstar' ? '#DFBB55' : '#E0A96E';
+      var pb = type === 'dogstar' ? '#F3D683' : '#F2C894';
+      var pe = type === 'dogstar' ? '#DFBB55' : '#E0A96E';
       s += base({
-        body: body, belly: type === 'dogstar' ? '#FBEFC9' : '#FBEAD1',
-        ears: '<ellipse cx="17" cy="15" rx="6.8" ry="10" fill="' + ear + '" stroke="' + OUT + '" stroke-width="2" transform="rotate(26 17 15)"/>' +
-              '<ellipse cx="63" cy="15" rx="6.8" ry="10" fill="' + ear + '" stroke="' + OUT + '" stroke-width="2" transform="rotate(-26 63 15)"/>',
-        mouth: '<ellipse cx="40" cy="42" rx="2.2" ry="1.8" fill="' + OUT + '"/>' +
-               '<path d="M37 44.5 q3 2.4 6 0" stroke="' + OUT + '" stroke-width="1.6" fill="none" stroke-linecap="round"/>',
-        extra: type === 'dogstar'
-          ? '<path d="M66 -6 l1.9 3.9 4.3.6 -3.1 3 .7 4.3 -3.8 -2.1 -3.8 2.1 .7 -4.3 -3.1 -3 4.3 -.6 Z" fill="#F5C84C" stroke="' + OUT + '" stroke-width="1.3" stroke-linejoin="round"/>'
-          : ''
+        body: pb, belly: type === 'dogstar' ? '#FBEFC9' : '#FBEAD1',
+        ears:'<ellipse cx="17" cy="15" rx="6.8" ry="10" fill="'+(EAR||pe)+'" stroke="'+OUT+'" stroke-width="2" transform="rotate(26 17 15)"/>' +
+             '<ellipse cx="63" cy="15" rx="6.8" ry="10" fill="'+(EAR||pe)+'" stroke="'+OUT+'" stroke-width="2" transform="rotate(-26 63 15)"/>',
+        mouth:'<ellipse cx="40" cy="42" rx="2.2" ry="1.8" fill="'+OUT+'"/><path d="M37 44.5 q3 2.4 6 0" stroke="'+OUT+'" stroke-width="1.6" fill="none" stroke-linecap="round"/>',
+        extra: (!M && type === 'dogstar')
+          ? '<path d="M66 -6 l1.9 3.9 4.3.6 -3.1 3 .7 4.3 -3.8 -2.1 -3.8 2.1 .7 -4.3 -3.1 -3 4.3 -.6 Z" fill="#F5C84C" stroke="'+OUT+'" stroke-width="1.3" stroke-linejoin="round"/>' : ''
       });
     } else if (type === 'cat'){
       s += base({
-        body: '#DEE4ED',
-        ears: '<path d="M17 22 L22 5 L32 15 Z" fill="#DEE4ED" stroke="' + OUT + '" stroke-width="2" stroke-linejoin="round"/>' +
-              '<path d="M63 22 L58 5 L48 15 Z" fill="#DEE4ED" stroke="' + OUT + '" stroke-width="2" stroke-linejoin="round"/>',
-        mouth: '<path d="M35.6 43 q2.2 2.6 4.4 0 q2.2 2.6 4.4 0" stroke="' + OUT + '" stroke-width="1.6" fill="none" stroke-linecap="round"/>'
+        body:'#DEE4ED',
+        ears:'<path d="M17 22 L22 5 L32 15 Z" fill="'+(EAR||'#DEE4ED')+'" stroke="'+OUT+'" stroke-width="2" stroke-linejoin="round"/>' +
+             '<path d="M63 22 L58 5 L48 15 Z" fill="'+(EAR||'#DEE4ED')+'" stroke="'+OUT+'" stroke-width="2" stroke-linejoin="round"/>',
+        mouth:'<path d="M35.6 43 q2.2 2.6 4.4 0 q2.2 2.6 4.4 0" stroke="'+OUT+'" stroke-width="1.6" fill="none" stroke-linecap="round"/>'
       });
     } else if (type === 'panda'){
       s += base({
-        body: '#FCFCF7', arm: '#3D3D3D',
-        ears: '<circle cx="19" cy="12" r="7.6" fill="#3D3D3D" stroke="' + OUT + '" stroke-width="2"/>' +
-              '<circle cx="61" cy="12" r="7.6" fill="#3D3D3D" stroke="' + OUT + '" stroke-width="2"/>',
-        headExtra: '<ellipse cx="31" cy="37.5" rx="4.6" ry="5.6" fill="#3D3D3D" transform="rotate(-10 31 37.5)"/>' +
-                   '<ellipse cx="49" cy="37.5" rx="4.6" ry="5.6" fill="#3D3D3D" transform="rotate(10 49 37.5)"/>',
-        eyeFill: '#FFFFFF',
-        mouth: '<path d="M37 44 q3 2.4 6 0" stroke="' + OUT + '" stroke-width="1.6" fill="none" stroke-linecap="round"/>'
+        body:'#FCFCF7', arm:'#3D3D3D',
+        ears:'<circle cx="19" cy="12" r="7.6" fill="#3D3D3D" stroke="'+OUT+'" stroke-width="2"/>' +
+             '<circle cx="61" cy="12" r="7.6" fill="#3D3D3D" stroke="'+OUT+'" stroke-width="2"/>',
+        headExtra:'<ellipse cx="31" cy="37.5" rx="4.6" ry="5.6" fill="#3D3D3D" transform="rotate(-10 31 37.5)"/><ellipse cx="49" cy="37.5" rx="4.6" ry="5.6" fill="#3D3D3D" transform="rotate(10 49 37.5)"/>',
+        eyeFill:'#FFFFFF',
+        mouth:'<path d="M37 44 q3 2.4 6 0" stroke="'+OUT+'" stroke-width="1.6" fill="none" stroke-linecap="round"/>'
       });
     } else if (type === 'rabbit'){
       s += base({
-        body: '#F8C9D4',
-        ears: '<ellipse cx="28" cy="1" rx="5.6" ry="12" fill="#F8C9D4" stroke="' + OUT + '" stroke-width="2"/>' +
-              '<ellipse cx="28" cy="2" rx="2.6" ry="8" fill="#F2A9BC"/>' +
-              '<ellipse cx="52" cy="1" rx="5.6" ry="12" fill="#F8C9D4" stroke="' + OUT + '" stroke-width="2"/>' +
-              '<ellipse cx="52" cy="2" rx="2.6" ry="8" fill="#F2A9BC"/>',
-        mouth: '<path d="M36.8 43.5 q3.2 2.8 6.4 0" stroke="' + OUT + '" stroke-width="1.7" fill="none" stroke-linecap="round"/>'
+        body:'#F8C9D4',
+        ears:'<ellipse cx="28" cy="1" rx="5.6" ry="12" fill="'+(BODY||'#F8C9D4')+'" stroke="'+OUT+'" stroke-width="2"/>' +
+             '<ellipse cx="28" cy="2" rx="2.6" ry="8" fill="'+(EAR||'#F2A9BC')+'"/>' +
+             '<ellipse cx="52" cy="1" rx="5.6" ry="12" fill="'+(BODY||'#F8C9D4')+'" stroke="'+OUT+'" stroke-width="2"/>' +
+             '<ellipse cx="52" cy="2" rx="2.6" ry="8" fill="'+(EAR||'#F2A9BC')+'"/>'
       });
     } else {
       s += base({
-        body: '#D9A26B', belly: '#F3D9AE',
-        ears: '<circle cx="19" cy="13" r="7" fill="#D9A26B" stroke="' + OUT + '" stroke-width="2"/>' +
-              '<circle cx="19" cy="13" r="3.2" fill="#F3D9AE"/>' +
-              '<circle cx="61" cy="13" r="7" fill="#D9A26B" stroke="' + OUT + '" stroke-width="2"/>' +
-              '<circle cx="61" cy="13" r="3.2" fill="#F3D9AE"/>',
-        headExtra: '<ellipse cx="40" cy="42.5" rx="6.4" ry="4.9" fill="#F3D9AE"/>',
-        mouth: '<ellipse cx="40" cy="41" rx="2.1" ry="1.7" fill="' + OUT + '"/>' +
-               '<path d="M37.5 43.5 q2.5 2.2 5 0" stroke="' + OUT + '" stroke-width="1.5" fill="none" stroke-linecap="round"/>'
+        body:'#D9A26B', belly:'#F3D9AE',
+        ears:'<circle cx="19" cy="13" r="7" fill="'+(EAR||'#D9A26B')+'" stroke="'+OUT+'" stroke-width="2"/><circle cx="19" cy="13" r="3.2" fill="'+(BELLY||'#F3D9AE')+'"/>' +
+             '<circle cx="61" cy="13" r="7" fill="'+(EAR||'#D9A26B')+'" stroke="'+OUT+'" stroke-width="2"/><circle cx="61" cy="13" r="3.2" fill="'+(BELLY||'#F3D9AE')+'"/>',
+        headExtra:'<ellipse cx="40" cy="42.5" rx="6.4" ry="4.9" fill="'+(BELLY||'#F3D9AE')+'"/>',
+        mouth:'<ellipse cx="40" cy="41" rx="2.1" ry="1.7" fill="'+OUT+'"/><path d="M37.5 43.5 q2.5 2.2 5 0" stroke="'+OUT+'" stroke-width="1.5" fill="none" stroke-linecap="round"/>'
       });
+    }
+    if (metal === 'silver' || metal === 'gold'){
+      s += '<g class="sparks">' +
+        '<path class="sp s1" d="M2 20 l1.8 4 4 1.8 -4 1.8 -1.8 4 -1.8 -4 -4 -1.8 4 -1.8 Z" fill="'+M.spark+'"/>' +
+        '<path class="sp s2" d="M76 28 l1.6 3.6 3.6 1.6 -3.6 1.6 -1.6 3.6 -1.6 -3.6 -3.6 -1.6 3.6 -1.6 Z" fill="'+M.spark+'"/>' +
+        '<path class="sp s3" d="M70 66 l1.4 3.1 3.1 1.4 -3.1 1.4 -1.4 3.1 -1.4 -3.1 -3.1 -1.4 3.1 -1.4 Z" fill="'+M.spark+'"/></g>';
+    }
+    if (metal === 'gold'){
+      s += '<path d="M24 2 L31 12 L40 -2 L49 12 L56 2 L58 17 L22 17 Z" fill="url(#m-gd)" stroke="#8A5F0B" stroke-width="1.8" stroke-linejoin="round"/>' +
+           '<circle cx="40" cy="-4" r="2.8" fill="#FFF3C4" stroke="#8A5F0B" stroke-width="1.2"/>';
     }
     s += '</svg>';
     return s;
   }
+
   Array.prototype.forEach.call(document.querySelectorAll('.switch [data-child]'), function(b){
     var av = b.querySelector('.avatar');
     if (av) av.innerHTML = critterSVG(AVATARS[b.dataset.child]);
   });
   var MILES_DEF = [
-    { name:'아기 강아지 몽몽', type:'dog' },
-    { name:'새침 고양이 나비', type:'cat' },
-    { name:'먹보 판다 푸푸', type:'panda' },
-    { name:'별빛 강아지 별별', type:'dogstar' }
+    { name:'아기 강아지 몽몽', type:'dog',     metal:null,     lab:'기본', pct:0.25 },
+    { name:'동빛 고양이 나비', type:'cat',     metal:'bronze', lab:'동',   pct:0.50 },
+    { name:'은빛 판다 푸푸',  type:'panda',   metal:'silver', lab:'은',   pct:0.75 },
+    { name:'황금 강아지 해님', type:'dogstar', metal:'gold',   lab:'금',   pct:1.00 }
   ];
-  var MILE_NEEDS = { sunwoo:[4,10,15,21], jiwoo:[6,16,26,36], minjae:[2,3,5,6] };
+  /* 활동으로 얻는 보석(문제 외) */
+  var ACT_GEMS = { sunwoo:['s-d1'], jiwoo:['j-r1','j-r2','j-r3','j-r4'], minjae:[] };
+  var TOTAL_CACHE = {};
+  function totalFor(c){
+    if (TOTAL_CACHE[c] !== undefined) return TOTAL_CACHE[c];
+    var n = 0;
+    Array.prototype.forEach.call(document.querySelectorAll('.panel[data-child]'), function(pn){
+      var v = pn.dataset.child;
+      if (v !== 'both' && v.split(' ').indexOf(c) === -1) return;
+      Array.prototype.forEach.call(pn.querySelectorAll('.q[data-qid]'), function(q){
+        var host = q.closest ? q.closest('[data-for]') : null;
+        if (host && host.dataset.for.split(' ').indexOf(c) === -1) return;
+        n++;
+      });
+    });
+    n += (ACT_GEMS[c] || []).length;
+    TOTAL_CACHE[c] = n;
+    return n;
+  }
+  function needFor(c, pct){ return Math.max(1, Math.ceil(totalFor(c) * pct)); }
+  var MILE_SEEN = {};
   function awardKey(qid, anchorEl){
     var w = my();
     if (w.tried[qid] === 'gem') return false;
@@ -2400,27 +2509,82 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     if (anchorEl){ popGem(anchorEl, color); burst(anchorEl); }
     return true;
   }
-  function drawBank(){
-    var m = my();
-    $('bank-title').textContent = childName[cur.child] + '의 보석함';
-    $('bank-count').textContent = '보석 ' + m.gems.length + '개';
-    var g = $('bank-grid');
-    if (m.gems.length === 0){
-      g.innerHTML = '<span class="bank-empty">아직 비어 있어 — 문제를 한 번에 맞히면 첫 보석이 나와!</span>';
-    } else {
-      g.innerHTML = m.gems.map(function(c){ return gemSVG(c, 30); }).join('');
-    }
-    var needs = MILE_NEEDS[cur.child];
-    $('bank-miles').innerHTML = MILES_DEF.map(function(mi, i){
-      var need = needs[i];
-      var un = m.gems.length >= need;
-      return '<div class="mile ' + (un ? 'unlocked' : 'locked') + '">' +
-        critterSVG(mi.type) +
-        '<div class="mname">' + (un ? mi.name : '???') + '</div>' +
-        '<div class="mreq">' + (un ? '함께하는 중!' : '보석 ' + need + '개를 모으면') + '</div></div>';
-    }).join('');
+  function readyCount(c){
+    var w = store[c]; if (!w) return 0;
+    var have = w.gems.length, n = 0;
+    MILES_DEF.forEach(function(mi, i){
+      if (have >= needFor(c, mi.pct) && w.opened.indexOf(i) === -1) n++;
+    });
+    return n;
   }
-
+  function markBankReady(){
+    var nav = $('subnav'); if (!nav || !cur.child) return;
+    var btn = nav.querySelector('[data-subject="bank"]');
+    if (btn) btn.classList.toggle('hasnew', readyCount(cur.child) > 0);
+  }
+  function drawBank(){
+    var m = my(), c = cur.child, tot = totalFor(c), have = m.gems.length;
+    var pct = tot ? Math.min(100, Math.round(have / tot * 100)) : 0;
+    $('bank-title').textContent = childName[c] + '의 보석함';
+    $('bank-count').innerHTML = '보석 <b>' + have + '</b> / ' + tot + '개' +
+      '<span class="bank-pct">' + pct + '%</span>' +
+      '<span class="bank-bar"><span class="bank-fill" style="width:' + pct + '%"></span></span>';
+    var g = $('bank-grid');
+    if (have === 0){
+      g.innerHTML = '<span class="bank-empty">아직 비어 있어 — 문제를 맞히면 첫 보석이 나와!</span>';
+    } else {
+      g.innerHTML = m.gems.map(function(col){ return gemSVG(col, 30); }).join('');
+    }
+    $('bank-miles').innerHTML = MILES_DEF.map(function(mi, i){
+      var need = needFor(c, mi.pct);
+      var opened = m.opened.indexOf(i) !== -1;
+      var ready = !opened && have >= need;
+      if (opened){
+        return '<div class="mile unlocked ' + (mi.metal || 'plain') + '" data-mi="' + i + '">' +
+          critterSVG(mi.type, mi.metal) +
+          '<div class="mname">' + mi.name + '</div>' +
+          '<div class="mreq">' + mi.lab + ' 등급 · 함께하는 중!</div></div>';
+      }
+      if (ready){
+        return '<div class="mile ready" data-mi="' + i + '" role="button" tabindex="0">' +
+          '<div class="lockbox glow"><span class="qm">?</span>' +
+            '<i class="tw t1"></i><i class="tw t2"></i><i class="tw t3"></i><i class="tw t4"></i><i class="tw t5"></i>' +
+          '</div>' +
+          '<div class="mname pulse">열 수 있어!</div>' +
+          '<div class="mreq">눌러서 확인하기</div></div>';
+      }
+      return '<div class="mile locked" data-mi="' + i + '">' +
+        '<div class="lockbox"><span class="qm">?</span></div>' +
+        '<div class="mname">???</div>' +
+        '<div class="mreq">보석 ' + need + '개 (' + Math.round(mi.pct*100) + '%) 모으면</div></div>';
+    }).join('');
+    markBankReady();
+  }
+  /* 상자 열기 — 직접 눌러야 공개된다 */
+  $('bank-miles').addEventListener('click', function(e){
+    var card = e.target.closest ? e.target.closest('.mile.ready') : null;
+    if (!card) return;
+    openMile(parseInt(card.dataset.mi, 10), card);
+  });
+  $('bank-miles').addEventListener('keydown', function(e){
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var card = e.target.closest ? e.target.closest('.mile.ready') : null;
+    if (!card) return;
+    e.preventDefault(); openMile(parseInt(card.dataset.mi, 10), card);
+  });
+  function openMile(i, card){
+    var m = my();
+    if (m.opened.indexOf(i) !== -1) return;
+    var mi = MILES_DEF[i];
+    card.classList.add('bursting');
+    burst(card); if (mi.metal) setTimeout(function(){ burst(card); }, 220);
+    setTimeout(function(){
+      m.opened.push(i); save();
+      drawBank();
+      var el = $('bank-miles').querySelector('[data-mi="' + i + '"]');
+      if (el){ el.classList.add('justnew'); setTimeout(function(){ burst(el); }, 260); }
+    }, 430);
+  }
   /* ---------- 거북이 살아있게: 눈동자 따라오기 + 톡 치면 통통 ---------- */
   $('bank-miles').addEventListener('click', function(e){
     var mile = e.target.closest ? e.target.closest('.mile.unlocked') : null;
