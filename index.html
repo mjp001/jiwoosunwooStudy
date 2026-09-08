@@ -560,6 +560,7 @@ button.pdot{padding:0;border:none;cursor:pointer;display:block}
 @keyframes auraPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.07)}}
 @keyframes shimmer{0%{transform:translateX(-130%)}100%{transform:translateX(240%)}}
 @keyframes unlockPop{0%{transform:rotateY(90deg) scale(.7);opacity:0}55%{transform:rotateY(0) scale(1.12);opacity:1}100%{transform:none;opacity:1}}
+.mile .crit.plain{animation:floaty 3.9s ease-in-out infinite}
 .mile .crit.bronze{animation:floaty 3.4s ease-in-out infinite}
 .mile .crit.silver{animation:floaty 2.9s ease-in-out infinite}
 .mile .crit.gold{animation:floaty 2.3s ease-in-out infinite}
@@ -608,6 +609,53 @@ button.pdot{padding:0;border:none;cursor:pointer;display:block}
 @media (prefers-reduced-motion: reduce){
   .mile.ready,.tw,.mile.ready .mname.pulse,.subnav button.hasnew::after,.mile.bursting .lockbox{animation:none!important}
 }
+/* ---------- 10칸 판 / 세 수 뺄셈 ---------- */
+.tenframe{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;width:min(300px,86%);padding:8px;border:2px solid var(--line-strong);border-radius:14px;background:var(--paper)}
+.tenframe i{display:block;aspect-ratio:1;border-radius:50%;border:2px dashed var(--line);background:transparent;transition:background .25s,border-color .25s,transform .25s}
+.tenframe i.on{background:var(--green);border-style:solid;border-color:var(--green);animation:popdot .28s both}
+.tenframe i.pair{background:var(--yellow);border-style:solid;border-color:var(--yellow);animation:popdot .28s both}
+.tenframe i.gone{background:var(--card);border-color:var(--line-strong);opacity:.35;transform:scale(.72)}
+.tf-eq{font-family:"Do Hyeon",sans-serif;font-size:24px;margin:14px 0 0;color:var(--ink);text-align:center}
+.beads{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;width:100%;min-height:60px;align-items:center}
+.beads i{display:block;width:26px;height:26px;border-radius:50%;background:var(--blue);transition:all .3s}
+.beads i.cut1{background:var(--red);opacity:.28;transform:scale(.7)}
+.beads i.cut2{background:var(--yellow);opacity:.28;transform:scale(.7)}
+.wordrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.wordrow button{border:1px solid var(--line-strong);border-radius:12px;background:var(--paper);color:var(--ink);
+  font-family:"Do Hyeon",sans-serif;font-size:22px;padding:8px 14px;cursor:pointer}
+.wordrow button[aria-pressed="true"]{border-color:var(--green);background:var(--green);color:#10261C}
+.bt-big{font-family:"Do Hyeon",sans-serif;font-size:38px;margin:16px 0 4px;color:var(--ink);letter-spacing:2px}
+.bt-big em{color:var(--red);font-style:normal}
+.bt-sound{font-family:"Gaegu",cursive;font-size:24px;margin:0;color:var(--ink-soft);min-height:30px}
+.passage{width:min(380px,94%);border:1px solid var(--line-strong);border-radius:16px;background:var(--paper);
+  padding:16px;font-size:16px;line-height:1.7;color:var(--ink);animation:grpin .35s both}
+/* ---------- 수의 범위 수직선 / 소수 어림 ---------- */
+.nline{width:min(420px,98%);display:block;color:var(--ink-soft)}
+.nr-label{font-family:"Do Hyeon",sans-serif;font-size:20px;margin:6px 0 0;color:var(--ink);text-align:center}
+.digits{display:flex;gap:4px;justify-content:center;align-items:flex-end;flex-wrap:wrap}
+.dg{min-width:34px;text-align:center;font-family:"Do Hyeon",sans-serif;font-size:30px;color:var(--ink);
+  border-bottom:3px solid var(--line);padding-bottom:4px;transition:all .3s}
+.dg.dot{min-width:14px;border-bottom:none;font-size:30px}
+.dg.keep{border-bottom-color:var(--green)}
+.dg.judge{border-bottom-color:var(--red);color:var(--red);animation:popdot .3s both}
+.dg.cut{opacity:.28;text-decoration:line-through;border-bottom-color:transparent}
+.dg small{display:block;font-family:"IBM Plex Sans KR",sans-serif;font-size:10px;color:var(--ink-faint);margin-top:4px}
+.dc-out{font-family:"Do Hyeon",sans-serif;font-size:26px;margin:16px 0 0;color:var(--ink);text-align:center}
+.eo-hunt-t{font-size:14px;color:var(--ink-soft);margin:16px 0 4px}
+.numcards{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.ncard{border:2px solid var(--line-strong);border-radius:12px;background:var(--paper);color:var(--ink);
+  font-family:"Do Hyeon",sans-serif;font-size:26px;padding:10px 14px;cursor:pointer;min-width:58px}
+.ncard.hit{border-color:var(--green);background:var(--green);color:#10261C;animation:popdot .3s both}
+.ncard.miss{border-color:var(--red);animation:wshake .4s}
+.ncard .bun{display:block;font-family:"IBM Plex Sans KR",sans-serif;font-size:10px;color:var(--ink-faint);margin-top:3px}
+.ncard.hit .bun{color:#10261C}
+.boxq{font-family:"Do Hyeon",sans-serif;font-size:30px;color:var(--ink);text-align:center;margin:6px 0 12px}
+.boxq em{color:var(--red);font-style:normal;border-bottom:3px solid var(--red);padding:0 6px}
+.digitrow{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.dbtn{width:44px;height:44px;border-radius:10px;border:2px solid var(--line-strong);background:var(--paper);
+  color:var(--ink);font-family:"Do Hyeon",sans-serif;font-size:20px;cursor:pointer}
+.dbtn.yes{border-color:var(--green);background:var(--green);color:#10261C}
+.dbtn.no{border-color:var(--red);opacity:.45}
 /* ---------- week timetable ---------- */
 .wk-scroll{overflow-x:auto;width:100%}
 .wk-grid{display:grid;grid-template-columns:repeat(5,minmax(104px,1fr));gap:10px;min-width:560px}
@@ -667,7 +715,11 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
 .mile .mreq{font-size:13px;color:var(--ink-faint)}
 .mile.unlocked svg{cursor:pointer}
 .mile svg .t-eye{transition:transform .08s linear}
-.mile.bouncing svg{animation:tbounce .65s ease}
+.mile.unlocked.bouncing .crit{animation:tbounce .7s cubic-bezier(.34,1.4,.64,1)}
+.mile.unlocked .crit{cursor:pointer}
+@keyframes miniSpark{0%{opacity:0;transform:scale(.3)}40%{opacity:1;transform:scale(1.15)}100%{opacity:0;transform:scale(.6)}}
+.mile.bouncing .aura{animation:miniSpark .7s ease-out}
+.mile.bouncing .sp{animation:miniSpark .7s ease-out}
 @keyframes tbounce{
   0%{transform:scale(1)}
   28%{transform:scale(1.18,.8)}
@@ -725,45 +777,43 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   <!-- ================= 오늘 · 선우 ================= -->
   <section class="panel" data-subject="today" data-child="sunwoo" hidden>
     <article class="stage">
-      <span class="stage-tag">9월 첫 주 · 주간학습안내 8/31 – 9/4</span>
+      <span class="stage-tag">이번 주 · 주간학습안내 9/14 – 9/18</span>
       <h2>선우의 이번 주 복습</h2>
-      <p class="stage-sub">이번 주 학교에서: <b>수학 — 수를 넣어 이야기하기 → 수의 순서 → 수의 크기 비교 → 짝수와 홀수</b>, <b>국어 — 배운 내용 마무리하기 · 배울 내용 살펴보기</b>, 수요일엔 <b>친구 사랑의 날</b>. 배운 걸 그대로 문제로 만나보자. 매일 챙기기: 읽을 책 1권, 개인 물병!</p>
+      <p class="stage-sub">이번 주 학교에서: <b>수학 — 세 수의 뺄셈 → 10이 되는 더하기 → 10에서 빼기</b>, <b>국어 — 받침이 있는 낱말 읽기 · 글쓴이가 하고 싶은 말 · 인물의 생각</b>, 목요일엔 <b>우리 반 주제 만들기</b>, 금요일엔 <b>소방·지진 대피훈련</b>. 매일 챙기기: 읽을 책 1권, 개인 물병!</p>
+      <p class="stage-sub" style="margin-top:10px"><b>1단원 단원평가에서 아쉬웠던 곳</b>은 수학 탭 맨 위 두 판에 따로 담아뒀어 — <b>짝수·홀수 판별기</b>와 <b>수 비교 탐정</b>. 짝수·홀수는 <b>끝자리 하나</b>, 크기 비교는 <b>묶음 먼저</b>. 이 두 마디면 끝나.</p>
     </article>
 
     <section class="quiz" style="border-top:none;padding-top:0">
       <h2>오늘 배운 것, 도전!</h2>
-      <div class="q" data-qid="t-s-0901-1" data-answer="0">
-        <h3>68 바로 다음 수는?</h3>
-        <p class="qnote">화요일 수학 — 수의 순서를 알아볼까요.</p>
-        <div class="opts"><button class="opt">69</button><button class="opt">67</button><button class="opt">78</button></div>
-        <p class="explain" hidden>수의 순서는 <b>한 칸씩 오른쪽으로 걷는 길</b>이야. 68에서 한 걸음이면 69. 낱개 칸에 하나가 더 들어갔을 뿐, 묶음은 그대로 6개.</p>
-        <p class="explain oops" data-opt="2" hidden>78은 한 걸음이 아니라 <b>묶음이 통째로 하나 늘어난</b> 자리야 — 열 걸음 뛴 셈이지.</p>
+      <div class="q" data-qid="t-s-w5-1" data-answer="2">
+        <h3>사탕 8개 중 2개를 친구에게 주고, 3개를 먹었어. 남은 사탕은?</h3>
+        <p class="qnote">월요일 수학 — 세 수의 뺄셈. 앞에서부터 차례로!</p>
+        <div class="opts"><button class="opt">2개</button><button class="opt">4개</button><button class="opt">3개</button></div>
+        <p class="explain" hidden>8 − 2 = 6, 6 − 3 = <b>3개</b>. 준 것과 먹은 것을 먼저 모아도 돼 — 2 + 3 = 5, 8 − 5 = <b>3개</b>. 어느 길로 가도 답은 같아.</p>
       </div>
-      <div class="q" data-qid="t-s-0901-2" data-answer="1">
-        <h3>62와 58, 어느 쪽이 더 클까?</h3>
-        <p class="qnote">수요일 수학 — 수의 크기를 비교해 볼까요.</p>
-        <div class="opts"><button class="opt">58</button><button class="opt">62</button><button class="opt">둘이 같다</button></div>
-        <p class="explain" hidden>낱개(8이 2보다 크다)에 속으면 안 돼! 먼저 <b>묶음부터</b> 봐 — 62는 6묶음, 58은 5묶음. 묶음 하나는 낱개 열 개니까 <b>62가 더 커</b>. 큰 상자부터 세는 게 규칙이야.</p>
-        <p class="explain oops" data-opt="0" hidden>낱개 8이 커 보였지? 하지만 묶음 6개(60) vs 5개(50) — <b>상자가 먼저</b>야.</p>
+      <div class="q" data-qid="t-s-w5-2" data-answer="0">
+        <h3>9 + ? = 10</h3>
+        <p class="qnote">10칸 판에 구슬 9개를 넣으면 빈칸이 몇 개?</p>
+        <div class="opts"><button class="opt">1</button><button class="opt">2</button><button class="opt">0</button></div>
+        <p class="explain" hidden>빈칸이 딱 <b>1개</b>! 9 + 1 = 10. 10의 짝꿍 중에서 가장 쉬운 짝이야 — 하나만 더 오면 판이 꽉 차니까.</p>
       </div>
-      <div class="q" data-qid="t-s-0901-3" data-answer="0">
-        <h3>구슬 7개를 둘씩 짝지어 주면?</h3>
-        <p class="qnote">금요일 수학 — 짝수와 홀수를 알아볼까요.</p>
-        <div class="opts"><button class="opt" style="font-size:15px">하나가 남는다 (홀수)</button><button class="opt" style="font-size:15px">딱 맞는다 (짝수)</button><button class="opt" style="font-size:15px">셋이 남는다</button></div>
-        <p class="explain" hidden>둘씩 손잡기를 시켜 보면 끝! 2·4·6은 짝이 딱 맞고(<b>짝수</b>), 7은 한 명이 손을 못 잡고 남아(<b>홀수</b>). 외워야 하는 게 아니라 <b>짝지어 보면 보이는 것</b>이야.</p>
+      <div class="q" data-qid="t-s-w5-3" data-answer="1">
+        <h3>‘잎에’는 어떻게 읽을까?</h3>
+        <p class="qnote">월요일 국어 — 받침이 있는 낱말에 주의하며 읽기.</p>
+        <div class="opts"><button class="opt">입에</button><button class="opt">이페</button><button class="opt">잎헤</button></div>
+        <p class="explain" hidden>혼자 있을 때 ‘잎’은 [입]으로 소리 나지만, 뒤에 ‘에’가 붙으면 원래 받침 <b>ㅍ</b>이 되살아나 넘어가서 <b>[이페]</b>가 돼. 받침은 <b>다음 칸으로 이사 간다</b>는 규칙!</p>
       </div>
-      <div class="q" data-qid="t-s-0901-4" data-answer="2">
-        <h3>10개씩 묶음 3개와 낱개 5개는 얼마?</h3>
-        <p class="qnote">월요일 수학 — 수를 넣어 이야기를 해 볼까요.</p>
-        <div class="opts"><button class="opt">305</button><button class="opt">53</button><button class="opt">35</button></div>
-        <p class="explain" hidden>앞자리는 <b>묶음의 개수</b>, 뒷자리는 <b>낱개의 개수</b> — 3묶음 5개니까 <b>35</b>. 자리마다 이름표가 다르다는 게 수의 비밀이야.</p>
-        <p class="explain oops" data-opt="1" hidden>53은 5묶음 3개 — 묶음과 낱개가 자리를 바꿔 앉았어.</p>
+      <div class="q" data-qid="t-s-w5-4" data-answer="2">
+        <h3>신호등이 없는 길을 건널 때 가장 먼저 할 일은?</h3>
+        <p class="qnote">월요일 하루 — (바)신호등이 없을 때는.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">빨리 뛰어서 건넌다</button><button class="opt" style="font-size:15px">친구를 먼저 보낸다</button><button class="opt" style="font-size:15px">멈춰 서서 좌우를 살핀다</button></div>
+        <p class="explain" hidden>규칙은 <b>멈춤 → 좌우 살피기 → 손 들고 천천히</b>야. 뛰면 운전자가 나를 볼 시간이 없어져. <b>빨리 가는 것보다 보이게 가는 것</b>이 안전해.</p>
       </div>
-      <div class="q" data-qid="t-s-0901-5" data-answer="1">
-        <h3>친구가 실수로 내 물건을 떨어뜨렸어. 뭐라고 말할까?</h3>
-        <p class="qnote">수요일 — 친구 사랑의 날, 친구의 마음을 존중하며 사이좋게 지내는 방법.</p>
-        <div class="opts"><button class="opt" style="font-size:15px">“너 때문이야!”</button><button class="opt" style="font-size:15px">“괜찮아, 같이 줍자.”</button><button class="opt" style="font-size:15px">아무 말도 안 한다</button></div>
-        <p class="explain" hidden>실수는 누구나 해. <b>“괜찮아”</b> 한마디가 친구 마음을 지켜주고, <b>“같이 줍자”</b>가 우리를 한 편으로 만들어. 존중은 큰 말이 아니라 이런 짧은 말에 들어 있어.</p>
+      <div class="q" data-qid="t-s-w5-5" data-answer="0">
+        <h3>교실에서 지진이 났을 때 가장 먼저 할 일은?</h3>
+        <p class="qnote">금요일 — 자체소방훈련 및 지진대피훈련.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">책상 아래로 들어가 머리를 보호한다</button><button class="opt" style="font-size:15px">창문을 연다</button><button class="opt" style="font-size:15px">큰 소리로 뛰어나간다</button></div>
+        <p class="explain" hidden>흔들릴 때는 <b>숙이고 · 가리고 · 붙잡고</b>. 떨어지는 물건이 가장 위험하니까 먼저 책상 아래로 들어가야 해. <b>흔들림이 멈춘 뒤에</b> 선생님을 따라 질서 있게 나가는 거야.</p>
       </div>
     </section>
   </section>
@@ -771,61 +821,61 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   <!-- ================= 오늘 · 지우 ================= -->
   <section class="panel" data-subject="today" data-child="jiwoo" hidden>
     <article class="stage">
-      <span class="stage-tag">9월 첫 주 · 주간학습안내 8/31 – 9/4</span>
-      <h2>지우의 이번 주 복습</h2>
-      <p class="stage-sub">이번 주 학교에서: <b>수학 — 반올림 → 1단원 단원평가(목) → 2단원 도입</b>, <b>사회 — 고조선 → 삼국의 성립 → 삼국의 전성기와 가야</b>, <b>국어 — 공감하며 대화하기 · 인상적인 부분 의견 나누기 · 서평 쓰기</b>, <b>과학 — 혼합물 분리 3종</b>, <b>미술 — 테셀레이션</b>. 한 주가 통째로 문제가 된다!</p>
+      <span class="stage-tag">1단원 단원평가 다시 보기 · 수의 범위와 어림하기</span>
+      <h2>지우의 오답 되짚기</h2>
+      <p class="stage-sub">단원평가에서 걸린 곳은 <b>딱 두 갈래</b>였다. 하나는 <b>경계에 선 수</b> — 초과·미만이 그 수를 빼고, 이상·이하가 그 수를 넣는다는 것. 다른 하나는 <b>소수를 어림할 때 방법마다 답이 달라진다</b>는 것. 수학 탭 맨 위 두 판(<b>경계에 선 사람</b>, <b>소수 어림 기계</b>)에서 눈으로 확인하고, 아래 문제로 굳히자.</p>
+      <p class="stage-sub" style="margin-top:10px"><b>기억할 두 마디</b> — “<b>이상·이하는 ● (넣는다), 초과·미만은 ○ (뺀다)</b>”, “<b>올림은 남은 게 있으면 무조건 올린다</b>”.</p>
     </article>
 
     <section class="quiz" style="border-top:none;padding-top:0">
       <h2>오늘 배운 것, 도전!</h2>
-      <div class="q" data-qid="t-j-0901-1" data-answer="0">
-        <h3>3,480을 반올림하여 <em>천의 자리까지</em> 나타내면?</h3>
-        <p class="qnote">월요일 수학 — 반올림을 알아보고 활용해 볼까요.</p>
-        <div class="opts"><button class="opt">3,000</button><button class="opt">3,500</button><button class="opt">4,000</button></div>
-        <p class="explain" hidden>반올림은 <b>가까운 층으로 가기</b>야. 천의 자리로 갈 거면 바로 아래 칸(백의 자리) <b>4</b>만 보면 돼 — 4는 절반(5)에 못 미치니 아래층 <b>3,000</b>. 5부터는 위층으로 올라가고. 계산이 아니라 <b>어느 층이 더 가까운가</b>를 묻는 거지.</p>
-        <p class="explain oops" data-opt="2" hidden>4,000이 되려면 백의 자리가 5 이상이어야 해. 3,480은 3,000 쪽에 더 가까이 서 있어.</p>
+      <div class="q" data-qid="t-j-t1" data-answer="1">
+        <h3>20 <em>이하</em>인 수를 모두 고르면? — 17, 20, 24, 25, 26</h3>
+        <p class="qnote">단원평가 1번. 20은 들어갈까?</p>
+        <div class="opts"><button class="opt" style="font-size:15px">17만</button><button class="opt" style="font-size:15px">17, 20</button><button class="opt" style="font-size:15px">17, 20, 24</button></div>
+        <p class="explain" hidden><b>이하</b>는 그 수를 <b>포함</b>해. 그래서 <b>17과 20</b>. 20이 헷갈렸다면 ‘이하 = 그 수를 딛고 서도 OK’라고 외워두자. ‘20 <b>미만</b>’이었다면 17만 남았을 거야 — 두 글자 차이가 답을 바꾼다.</p>
       </div>
-      <div class="q" data-qid="t-j-0901-2" data-answer="1">
-        <h3>3,480원짜리 물건. 반올림하면 3,000원인데, 왜 천 원짜리는 <em>4장</em> 필요할까?</h3>
-        <p class="qnote">어림 삼형제(올림·버림·반올림)를 상황이 골라준다.</p>
-        <div class="opts"><button class="opt" style="font-size:15px">반올림이 틀렸으니까</button><button class="opt" style="font-size:15px">‘내야 하는 돈’은 모자라면 안 되니까 — 올림</button><button class="opt" style="font-size:15px">가게가 비싸게 팔아서</button></div>
-        <p class="explain" hidden>반올림은 <b>대충 얼마쯤인지 말할 때</b>, 올림은 <b>모자라면 안 될 때</b>. 3장(3,000원)이면 480원이 모자라 물건을 못 사지. 같은 수라도 <b>무엇을 하려는가</b>에 따라 어림 방법이 달라진다 — 이게 이 단원의 진짜 핵심이야.</p>
+      <div class="q" data-qid="t-j-t2" data-answer="0">
+        <h3>윗몸일으키기 기록이 <em>30회 이상</em>인 학생은 몇 명? (수호 28, 예진 25, 태호 32, 승기 26, 서현 30)</h3>
+        <p class="qnote">단원평가 2번. 서현이는?</p>
+        <div class="opts"><button class="opt">2명</button><button class="opt">1명</button><button class="opt">3명</button></div>
+        <p class="explain" hidden>30 <b>이상</b>이니 30도 포함 — 태호(32)와 서현(30)으로 <b>2명</b>. 딱 경계에 선 서현이를 넣느냐가 이 문제의 전부야. 표 문제는 <b>기준 수에 먼저 밑줄</b>을 긋고 하나씩 비교하면 실수가 없어.</p>
       </div>
-      <div class="q" data-qid="t-j-0901-3" data-answer="0">
-        <h3>고조선 8조법에 “남을 다치게 한 사람은 <em>곡식</em>으로 갚는다”가 있어. 무엇을 알 수 있을까?</h3>
-        <p class="qnote">월요일 사회 — 고조선 사람들의 생활 모습 알아보기.</p>
-        <div class="opts"><button class="opt" style="font-size:15px">농사를 지었고 곡식이 재산이었다</button><button class="opt" style="font-size:15px">돈이 아주 많았다</button><button class="opt" style="font-size:15px">병원이 있었다</button></div>
-        <p class="explain" hidden>법은 <b>그 사회가 무엇을 소중히 여겼는지</b> 알려주는 거울이야. 벌을 곡식으로 매겼다는 건 곡식이 값을 매길 만큼 <b>귀한 재산</b>이었다는 뜻 — 농사 사회라는 증거지. 글자 몇 줄에서 생활 전체가 보인다.</p>
+      <div class="q" data-qid="t-j-t3" data-answer="2">
+        <h3>18세 이상이면 투표할 수 있다. 가족 중 몇 명? (할머니 72, 아버지 48, 어머니 46, 누나 18, 예준 11)</h3>
+        <p class="qnote">단원평가 3번. 누나는 딱 18세.</p>
+        <div class="opts"><button class="opt">3명</button><button class="opt">5명</button><button class="opt">4명</button></div>
+        <p class="explain" hidden>72·48·46·<b>18</b>로 <b>4명</b>. 누나가 딱 18세지만 <b>이상</b>이라 포함이야. 실제 법도 “만 18세 이상”이라 생일이 지난 18세는 투표해. <b>경계를 넣는 규칙</b>이 현실에서도 그대로 쓰인다는 게 재밌지.</p>
       </div>
-      <div class="q" data-qid="t-j-0901-4" data-answer="1">
-        <h3>삼국 중 가장 먼저 전성기를 맞은 나라는?</h3>
-        <p class="qnote">화요일·목요일 사회 — 삼국의 성립과 성장, 삼국의 전성기.</p>
-        <div class="opts"><button class="opt">고구려</button><button class="opt">백제</button><button class="opt">신라</button></div>
-        <p class="explain" hidden>전성기 순서는 <b>백제(4세기, 근초고왕) → 고구려(5세기, 광개토대왕·장수왕) → 신라(6세기, 진흥왕)</b>. 한강을 누가 쥐고 있느냐가 힘의 순서를 바꿨어 — 지도에서 한강을 따라가면 삼국의 시간표가 보여.</p>
+      <div class="q" data-qid="t-j-t4" data-answer="1">
+        <h3>체급표에서 몸무게 36 kg인 선수의 체급은? (밴텀급 34 초과 36 이하, 페더급 36 초과 39 이하)</h3>
+        <p class="qnote">단원평가 7번.</p>
+        <div class="opts"><button class="opt">페더급</button><button class="opt">밴텀급</button><button class="opt">둘 다 가능</button></div>
+        <p class="explain" hidden>36은 밴텀급의 <b>‘36 이하’에 포함</b>되고, 페더급은 <b>‘36 초과’</b>라 36을 <b>뺀다</b>. 그래서 <b>밴텀급</b>. 체급표가 이렇게 만들어진 이유가 있어 — 한 사람이 두 체급에 동시에 들어가면 안 되니까 <b>한쪽은 이하, 다음은 초과</b>로 딱 잘라 붙인 거야.</p>
       </div>
-      <div class="q" data-qid="t-j-0901-5" data-answer="2">
-        <h3>콩과 좁쌀이 섞여 있어. 어떻게 나눌까?</h3>
-        <p class="qnote">수요일 과학 — 알갱이의 크기가 다른 고체 혼합물 분리.</p>
-        <div class="opts"><button class="opt">물에 녹인다</button><button class="opt">자석을 댄다</button><button class="opt">체로 거른다</button></div>
-        <p class="explain" hidden>분리의 원칙: <b>“무엇이 다른가”를 찾아서 그 차이를 이용한다.</b> 콩과 좁쌀은 <b>알갱이 크기</b>가 다르니 그 사이 크기의 <b>체</b>가 답. 성질이 다르면 자석, 녹는 정도가 다르면 물 — 도구는 차이가 정해줘.</p>
+      <div class="q" data-qid="t-j-t5" data-answer="0">
+        <h3>42.8 kg을 <em>올림하여 일의 자리까지</em> 나타내면?</h3>
+        <p class="qnote">단원평가 11번.</p>
+        <div class="opts"><button class="opt">43 kg</button><button class="opt">42 kg</button><button class="opt">50 kg</button></div>
+        <p class="explain" hidden>일의 자리까지 남기면 뒤에 <b>8</b>이 남지? 올림은 <b>남은 게 있으면 무조건 올려</b>서 <b>43</b>. 버림이면 42, 반올림이면 8을 보고 역시 43이야. 세 방법 중 둘이 같은 답을 낼 때가 있는데, <b>이유는 서로 다르다</b>는 걸 기억해.</p>
       </div>
-      <div class="q" data-qid="t-j-0901-6" data-answer="1">
-        <h3>물과 기름은 왜 층으로 나뉠까?</h3>
-        <p class="qnote">수요일 과학 — 섞이지 않는 액체 혼합물 분리.</p>
-        <div class="opts"><button class="opt" style="font-size:15px">기름이 더 뜨거워서</button><button class="opt" style="font-size:15px">서로 섞이지 않고 가벼운 쪽이 위로 떠서</button><button class="opt" style="font-size:15px">물이 기름을 밀어내서</button></div>
-        <p class="explain" hidden>섞이지 않는 두 액체는 가만 두면 <b>가벼운 것이 위, 무거운 것이 아래</b>로 스스로 정리돼. 그다음엔 스포이트로 윗층만 걷거나 아래를 먼저 흘려보내면 끝 — <b>기다리는 것도 분리 방법</b>이라는 게 재밌지.</p>
+      <div class="q" data-qid="t-j-t6" data-answer="2">
+        <h3>동전 2570원을 1000원짜리 지폐로 바꾸려 한다. 알맞은 어림 방법과 지폐 수는?</h3>
+        <p class="qnote">단원평가 18번.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">올림 · 3장</button><button class="opt" style="font-size:15px">반올림 · 3장</button><button class="opt" style="font-size:15px">버림 · 2장</button></div>
+        <p class="explain" hidden>1000원짜리로 바꿀 수 있는 건 <b>완성된 1000원 묶음만</b>이야. 2570원에서 2000원은 바꾸고 <b>570원은 그대로 남아</b> — 그래서 <b>버림, 2장</b>. 올림하면 3장이 되는데, 없는 430원을 어디서 가져오겠어? <b>“바꿀 수 있는 최대”는 언제나 버림</b>이야.</p>
       </div>
-      <div class="q" data-qid="t-j-0901-7" data-answer="2">
-        <h3>테셀레이션(빈틈없이 채우기)이 <em>안 되는</em> 도형은?</h3>
-        <p class="qnote">목요일 미술 — 테셀레이션 작품 만들기.</p>
-        <div class="opts"><button class="opt">정삼각형</button><button class="opt">정사각형</button><button class="opt">정오각형</button></div>
-        <p class="explain" hidden>한 점에 모인 각이 <b>딱 360°</b>가 되어야 빈틈이 없어. 정삼각형 60°×6=360, 정사각형 90°×4=360 — 성공! 정오각형은 108°×3=324°라 <b>36°만큼 틈</b>이 남아. 미술 시간이지만 답을 정하는 건 각도야.</p>
+      <div class="q" data-qid="t-j-t7" data-answer="0">
+        <h3>27□8을 <em>버림하여 십의 자리까지</em> 나타내면 2700이다. □에 알맞은 수는?</h3>
+        <p class="qnote">단원평가 13번. 거꾸로 생각하기.</p>
+        <div class="opts"><button class="opt">0</button><button class="opt">7</button><button class="opt">9</button></div>
+        <p class="explain" hidden>버림하여 십의 자리까지 하면 <b>일의 자리만 잘려</b> 27□0이 돼. 이게 2700이 되려면 <b>□ = 0</b>. 버림은 뒤를 자를 뿐 앞자리를 건드리지 않으니, <b>남는 자리를 그대로 맞춰보면</b> 답이 바로 나와.</p>
       </div>
-      <div class="q" data-qid="t-j-0901-8" data-answer="1">
-        <h3>서평이 ‘줄거리 요약’과 다른 결정적인 점은?</h3>
-        <p class="qnote">금요일 국어 — 작품 읽고 서평 쓰기.</p>
-        <div class="opts"><button class="opt" style="font-size:15px">더 길게 쓴다</button><button class="opt" style="font-size:15px">내 평가와 그렇게 본 까닭이 들어간다</button><button class="opt" style="font-size:15px">등장인물을 모두 적는다</button></div>
-        <p class="explain" hidden>줄거리는 <b>사실</b>, 서평은 <b>사실 + 내 의견 + 근거</b>. “재밌었다”로 끝내면 반쪽이고 “왜냐하면 ○○ 장면에서 ~했기 때문”이 붙어야 완성 — 근거 훈련소에서 하던 그 훈련이 그대로 쓰이는 거야.</p>
+      <div class="q" data-qid="t-j-t8" data-answer="1">
+        <h3>수 카드 3, 5, 6을 한 번씩 써서 만든 세 자리 수 중, 올림하여 백의 자리까지 하면 400이 되는 수는 몇 개?</h3>
+        <p class="qnote">단원평가 19~21번.</p>
+        <div class="opts"><button class="opt">1개</button><button class="opt">2개</button><button class="opt">3개</button></div>
+        <p class="explain" hidden>올림해서 400이 되려면 <b>301 ~ 400</b> 사이여야 하니 백의 자리가 <b>3</b>이어야 해. 남은 5와 6으로 만들 수 있는 건 <b>356, 365</b> — <b>2개</b>. 어림 문제를 <b>거꾸로 읽어 범위를 먼저 정하고</b>, 그 안에서 세는 순서가 핵심이야.</p>
       </div>
     </section>
   </section>
@@ -834,129 +884,262 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   <section class="panel" data-subject="math" data-child="sunwoo">
 
     <article class="stage">
-      <span class="stage-tag">이번 주 금요일 · 짝수와 홀수</span>
-      <h2>짝꿍 만들기 기계</h2>
-      <p class="stage-sub">구슬을 둘씩 짝지어 보면 끝난다. 짝이 딱 맞으면 <b>짝수</b>, 하나가 남으면 <b>홀수</b> — 외우는 게 아니라 <b>눈에 보이는 것</b>.</p>
+      <span class="stage-tag">1단원 다시 보기 · 짝수와 홀수</span>
+      <h2>짝수·홀수 판별기</h2>
+      <p class="stage-sub">둘씩 손잡기를 시켜보면 끝난다. <b>남는 친구가 없으면 짝수</b>, <b>한 명 남으면 홀수</b>. 그리고 큰 수는 세어볼 필요도 없어 — <b>끝자리 하나만</b> 보면 된다.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="pair-field" id="pr-field"></div>
+          <div class="pair-field" id="eo-field"></div>
+          <p class="tf-eq" id="eo-eq"></p>
           <div class="controls">
-            <button class="ctl" id="pr-minus">− 빼기</button>
-            <span class="ctl quiet" id="pr-n" style="cursor:default"></span>
-            <button class="ctl" id="pr-plus">+ 넣기</button>
+            <button class="ctl" id="eo-minus">− 하나 빼기</button>
+            <button class="ctl" id="eo-plus">+ 하나 넣기</button>
+            <button class="ctl" id="eo-go">둘씩 짝지어!</button>
           </div>
-          <div class="controls">
-            <button class="ctl" id="pr-go">둘씩 짝지어!</button>
-            <button class="ctl quiet" id="pr-reset">다시 흩어뜨리기</button>
-          </div>
+          <p class="eo-hunt-t">이 중에서 <b>짝수만</b> 모두 눌러봐</p>
+          <div class="controls" id="eo-hunt"></div>
+          <p class="tr-fb" id="eo-fb"></p>
+          <div class="controls"><button class="ctl quiet" id="eo-new">새 문제</button></div>
         </div>
         <aside class="read">
-          <p class="live" id="pr-live"></p>
-          <p class="why" id="pr-why"></p>
+          <p class="live" id="eo-live"></p>
+          <p class="why" id="eo-why"></p>
         </aside>
       </div>
     </article>
 
     <article class="stage">
-      <span class="stage-tag">이번 주 수요일 · 수의 크기 비교</span>
-      <h2>수 저울</h2>
-      <p class="stage-sub">두 수를 저울에 올린다. 낱개가 더 많아 보여도 속으면 안 돼 — <b>묶음(10개짜리 막대)부터</b> 세면 저울은 정직하게 기운다.</p>
+      <span class="stage-tag">1단원 다시 보기 · 수의 크기 비교</span>
+      <h2>수 비교 탐정</h2>
+      <p class="stage-sub">두 자리 수는 <b>묶음(십의 자리)부터</b> 본다. 묶음이 다르면 거기서 끝, 묶음이 같을 때만 낱개를 본다. 이 순서만 지키면 절대 안 틀린다.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="bal">
-            <div class="beam" id="bl-beam"></div>
-            <div class="pans">
-              <div class="pan" id="bl-panL"><div class="tens" id="bl-tL"></div><div class="ones" id="bl-oL"></div><p class="pan-num" id="bl-nL"></p></div>
-              <div class="pan" id="bl-panR"><div class="tens" id="bl-tR"></div><div class="ones" id="bl-oR"></div><p class="pan-num" id="bl-nR"></p></div>
-            </div>
-          </div>
           <div class="controls">
-            <button class="ctl" data-bl="L-">왼쪽 −</button><button class="ctl" data-bl="L+">왼쪽 +</button>
-            <button class="ctl" data-bl="R-">오른쪽 −</button><button class="ctl" data-bl="R+">오른쪽 +</button>
+            <button class="ctl" data-cm="big" aria-pressed="true">가장 큰 수 찾기</button>
+            <button class="ctl" data-cm="small" aria-pressed="false">가장 작은 수 찾기</button>
+            <button class="ctl" data-cm="box" aria-pressed="false">□에 들어갈 수</button>
           </div>
-          <div class="controls"><button class="ctl quiet" id="bl-new">새 문제</button></div>
+          <div id="cp-body"></div>
+          <p class="tr-fb" id="cp-fb"></p>
+          <div class="controls"><button class="ctl quiet" id="cp-new">새 문제</button></div>
         </div>
         <aside class="read">
-          <p class="live" id="bl-live"></p>
-          <p class="why" id="bl-why"></p>
+          <p class="live" id="cp-live"></p>
+          <p class="why" id="cp-why"></p>
         </aside>
       </div>
     </article>
 
     <article class="stage">
-      <span class="stage-tag">이번 주 화요일 · 수의 순서</span>
-      <h2>수 기차 빈칸 채우기</h2>
-      <p class="stage-sub">칸마다 수가 순서대로 앉아 있다. 비어 있는 칸에 누가 앉아야 할까? <b>1씩·2씩·10씩</b> 걸음을 바꿔가며 타보자.</p>
+      <span class="stage-tag">이번 주 수요일 · 10이 되는 더하기</span>
+      <h2>10 만들기 짝꿍판</h2>
+      <p class="stage-sub">구슬을 넣으면 <b>빈칸이 답을 알려준다.</b> 10은 꽉 찬 한 판이라, 채운 만큼과 빈 만큼은 언제나 짝꿍이다 — 외우는 게 아니라 <b>보이는 것</b>.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="train" id="tr-cars"></div>
-          <div class="controls" id="tr-opts"></div>
-          <p class="tr-fb" id="tr-fb"></p>
+          <div class="tenframe" id="tf-grid"></div>
+          <p class="tf-eq" id="tf-eq"></p>
           <div class="controls">
-            <button class="ctl" data-step="1" aria-pressed="true">1씩</button>
-            <button class="ctl" data-step="2" aria-pressed="false">2씩</button>
-            <button class="ctl" data-step="10" aria-pressed="false">10씩</button>
-            <button class="ctl quiet" id="tr-new">다음 기차</button>
+            <button class="ctl" id="tf-minus">− 구슬 빼기</button>
+            <button class="ctl" id="tf-plus">+ 구슬 넣기</button>
+            <button class="ctl quiet" id="tf-show">짝꿍 보여줘</button>
           </div>
         </div>
         <aside class="read">
-          <p class="live" id="tr-live"></p>
-          <p class="why" id="tr-why"></p>
+          <p class="live" id="tf-live"></p>
+          <p class="why" id="tf-why"></p>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">이번 주 목요일 · 10에서 빼기</span>
+      <h2>10에서 빼면 남는 것</h2>
+      <p class="stage-sub">꽉 찬 10에서 몇 개를 빼면 몇 개가 남을까? <b>더하기와 똑같은 그림인데 방향만 반대다.</b> 그래서 10 만들기를 알면 10 빼기는 저절로 알게 된다.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="tenframe" id="tm-grid"></div>
+          <p class="tf-eq" id="tm-eq"></p>
+          <div class="controls">
+            <button class="ctl" id="tm-minus">− 적게 빼기</button>
+            <button class="ctl" id="tm-plus">+ 많이 빼기</button>
+            <button class="ctl" id="tm-go">빼보기!</button>
+          </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="tm-live"></p>
+          <p class="why" id="tm-why"></p>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">이번 주 월요일 · 세 수의 뺄셈</span>
+      <h2>세 수 뺄셈 기차</h2>
+      <p class="stage-sub">9에서 3을 빼고, 또 2를 뺀다. <b>앞에서부터 차례로</b> 가는 게 규칙 — 그런데 뺄 것들을 <b>먼저 모아서 한 번에</b> 빼도 답은 같다. 두 방법을 나란히 보자.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="beads" id="s3-beads"></div>
+          <p class="tf-eq" id="s3-eq"></p>
+          <div class="controls">
+            <button class="ctl" data-s3="a">시작 수 바꾸기</button>
+            <button class="ctl" data-s3="b">첫 번째 뺄 수</button>
+            <button class="ctl" data-s3="c">두 번째 뺄 수</button>
+          </div>
+          <div class="controls">
+            <button class="ctl" id="s3-step">차례로 빼기</button>
+            <button class="ctl quiet" id="s3-once">한꺼번에 빼기</button>
+            <button class="ctl quiet" id="s3-reset">처음부터</button>
+          </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="s3-live"></p>
+          <p class="why" id="s3-why"></p>
         </aside>
       </div>
     </article>
 
     <section class="quiz" data-for="sunwoo">
       <h2>확인 문제</h2>
-      <div class="q" data-qid="s-m-n1" data-answer="1">
-        <h3>구슬 13개를 둘씩 짝지으면 몇 개가 남을까?</h3>
-        <p class="qnote">위 짝꿍 기계에서 13으로 맞추고 눌러봐도 좋아.</p>
-        <div class="opts"><button class="opt">0개</button><button class="opt">1개</button><button class="opt">3개</button></div>
-        <p class="explain" hidden>둘씩 짝지으면 6쌍이 되고 <b>딱 하나</b>가 남아 — 그래서 13은 <b>홀수</b>. 짝수든 홀수든 남는 건 언제나 <b>0개 아니면 1개</b>야. 둘씩 묶는데 2개가 남으면 그건 또 한 쌍이 되니까!</p>
+      <div class="q" data-qid="s-m-t1" data-answer="0">
+        <h3>짝수끼리 짝지어진 것은?</h3>
+        <p class="qnote">단원평가 9번 유형 — 끝자리만 보면 돼!</p>
+        <div class="opts"><button class="opt" style="font-size:15px">20, 32</button><button class="opt" style="font-size:15px">48, 49</button><button class="opt" style="font-size:15px">21, 23</button></div>
+        <p class="explain" hidden>끝자리가 <b>0과 2</b> — 둘 다 짝수! 48은 짝수지만 <b>49가 홀수</b>라 탈락, 21·23은 둘 다 홀수야. <b>“짝지어진 것”은 둘 다 만족해야</b> 한다는 게 함정이지. 하나씩 끝자리에 동그라미를 치며 확인하면 안 틀려.</p>
+        <p class="explain oops" data-opt="1" hidden>48은 짝수가 맞지만 49는 끝자리가 9라 홀수야. <b>둘 다</b> 짝수여야 해.</p>
       </div>
-      <div class="q" data-qid="s-m-n2" data-answer="1">
-        <h3>45와 54 — 숫자는 똑같은데, 어느 쪽이 더 클까?</h3>
-        <p class="qnote">4와 5, 5와 4. 자리를 바꿔 앉았을 뿐인데?</p>
-        <div class="opts"><button class="opt">45</button><button class="opt">54</button><button class="opt">같다</button></div>
-        <p class="explain" hidden>같은 숫자라도 <b>어느 자리에 앉느냐</b>가 전부야. 54는 묶음 5개(50)에 낱개 4, 45는 묶음 4개(40)에 낱개 5 — 묶음 하나 차이는 10이라 낱개 1로는 못 따라잡아. <b>자리가 값을 만든다</b>.</p>
+      <div class="q" data-qid="s-m-t2" data-answer="2">
+        <h3>홀수는 모두 몇 개일까? — 19, 21, 44, 50, 32, 49, 37, 18</h3>
+        <p class="qnote">단원평가 10번 유형. 끝자리에 하나씩 동그라미!</p>
+        <div class="opts"><button class="opt">2개</button><button class="opt">3개</button><button class="opt">4개</button></div>
+        <p class="explain" hidden>끝자리가 1·3·5·7·9인 것만 세면 — <b>19, 21, 49, 37</b> 로 <b>4개</b>. 44·50·32·18은 끝자리가 4·0·2·8이라 짝수야. 이런 문제는 <b>빠뜨리는 것</b>이 가장 흔한 실수라, 하나씩 손가락으로 짚으며 세는 게 제일 안전해.</p>
       </div>
-      <div class="q" data-qid="s-m-n3" data-answer="2">
-        <h3>50보다 1 작은 수는?</h3>
-        <p class="qnote">묶음 5개에서 하나를 빼면 무슨 일이 생길까?</p>
-        <div class="opts"><button class="opt">40</button><button class="opt">51</button><button class="opt">49</button></div>
-        <p class="explain" hidden>50은 낱개가 하나도 없어. 여기서 하나를 빼려면 <b>묶음 하나를 풀어야</b> 해 — 풀린 10개에서 하나를 빼면 9개가 남아 <b>49</b>. 묶음이 4개, 낱개가 9개가 된 거야. 수가 줄 때도 묶음이 통째로 움직여.</p>
+      <div class="q" data-qid="s-m-t3" data-answer="1">
+        <h3>가장 <em>작은</em> 수는? — 89, 77, 64, 95, 58</h3>
+        <p class="qnote">단원평가 16번 유형. 묶음부터!</p>
+        <div class="opts"><button class="opt">64</button><button class="opt">58</button><button class="opt">77</button></div>
+        <p class="explain" hidden>묶음(십의 자리)만 훑어봐 — 8, 7, 6, 9, <b>5</b>. 가장 적은 묶음은 <b>58</b>이야. 낱개는 볼 필요도 없었지? 58의 낱개 8이 64의 4보다 크지만, <b>묶음 하나 차이는 낱개 열 개</b>라 절대 못 뒤집어.</p>
+        <p class="explain oops" data-opt="0" hidden>64는 묶음이 6개, 58은 5개야. 낱개가 아니라 <b>묶음</b>을 먼저 비교해야 해.</p>
       </div>
-      <div class="q" data-qid="s-m-n4" data-answer="0">
-        <h3>10씩 뛰어세기: 34 다음에 오는 수는?</h3>
-        <p class="qnote">수 기차를 ‘10씩’으로 놓고 확인해봐.</p>
-        <div class="opts"><button class="opt">44</button><button class="opt">35</button><button class="opt">40</button></div>
-        <p class="explain" hidden>10씩 뛰면 <b>낱개는 그대로, 묶음만 하나 늘어</b> — 34 → 44 → 54. 뒷자리 4가 계속 따라오는 게 보이지? 큰 수를 셀 때 하나씩 세지 않아도 되는 이유가 바로 이거야.</p>
+      <div class="q" data-qid="s-m-t4" data-answer="0">
+        <h3>1에서 9까지의 수 중 □에 들어갈 수 있는 수를 모두 고르면? &nbsp; 73 &lt; □8</h3>
+        <p class="qnote">단원평가 17번 — 1부터 9까지 하나씩 넣어보자.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">7, 8, 9</button><button class="opt" style="font-size:15px">8, 9</button><button class="opt" style="font-size:15px">9만</button></div>
+        <p class="explain" hidden>□는 <b>십의 자리</b>야. 하나씩 넣어보면 — 6이면 68로 73보다 작아 <b>탈락</b>, 7이면 <b>78</b>로 73보다 크니 <b>통과</b>, 8이면 88, 9면 98도 통과. 그래서 <b>7, 8, 9</b>. 
+        경계는 <b>6과 7 사이</b>에 있었어. 이런 문제는 머리로 한 번에 맞히려 하지 말고 <b>작은 수부터 차례로 넣어보며 어디서 참이 되는지</b>를 찾는 게 가장 확실해 — 위 ‘수 비교 탐정’의 □ 모드에서 직접 눌러보자.</p>
+        <p class="explain oops" data-opt="1" hidden>7도 확인해봐 — 78은 73보다 크니까 <b>7도 답</b>이야. 하나씩 다 넣어보는 게 중요해.</p>
+      </div>
+            <div class="q" data-qid="s-m-w5-1" data-answer="1">
+        <h3>6과 짝꿍이 되어 10을 만드는 수는?</h3>
+        <p class="qnote">10칸 판에 구슬 6개를 넣으면 빈칸이 몇 개?</p>
+        <div class="opts"><button class="opt">3</button><button class="opt">4</button><button class="opt">5</button></div>
+        <p class="explain" hidden>6개를 채우면 <b>빈칸이 4개</b>. 그래서 6 + 4 = 10이야. 답을 계산할 필요 없이 <b>빈칸을 세면</b> 나와. 10의 짝꿍은 1-9, 2-8, 3-7, 4-6, 5-5 — 다섯 쌍뿐이야.</p>
+      </div>
+      <div class="q" data-qid="s-m-w5-2" data-answer="2">
+        <h3>10 − 7 = ?</h3>
+        <p class="qnote">10칸에서 7개를 빼면 남는 칸은?</p>
+        <div class="opts"><button class="opt">1</button><button class="opt">2</button><button class="opt">3</button></div>
+        <p class="explain" hidden>7개를 빼면 <b>3개가 남아</b>. 그런데 이건 “7 + 3 = 10”과 <b>똑같은 그림</b>이야. 더하기를 알면 빼기는 그냥 반대로 읽는 것 — 두 번 외울 필요가 없어.</p>
+      </div>
+      <div class="q" data-qid="s-m-w5-3" data-answer="0">
+        <h3>9 − 3 − 2 = ?</h3>
+        <p class="qnote">앞에서부터 차례로! 9에서 3을 빼면 6, 거기서 또 2를 빼면?</p>
+        <div class="opts"><button class="opt">4</button><button class="opt">5</button><button class="opt">8</button></div>
+        <p class="explain" hidden>9 − 3 = 6, 6 − 2 = <b>4</b>. 세 수의 뺄셈은 <b>왼쪽부터 한 걸음씩</b> 가는 거야. 뺄 것 3과 2를 먼저 모아 5를 만들고 9 − 5 = 4로 해도 똑같아 — 어느 길로 가도 도착지는 같다.</p>
+      </div>
+      <div class="q" data-qid="s-m-w5-4" data-answer="1">
+        <h3>10칸 판에 구슬이 8개. 몇 개를 더 넣어야 꽉 찰까?</h3>
+        <div class="opts"><button class="opt">1개</button><button class="opt">2개</button><button class="opt">3개</button></div>
+        <p class="explain" hidden>빈칸이 <b>2개</b>니까 2개! 8 + 2 = 10. 10 만들기가 중요한 이유는, 나중에 <b>8 + 5</b> 같은 것도 “8에 2를 줘서 10을 만들고 3이 남는다”로 풀 수 있기 때문이야.</p>
+      </div>
+      <div class="q" data-qid="s-m-w5-5" data-answer="2">
+        <h3>7 − 2 − 1 과 답이 같은 것은?</h3>
+        <p class="qnote">뺄 것을 먼저 모아보면?</p>
+        <div class="opts"><button class="opt" style="font-size:15px">7 − 2 + 1</button><button class="opt" style="font-size:15px">7 + 3</button><button class="opt" style="font-size:15px">7 − 3</button></div>
+        <p class="explain" hidden>2와 1을 먼저 모으면 3. 그래서 <b>7 − 3 = 4</b>로 한 번에 갈 수 있어. 빼는 것끼리는 모아서 한 번에 빼도 되지만, <b>빼기와 더하기는 섞어서 모으면 안 돼</b>.</p>
+      </div>
+      <div class="q" data-qid="s-m-w5-6" data-answer="0">
+        <h3>사탕 10개 중 4개를 먹었어. 남은 사탕은?</h3>
+        <p class="qnote">먹은 것과 남은 것도 짝꿍이야.</p>
+        <div class="opts"><button class="opt">6개</button><button class="opt">4개</button><button class="opt">14개</button></div>
+        <p class="explain" hidden>10 − 4 = <b>6개</b>. 먹은 4와 남은 6이 합쳐지면 다시 10이 되지? <b>전체는 늘 두 조각으로 나뉜다</b>는 게 덧셈·뺄셈의 뼈대야.</p>
       </div>
     </section>
 
 
 
     <article class="stage rev" data-for="sunwoo">
-      <span class="stage-tag">이번 주 학교에서 · 8/31 – 9/4</span>
+      <span class="stage-tag">이번 주 학교에서 · 9/14 – 9/18</span>
       <h2>이번 주 복습 + 보너스</h2>
-      <p class="stage-sub">이번 주 수학은 <b>수의 순서 → 수의 크기 비교 → 짝수와 홀수</b>. 위 100판에서 눈으로 확인하고, 보너스로 마무리!</p>
-      <div class="q" data-qid="b-s-m-0901-1" data-answer="1">
-        <h3>보너스 — 83과 79 중 더 큰 수는?</h3>
-        <p class="qnote">낱개에 속지 말고 묶음부터!</p>
-        <div class="opts"><button class="opt">79</button><button class="opt">83</button><button class="opt">같다</button></div>
-        <p class="explain" hidden>79는 낱개 9가 커 보이지만 묶음은 <b>7개</b>, 83은 <b>8묶음</b>. 묶음 하나 차이는 낱개 열 개 차이라 낱개로는 절대 못 따라잡아 — 그래서 <b>83</b>이 커.</p>
+      <p class="stage-sub">이번 주 수학은 <b>세 수의 뺄셈 → 10이 되는 더하기 → 10에서 빼기</b>. 전부 <b>10칸 판 하나</b>로 설명되는 이야기야. 보너스로 마무리!</p>
+      <div class="q" data-qid="b-s-m-w5-1" data-answer="1">
+        <h3>보너스 — 3과 짝꿍이 되어 10을 만드는 수는?</h3>
+        <p class="qnote">10칸에서 3칸을 채우면 빈칸은?</p>
+        <div class="opts"><button class="opt">6</button><button class="opt">7</button><button class="opt">8</button></div>
+        <p class="explain" hidden>3 + <b>7</b> = 10. 3-7은 10의 다섯 짝꿍(1-9, 2-8, 3-7, 4-6, 5-5) 중 하나야. 이 다섯 쌍만 손에 익으면 1학년 덧셈은 거의 끝난 거나 마찬가지!</p>
       </div>
-      <div class="q" data-qid="b-s-m-0901-2" data-answer="0">
-        <h3>보너스 — 짝수만 모인 줄은 어느 것일까?</h3>
-        <p class="qnote">둘씩 손잡기를 시켜봐.</p>
-        <div class="opts"><button class="opt">2, 4, 6, 8</button><button class="opt">1, 3, 5, 7</button><button class="opt">1, 2, 3, 4</button></div>
-        <p class="explain" hidden>둘씩 짝지어 <b>남는 친구가 없으면 짝수</b>. 2·4·6·8은 전부 딱 맞고, 1·3·5·7은 늘 한 명이 남아(홀수). 수를 외우지 말고 <b>짝지어 보면</b> 알 수 있어.</p>
+      <div class="q" data-qid="b-s-m-w5-2" data-answer="2">
+        <h3>보너스 — 8 − 2 − 3 = ?</h3>
+        <p class="qnote">차례로 가도 되고, 뺄 것을 모아 한 번에 가도 돼.</p>
+        <div class="opts"><button class="opt">2</button><button class="opt">4</button><button class="opt">3</button></div>
+        <p class="explain" hidden>차례로: 8 − 2 = 6, 6 − 3 = <b>3</b>. 모아서: 2 + 3 = 5, 8 − 5 = <b>3</b>. 두 길의 답이 같다는 걸 확인하면, 계산이 <b>암기가 아니라 이해</b>가 돼.</p>
       </div>
     </article>
   </section>
 
   <!-- ================= 수학 · 지우 ================= -->
   <section class="panel" data-subject="math" data-child="jiwoo" hidden>
+
+    <article class="stage">
+      <span class="stage-tag">단원평가 다시 보기 · 수의 범위</span>
+      <h2>경계에 선 사람</h2>
+      <p class="stage-sub">이상·이하·초과·미만은 <b>딱 한 가지</b>만 다르다 — <b>경계에 선 사람을 넣느냐 빼느냐</b>. 수직선의 점이 <b>꽉 차 있으면 포함(●)</b>, <b>비어 있으면 제외(○)</b>. 직접 바꿔보며 확인하자.</p>
+      <div class="stage-body">
+        <div class="play">
+          <svg class="nline" id="nr-svg" viewBox="0 0 420 110" aria-hidden="true"></svg>
+          <p class="nr-label" id="nr-label"></p>
+          <div class="controls">
+            <button class="ctl" id="nr-lmode">왼쪽: 초과 ↔ 이상</button>
+            <button class="ctl" id="nr-rmode">오른쪽: 이하 ↔ 미만</button>
+          </div>
+          <div class="controls">
+            <button class="ctl quiet" data-nr="l-">왼쪽 −</button><button class="ctl quiet" data-nr="l+">왼쪽 +</button>
+            <button class="ctl quiet" data-nr="t-">선수 −</button><button class="ctl quiet" data-nr="t+">선수 +</button>
+            <button class="ctl quiet" data-nr="r-">오른쪽 −</button><button class="ctl quiet" data-nr="r+">오른쪽 +</button>
+          </div>
+        </div>
+        <aside class="read">
+          <p class="live" id="nr-live"></p>
+          <p class="why" id="nr-why"></p>
+        </aside>
+      </div>
+    </article>
+
+    <article class="stage">
+      <span class="stage-tag">단원평가 다시 보기 · 소수의 어림</span>
+      <h2>소수 어림 기계</h2>
+      <p class="stage-sub">소수라고 겁먹을 필요 없다. <b>자르는 위치만 다를 뿐</b> 자연수와 똑같다. 어느 자리까지 남길지 고르고, 세 가지 방법이 <b>같은 수를 어떻게 다르게 다루는지</b> 나란히 보자.</p>
+      <div class="stage-body">
+        <div class="play">
+          <div class="digits" id="dc-row"></div>
+          <p class="dc-out" id="dc-out"></p>
+          <div class="controls">
+            <button class="ctl" data-dcp="1" aria-pressed="false">일의 자리까지</button>
+            <button class="ctl" data-dcp="0.1" aria-pressed="true">소수 첫째까지</button>
+            <button class="ctl" data-dcp="0.01" aria-pressed="false">소수 둘째까지</button>
+          </div>
+          <div class="controls">
+            <button class="ctl" data-dcm="up" aria-pressed="true">올림</button>
+            <button class="ctl" data-dcm="down" aria-pressed="false">버림</button>
+            <button class="ctl" data-dcm="round" aria-pressed="false">반올림</button>
+          </div>
+          <div class="controls"><button class="ctl quiet" id="dc-next">다른 수로</button></div>
+        </div>
+        <aside class="read">
+          <p class="live" id="dc-live"></p>
+          <p class="why" id="dc-why"></p>
+        </aside>
+      </div>
+    </article>
 
     <article class="stage">
       <span class="stage-tag">이번 주 월요일 · 반올림</span>
@@ -1013,77 +1196,65 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       </div>
     </article>
 
-    <article class="stage">
-      <span class="stage-tag">금요일 · 2단원 도입 미리보기</span>
-      <h2>분수 곱셈 겹치기판</h2>
-      <p class="stage-sub">분수의 곱셈은 새로 외울 공식이 아니다. <b>“⅔의 ¾”</b>은 가로로 자르고 세로로 다시 자른 뒤 <b>겹친 칸</b>을 세는 것 — 눈으로 보면 분모끼리, 분자끼리 곱하는 이유가 그냥 보인다.</p>
-      <div class="stage-body">
-        <div class="play">
-          <div class="fg-wrap"><div class="fgrid" id="fg-grid"></div></div>
-          <p class="fg-eq" id="fg-eq"></p>
-          <div class="controls">
-            <button class="ctl" data-fg="a">가로 분자 ▲</button><button class="ctl" data-fg="b">가로 분모 ▲</button>
-            <button class="ctl" data-fg="c">세로 분자 ▲</button><button class="ctl" data-fg="d">세로 분모 ▲</button>
-          </div>
-        </div>
-        <aside class="read">
-          <p class="live" id="fg-live"></p>
-          <p class="why" id="fg-why"></p>
-        </aside>
-      </div>
-    </article>
+    
 
     <section class="quiz">
       <h2>확인 문제</h2>
-      <div class="q" data-qid="j-m-n1" data-answer="1">
-        <h3>27,483을 반올림하여 <em>만의 자리까지</em> 나타내면?</h3>
-        <p class="qnote">언덕의 양 끝은 20,000과 30,000. 꼭대기는?</p>
-        <div class="opts"><button class="opt">20,000</button><button class="opt">30,000</button><button class="opt">27,000</button></div>
-        <p class="explain" hidden>꼭대기는 25,000. 27,483은 꼭대기보다 <b>오른쪽</b>에 있으니 <b>30,000</b>으로 굴러가. 자리 아래 숫자 <b>7</b>만 보면 끝 — 483이라는 꼬리는 아무 영향을 못 줘. 반올림은 늘 <b>바로 아래 한 자리</b>만 본다.</p>
-        <p class="explain oops" data-opt="2" hidden>27,000은 <b>천의 자리까지</b> 반올림한 값이야. 어느 자리까지인지가 답을 바꾼다.</p>
+      <div class="q" data-qid="j-m-t1" data-answer="1">
+        <h3>몸무게가 <em>34 kg 초과 36 kg 이하</em>인 체급이 있다. 딱 36 kg인 선수는?</h3>
+        <p class="qnote">단원평가 8번에서 놓친 그 한 점.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">들어가지 않는다</button><button class="opt" style="font-size:15px">들어간다</button><button class="opt" style="font-size:15px">알 수 없다</button></div>
+        <p class="explain" hidden><b>이하</b>는 그 수를 <b>포함</b>해 — 수직선에서 점을 <b>꽉 채워(●)</b> 그려. 딱 36인 선수도 이 체급이야. 반대로 왼쪽 34는 <b>초과</b>라서 <b>비운 점(○)</b>, 즉 34.0인 선수는 이 체급이 아니야. 한 문제에 <b>●와 ○가 같이</b> 나오는 게 함정이지.</p>
+        <p class="explain oops" data-opt="0" hidden>‘36 미만’이었다면 맞아. 하지만 <b>이하</b>니까 36은 들어가.</p>
       </div>
-      <div class="q" data-qid="j-m-n2" data-answer="0">
-        <h3>반올림하여 백의 자리까지 했더니 <em>500</em>이 되었다. 될 수 있는 가장 작은 자연수는?</h3>
-        <p class="qnote">거꾸로 생각하기 — 어디까지 굴러와야 500이 될까?</p>
-        <div class="opts"><button class="opt">450</button><button class="opt">400</button><button class="opt">451</button></div>
-        <p class="explain" hidden>500으로 굴러오려면 언덕 꼭대기 <b>450</b> 위(또는 그 자리)에 있어야 해. 450은 딱 꼭대기지만 “5는 위로” 약속 덕에 500이 돼. 그래서 범위는 <b>450 이상 550 미만</b> — 어림을 <b>거꾸로</b> 읽으면 수의 범위(이상·미만)가 튀어나온다.</p>
+      <div class="q" data-qid="j-m-t2" data-answer="2">
+        <h3>읽은 책이 <em>25권 초과</em>인 학생을 모두 고르면? (현일 22, 채호 25, 시윤 30, 예연 28, 은서 24)</h3>
+        <p class="qnote">단원평가 4번 유형 — 채호를 넣을까 말까?</p>
+        <div class="opts"><button class="opt" style="font-size:15px">채호, 시윤, 예연</button><button class="opt" style="font-size:15px">시윤, 예연, 은서</button><button class="opt" style="font-size:15px">시윤, 예연</button></div>
+        <p class="explain" hidden><b>초과</b>는 그 수를 <b>넘어야</b> 해. 채호는 딱 25라서 <b>탈락</b> — ‘25 이상’이었다면 들어갔지. 30과 28만 남아 <b>시윤·예연</b>. 문제를 읽을 때 <b>‘이상/이하’인지 ‘초과/미만’인지에 동그라미부터</b> 치는 습관을 들이면 이 유형은 안 틀려.</p>
       </div>
-      <div class="q" data-qid="j-m-n3" data-answer="2">
-        <h3>2/5 × 3/4 를 겹치기판으로 그리면?</h3>
-        <p class="qnote">가로로 5등분해 2칸, 세로로 4등분해 3칸.</p>
-        <div class="opts"><button class="opt" style="font-size:15px">9칸 중 6칸</button><button class="opt" style="font-size:15px">20칸 중 5칸</button><button class="opt" style="font-size:15px">20칸 중 6칸</button></div>
-        <p class="explain" hidden>두 번 자르면 전체는 <b>5×4 = 20칸</b>, 둘 다 걸친 칸은 <b>2×3 = 6칸</b> → 6/20 = 3/10. 분모끼리·분자끼리 곱하라는 규칙은 <b>“두 번 잘랐다”는 사실</b>을 짧게 적은 것뿐이야.</p>
+      <div class="q" data-qid="j-m-t3" data-answer="1">
+        <h3>4.615를 <em>올림하여 소수 둘째 자리까지</em> 나타내면?</h3>
+        <p class="qnote">단원평가 10번 (1).</p>
+        <div class="opts"><button class="opt">4.61</button><button class="opt">4.62</button><button class="opt">4.60</button></div>
+        <p class="explain" hidden>소수 둘째 자리까지 남기니 <b>뒤에 5가 남아</b> 있지? 올림은 <b>뒤에 0이 아닌 것이 하나라도 있으면 무조건 올려</b>. 그래서 4.61 → <b>4.62</b>. 반올림이었다면 5를 보고 역시 올라가 4.62, 버림이었다면 그냥 잘라 4.61이야.</p>
       </div>
-      <div class="q" data-qid="j-m-n4" data-answer="1">
-        <h3>1보다 작은 분수끼리 곱하면 답이 <em>작아지는</em> 까닭은?</h3>
-        <p class="qnote">곱하면 커진다고 배웠는데, 왜 반대일까?</p>
-        <div class="opts"><button class="opt" style="font-size:15px">분모가 커져서</button><button class="opt" style="font-size:15px">‘일부의 일부’를 구하는 것이라서</button><button class="opt" style="font-size:15px">계산 규칙이 그래서</button></div>
-        <p class="explain" hidden>2/3 × 3/4는 “<b>3/4의 2/3</b>”, 즉 이미 잘라낸 조각에서 <b>또 잘라내는 것</b>이야. 남은 조각이 원래보다 클 수는 없지. ‘곱하면 커진다’는 <b>1보다 큰 수를 곱할 때만</b>의 이야기였어 — 곱셈은 “몇 배”가 아니라 “<b>~의</b>”라고 읽으면 헷갈리지 않아.</p>
+      <div class="q" data-qid="j-m-t4" data-answer="2">
+        <h3>3.408을 <em>올림하여 소수 첫째 자리까지</em> 나타내면?</h3>
+        <p class="qnote">단원평가 10번 (2) — 여기서 갈렸다.</p>
+        <div class="opts"><button class="opt">3.4</button><button class="opt">3.41</button><button class="opt">3.5</button></div>
+        <p class="explain" hidden>소수 첫째까지 남기면 뒤에 <b>08</b>이 남아. 0이 아닌 8이 있으니 <b>올림 → 3.5</b>. 헷갈린 이유는 아마 “0이니까 안 올라가겠지”였을 거야 — 그건 <b>반올림</b>의 규칙이지(0을 보고 3.4). <b>올림은 남은 게 있으면 무조건 올린다</b>는 걸 기억하자.</p>
+        <p class="explain oops" data-opt="0" hidden>3.4는 <b>반올림</b>이나 <b>버림</b>의 답이야. 올림은 뒤에 뭐라도 남으면 올려.</p>
       </div>
-      <div class="q" data-qid="j-m-n5" data-answer="0">
-        <h3>피자 1/2판이 남았다. 그 중 2/3를 먹었다면 먹은 양은 <em>한 판 기준</em>으로?</h3>
-        <p class="qnote">‘남은 것의 2/3’ — 무엇의 일부인지가 핵심.</p>
-        <div class="opts"><button class="opt">1/3판</button><button class="opt">2/3판</button><button class="opt">2/5판</button></div>
-        <p class="explain" hidden>1/2 × 2/3 = 2/6 = <b>1/3판</b>. “2/3를 먹었다”는 말만 보면 많아 보이지만, 그건 <b>남은 반 판 기준</b>이었지. 분수 문제에서 늘 물어야 할 한 마디 — <b>“무엇의?”</b></p>
+      <div class="q" data-qid="j-m-t5" data-answer="0">
+        <h3>수직선에서 <em>빈 점(○)</em>이 뜻하는 것은?</h3>
+        <div class="opts"><button class="opt" style="font-size:15px">그 수는 범위에 포함되지 않음</button><button class="opt" style="font-size:15px">그 수는 범위에 포함됨</button><button class="opt" style="font-size:15px">아직 정하지 않음</button></div>
+        <p class="explain" hidden>○는 <b>초과·미만</b>, ●는 <b>이상·이하</b>. 점 하나가 경계에 선 수의 운명을 정해. 범위를 그림으로 그릴 때는 <b>점부터 찍고</b> 선을 잇는 순서로 하면 실수가 줄어.</p>
+      </div>
+      <div class="q" data-qid="j-m-t6" data-answer="1">
+        <h3>입장료가 14세 이하 2000원, 14세 초과 20세 이하 2500원, 20세 초과 4000원이다. 12세·15세·44세·46세 네 명이 20000원을 냈다면 거스름돈은?</h3>
+        <p class="qnote">단원평가 12번 — 여기서 계산이 어긋났다.</p>
+        <div class="opts"><button class="opt">6500원</button><button class="opt">7500원</button><button class="opt">8000원</button></div>
+        <p class="explain" hidden>12세 → 2000, 15세 → <b>2500</b>(14 초과 20 이하), 44세와 46세 → 각 4000. 합 <b>12500원</b>. 20000 − 12500 = <b>7500원</b>. 이런 문제는 <b>사람마다 한 줄씩 적어놓고</b> 더하면 실수가 확 줄어 — 머릿속에서 한 번에 더하려다 한 명이 빠지는 게 가장 흔한 실수야.</p>
+        <p class="explain oops" data-opt="0" hidden>6500원이 되려면 입장료 합이 13500이어야 해. 네 사람 값을 <b>한 줄씩</b> 다시 적어보자.</p>
       </div>
     </section>
 
     <article class="stage rev">
-      <span class="stage-tag">이번 주 학교에서 · 8/31 – 9/4</span>
+      <span class="stage-tag">단원평가 오답 유형 · 보너스</span>
       <h2>이번 주 복습 + 보너스</h2>
-      <p class="stage-sub">월요일 <b>반올림</b>, 목요일 <b>1단원 단원평가</b>, 금요일 <b>2단원 도입</b>. 어림 삼형제의 마지막 형제, 반올림을 확실히 잡고 가자!</p>
-      <div class="q" data-qid="b-j-m-0901-1" data-answer="2">
-        <h3>보너스 — 2,650을 반올림하여 백의 자리까지 나타내면?</h3>
-        <p class="qnote">바로 아래 칸(십의 자리)만 보면 끝.</p>
-        <div class="opts"><button class="opt">2,600</button><button class="opt">2,000</button><button class="opt">2,700</button></div>
-        <p class="explain" hidden>백의 자리로 갈 거면 <b>십의 자리 5</b>를 봐. 5는 딱 절반 — 규칙상 <b>위층으로</b> 올려서 <b>2,700</b>. 반올림에서 5는 늘 위로 간다는 약속만 기억하면 돼.</p>
-        <p class="explain oops" data-opt="0" hidden>2,600이 되려면 십의 자리가 4 이하여야 해. 5는 올라가는 쪽이야.</p>
+      <p class="stage-sub">1단원에서 자주 걸린 곳은 딱 두 군데 — <b>경계에 선 수</b>와 <b>올림·버림·반올림의 차이</b>. 보너스로 확실히 못 박자.</p>
+      <div class="q" data-qid="b-j-m-t1" data-answer="2">
+        <h3>보너스 — 올림하여 백의 자리까지 나타낸 수와 버림하여 백의 자리까지 나타낸 수가 <em>같은</em> 수는?</h3>
+        <p class="qnote">두 방법의 답이 같아지려면 어떤 수여야 할까?</p>
+        <div class="opts"><button class="opt">2004</button><button class="opt">2410</button><button class="opt">2300</button></div>
+        <p class="explain" hidden>백의 자리 뒤가 <b>모두 0</b>이면 올릴 것도 버릴 것도 없어 — 그래서 <b>2300</b>은 올림도 2300, 버림도 2300. 2004는 올림 2100·버림 2000으로 달라지지. <b>“이미 딱 떨어지는 수”</b>만 두 방법의 답이 같다는 게 이 문제의 핵심이야.</p>
       </div>
-      <div class="q" data-qid="b-j-m-0901-2" data-answer="1">
-        <h3>보너스 — 학생 178명이 45인승 버스를 타려면 버스는 몇 대?</h3>
-        <p class="qnote">178 ÷ 45 = 3…43. 반올림하면 4대, 그런데 왜?</p>
-        <div class="opts"><button class="opt">3대 (버림)</button><button class="opt">4대 (올림)</button><button class="opt">3.9대</button></div>
-        <p class="explain" hidden>3대면 43명이 길에 남아. 사람을 두고 갈 순 없으니 무조건 <b>올림</b> — 4대. 여기서 반올림으로 4가 나온 건 <b>우연</b>이고, 진짜 이유는 “한 명도 남으면 안 된다”는 <b>상황</b>이야. 어림은 계산이 아니라 <b>판단</b>이라는 걸 잊지 마.</p>
+      <div class="q" data-qid="b-j-m-t2" data-answer="0">
+        <h3>보너스 — 반올림하여 백의 자리까지 하면 3200이 되는 자연수 중 가장 큰 수와 가장 작은 수의 차는?</h3>
+        <p class="qnote">범위의 양 끝을 먼저 찾자.</p>
+        <div class="opts"><button class="opt">99</button><button class="opt">100</button><button class="opt">49</button></div>
+        <p class="explain" hidden>3200으로 반올림되는 범위는 <b>3150 이상 3250 미만</b>. 자연수 중 가장 작은 것은 3150, 가장 큰 것은 <b>3249</b>(3250은 3300이 되니까 탈락). 3249 − 3150 = <b>99</b>. 어림을 <b>거꾸로 읽으면 범위 문제</b>가 된다는 걸 보여주는 대표 유형이야.</p>
       </div>
     </article>
   </section>
@@ -1230,43 +1401,37 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   <!-- ================= 국어 · 선우 ================= -->
   <section class="panel" data-subject="kor" data-child="sunwoo" hidden>
     <article class="stage">
-      <span class="stage-tag">이번 주 금요일 · 배울 내용 살펴보기</span>
-      <h2>표지 탐정</h2>
-      <p class="stage-sub">읽기 전에 <b>제목과 그림만</b> 보고 무슨 이야기일지 맞혀보는 놀이. 짐작하고 읽으면 “아, 맞았다!” “어, 다르네?” 하면서 훨씬 잘 읽힌다.</p>
+      <span class="stage-tag">이번 주 월요일 · 받침이 있는 낱말</span>
+      <h2>받침 탐정소</h2>
+      <p class="stage-sub">받침은 <b>글자 아래에 숨은 소리</b>다. 그런데 뒤에 ‘이·을·에’가 오면 받침이 <b>다음 칸으로 넘어가</b> 소리 난다 — 그래서 쓴 것과 읽는 것이 달라진다. 낱말을 눌러 확인해보자.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="cover" id="cv-card"></div>
-          <div class="controls" id="cv-opts"></div>
-          <p class="cv-fb" id="cv-fb"></p>
-          <div class="controls">
-            <button class="ctl" id="cv-open">첫 문장 펼쳐보기</button>
-            <button class="ctl quiet" id="cv-next">다음 책</button>
-          </div>
+          <div class="wordrow" id="bt-row"></div>
+          <p class="bt-big" id="bt-big"></p>
+          <p class="bt-sound" id="bt-sound"></p>
+          <div class="controls"><button class="ctl" id="bt-say">소리로 들어보기</button></div>
         </div>
         <aside class="read">
-          <p class="live" id="cv-live"></p>
-          <p class="why" id="cv-why"></p>
+          <p class="live" id="bt-live"></p>
+          <p class="why" id="bt-why"></p>
         </aside>
       </div>
     </article>
 
     <article class="stage">
-      <span class="stage-tag">이번 주 · 문장 부호</span>
-      <h2>부호 하나로 목소리 바꾸기</h2>
-      <p class="stage-sub">글자는 그대로인데 <b>끝에 붙는 부호</b>만 바꿔도 말투가 통째로 달라진다. 눌러서 소리 내어 읽어보자.</p>
+      <span class="stage-tag">이번 주 화요일·수요일 · 글쓴이가 하고 싶은 말</span>
+      <h2>하고 싶은 말 찾기</h2>
+      <p class="stage-sub">글에는 <b>사건</b>도 있고 <b>하고 싶은 말</b>도 있다. 무슨 일이 있었는지가 아니라, <b>글쓴이가 왜 이 글을 썼는지</b>를 찾아보자.</p>
       <div class="stage-body">
         <div class="play">
-          <div class="bubble" id="pn-bubble"></div>
-          <div class="controls">
-            <button class="ctl" data-pn="." aria-pressed="true">마침표 .</button>
-            <button class="ctl" data-pn="?" aria-pressed="false">물음표 ?</button>
-            <button class="ctl" data-pn="!" aria-pressed="false">느낌표 !</button>
-          </div>
-          <div class="controls"><button class="ctl quiet" id="pn-next">다른 문장</button></div>
+          <div class="passage" id="wm-text"></div>
+          <div class="controls" id="wm-opts"></div>
+          <p class="tr-fb" id="wm-fb"></p>
+          <div class="controls"><button class="ctl quiet" id="wm-next">다음 글</button></div>
         </div>
         <aside class="read">
-          <p class="live" id="pn-live"></p>
-          <p class="why" id="pn-why"></p>
+          <p class="live" id="wm-live"></p>
+          <p class="why" id="wm-why"></p>
         </aside>
       </div>
     </article>
@@ -1291,43 +1456,52 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
 
     <section class="quiz" data-for="sunwoo">
       <h2>확인 문제</h2>
-      <div class="q" data-qid="s-k-n1" data-answer="1">
-        <h3>느낌표(!)를 붙이면 가장 어울리는 말은?</h3>
-        <p class="qnote">깜짝 놀라거나 마음이 커질 때 쓰는 부호야.</p>
-        <div class="opts"><button class="opt" style="font-size:15px">오늘은 화요일이다</button><button class="opt" style="font-size:15px">와, 무지개다</button><button class="opt" style="font-size:15px">몇 시니</button></div>
-        <p class="explain" hidden>‘와’처럼 마음이 툭 튀어나오는 말엔 <b>느낌표</b>가 딱이야. 그냥 알려주는 말엔 마침표, 묻는 말엔 물음표. <b>부호는 목소리의 옷</b>이라고 생각하면 쉬워.</p>
+      <div class="q" data-qid="s-k-w5-1" data-answer="1">
+        <h3>받침이 <em>있는</em> 낱말은 어느 것일까?</h3>
+        <p class="qnote">글자 아래에 자음이 하나 더 붙어 있는 낱말!</p>
+        <div class="opts"><button class="opt">나비</button><button class="opt">꽃밭</button><button class="opt">바다</button></div>
+        <p class="explain" hidden><b>꽃밭</b>은 ‘꽃’에 ㅊ, ‘밭’에 ㅌ 받침이 있어. 나비·바다는 받침 없이 소리가 열린 채 끝나지. 받침은 <b>글자에 뚜껑을 덮는 소리</b>라고 생각하면 쉬워.</p>
       </div>
-      <div class="q" data-qid="s-k-n2" data-answer="0">
-        <h3>물음표(?)가 붙은 문장을 읽을 때, 목소리 끝은?</h3>
-        <p class="qnote">소리 내어 읽어보면 바로 알 수 있어.</p>
-        <div class="opts"><button class="opt">올라간다</button><button class="opt">내려간다</button><button class="opt">그대로다</button></div>
-        <p class="explain" hidden>“같이 가?” — 끝이 <b>올라가지</b>? 대답을 기다리는 마음이 목소리를 들어 올리는 거야. 마침표는 내려가고, 느낌표는 세게 나가. 부호는 눈으로 보는 게 아니라 <b>입으로 확인</b>하는 거야.</p>
+      <div class="q" data-qid="s-k-w5-2" data-answer="0">
+        <h3>‘꽃이’는 어떻게 읽을까?</h3>
+        <p class="qnote">받침 ㅊ이 뒤 글자로 넘어가면?</p>
+        <div class="opts"><button class="opt">꼬치</button><button class="opt">꼳이</button><button class="opt">꽃히</button></div>
+        <p class="explain" hidden>받침 <b>ㅊ</b>이 다음 칸의 빈자리로 <b>넘어가서</b> [꼬치]가 돼. 쓸 때는 ‘꽃이’, 읽을 때는 [꼬치] — 그래서 받아쓰기가 어려운 거야. <b>소리대로 쓰면 틀린다</b>는 걸 알면 절반은 해결!</p>
       </div>
-      <div class="q" data-qid="s-k-n3" data-answer="2">
-        <h3>책을 다 읽은 뒤 ‘마무리’로 하면 좋은 것은?</h3>
-        <p class="qnote">이번 주 수·목요일 국어 — 배운 내용을 마무리할 수 있다.</p>
-        <div class="opts"><button class="opt" style="font-size:15px">책을 덮고 바로 잊기</button><button class="opt" style="font-size:15px">쪽수를 세어보기</button><button class="opt" style="font-size:15px">기억에 남는 장면을 말해보기</button></div>
-        <p class="explain" hidden>읽기 전엔 <b>짐작</b>, 읽은 뒤엔 <b>정리</b>. 가장 기억에 남는 장면 하나를 말해보는 것만으로도 이야기가 마음에 오래 남아. 앞뒤로 30초씩만 쓰면 읽기가 훨씬 단단해져.</p>
+      <div class="q" data-qid="s-k-w5-3" data-answer="2">
+        <h3>‘나는 강아지를 키우고 싶다. 매일 산책도 시켜 줄 것이다.’ — 글쓴이가 하고 싶은 말은?</h3>
+        <div class="opts"><button class="opt" style="font-size:15px">강아지는 산책을 좋아한다</button><button class="opt" style="font-size:15px">매일 걸으면 건강해진다</button><button class="opt" style="font-size:15px">강아지를 키우고 싶다</button></div>
+        <p class="explain" hidden>글에서 <b>가장 하고 싶은 말</b>은 “키우고 싶다”야. 뒷문장은 그 마음을 <b>받쳐주는 이야기</b>일 뿐이지. 글을 읽을 때 “이 사람이 <b>왜</b> 이걸 썼을까?”를 물어보면 하고 싶은 말이 보여.</p>
+      </div>
+      <div class="q" data-qid="s-k-w5-4" data-answer="1">
+        <h3>‘토끼는 거북이를 보며 빙긋 웃었다.’ — 토끼의 생각으로 알맞은 것은?</h3>
+        <p class="qnote">웃은 까닭을 상상해봐.</p>
+        <div class="opts"><button class="opt" style="font-size:15px">거북이가 무섭다</button><button class="opt" style="font-size:15px">내가 이길 것 같다</button><button class="opt" style="font-size:15px">거북이가 부럽다</button></div>
+        <p class="explain" hidden>글에 “나는 이길 거야”라고 <b>직접 쓰여 있지 않아도</b>, 행동(빙긋 웃었다)에서 마음을 짐작할 수 있어. 인물의 생각은 <b>말과 행동에 숨어 있다</b>.</p>
+      </div>
+      <div class="q" data-qid="s-k-w5-5" data-answer="0">
+        <h3>‘밥을’은 어떻게 읽을까?</h3>
+        <div class="opts"><button class="opt">바블</button><button class="opt">밥을</button><button class="opt">바플</button></div>
+        <p class="explain" hidden>받침 <b>ㅂ</b>이 뒤로 넘어가 [바블]. 받침이 넘어가는 규칙은 늘 같아 — <b>뒤 글자가 ㅇ으로 시작할 때</b> 받침이 그 자리를 차지해. 산이[사니], 눈이[누니], 잎에[이페] 전부 같은 규칙이야.</p>
       </div>
     </section>
 
 
 
     <article class="stage rev" data-for="sunwoo">
-      <span class="stage-tag">이번 주 학교에서 · 8/31 – 9/4</span>
+      <span class="stage-tag">이번 주 학교에서 · 9/14 – 9/18</span>
       <h2>이번 주 복습 + 보너스</h2>
-      <p class="stage-sub">수요일·목요일 <b>배운 내용을 마무리할 수 있다</b>, 금요일 <b>배울 내용을 살펴볼 수 있다</b>. 읽기 전과 읽은 후에 하는 일이 서로 다르다는 게 핵심!</p>
-      <div class="q" data-qid="b-s-k-0901-1" data-answer="1">
-        <h3>보너스 — 글을 읽기 <em>전</em>에 그림과 제목을 먼저 보는 까닭은?</h3>
-        <p class="qnote">금요일 국어 — 배울 내용을 살펴보기.</p>
-        <div class="opts"><button class="opt" style="font-size:15px">글을 안 읽어도 되니까</button><button class="opt" style="font-size:15px">무슨 이야기일지 미리 짐작할 수 있어서</button><button class="opt" style="font-size:15px">그림이 더 예뻐서</button></div>
-        <p class="explain" hidden>제목과 그림은 <b>이야기의 예고편</b>이야. 미리 짐작하고 읽으면 “아, 맞았다!” “어, 다르네?” 하며 훨씬 잘 들어와. 읽기 전 30초가 읽기를 쉽게 만들어줘.</p>
+      <p class="stage-sub">월요일 <b>받침이 있는 낱말 읽기</b>, 화요일 <b>글쓴이가 하고 싶은 말 찾기</b>, 수요일 <b>인물의 생각 알기</b>, 금요일 <b>배운 내용 실천하기</b>. 보너스로 마무리!</p>
+      <div class="q" data-qid="b-s-k-w5-1" data-answer="2">
+        <h3>보너스 — ‘산에’는 어떻게 읽을까?</h3>
+        <p class="qnote">받침 ㄴ이 어디로 갈까?</p>
+        <div class="opts"><button class="opt">산에</button><button class="opt">사데</button><button class="opt">사네</button></div>
+        <p class="explain" hidden>받침 <b>ㄴ</b>이 뒤로 넘어가 [사네]. 규칙을 알면 처음 보는 낱말도 읽을 수 있어 — <b>글자를 외우는 게 아니라 규칙을 아는 것</b>이 읽기야.</p>
       </div>
-      <div class="q" data-qid="b-s-k-0901-2" data-answer="0">
-        <h3>보너스 — “너도 같이 갈래” 끝에 붙일 문장 부호는?</h3>
-        <p class="qnote">묻는 말일까, 그냥 하는 말일까?</p>
-        <div class="opts"><button class="opt">? (물음표)</button><button class="opt">. (마침표)</button><button class="opt">! (느낌표)</button></div>
-        <p class="explain" hidden>대답을 기다리는 말엔 <b>물음표</b>. 그냥 알려주는 말엔 마침표, 놀라거나 힘주는 말엔 느낌표. 부호 하나가 목소리를 바꿔 — 소리 내어 읽어보면 바로 느껴져.</p>
+      <div class="q" data-qid="b-s-k-w5-2" data-answer="0">
+        <h3>보너스 — 글쓴이가 하고 싶은 말을 찾는 가장 좋은 방법은?</h3>
+        <div class="opts"><button class="opt" style="font-size:15px">여러 번 나오는 말과 마지막 문장을 살펴본다</button><button class="opt" style="font-size:15px">글자 수를 센다</button><button class="opt" style="font-size:15px">제일 어려운 낱말을 찾는다</button></div>
+        <p class="explain" hidden>하고 싶은 말은 대개 <b>되풀이되거나 마지막에</b> 놓여. 글쓴이도 중요한 말은 한 번 더 하고 싶고, 끝에 남기고 싶거든. 이 두 곳만 봐도 절반은 찾아져.</p>
       </div>
     </article>
   </section>
@@ -1592,26 +1766,28 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   <!-- ================= 이번 주 · 선우 ================= -->
   <section class="panel" data-subject="week" data-child="sunwoo" hidden>
     <article class="stage">
-      <span class="stage-tag">신풍초 1학년 · 8월 31일 – 9월 4일 (3주)</span>
+      <span class="stage-tag">신풍초 1학년 · 9월 14일 – 9월 18일 (5주)</span>
       <h2>선우의 이번 주</h2>
       <p class="stage-sub">주간학습안내 그대로 옮겨왔다. <b>색이 칠해진 과목을 누르면</b> 그 과목의 ‘이번 주 복습 + 보너스 문제’로 바로 간다.</p>
       <div class="wk-scroll"><div class="wk-grid">
-        <div class="wk-day"><div class="wk-head">월</div><span class="wk-p hl-m">수학</span><span class="wk-p">하루</span><span class="wk-p">자율(예절)</span><span class="wk-p">자율(예절)</span></div>
-        <div class="wk-day"><div class="wk-head">화</div><span class="wk-p">하루</span><span class="wk-p hl-m">수학</span><span class="wk-p">자율(양성평등)</span><span class="wk-p">하루</span><span class="wk-p">하루</span></div>
-        <div class="wk-day"><div class="wk-head">수</div><span class="wk-p hl-k">국어</span><span class="wk-p hl-m">수학</span><span class="wk-p">친구 사랑의 날</span><span class="wk-p">친구 사랑의 날</span><span class="wk-p">하루</span></div>
-        <div class="wk-day"><div class="wk-head">목</div><span class="wk-p hl-k">국어</span><span class="wk-p">하루</span><span class="wk-p">하루</span><span class="wk-p">하루</span><span class="wk-p">하루</span></div>
-        <div class="wk-day"><div class="wk-head">금</div><span class="wk-p">하루</span><span class="wk-p hl-m">수학</span><span class="wk-p hl-k">국어</span><span class="wk-p hl-k">국어</span></div>
+        <div class="wk-day"><div class="wk-head">월</div><span class="wk-p hl-k">국어</span><span class="wk-p hl-k">국어</span><span class="wk-p hl-m">수학</span><span class="wk-p">하루(신호등)</span></div>
+        <div class="wk-day"><div class="wk-head">화</div><span class="wk-p">하루(애벌레)</span><span class="wk-p hl-k">국어</span><span class="wk-p hl-k">국어</span><span class="wk-p">하루</span><span class="wk-p">하루</span></div>
+        <div class="wk-day"><div class="wk-head">수</div><span class="wk-p">자율(식생활)</span><span class="wk-p hl-m">수학</span><span class="wk-p hl-m">수학</span><span class="wk-p hl-k">국어</span><span class="wk-p hl-k">국어</span></div>
+        <div class="wk-day"><div class="wk-head">목</div><span class="wk-p hl-m">수학</span><span class="wk-p">하루(리듬)</span><span class="wk-p">하루(주제)</span><span class="wk-p">하루(질문)</span><span class="wk-p">하루</span></div>
+        <div class="wk-day"><div class="wk-head">금</div><span class="wk-p hl-k">국어</span><span class="wk-p">대피훈련</span><span class="wk-p">대피훈련</span><span class="wk-p">하루</span></div>
       </div></div>
       <div class="units">
-        <span class="unit">이번 주 <b>수학 4번 · 국어 4번</b></span>
-        <span class="unit">수학 — <b>수를 넣어 이야기 · 수의 순서 · 크기 비교 · 짝수와 홀수</b></span>
-        <span class="unit">국어 — <b>배운 내용 마무리 · 배울 내용 살펴보기</b></span>
-        <span class="unit">수요일 — <b>친구 사랑의 날</b></span>
-        <span class="unit">매일 챙기기 — <b>읽을 책 1권 · 개인 물병</b></span>
+        <span class="unit">이번 주 <b>국어 7번 · 수학 4번</b></span>
+        <span class="unit">수학 — <b>세 수의 뺄셈 · 10이 되는 더하기 · 10에서 빼기</b></span>
+        <span class="unit">국어 — <b>받침이 있는 낱말 · 하고 싶은 말 · 인물의 생각</b></span>
+        <span class="unit">목요일 — <b>우리 반 주제 만들기</b></span>
+        <span class="unit">금요일 — <b>소방·지진 대피훈련</b></span>
+        <span class="unit">매일 — <b>읽을 책 1권 · 개인 물병</b></span>
+        <span class="unit">가방 — <b>연필 3자루 · 지우개 · 네임펜</b></span>
         <button class="unit go" data-go="eng">+ <b>영어 보너스</b> (시간표엔 없지만!)</button>
         <button class="unit go" data-go="hanja">+ <b>한자 보너스</b> (시간표엔 없지만!)</button>
       </div>
-      <p class="wk-note">학교에서 받은 주간학습안내(8/31–9/4) 기준. 교육과정 운영상 바뀔 수 있어요.</p>
+      <p class="wk-note">학교에서 받은 주간학습안내(9/14–9/18) 기준. 교육과정 운영상 바뀔 수 있어요.</p>
     </article>
   </section>
 
@@ -2606,144 +2782,127 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     }, { passive: true });
   }
 
-  /* ================= 수학·선우: 짝꿍 만들기 기계 ================= */
+  /* ================= 수학·지우: 경계에 선 사람 (수의 범위) ================= */
   (function(){
-    var field = document.getElementById('pr-field'); if (!field) return;
-    var N = 8, paired = false;
-    function draw(){
-      document.getElementById('pr-n').textContent = N + '개';
-      field.innerHTML = '';
-      if (!paired){
-        var box = document.createElement('div'); box.className = 'pair'; box.style.border = 'none'; box.style.background = 'none';
-        box.style.flexWrap = 'wrap'; box.style.maxWidth = '100%';
-        for (var i=0;i<N;i++){ var d=document.createElement('span'); d.className='pball'; d.style.animationDelay=(i*0.03)+'s'; box.appendChild(d); }
-        field.appendChild(box);
-        document.getElementById('pr-live').innerHTML = '구슬 <b>' + N + '개</b>. 둘씩 짝지어 볼까?';
-        document.getElementById('pr-why').innerHTML = '버튼을 눌러 <b>둘씩 손을 잡게</b> 해보자. 남는 친구가 있는지 없는지가 전부야.';
-        return;
-      }
-      var pairs = Math.floor(N/2), rest = N % 2, k = 0;
-      for (var q=0;q<pairs;q++){
-        var b=document.createElement('div'); b.className='pair'; b.style.animationDelay=(q*0.06)+'s';
-        b.innerHTML = '<span class="pball"></span><span class="pball"></span>'; field.appendChild(b); k++;
-      }
-      if (rest){
-        var r=document.createElement('div'); r.className='pair lonely'; r.style.animationDelay=(k*0.06)+'s';
-        r.innerHTML = '<span class="pball alone"></span>'; field.appendChild(r);
-      }
-      var tail = N % 10;
-      document.getElementById('pr-live').innerHTML = rest
-        ? N + ' → 짝 ' + pairs + '개와 <b>남는 하나</b> → <b>홀수</b>'
-        : N + ' → 짝 ' + pairs + '개, <b>남는 것 없음</b> → <b>짝수</b>';
-      document.getElementById('pr-why').innerHTML = rest
-        ? '하나가 손을 못 잡고 남았지? 이런 수가 <b>홀수</b>야. 끝자리를 봐 — <b>' + tail + '</b>처럼 1·3·5·7·9로 끝나면 아무리 큰 수라도 홀수. 백 개를 세지 않아도 <b>맨 끝 한 자리</b>만 보면 알 수 있어.'
-        : '전부 짝이 맞았어 — <b>짝수</b>. 끝자리가 <b>' + tail + '</b>이지? 0·2·4·6·8로 끝나면 짝수야. 그래서 78도, 156도 세어보지 않고 바로 알 수 있어.';
-    }
-    document.getElementById('pr-minus').addEventListener('click', function(){ if (N>1){ N--; paired=false; draw(); } });
-    document.getElementById('pr-plus').addEventListener('click', function(){ if (N<20){ N++; paired=false; draw(); } });
-    document.getElementById('pr-go').addEventListener('click', function(){ paired=true; draw(); });
-    document.getElementById('pr-reset').addEventListener('click', function(){ paired=false; draw(); });
-    draw();
-  })();
-
-  /* ================= 수학·선우: 수 저울 ================= */
-  (function(){
-    var beam = document.getElementById('bl-beam'); if (!beam) return;
-    var L = 62, R = 58;
-    function fill(tid, oid, n){
-      var t = document.getElementById(tid), o = document.getElementById(oid), i;
-      t.innerHTML=''; o.innerHTML='';
-      for (i=0;i<Math.floor(n/10);i++){ var b=document.createElement('span'); b.className='tenbar'; b.style.animationDelay=(i*0.04)+'s'; t.appendChild(b); }
-      for (i=0;i<n%10;i++){ var d=document.createElement('span'); d.className='onedot'; d.style.animationDelay=(0.2+i*0.03)+'s'; o.appendChild(d); }
+    var svg = document.getElementById('nr-svg'); if (!svg) return;
+    var LO = 30, HI = 44;               /* 수직선 표시 구간 */
+    var lo = 34, hi = 36, t = 36;       /* 범위 양끝 + 선수 몸무게 */
+    var lmode = 'gt', rmode = 'le';     /* gt=초과 ge=이상 / le=이하 lt=미만 */
+    function px(v){ return 24 + (v - LO) / (HI - LO) * 372; }
+    function inRange(v){
+      var okL = lmode === 'ge' ? v >= lo : v > lo;
+      var okR = rmode === 'le' ? v <= hi : v < hi;
+      return okL && okR;
     }
     function draw(){
-      fill('bl-tL','bl-oL',L); fill('bl-tR','bl-oR',R);
-      document.getElementById('bl-nL').textContent = L;
-      document.getElementById('bl-nR').textContent = R;
-      var pl = document.getElementById('bl-panL'), pr = document.getElementById('bl-panR');
-      pl.className = 'pan'; pr.className = 'pan';
-      var tl = Math.floor(L/10), tr = Math.floor(R/10);
-      if (L > R){ beam.style.transform='rotate(-5deg)'; pl.classList.add('down'); pr.classList.add('up'); }
-      else if (R > L){ beam.style.transform='rotate(5deg)'; pr.classList.add('down'); pl.classList.add('up'); }
-      else { beam.style.transform='rotate(0deg)'; }
-      var live = document.getElementById('bl-live'), why = document.getElementById('bl-why');
-      if (L === R){ live.innerHTML = L + ' = ' + R + ' — 저울이 <b>평평</b>하다.'; why.innerHTML='묶음도 낱개도 똑같으니 저울이 기울 이유가 없지.'; return; }
-      var big = L>R ? L : R, small = L>R ? R : L;
-      live.innerHTML = big + ' <b>&gt;</b> ' + small + ' — 저울은 <b>' + (L>R?'왼':'오른') + '쪽</b>으로 기울었다.';
-      if (tl !== tr){
-        why.innerHTML = '묶음 막대를 먼저 세어봐: <b>' + tl + '개 vs ' + tr + '개</b>. 막대 하나가 낱개 열 개니까, 낱개가 아무리 많아도 <b>막대 하나를 못 이겨</b>. 그래서 묶음부터 보는 거야.';
+      var o = '<line x1="16" y1="60" x2="404" y2="60" stroke="var(--line-strong)" stroke-width="2"/>';
+      for (var v=LO; v<=HI; v++){
+        var x = px(v), big = (v % 2 === 0);
+        o += '<line x1="'+x+'" y1="'+(big?52:56)+'" x2="'+x+'" y2="68" stroke="var(--line)" stroke-width="'+(big?1.6:1)+'"/>';
+        if (big) o += '<text x="'+x+'" y="84" font-size="11" text-anchor="middle" fill="currentColor">'+v+'</text>';
+      }
+      o += '<line x1="'+px(lo)+'" y1="60" x2="'+px(hi)+'" y2="60" stroke="var(--green)" stroke-width="6" stroke-linecap="butt" opacity=".55"/>';
+      o += '<circle cx="'+px(lo)+'" cy="60" r="7" fill="'+(lmode==='ge'?'var(--green)':'var(--paper)')+'" stroke="var(--green)" stroke-width="2.6"/>';
+      o += '<circle cx="'+px(hi)+'" cy="60" r="7" fill="'+(rmode==='le'?'var(--green)':'var(--paper)')+'" stroke="var(--green)" stroke-width="2.6"/>';
+      var ok = inRange(t);
+      o += '<g><line x1="'+px(t)+'" y1="22" x2="'+px(t)+'" y2="50" stroke="'+(ok?'var(--green)':'var(--red)')+'" stroke-width="2" stroke-dasharray="3 3"/>' +
+           '<circle cx="'+px(t)+'" cy="18" r="8" fill="'+(ok?'var(--green)':'var(--red)')+'"/>' +
+           '<text x="'+px(t)+'" y="10" font-size="11" text-anchor="middle" fill="currentColor">'+t+'kg</text></g>';
+      svg.innerHTML = o;
+      var lw = lmode === 'ge' ? '이상' : '초과', rw = rmode === 'le' ? '이하' : '미만';
+      document.getElementById('nr-label').innerHTML = '<b>' + lo + ' ' + lw + ' ' + hi + ' ' + rw + '</b>';
+      document.getElementById('nr-live').innerHTML = ok
+        ? '<b>' + t + '</b> 은(는) 이 범위에 <b style="color:var(--green)">들어간다</b>.'
+        : '<b>' + t + '</b> 은(는) 이 범위에 <b style="color:var(--red)">들어가지 않는다</b>.';
+      var why = '';
+      if (t === lo){
+        why = t + '은 <b>왼쪽 경계에 딱 선 수</b>야. 지금은 <b>' + lw + '</b>라서 ' +
+              (lmode==='ge' ? '점이 꽉 차 있고(●) <b>포함돼</b>. ‘이상’의 上은 그 수를 딛고 서는 것.'
+                            : '점이 비어 있고(○) <b>빠져</b>. ‘초과’는 그 수를 <b>넘어야만</b> 인정.') +
+              ' 버튼으로 바꿔보면 같은 수의 운명이 뒤집히는 게 보여.';
+      } else if (t === hi){
+        why = t + '은 <b>오른쪽 경계에 딱 선 수</b>야. 지금은 <b>' + rw + '</b>라서 ' +
+              (rmode==='le' ? '점이 꽉 차서(●) <b>포함</b>돼.' : '점이 비어서(○) <b>제외</b>돼.') +
+              ' 시험에서 틀리는 건 거의 언제나 <b>이 한 점</b>이야 — 가운데 수들은 아무도 안 틀려.';
       } else {
-        why.innerHTML = '막대 수가 <b>둘 다 ' + tl + '개</b>로 같네? 이럴 때만 낱개를 세면 돼 — <b>' + (L%10) + ' vs ' + (R%10) + '</b>. 큰 상자가 같을 때 비로소 작은 알맹이가 승부를 낸다.';
+        why = '경계가 아닌 수는 헷갈릴 일이 없어. 진짜 시험 문제는 <b>' + lo + '</b>이나 <b>' + hi + '</b>처럼 <b>딱 경계에 선 수</b>를 물어봐. ' +
+              '선수를 경계로 옮겨보고, 이상↔초과를 바꿔가며 <b>점이 차고 비는 것</b>을 눈에 익혀두자.';
       }
+      document.getElementById('nr-why').innerHTML = why;
     }
-    Array.prototype.forEach.call(document.querySelectorAll('[data-bl]'), function(b){
+    document.getElementById('nr-lmode').addEventListener('click', function(){ lmode = lmode==='ge'?'gt':'ge'; draw(); });
+    document.getElementById('nr-rmode').addEventListener('click', function(){ rmode = rmode==='le'?'lt':'le'; draw(); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-nr]'), function(b){
       b.addEventListener('click', function(){
-        var k=b.dataset.bl;
-        if (k==='L-'&&L>1) L--; if (k==='L+'&&L<99) L++;
-        if (k==='R-'&&R>1) R--; if (k==='R+'&&R<99) R++;
+        var k = b.dataset.nr;
+        if (k==='l-' && lo > LO) lo--;
+        if (k==='l+' && lo < hi-1) lo++;
+        if (k==='r-' && hi > lo+1) hi--;
+        if (k==='r+' && hi < HI) hi++;
+        if (k==='t-' && t > LO) t--;
+        if (k==='t+' && t < HI) t++;
         draw();
       });
     });
-    document.getElementById('bl-new').addEventListener('click', function(){
-      do { L = 11 + Math.floor(Math.random()*88); R = 11 + Math.floor(Math.random()*88); } while (L === R);
-      if (Math.random() < 0.5){ R = Math.floor(L/10)*10 + Math.floor(Math.random()*10); if (R===L) R = L>0? L-1 : L+1; }
-      draw();
-    });
     draw();
   })();
 
-  /* ================= 수학·선우: 수 기차 ================= */
+  /* ================= 수학·지우: 소수 어림 기계 ================= */
   (function(){
-    var cars = document.getElementById('tr-cars'); if (!cars) return;
-    var step = 1, seq = [], blank = 2, done = false;
-    function make(){
-      done = false;
-      var start = 1 + Math.floor(Math.random() * (step===10 ? 8 : (90 - step*5)));
-      if (step===10) start = 1 + Math.floor(Math.random()*9);
-      seq = []; for (var i=0;i<5;i++) seq.push(start + i*step);
-      blank = 1 + Math.floor(Math.random()*3);
-      draw();
+    var row = document.getElementById('dc-row'); if (!row) return;
+    var NUMS = [4.615, 3.408, 12.372, 7.045, 25.981];
+    var ni = 0, place = 0.1, mode = 'up';
+    var PLACE_NAME = { '1':'일의 자리', '0.1':'소수 첫째 자리', '0.01':'소수 둘째 자리' };
+    function calc(n, pl, m){
+      var f = 1 / pl;
+      var v = m === 'up' ? Math.ceil(n * f - 1e-9) : (m === 'down' ? Math.floor(n * f + 1e-9) : Math.round(n * f));
+      return v / f;
     }
+    function fmt(v, pl){ return pl === 1 ? String(Math.round(v)) : v.toFixed(pl === 0.1 ? 1 : 2); }
     function draw(){
-      cars.innerHTML = '';
-      seq.forEach(function(v,i){
-        var c=document.createElement('div');
-        c.className='car' + (i===blank ? (done?' filled':' blank') : '');
-        c.textContent = (i===blank && !done) ? '?' : v;
-        c.style.animationDelay = (i*0.05)+'s';
-        cars.appendChild(c);
+      var n = NUMS[ni], str = n.toFixed(3);
+      var digits = str.split('');
+      /* 자리 인덱스: 소수점 뒤 자리 수 */
+      var dotIdx = str.indexOf('.');
+      var keepDecimals = place === 1 ? 0 : (place === 0.1 ? 1 : 2);
+      row.innerHTML = '';
+      digits.forEach(function(ch, k){
+        var d = document.createElement('span');
+        if (ch === '.'){ d.className = 'dg dot'; d.textContent = '.'; row.appendChild(d); return; }
+        var decPos = k > dotIdx ? (k - dotIdx) : 0;   /* 0=정수부 */
+        var cls = 'dg';
+        var lab = '';
+        if (decPos === 0) cls += (place === 1 ? ' keep' : ' keep');
+        else if (decPos <= keepDecimals) cls += ' keep';
+        else if (decPos === keepDecimals + 1){ cls += ' judge'; lab = '<small>이 숫자만 봄</small>'; }
+        else cls += ' cut';
+        d.className = cls; d.innerHTML = ch + lab;
+        row.appendChild(d);
       });
-      var opts = document.getElementById('tr-opts'); opts.innerHTML='';
-      if (!done){
-        var ans = seq[blank];
-        var pool = [ans, ans + step, ans - step];
-        if (step === 1) pool[2] = ans + 10;
-        pool.sort(function(){ return Math.random()-0.5; });
-        pool.forEach(function(v){
-          var b=document.createElement('button'); b.className='ctl'; b.textContent=v;
-          b.addEventListener('click', function(){
-            if (v === ans){ done = true; document.getElementById('tr-fb').textContent='딱 맞았다!'; draw(); }
-            else { document.getElementById('tr-fb').textContent = '다시 — 앞 칸에서 ' + step + '씩 걸어가 보자.'; b.classList.add('shake'); setTimeout(function(){ b.classList.remove('shake'); },400); }
-          });
-          opts.appendChild(b);
-        });
-      } else { document.getElementById('tr-fb').textContent = '딱 맞았다!'; }
-      document.getElementById('tr-live').innerHTML = '<b>' + step + '씩</b> 뛰는 기차. 빈칸에 앉을 수는?';
-      document.getElementById('tr-why').innerHTML = step === 10
-        ? '10씩 뛰면 <b>낱개는 그대로, 묶음만 하나씩</b> 늘어. 앞자리 숫자만 1씩 커지는 게 보이지? 그래서 큰 수도 무섭지 않아.'
-        : (step === 2
-          ? '2씩 뛰면 짝수만, 또는 홀수만 밟게 돼. 한 칸 건너뛰기는 <b>짝수·홀수의 사촌</b>이야.'
-          : '수의 순서는 <b>한 칸씩 걷는 길</b>이야. 세지 말고 <b>앞 칸에서 한 걸음</b>만 더 가면 답이 나와.');
+      var res = calc(n, place, mode);
+      var mname = { up:'올림', down:'버림', round:'반올림' }[mode];
+      document.getElementById('dc-out').innerHTML = str.replace(/0+$/,'') + ' &nbsp;→&nbsp; <b>' + fmt(res, place) + '</b>  (' + PLACE_NAME[String(place)] + ' · ' + mname + ')';
+      var judgeDigit = parseInt(String(n.toFixed(3)).replace('.','').charAt(String(Math.floor(n)).length + keepDecimals), 10);
+      var live = document.getElementById('dc-live'), why = document.getElementById('dc-why');
+      live.innerHTML = '<b>' + PLACE_NAME[String(place)] + '</b>까지 <b>' + mname + '</b> → <b>' + fmt(res, place) + '</b>';
+      if (mode === 'up'){
+        why = '올림은 <b>뒤에 뭐가 있든 무조건 위로</b>. 남길 자리 뒤에 0이 아닌 숫자가 하나라도 있으면 그 자리를 1 올려. ' +
+              '그래서 <b>4.615를 소수 둘째 자리까지 올림하면 4.62</b> — 뒤의 5 하나 때문에 올라간 거야. “모자라면 안 될 때” 쓰는 방법이지.';
+      } else if (mode === 'down'){
+        why = '버림은 <b>뒤를 통째로 잘라내기</b>. 회색으로 흐려진 숫자들이 그냥 사라진다고 보면 돼. 반올림처럼 <b>고민하지 않아</b> — 크든 작든 잘라. “완성된 것만 셀 때” 쓰는 방법이야.';
+      } else {
+        why = '반올림은 <b>바로 아래 한 자리만</b> 봐 (빨간 숫자). 그게 5 이상이면 올리고, 4 이하면 내려. ' +
+              '뒤에 붙은 나머지 숫자들은 <b>아무 힘이 없어</b> — 그래서 3.408을 소수 첫째 자리까지 반올림하면, 0만 보고 <b>3.4</b>가 되지. ' +
+              '(같은 수를 <b>올림</b>하면 3.5 — 방법이 답을 바꾼다.)';
+      }
+      document.getElementById('dc-why').innerHTML = why;
+      Array.prototype.forEach.call(document.querySelectorAll('[data-dcp]'), function(b){ b.setAttribute('aria-pressed', parseFloat(b.dataset.dcp)===place?'true':'false'); });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-dcm]'), function(b){ b.setAttribute('aria-pressed', b.dataset.dcm===mode?'true':'false'); });
     }
-    Array.prototype.forEach.call(document.querySelectorAll('[data-step]'), function(b){
-      b.addEventListener('click', function(){
-        step = parseInt(b.dataset.step,10);
-        Array.prototype.forEach.call(document.querySelectorAll('[data-step]'), function(x){ x.setAttribute('aria-pressed', x===b?'true':'false'); });
-        make();
-      });
-    });
-    document.getElementById('tr-new').addEventListener('click', make);
-    make();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-dcp]'), function(b){ b.addEventListener('click', function(){ place = parseFloat(b.dataset.dcp); draw(); }); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-dcm]'), function(b){ b.addEventListener('click', function(){ mode = b.dataset.dcm; draw(); }); });
+    document.getElementById('dc-next').addEventListener('click', function(){ ni = (ni+1) % NUMS.length; draw(); });
+    draw();
   })();
 
   /* ================= 수학·지우: 반올림 언덕 ================= */
@@ -2833,46 +2992,6 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     draw();
   })();
 
-  /* ================= 수학·지우: 분수 곱셈 겹치기판 ================= */
-  (function(){
-    var grid = document.getElementById('fg-grid'); if (!grid) return;
-    var a=2,b=3,c=3,d=4;
-    function gcd(x,y){ return y? gcd(y,x%y) : x; }
-    function draw(){
-      grid.style.gridTemplateColumns = 'repeat(' + b + ',1fr)';
-      grid.style.gridTemplateRows = 'repeat(' + d + ',1fr)';
-      grid.innerHTML='';
-      for (var r=0;r<d;r++){
-        for (var q=0;q<b;q++){
-          var cell=document.createElement('div');
-          var inH = q < a, inV = r < c;
-          cell.className='fcell' + (inH&&inV ? ' both' : (inH ? ' h' : (inV ? ' v' : '')));
-          if (inH&&inV) cell.style.animationDelay = ((r*b+q)*0.02)+'s';
-          grid.appendChild(cell);
-        }
-      }
-      var num=a*c, den=b*d, g=gcd(num,den);
-      document.getElementById('fg-eq').innerHTML =
-        a+'/'+b+' × '+c+'/'+d+' = <b>'+num+'/'+den+'</b>' + (g>1 ? ' = ' + (num/g)+'/'+(den/g) : '');
-      document.getElementById('fg-live').innerHTML =
-        '전체 <b>'+den+'칸</b> 중 겹친 칸 <b>'+num+'칸</b>.';
-      document.getElementById('fg-why').innerHTML =
-        '가로로 '+b+'등분해 '+a+'칸을 잡고, 그 위에 세로로 '+d+'등분해 '+c+'칸을 잡았어. 두 번 자르면 전체 칸수는 <b>'+b+'×'+d+'='+den+'</b>, 둘 다 걸린 칸은 <b>'+a+'×'+c+'='+num+'</b>. ' +
-        '<b>분모끼리·분자끼리 곱하라</b>는 규칙은 외울 게 아니라 <b>두 번 자른 결과</b>일 뿐이야. 그래서 분수끼리 곱하면 답이 <b>작아지는</b> 것도 당연해 — 일부의 일부니까.';
-    }
-    Array.prototype.forEach.call(document.querySelectorAll('[data-fg]'), function(btn){
-      btn.addEventListener('click', function(){
-        var k=btn.dataset.fg;
-        if (k==='a') a = a>=b ? 1 : a+1;
-        if (k==='b'){ b = b>=6 ? 2 : b+1; if (a>b) a=b; }
-        if (k==='c') c = c>=d ? 1 : c+1;
-        if (k==='d'){ d = d>=6 ? 2 : d+1; if (c>d) c=d; }
-        draw();
-      });
-    });
-    draw();
-  })();
-
   /* ================= 미술·선우: 무늬 도장 공장 ================= */
   (function(){
     var row = document.getElementById('pt-row'); if (!row) return;
@@ -2930,6 +3049,264 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     }
     Array.prototype.forEach.call(document.querySelectorAll('[data-day]'),function(b){ b.addEventListener('click',function(){ set(parseInt(b.dataset.day,10)); }); });
     set(0);
+  })();
+
+  /* ================= 수학·선우: 짝수·홀수 판별기 ================= */
+  (function(){
+    var field = document.getElementById('eo-field'); if (!field) return;
+    var n = 7, paired = false, pool = [], found = [];
+    function drawPair(){
+      field.innerHTML = '';
+      if (!paired){
+        var box = document.createElement('div'); box.className='pair'; box.style.border='none'; box.style.background='none';
+        box.style.flexWrap='wrap'; box.style.maxWidth='100%';
+        for (var i=0;i<n;i++){ var d=document.createElement('span'); d.className='pball'; d.style.animationDelay=(i*0.03)+'s'; box.appendChild(d); }
+        field.appendChild(box);
+        document.getElementById('eo-eq').innerHTML = '구슬 <b>' + n + '</b>개';
+        document.getElementById('eo-live').innerHTML = '<b>' + n + '</b>은 짝수일까 홀수일까?';
+        document.getElementById('eo-why').innerHTML = '먼저 <b>짐작</b>해보고 버튼을 눌러 확인해봐. 짐작하고 확인하는 게 그냥 보는 것보다 훨씬 오래 남아.';
+        return;
+      }
+      var pairs = Math.floor(n/2), rest = n % 2, k = 0;
+      for (var q=0;q<pairs;q++){
+        var b=document.createElement('div'); b.className='pair'; b.style.animationDelay=(q*0.06)+'s';
+        b.innerHTML = '<span class="pball"></span><span class="pball"></span>'; field.appendChild(b); k++;
+      }
+      if (rest){
+        var r=document.createElement('div'); r.className='pair lonely'; r.style.animationDelay=(k*0.06)+'s';
+        r.innerHTML = '<span class="pball alone"></span>'; field.appendChild(r);
+      }
+      var tail = n % 10;
+      document.getElementById('eo-eq').innerHTML = rest
+        ? '<b>' + n + '</b> → 짝 ' + pairs + '개 + 남은 1개 = <b>홀수</b>'
+        : '<b>' + n + '</b> → 짝 ' + pairs + '개, 남는 것 없음 = <b>짝수</b>';
+      document.getElementById('eo-live').innerHTML = rest ? '<b>' + n + '</b>은 <b>홀수</b>!' : '<b>' + n + '</b>은 <b>짝수</b>!';
+      document.getElementById('eo-why').innerHTML = rest
+        ? '한 명이 손을 못 잡고 남았지? 이런 수가 <b>홀수</b>야. 여기서 진짜 중요한 건 — 끝자리가 <b>' + tail + '</b>이라는 점. <b>1·3·5·7·9</b>로 끝나면 20이든 137이든 <b>무조건 홀수</b>. 큰 수는 세어볼 필요가 없어.'
+        : '전부 짝이 맞았어 — <b>짝수</b>. 끝자리가 <b>' + tail + '</b>이지? <b>0·2·4·6·8</b>로 끝나면 아무리 큰 수라도 짝수야. 48도, 50도, 132도 <b>끝자리 하나만</b> 보면 끝.';
+    }
+    function newHunt(){
+      pool = []; found = [];
+      while (pool.length < 6){
+        var v = 10 + Math.floor(Math.random()*40);
+        if (pool.indexOf(v) === -1) pool.push(v);
+      }
+      if (!pool.some(function(v){ return v%2===0; })) pool[0] = pool[0] + 1;
+      var box = document.getElementById('eo-hunt'); box.innerHTML = '';
+      document.getElementById('eo-fb').textContent = '';
+      pool.forEach(function(v){
+        var b=document.createElement('button'); b.className='ncard'; b.textContent=v;
+        b.addEventListener('click', function(){
+          if (b.classList.contains('hit')) return;
+          if (v % 2 === 0){
+            b.classList.add('hit'); found.push(v);
+            var total = pool.filter(function(x){ return x%2===0; }).length;
+            document.getElementById('eo-fb').textContent = found.length >= total ? '짝수 다 찾았다!' : '맞아! (' + found.length + '/' + total + ')';
+            if (found.length >= total){
+              document.getElementById('eo-live').innerHTML = '짝수는 <b>' + found.sort(function(a,b2){return a-b2;}).join(', ') + '</b>';
+              document.getElementById('eo-why').innerHTML = '전부 <b>0·2·4·6·8</b>로 끝나지? 두 자리 수든 세 자리 수든 <b>앞자리는 아무 상관이 없어</b> — 십의 자리는 10, 20, 30… 이미 둘씩 딱 나뉘거든. 그래서 <b>끝자리 하나</b>가 짝수·홀수를 혼자 결정해.';
+            }
+          } else {
+            b.classList.add('miss'); setTimeout(function(){ b.classList.remove('miss'); }, 420);
+            document.getElementById('eo-fb').textContent = v + '은 끝자리가 ' + (v%10) + ' — 홀수야!';
+          }
+        });
+        box.appendChild(b);
+      });
+    }
+    document.getElementById('eo-minus').addEventListener('click', function(){ if(n>1){n--; paired=false; drawPair();} });
+    document.getElementById('eo-plus').addEventListener('click', function(){ if(n<20){n++; paired=false; drawPair();} });
+    document.getElementById('eo-go').addEventListener('click', function(){ paired=true; drawPair(); });
+    document.getElementById('eo-new').addEventListener('click', newHunt);
+    drawPair(); newHunt();
+  })();
+
+  /* ================= 수학·선우: 수 비교 탐정 ================= */
+  (function(){
+    var body = document.getElementById('cp-body'); if (!body) return;
+    var mode = 'big', cards = [], target = 73, dir = '<';
+    function newQ(){
+      document.getElementById('cp-fb').textContent = '';
+      if (mode === 'box'){
+        target = 30 + Math.floor(Math.random()*60);
+        dir = Math.random() < 0.5 ? '<' : '>';
+        drawBox();
+      } else {
+        cards = [];
+        while (cards.length < 5){
+          var v = 11 + Math.floor(Math.random()*88);
+          if (cards.indexOf(v) === -1) cards.push(v);
+        }
+        drawCards();
+      }
+      Array.prototype.forEach.call(document.querySelectorAll('[data-cm]'), function(b){ b.setAttribute('aria-pressed', b.dataset.cm===mode?'true':'false'); });
+    }
+    function drawCards(){
+      var want = mode === 'big' ? Math.max.apply(null, cards) : Math.min.apply(null, cards);
+      body.innerHTML = '<div class="numcards" id="cp-cards"></div>';
+      var box = document.getElementById('cp-cards');
+      cards.forEach(function(v){
+        var b=document.createElement('button'); b.className='ncard';
+        b.innerHTML = v + '<span class="bun">묶음 ' + Math.floor(v/10) + ' · 낱개 ' + (v%10) + '</span>';
+        b.addEventListener('click', function(){
+          if (v === want){
+            b.classList.add('hit');
+            document.getElementById('cp-fb').textContent = '정답!';
+            var buns = cards.map(function(x){ return Math.floor(x/10); });
+            var maxB = Math.max.apply(null, buns), tie = buns.filter(function(x){ return x === Math.floor(want/10); }).length > 1;
+            document.getElementById('cp-live').innerHTML = (mode==='big'?'가장 큰 수':'가장 작은 수') + '는 <b>' + want + '</b>';
+            document.getElementById('cp-why').innerHTML = tie
+              ? '묶음이 같은 수가 있었지? 그럴 때만 <b>낱개</b>로 승부가 나. <b>' + want + '</b>은 묶음 ' + Math.floor(want/10) + '개에 낱개 ' + (want%10) + '개 — 같은 묶음끼리 겨뤄서 이겼어. <b>큰 상자를 먼저 세고, 같을 때만 알맹이를 센다.</b>'
+              : '묶음(십의 자리)만 봐도 끝났어 — <b>' + want + '</b>의 묶음이 ' + (mode==='big'?'가장 많아':'가장 적어') + '. 낱개는 <b>볼 필요도 없었지</b>. 묶음 하나가 낱개 열 개니까, 낱개로는 절대 뒤집을 수 없거든.';
+          } else {
+            b.classList.add('miss'); setTimeout(function(){ b.classList.remove('miss'); }, 420);
+            document.getElementById('cp-fb').textContent = '묶음(십의 자리)부터 다시 세어보자!';
+          }
+        });
+        box.appendChild(b);
+      });
+      document.getElementById('cp-live').innerHTML = mode==='big' ? '이 중에서 <b>가장 큰 수</b>는?' : '이 중에서 <b>가장 작은 수</b>는?';
+      document.getElementById('cp-why').innerHTML = '카드 아래에 <b>묶음과 낱개</b>가 적혀 있어. 낱개가 커 보이는 카드에 속지 말고 <b>묶음부터</b> 훑어봐.';
+    }
+    function drawBox(){
+      body.innerHTML = '<p class="boxq">' + target + ' ' + (dir==='<' ? '&lt;' : '&gt;') + ' <em>□</em>8</p><div class="digitrow" id="cp-digits"></div>';
+      var row = document.getElementById('cp-digits'), ok = [];
+      for (var d=1; d<=9; d++){
+        (function(d){
+          var b=document.createElement('button'); b.className='dbtn'; b.textContent=d;
+          b.addEventListener('click', function(){
+            var made = d*10 + 8;
+            var good = dir==='<' ? (target < made) : (target > made);
+            b.classList.add(good ? 'yes' : 'no');
+            if (good && ok.indexOf(d) === -1) ok.push(d);
+            document.getElementById('cp-fb').innerHTML = '□에 <b>' + d + '</b> → <b>' + made + '</b> … ' +
+              target + (dir==='<' ? ' < ' : ' > ') + made + ' 은 ' + (good ? '<b style="color:var(--green)">참!</b>' : '<b style="color:var(--red)">거짓</b>');
+            if (ok.length){
+              ok.sort(function(a,b2){return a-b2;});
+              document.getElementById('cp-live').innerHTML = '지금까지 찾은 답: <b>' + ok.join(', ') + '</b>';
+            }
+          });
+          row.appendChild(b);
+        })(d);
+      }
+      document.getElementById('cp-live').innerHTML = '□ 안에 들어갈 수 있는 수를 <b>모두</b> 찾아봐.';
+      document.getElementById('cp-why').innerHTML = '1부터 9까지 <b>하나씩 넣어보는 게 정답</b>이야. 머리로 한 번에 맞히려다 빠뜨리는 게 이 문제의 함정 — ' +
+        '<b>“모두 쓰세요”</b>가 보이면 <b>끝까지 다 눌러본다</b>고 생각해. 눌러보면 어느 지점부터 참이 되는지 <b>경계</b>가 보일 거야.';
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-cm]'), function(b){
+      b.addEventListener('click', function(){ mode = b.dataset.cm; newQ(); });
+    });
+    document.getElementById('cp-new').addEventListener('click', newQ);
+    newQ();
+  })();
+
+  /* ================= 수학·선우: 10 만들기 짝꿍판 ================= */
+  (function(){
+    var grid = document.getElementById('tf-grid'); if (!grid) return;
+    var n = 6, show = false;
+    function draw(){
+      grid.innerHTML = '';
+      for (var i=0;i<10;i++){
+        var d = document.createElement('i');
+        if (i < n) d.className = 'on';
+        else if (show) d.className = 'pair';
+        d.style.animationDelay = (i*0.03)+'s';
+        grid.appendChild(d);
+      }
+      document.getElementById('tf-eq').innerHTML = show
+        ? '<b>' + n + '</b> + <b>' + (10-n) + '</b> = 10'
+        : n + ' + <b>?</b> = 10';
+      document.getElementById('tf-live').innerHTML = show
+        ? '채운 칸 <b>' + n + '</b>개, 빈칸 <b>' + (10-n) + '</b>개 — 이 둘이 짝꿍!'
+        : '구슬 <b>' + n + '</b>개. 몇 개를 더 넣어야 꽉 찰까?';
+      document.getElementById('tf-why').innerHTML = show
+        ? '답을 계산한 게 아니라 <b>빈칸을 센 것</b>뿐이야. 10은 꽉 찬 한 판이라, 채운 만큼이 정해지면 빈 만큼도 저절로 정해져. 10의 짝꿍은 <b>1-9, 2-8, 3-7, 4-6, 5-5</b> 다섯 쌍이 전부야.'
+        : '세지 말고 <b>눈으로 봐</b>. 판이 꽉 차려면 아직 비어 있는 자리만큼 필요하지? 그 빈칸이 곧 답이야 — 버튼을 눌러 확인해보자.';
+    }
+    document.getElementById('tf-minus').addEventListener('click', function(){ if(n>0){n--; draw();} });
+    document.getElementById('tf-plus').addEventListener('click', function(){ if(n<10){n++; draw();} });
+    document.getElementById('tf-show').addEventListener('click', function(){ show=!show; this.textContent = show?'짝꿍 숨기기':'짝꿍 보여줘'; draw(); });
+    draw();
+  })();
+
+  /* ================= 수학·선우: 10에서 빼기 ================= */
+  (function(){
+    var grid = document.getElementById('tm-grid'); if (!grid) return;
+    var k = 4, done = false;
+    function draw(){
+      grid.innerHTML = '';
+      for (var i=0;i<10;i++){
+        var d = document.createElement('i');
+        d.className = (done && i >= 10-k) ? 'gone' : 'on';
+        d.style.animationDelay = (i*0.03)+'s';
+        grid.appendChild(d);
+      }
+      document.getElementById('tm-eq').innerHTML = done
+        ? '10 − <b>' + k + '</b> = <b>' + (10-k) + '</b>'
+        : '10 − <b>' + k + '</b> = ?';
+      document.getElementById('tm-live').innerHTML = done
+        ? '<b>' + k + '</b>개가 빠지고 <b>' + (10-k) + '</b>개가 남았다.'
+        : '10개가 꽉 찼어. <b>' + k + '</b>개를 빼면 몇 개 남을까?';
+      document.getElementById('tm-why').innerHTML = done
+        ? '빠진 <b>' + k + '</b>개와 남은 <b>' + (10-k) + '</b>개를 합치면 다시 10이지? 위의 10 만들기에서 본 <b>바로 그 짝꿍</b>이야. ' +
+          '<b>' + k + ' + ' + (10-k) + ' = 10</b> 을 알면 <b>10 − ' + k + ' = ' + (10-k) + '</b> 은 그냥 반대로 읽은 것 — 새로 외울 게 없어.'
+        : '빼기 전에 먼저 짐작해봐. 위 판에서 짝꿍을 봤다면 답이 이미 머릿속에 있을 거야.';
+    }
+    document.getElementById('tm-minus').addEventListener('click', function(){ if(k>0){k--; done=false; draw();} });
+    document.getElementById('tm-plus').addEventListener('click', function(){ if(k<10){k++; done=false; draw();} });
+    document.getElementById('tm-go').addEventListener('click', function(){ done=!done; draw(); });
+    draw();
+  })();
+
+  /* ================= 수학·선우: 세 수 뺄셈 기차 ================= */
+  (function(){
+    var box = document.getElementById('s3-beads'); if (!box) return;
+    var a = 9, b = 3, c = 2, mode = 0; /* 0 처음 1 첫뺄셈 2 둘째뺄셈 3 한꺼번에 */
+    function draw(){
+      box.innerHTML = '';
+      for (var i=0;i<a;i++){
+        var d = document.createElement('i');
+        if (mode === 3){ if (i >= a-(b+c)) d.className = 'cut1'; }
+        else {
+          if (mode >= 1 && i >= a-b) d.className = 'cut1';
+          if (mode >= 2 && i >= a-b-c && i < a-b) d.className = 'cut2';
+        }
+        box.appendChild(d);
+      }
+      var eq = document.getElementById('s3-eq');
+      var live = document.getElementById('s3-live'), why = document.getElementById('s3-why');
+      if (mode === 0){
+        eq.innerHTML = a + ' − ' + b + ' − ' + c + ' = ?';
+        live.innerHTML = '구슬 <b>' + a + '</b>개에서 <b>' + b + '</b>개, 그다음 <b>' + c + '</b>개를 뺄 거야.';
+        why.innerHTML = '세 수의 뺄셈은 <b>앞에서부터 차례로</b>가 규칙이야. 한꺼번에 계산하려 하지 말고, <b>한 걸음씩</b> 가보자.';
+      } else if (mode === 1){
+        eq.innerHTML = a + ' − ' + b + ' = <b>' + (a-b) + '</b> … 아직 ' + c + '개 더!';
+        live.innerHTML = '첫 걸음 — <b>' + b + '</b>개를 뺐더니 <b>' + (a-b) + '</b>개 남았다.';
+        why.innerHTML = '여기서 멈추면 안 돼. 뺄 수가 두 개니까 <b>걸음도 두 번</b>이야. 한 번 더 눌러보자.';
+      } else if (mode === 2){
+        eq.innerHTML = a + ' − ' + b + ' − ' + c + ' = <b>' + (a-b-c) + '</b>';
+        live.innerHTML = '두 걸음 끝 — 남은 것은 <b>' + (a-b-c) + '</b>개.';
+        why.innerHTML = '색이 다른 두 덩어리가 보이지? <b>' + b + '개(빨강)</b>와 <b>' + c + '개(노랑)</b>가 차례로 빠졌어. 이제 “한꺼번에 빼기”를 눌러 <b>같은 답이 나오는지</b> 확인해봐.';
+      } else {
+        eq.innerHTML = a + ' − <b>' + (b+c) + '</b> = <b>' + (a-b-c) + '</b>  (' + b + ' + ' + c + ' = ' + (b+c) + ')';
+        live.innerHTML = '뺄 것을 먼저 모아서 한 번에 — 역시 <b>' + (a-b-c) + '</b>개!';
+        why.innerHTML = '두 번 빼나, 모아서 한 번에 빼나 <b>결과가 같아</b>. 빼는 것끼리는 먼저 합쳐도 되거든. 그래서 8 − 2 − 3 같은 건 <b>2+3=5</b>를 먼저 만들고 8 − 5 로 가면 훨씬 빨라. ' +
+                        '단, <b>더하기가 섞이면</b> 이렇게 모으면 안 돼 — 빼는 것끼리만이야.';
+      }
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-s3]'), function(btn){
+      btn.addEventListener('click', function(){
+        var k = btn.dataset.s3;
+        if (k==='a'){ a = a >= 10 ? 5 : a+1; if (b+c > a){ b = 1; c = 1; } }
+        if (k==='b'){ b = (b >= a-c-1 || b >= 5) ? 1 : b+1; }
+        if (k==='c'){ c = (c >= a-b-1 || c >= 5) ? 1 : c+1; }
+        mode = 0; draw();
+      });
+    });
+    document.getElementById('s3-step').addEventListener('click', function(){ mode = (mode >= 2 || mode === 3) ? 1 : mode+1; draw(); });
+    document.getElementById('s3-once').addEventListener('click', function(){ mode = 3; draw(); });
+    document.getElementById('s3-reset').addEventListener('click', function(){ mode = 0; draw(); });
+    draw();
   })();
 
   /* ================= 한자·선우: 반대 짝꿍 ================= */
@@ -3028,109 +3405,6 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     });
     document.getElementById('cl-live').innerHTML='색을 눌러봐 — 영어 이름이 나오고 소리도 들려.';
     document.getElementById('cl-why').innerHTML='무지개 순서는 red · orange · yellow · green · blue · purple. 노래처럼 <b>순서대로</b> 외우면 훨씬 잘 붙어.';
-  })();
-
-  /* ================= 국어·선우: 표지 탐정 ================= */
-  (function(){
-    var card = document.getElementById('cv-card'); if (!card) return;
-    var BOOKS = [
-      { title:'비 오는 날의 우산',
-        art:'<svg viewBox="0 0 120 80"><rect x="0" y="0" width="120" height="80" fill="none"/>'+
-            '<path d="M20 40 Q60 8 100 40 Z" fill="#7CA9E0"/><line x1="60" y1="40" x2="60" y2="70" stroke="#A6B1A9" stroke-width="3"/>'+
-            '<line x1="30" y1="12" x2="26" y2="24" stroke="#7CA9E0" stroke-width="3"/><line x1="92" y1="14" x2="96" y2="26" stroke="#7CA9E0" stroke-width="3"/>'+
-            '<line x1="60" y1="6" x2="60" y2="16" stroke="#7CA9E0" stroke-width="3"/></svg>',
-        opts:['비 오는 날 우산을 나눠 쓰는 이야기','우산을 파는 가게 이야기','우산이 하늘을 나는 이야기'],
-        first:'“같이 쓸래?” 지호가 우산을 반쯤 내밀었다.',
-        why:'제목의 <b>우산</b>과 그림 속 비를 붙이면 “비 오는 날 우산 이야기”가 나와. 세 답이 다 <b>말이 되는 짐작</b>이지만, 첫 문장을 보니 <b>나눠 쓰는 이야기</b>였어. 짐작은 틀려도 괜찮아 — 짐작했기 때문에 첫 문장이 더 반가운 거야.' },
-      { title:'씨앗 하나',
-        art:'<svg viewBox="0 0 120 80"><ellipse cx="60" cy="70" rx="44" ry="8" fill="#2C3630"/>'+
-            '<path d="M60 68 L60 40" stroke="#5FBE90" stroke-width="4"/><ellipse cx="48" cy="40" rx="12" ry="7" fill="#5FBE90"/>'+
-            '<ellipse cx="72" cy="34" rx="12" ry="7" fill="#5FBE90"/><circle cx="60" cy="72" r="5" fill="#E3A92C"/></svg>',
-        opts:['씨앗을 심고 기다리는 이야기','씨앗을 먹어버린 이야기','씨앗을 잃어버린 이야기'],
-        first:'나는 매일 아침 화분 앞에 앉았다. 아직 아무것도 없었다.',
-        why:'그림에 <b>싹</b>이 나 있으니 “심고 기다리는 이야기”가 가장 자연스러워. 그리고 첫 문장이 “<b>아직</b> 아무것도 없었다”라고 하네 — 기다림이 이 이야기의 마음이라는 걸 미리 알 수 있어.' },
-      { title:'우리 집 막내',
-        art:'<svg viewBox="0 0 120 80"><circle cx="42" cy="42" r="20" fill="#F0755A"/><circle cx="36" cy="38" r="3" fill="#121714"/><circle cx="48" cy="38" r="3" fill="#121714"/>'+
-            '<circle cx="82" cy="50" r="13" fill="#F0C155"/><circle cx="78" cy="47" r="2.4" fill="#121714"/><circle cx="86" cy="47" r="2.4" fill="#121714"/></svg>',
-        opts:['막내 동생이 생긴 이야기','막내가 학교에 가는 이야기','막내가 요리하는 이야기'],
-        first:'동생이 태어난 날, 나는 더 이상 막내가 아니었다.',
-        why:'큰 얼굴 옆에 <b>작은 얼굴</b>이 있으니 “막내가 생긴 이야기”라는 짐작이 딱이야. 첫 문장에 “<b>더 이상 막내가 아니었다</b>”가 나오지? 제목과 그림이 이미 다 말해주고 있었어.' }
-    ];
-    var i = 0, picked = -1, opened = false;
-    function draw(){
-      var B = BOOKS[i];
-      card.innerHTML = B.art + '<h4>' + B.title + '</h4>';
-      var box = document.getElementById('cv-opts'); box.innerHTML = '';
-      B.opts.forEach(function(t, k){
-        var b = document.createElement('button'); b.className = 'ctl'; b.textContent = t;
-        b.style.fontSize = '14px'; b.style.maxWidth = '260px';
-        b.setAttribute('aria-pressed', picked === k ? 'true' : 'false');
-        b.addEventListener('click', function(){
-          picked = k;
-          document.getElementById('cv-fb').textContent = '좋아, 그렇게 짐작했구나!';
-          draw();
-        });
-        box.appendChild(b);
-      });
-      var live = document.getElementById('cv-live'), why = document.getElementById('cv-why');
-      if (opened){
-        live.innerHTML = '첫 문장 — “' + B.first + '”';
-        why.innerHTML = B.why;
-      } else if (picked >= 0){
-        live.innerHTML = '내 짐작: <b>' + B.opts[picked] + '</b>';
-        why.innerHTML = '이제 <b>첫 문장을 펼쳐</b>서 내 짐작과 맞춰보자. 맞아도 좋고 달라도 좋아 — 짐작을 해둔 사람만 “어, 다르네?”를 느낄 수 있거든.';
-      } else {
-        live.innerHTML = '제목과 그림만 보고 <b>무슨 이야기</b>일지 골라봐.';
-        why.innerHTML = '책을 펼치기 전 <b>30초</b>가 읽기를 쉽게 만들어. 제목은 이야기의 이름표, 그림은 예고편이야.';
-      }
-      document.getElementById('cv-open').disabled = (picked < 0);
-    }
-    document.getElementById('cv-open').addEventListener('click', function(){
-      if (picked < 0) return; opened = true;
-      document.getElementById('cv-fb').textContent = '';
-      draw();
-    });
-    document.getElementById('cv-next').addEventListener('click', function(){
-      i = (i+1) % BOOKS.length; picked = -1; opened = false;
-      document.getElementById('cv-fb').textContent = '';
-      draw();
-    });
-    draw();
-  })();
-
-  /* ================= 국어·선우: 문장 부호 목소리 ================= */
-  (function(){
-    var bub = document.getElementById('pn-bubble'); if (!bub) return;
-    var SENT = [
-      { t:'우리 같이 가',
-        '.':['그냥 알려주는 말','“우리 같이 가.” — 사실을 담담하게 전하는 목소리야. 마침표는 문장의 <b>발을 땅에 붙여</b> 이야기를 끝맺어.'],
-        '?':['물어보는 말','“우리 같이 가?” — 끝을 <b>올려 읽게</b> 되지? 물음표는 대답을 기다리는 부호야. 그래서 상대의 얼굴을 보게 돼.'],
-        '!':['마음을 담은 말','“우리 같이 가!” — 반가움이나 힘이 실려. 느낌표는 <b>목소리를 크게</b> 만드는 부호야.'] },
-      { t:'벌써 다 먹었어',
-        '.':['그냥 알려주는 말','“벌써 다 먹었어.” — 있었던 일을 알려줄 뿐, 놀라지도 묻지도 않는 목소리.'],
-        '?':['믿기지 않아 묻는 말','“벌써 다 먹었어?” — 확인하고 싶은 마음이 들어갔어. 눈이 동그래지지?'],
-        '!':['깜짝 놀란 말','“벌써 다 먹었어!” — 놀람이 그대로 터져 나와. 같은 다섯 글자인데 마음이 완전히 달라.'] },
-      { t:'여기 앉아도 돼',
-        '.':['허락해주는 말','“여기 앉아도 돼.” — 괜찮다고 알려주는 따뜻한 목소리.'],
-        '?':['조심스럽게 묻는 말','“여기 앉아도 돼?” — 이번엔 <b>내가 묻는 쪽</b>이 됐어. 부호 하나로 말하는 사람이 바뀌었지?'],
-        '!':['반갑게 부르는 말','“여기 앉아도 돼!” — 어서 오라고 손짓하는 느낌이 들어.'] }
-    ];
-    var i = 0, mark = '.';
-    function draw(){
-      var S = SENT[i];
-      bub.textContent = S.t + mark;
-      bub.className = 'bubble' + (mark === '?' ? ' q' : (mark === '!' ? ' x' : ''));
-      document.getElementById('pn-live').innerHTML = '<b>' + S[mark][0] + '</b>';
-      document.getElementById('pn-why').innerHTML = S[mark][1];
-      Array.prototype.forEach.call(document.querySelectorAll('[data-pn]'), function(b){
-        b.setAttribute('aria-pressed', b.dataset.pn === mark ? 'true' : 'false');
-      });
-    }
-    Array.prototype.forEach.call(document.querySelectorAll('[data-pn]'), function(b){
-      b.addEventListener('click', function(){ mark = b.dataset.pn; draw(); });
-    });
-    document.getElementById('pn-next').addEventListener('click', function(){ i = (i+1) % SENT.length; draw(); });
-    draw();
   })();
 
   /* ================= 국어·지우: 공감 대화 시뮬레이터 ================= */
@@ -4013,9 +4287,84 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
     set('4');
   })();
 
+  /* ================= 국어·선우: 받침 탐정소 ================= */
+  (function(){
+    var row = document.getElementById('bt-row'); if (!row) return;
+    function say(t){ try{ var u=new SpeechSynthesisUtterance(t); u.lang='ko-KR'; u.rate=.75; speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(e){} }
+    var W = [
+      { w:'꽃', b:'ㅊ', j:'꽃이', snd:'꼬치', why:'받침 <b>ㅊ</b>이 뒤 글자의 빈자리로 넘어갔어. 그래서 쓸 때는 <b>꽃이</b>, 읽을 때는 <b>[꼬치]</b>. 소리대로 ‘꼬치’라고 쓰면 틀리는 이유가 여기 있어.' },
+      { w:'밥', b:'ㅂ', j:'밥을', snd:'바블', why:'받침 <b>ㅂ</b>이 넘어가 <b>[바블]</b>. 밥·법·집처럼 ㅂ 받침은 입술을 붙였다 떼며 넘어가.' },
+      { w:'산', b:'ㄴ', j:'산에', snd:'사네', why:'받침 <b>ㄴ</b>이 넘어가 <b>[사네]</b>. 규칙은 늘 같아 — <b>뒤 글자가 ㅇ으로 시작하면</b> 받침이 그 자리를 차지한다.' },
+      { w:'눈', b:'ㄴ', j:'눈이', snd:'누니', why:'<b>[누니]</b>. 같은 ㄴ 받침이라도 뒤에 붙는 말에 따라 소리 모양이 달라지지만, <b>넘어간다</b>는 규칙은 똑같아.' },
+      { w:'잎', b:'ㅍ', j:'잎에', snd:'이페', why:'받침 <b>ㅍ</b>이 넘어가 <b>[이페]</b>. 혼자 있을 때 ‘잎’은 [입]으로 소리 나는데, 뒤에 말이 붙으면 원래 소리 <b>ㅍ</b>이 되살아나!' },
+      { w:'곰', b:'ㅁ', j:'곰이', snd:'고미', why:'<b>[고미]</b>. 받침 ㅁ도 똑같이 넘어가. 여섯 낱말을 다 눌러봤다면 이제 규칙이 보일 거야 — <b>받침은 다음 칸으로 이사 간다</b>.' }
+    ];
+    var cur = 0;
+    function draw(){
+      row.innerHTML = '';
+      W.forEach(function(x,k){
+        var b=document.createElement('button'); b.textContent=x.w;
+        b.setAttribute('aria-pressed', k===cur?'true':'false');
+        b.addEventListener('click', function(){ cur=k; draw(); say(x.j); });
+        row.appendChild(b);
+      });
+      var X = W[cur];
+      document.getElementById('bt-big').innerHTML = X.j.charAt(0) + '<em>' + X.b + '</em> + ' + X.j.slice(1) + ' &nbsp;→&nbsp; ' + X.j;
+      document.getElementById('bt-sound').innerHTML = '읽을 때는 <b>[' + X.snd + ']</b>';
+      document.getElementById('bt-live').innerHTML = '<b>' + X.j + '</b> 은(는) <b>[' + X.snd + ']</b> 라고 읽는다.';
+      document.getElementById('bt-why').innerHTML = X.why;
+    }
+    document.getElementById('bt-say').addEventListener('click', function(){ say(W[cur].j); });
+    draw();
+  })();
+
+  /* ================= 국어·선우: 하고 싶은 말 찾기 ================= */
+  (function(){
+    var box = document.getElementById('wm-text'); if (!box) return;
+    var P = [
+      { t:'오늘 아침에 우리 반 화분이 시들어 있었다. 물을 주었더니 저녁에는 잎이 다시 섰다. <b>화분에도 물이 필요하다는 걸 알았다.</b>',
+        opts:['아침에 학교에 일찍 왔다','화분에도 물이 필요하다','저녁이 되면 잎이 선다'], ok:1,
+        why:'무슨 일이 있었는지(화분이 시들었다)는 <b>사건</b>이고, 마지막 문장이 <b>하고 싶은 말</b>이야. 글쓴이는 알게 된 것을 나누려고 이 글을 썼어. <b>마지막 문장</b>을 눈여겨보는 습관을 들이자.' },
+      { t:'복도에서 뛰다가 친구와 부딪혔다. 무릎이 아팠다. 다음 날도 뛰는 친구를 보았다. <b>복도에서는 걸어 다니면 좋겠다.</b>',
+        opts:['무릎이 아팠다','복도에서는 걸어 다니면 좋겠다','친구를 만났다'], ok:1,
+        why:'“아팠다”는 겪은 일, <b>“~하면 좋겠다”</b>가 하고 싶은 말이야. 이렇게 <b>바라는 말</b>이 나오면 거의 언제나 그게 중심 생각이야.' },
+      { t:'동생이 내 색연필을 말없이 가져갔다. 처음엔 화가 났다. 그런데 동생이 그린 그림에 내 얼굴이 있었다. <b>동생이 나를 그리고 싶었구나 싶어 마음이 풀렸다.</b>',
+        opts:['색연필을 잃어버렸다','동생의 마음을 알게 되어 화가 풀렸다','그림을 잘 그리고 싶다'], ok:1,
+        why:'앞부분은 <b>화가 난 마음</b>, 뒷부분은 <b>바뀐 마음</b>이야. 마음이 바뀐 글에서는 <b>바뀐 뒤의 마음</b>이 하고 싶은 말인 경우가 많아.' },
+      { t:'토끼는 저만치 앞서 달리다 뒤를 돌아보았다. 거북이는 아직 언덕 아래에 있었다. 토끼는 <b>빙긋 웃으며 나무 그늘에 누웠다.</b>',
+        opts:['거북이가 빨라서 놀랐다','내가 이길 것 같다고 생각했다','다리가 아파서 쉬었다'], ok:1,
+        why:'“이길 것 같다”고 <b>쓰여 있지 않아도</b> 알 수 있지? 빙긋 웃고 드러누운 <b>행동</b>이 마음을 말해줘. 인물의 생각은 <b>말과 행동에 숨어 있다</b>.' }
+    ];
+    var i = 0;
+    function draw(){
+      var X = P[i];
+      box.innerHTML = X.t;
+      var o = document.getElementById('wm-opts'); o.innerHTML = '';
+      document.getElementById('wm-fb').textContent = '';
+      X.opts.forEach(function(t,k){
+        var b=document.createElement('button'); b.className='ctl'; b.textContent=t;
+        b.style.fontSize='14px'; b.style.maxWidth='270px';
+        b.addEventListener('click', function(){
+          if (k===X.ok){
+            document.getElementById('wm-fb').textContent='찾았다!';
+            document.getElementById('wm-live').innerHTML='하고 싶은 말 — <b>' + t + '</b>';
+            document.getElementById('wm-why').innerHTML = X.why;
+          } else {
+            document.getElementById('wm-fb').textContent='그건 일어난 일이야. 글쓴이의 마음을 찾아보자.';
+          }
+        });
+        o.appendChild(b);
+      });
+      document.getElementById('wm-live').innerHTML='글쓴이가 하고 싶은 말은 무엇일까?';
+      document.getElementById('wm-why').innerHTML='글에는 <b>일어난 일</b>과 <b>하고 싶은 말</b>이 섞여 있어. 힌트는 두 곳 — <b>여러 번 나오는 말</b>과 <b>마지막 문장</b>이야.';
+    }
+    document.getElementById('wm-next').addEventListener('click', function(){ i=(i+1)%P.length; draw(); });
+    draw();
+  })();
+
   /* ================= 국어·선우: 받아쓰기 ================= */
   var DT = {
-    words: ['하늘','구름','얼굴','웃음','걸음','숲속','꽃밭','좋아요','앉아요','예쁜 꽃'],
+    words: ['꽃밭','산길','밥상','눈사람','책상','걸음','앉아요','읽어요','같이','좋아요'],
     i: 0, ok: 0, revealed: false
   };
   function dtSpeak(w){
@@ -4035,7 +4384,7 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
   }
   function drawDT(){
     var w = DT.words[DT.i];
-    $('dt-prog').textContent = '받아쓰기 ' + (DT.i + 1) + ' / ' + DT.words.length + '  ·  맞힌 것 ' + DT.ok;
+    $('dt-prog').textContent = '받아쓰기 ' + (DT.i + 1) + ' / ' + DT.words.length + '  ·  맞힌 것 ' + DT.ok + '  ·  끝까지 하면 보석 1개!';
     $('dt-word').textContent = '';
     $('dt-fb').textContent = '';
     $('dt-btns').innerHTML = '';
@@ -4064,11 +4413,12 @@ button.unit:hover{border-color:var(--ink-faint);color:var(--ink)}
       $('dt-prog').textContent = '끝!';
       $('dt-word').textContent = DT.ok + ' / ' + DT.words.length;
       $('dt-btns').innerHTML = '';
-      if (DT.ok >= 8){
-        var first = awardKey('s-d1', $('dt-word').parentNode);
-        $('dt-fb').textContent = first ? '8개 이상 — 받아쓰기 보석 획득!' : '오늘도 합격! (보석은 이미 받은 판)';
+      var first = awardKey('s-d1', $('dt-word').parentNode);
+      if (first){
+        $('dt-fb').textContent = DT.ok >= 8 ? '끝까지 해냈다 — 받아쓰기 보석 획득! (' + DT.ok + '개 맞힘)'
+                                            : '끝까지 해냈다 — 받아쓰기 보석 획득! 틀린 건 내일 또 쓰면 돼.';
       } else {
-        $('dt-fb').textContent = DT.ok + '개 맞혔어 — 내일 다시 도전하면 보석이 기다려!';
+        $('dt-fb').textContent = '오늘도 완주! (보석은 이미 받은 판)';
       }
       dtBtn('처음부터 다시', 'ctl', function(){ DT.i = 0; DT.ok = 0; drawDT(); });
     } else {
